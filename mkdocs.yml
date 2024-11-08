@@ -1,4 +1,10 @@
-site_name: ClT Base Model
+site_name: CLT Base Model
+plugins:
+- mkdocstrings:
+    enable_inventory: true
+- search
 nav:
-  - Home: index.md
-theme: readthedocs
+- Home: index.md
+- reference.md
+theme: 
+  name: material 
