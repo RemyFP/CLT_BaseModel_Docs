@@ -10422,14 +10422,18 @@ is as follows:
 
 <details class="there-are-two-transitionvariablegroups" open>
   <summary>There are two TransitionVariableGroups</summary>
-  <p>I_out (since new_recovered_home and new_hospitalized are joint random variables)
-H_out (since new_recovered_hosp and new_dead are joint random variables)</p>
+  <ul>
+<li>I_out (since new_recovered_home and new_hospitalized are joint random variables)</li>
+<li>H_out (since new_recovered_hosp and new_dead are joint random variables)</li>
+</ul>
 </details>
 
 <details class="the-following-are-epimetric-instances" open>
   <summary>The following are EpiMetric instances</summary>
-  <p>population_immunity_inf is a PopulationImmunityInf instance
-population_immunity_hosp is a PopulationImmunityHosp instance</p>
+  <ul>
+<li>population_immunity_inf is a PopulationImmunityInf instance</li>
+<li>population_immunity_hosp is a PopulationImmunityHosp instance</li>
+</ul>
 </details>        <p>Transition rates and update formulas are specified in
     corresponding classes.</p>
 
@@ -10763,12 +10767,12 @@ using the value of the EpiMetric's "name" attribute.</p>
 <span class="sd">        - new_dead is a NewDead instance</span>
 
 <span class="sd">    There are two TransitionVariableGroups:</span>
-<span class="sd">        I_out (since new_recovered_home and new_hospitalized are joint random variables)</span>
-<span class="sd">        H_out (since new_recovered_hosp and new_dead are joint random variables)</span>
+<span class="sd">        - I_out (since new_recovered_home and new_hospitalized are joint random variables)</span>
+<span class="sd">        - H_out (since new_recovered_hosp and new_dead are joint random variables)</span>
 
 <span class="sd">    The following are EpiMetric instances:</span>
-<span class="sd">        population_immunity_inf is a PopulationImmunityInf instance</span>
-<span class="sd">        population_immunity_hosp is a PopulationImmunityHosp instance</span>
+<span class="sd">        - population_immunity_inf is a PopulationImmunityInf instance</span>
+<span class="sd">        - population_immunity_hosp is a PopulationImmunityHosp instance</span>
 
 <span class="sd">    Transition rates and update formulas are specified in</span>
 <span class="sd">        corresponding classes.</span>
@@ -11784,6 +11788,7 @@ real-world date</p>
       <tbody>
           <tr class="doc-section-item">
 <td><code>float</code></td>            <td>
+                  <code>float</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -11834,7 +11839,7 @@ that day of the year</p>
 <span class="normal">346</span>
 <span class="normal">347</span>
 <span class="normal">348</span>
-<span class="normal">349</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">absolute_humidity_func</span><span class="p">(</span><span class="n">current_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span>
+<span class="normal">349</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">absolute_humidity_func</span><span class="p">(</span><span class="n">current_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Note: this is a dummy function loosely based off of</span>
 <span class="sd">    the absolute humidity data from Kaiming and Shraddha&#39;s</span>
