@@ -9,6 +9,7 @@ nav:
 - reference.md
 theme: 
   name: material 
+  favicon: images/favicon.ico
 
 markdown_extensions:
   - pymdownx.arithmatex:
