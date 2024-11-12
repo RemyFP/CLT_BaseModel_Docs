@@ -277,9 +277,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flu-model-transition-types" class="md-nav__link">
+  <a href="#flu-model-marginal-transition-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Flu model: transition types
+      Flu model: marginal transition types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-joint-transition-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: joint transition types
     </span>
   </a>
   
@@ -367,9 +376,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flu-model-transition-types" class="md-nav__link">
+  <a href="#flu-model-marginal-transition-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Flu model: transition types
+      Flu model: marginal transition types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-joint-transition-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: joint transition types
     </span>
   </a>
   
@@ -401,7 +419,7 @@
 
 <h1 id="flu-model-mathematical-formulation">Flu Model: Mathematical Formulation</h1>
 <blockquote>
-<p><strong><em>Written by LP, updated 11/11/2024 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 11/12/2024 (work in progress)</em></strong> </p>
 </blockquote>
 <h2 id="flu-model-deterministic-differential-equations">Flu model: deterministic differential equations</h2>
 <ul>
@@ -508,7 +526,7 @@
 </ul>
 <p>Note that prevalence is time-dependent, but we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
 <h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
-<p>To simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
+<p>To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
 <p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), \boldsymbol{p}(t), V(t)\right\}\)</span></strong> be the "simulate state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
 <p>Let <strong><span class="arithmatex">\(\boldsymbol{\Theta} = \left\{\boldsymbol{O}, \boldsymbol{N}, \boldsymbol{g}^I, \boldsymbol{w}^I, \boldsymbol{g}^H, \boldsymbol{w^H}, \beta_0, \gamma, \gamma_H, \sigma, \boldsymbol{\mu}, \zeta, \boldsymbol{\nu}, \pi, \eta \right\}\)</span></strong> be the set of fixed parameters. We define notation <span class="arithmatex">\(\boldsymbol{g}^I = [g^I_{H1}, g^I_{H3}, g^I_V]\)</span>,  <span class="arithmatex">\(\boldsymbol{w}^I = [w^I_{H1}, w^I_{H3}, w^I_V]\)</span>, <span class="arithmatex">\(\boldsymbol{g}^H = [g^H_{H1}, g^H_{H3}, g^H_V]\)</span>, and <span class="arithmatex">\(\boldsymbol{w}^H = [w^H_{H1}, w^H_{H3}, w^H_V]\)</span>. </p>
 <p>Then given initial state <span class="arithmatex">\(\boldsymbol{\mathcal X}_0 = \boldsymbol{\mathcal X}(0)\)</span>, we can formulate our discretized stochastic implementation as</p>
@@ -517,7 +535,7 @@
 \]</div>
 <p>where <span class="arithmatex">\(f\)</span> is parametrized by <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, and depends on the step size of discretization <span class="arithmatex">\(\Delta t\)</span> and a sample path <span class="arithmatex">\(\omega\)</span>. We assume that each sample path <span class="arithmatex">\(\omega\)</span> is realized from a random process that does not depend on <span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span> or <span class="arithmatex">\(\Delta t\)</span> for each <span class="arithmatex">\(t\)</span>. When we are discussing a single model with a fixed set of parameters <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, we drop the <span class="arithmatex">\(\boldsymbol{\Theta}\)</span> notation for simplicity.  </p>
 <p>Now we formulate how we implement discretized stochastic transitions between epidemiological compartments <span class="arithmatex">\(\boldsymbol{\mathcal C}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t)\right\}\)</span>.  The population-level immunity variables <span class="arithmatex">\(\boldsymbol{M(t)} = \left\{\boldsymbol{M}^I(t), \boldsymbol{M}^H(t)\right\}\)</span> are updated using <span class="arithmatex">\(\boldsymbol{M}^I(t+\Delta t) = \boldsymbol{M}^I(t) + \frac{d\boldsymbol{M}^I(t)}{dt} \Delta t\)</span> and <span class="arithmatex">\(\boldsymbol{M}^H(t+\Delta t) = \boldsymbol{M}^H(t) + \frac{d\boldsymbol{M}^H(t)}{dt} \Delta t\)</span>, where <span class="arithmatex">\(\frac{d\boldsymbol{M}^I(t)}{dt}\)</span> and <span class="arithmatex">\(\frac{d\boldsymbol{M}^H(t)}{dt}\)</span> are defined in the previous section. Note that we can think of them as aggregate epidemiological metrics that are are deterministic functions of the simulation state. We also assume that <span class="arithmatex">\(q(t)\)</span>, <strong><span class="arithmatex">\(\boldsymbol{\phi}(t)\)</span></strong>, <strong><span class="arithmatex">\(\boldsymbol{p}(t)\)</span></strong>, and <span class="arithmatex">\(V(t)\)</span>  are updated deterministically according to some "schedule." </p>
-<p>We model stochastic transitions between compartments using "transition variables." The <code>TransitionVariable</code> class in the code is another building block of the base model. Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each <span class="arithmatex">\(\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)\)</span> is an <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix with elements corresponding to age-risk group <span class="arithmatex">\(a, \ell\)</span>.  </p>
+<p>We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each <span class="arithmatex">\(\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)\)</span> is an <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix with elements corresponding to age-risk group <span class="arithmatex">\(a, \ell\)</span>.  </p>
 <p>Below we formulate the discretized stochastic transitions between compartments:</p>
 <div class="arithmatex">\[
 S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}}
@@ -543,7 +561,9 @@ R_{a,\ell}(t + \Delta t) = R_{a, \ell}(t) &amp;+ \underbrace{y^*_{I\rightarrow R
 <div class="arithmatex">\[
 D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
 \]</div>
-<p>IMPORTANT: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. For example, consider the two transitions out of the infected compartment: new recovered from home and new hospitalized. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. If a compartment has more than one outgoing transition variable, we model these transition variables as a <code>TransitionVariableGroup</code> in the code. Details are provided in the next section on transition types.</p>
+<p>IMPORTANT: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. In general, if a compartment has more than one outgoing transition variable, these transition variables must be modeled jointly. </p>
+<p>Consider the two transitions out of the infected compartment, for example. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. Joint distribution derivation details are provided in the next section on transition types.</p>
+<p>In flu model above, new recovered from home and new hospitalized are jointly distributed (they both leave from the infected compartment), and new recovered from hospital and new dead are jointly distributed (they both leave from the hospital compartment). </p>
 <p>Each transition variable depends on a "base count" and a "rate" (which both depend on the current state of the system). This decomposition is displayed in the table below.</p>
 <table>
 <thead>
@@ -599,15 +619,16 @@ D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \
 </tr>
 </tbody>
 </table>
-<p>Transition variable realizations depend on their transition types, which we outline in a table in the next section. </p>
-<h2 id="flu-model-transition-types">Flu model: transition types</h2>
+<p>The base count and rate of a transition variable parameterize the distribution that defines its realization. We elaborate on "transition types" in the next two sections. </p>
+<h2 id="flu-model-marginal-transition-types">Flu model: marginal transition types</h2>
 <p>Our codebase currently implements six types of transitions: three stochastic transitions and three deterministic counterparts.</p>
-<p>First we consider marginal (not joint) transition variables. Consider <span class="arithmatex">\(y_{\texttt{C}\rightarrow\texttt{C}^\prime, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span> from compartment <span class="arithmatex">\(\texttt{C}\)</span> to <span class="arithmatex">\(\texttt{C}^\prime\)</span>. Let <span class="arithmatex">\(\texttt{b} = \texttt{b}_{a, \ell}(t)\)</span> be its current value of its base count and <span class="arithmatex">\(\texttt{r} = \texttt{r}_{a, \ell}(t)\)</span> be its current value of its rate. Then depending on its transition type, its distribution (or deterministic value) is given below.</p>
-<p>Note that <span class="arithmatex">\(\alpha(\cdot, \cdot)\)</span> is a function that converts a "rate" into a probability. It is given by:
+<p>First we consider marginal (not joint) transition variables. For the following table, consider <span class="arithmatex">\(y_{\texttt{C}\rightarrow\texttt{C}^\prime, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span> from compartment <span class="arithmatex">\(\texttt{C}\)</span> to <span class="arithmatex">\(\texttt{C}^\prime\)</span>. Let <span class="arithmatex">\(\texttt{b} = \texttt{b}_{a, \ell}(t)\)</span> be its current value of its base count and <span class="arithmatex">\(\texttt{r} = \texttt{r}_{a, \ell}(t)\)</span> be its current value of its rate. Then depending on its transition type, its distribution (or deterministic value) is given below.</p>
+<p>Note that <span class="arithmatex">\(\alpha\)</span> is a function that converts a "rate" into a probability. It is given by:
 $$
-\alpha(\texttt{r}, \Delta t) = 1 - \exp(-\texttt{r} /\Delta t)
+\alpha(\texttt{r}, \Delta t) = 1 - \exp(-\texttt{r} \cdot \Delta t)
 $$
 and corresponds to the probability that a Poisson process with rate <span class="arithmatex">\(\texttt{r}\)</span> produces at least one event in an interval of length <span class="arithmatex">\(\Delta t\)</span>. </p>
+<p>The following table provides the mathematical distribution or deterministic output for each transition type. </p>
 <table>
 <thead>
 <tr>
@@ -622,11 +643,11 @@ and corresponds to the probability that a Poisson process with rate <span class=
 </tr>
 <tr>
 <td>Binomial  Taylor Approx</td>
-<td><span class="arithmatex">\(\sim \text{Binom}\left(n = \texttt{b}, p = \texttt{r} / \Delta t\right)\)</span></td>
+<td><span class="arithmatex">\(\sim \text{Binom}\left(n = \texttt{b}, p = \texttt{r} \cdot \Delta t\right)\)</span></td>
 </tr>
 <tr>
 <td>Poisson</td>
-<td><span class="arithmatex">\(\sim \text{Poisson}\left(\lambda = \texttt{b} \cdot \texttt{r} / \Delta t\right)\)</span></td>
+<td><span class="arithmatex">\(\sim \text{Poisson}\left(\lambda = \texttt{b} \cdot \texttt{r} \cdot \Delta t\right)\)</span></td>
 </tr>
 <tr>
 <td>Binomial Deterministic</td>
@@ -634,20 +655,64 @@ and corresponds to the probability that a Poisson process with rate <span class=
 </tr>
 <tr>
 <td>Binomial Taylor Approx Deterministic</td>
-<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} / \Delta t\)</span></td>
+<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} \cdot \Delta t\)</span></td>
 </tr>
 <tr>
 <td>Poisson Deterministic</td>
-<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} / \Delta t\)</span></td>
+<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} \cdot \Delta t\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>In the next table, we describe joint transition variables. </p>
-<p>...</p>
-<p>[IN PROGRESS, CHECK BACK SOON]</p>
+<h2 id="flu-model-joint-transition-types">Flu model: joint transition types</h2>
+<p>Here we describe joint transition variables. For the following table, consider a compartment <span class="arithmatex">\(\texttt{C}_0\)</span> with two outgoing compartments, <span class="arithmatex">\(\texttt{C}_1\)</span> and <span class="arithmatex">\(\texttt{C}_2\)</span>. We describe <span class="arithmatex">\(2\)</span> transition variables: <span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span> and <span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span>. They respectively correspond to the number of people that transition from <span class="arithmatex">\(\texttt{C}_0\)</span> to <span class="arithmatex">\(\texttt{C}_1\)</span> and the number that transition from <span class="arithmatex">\(\texttt{C}_0\)</span> to <span class="arithmatex">\(\texttt{C}_2\)</span> at a given simulate state. Let their rates be <span class="arithmatex">\(\texttt{r}_1\)</span> and <span class="arithmatex">\(\texttt{r}_2\)</span> respectively.  </p>
+<p>We can also write the number that remain in <span class="arithmatex">\(\texttt{C}_0\)</span> explicitly as 
+<span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right) = \texttt{C}_{0, a, \ell}(t) - y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right) - y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span>. Note that this quantity is purely for parametrizing multinomial distributions (which needs to have its probability parameters sum to <span class="arithmatex">\(1\)</span>) and does not need to be literally modeled as a transition variable either mathematically or in code. </p>
+<p>Let <span class="arithmatex">\(\alpha\)</span> be defined as in the previous section on marginal transition types.</p>
+<p>The following table gives the parameters for multinomial transitions when <span class="arithmatex">\(\texttt{C}_0\)</span> has two outgoing compartments <span class="arithmatex">\(\texttt{C}_1\)</span> and <span class="arithmatex">\(\texttt{C}_2\)</span>. The values <span class="arithmatex">\([y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span>, <span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span>, <span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)]\)</span> are sampled jointly, using <span class="arithmatex">\(\texttt{b} = \texttt{b}_{a, \ell}(t) = \texttt{C}_{0, a, \ell}(t)\)</span> as the "number of trials" parameter <span class="arithmatex">\(n\)</span> in a multinomial distribution.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Transition  Variable Group (Jointly Sampled)</th>
+<th style="text-align: center;">Multinomial Probability Parameter</th>
+<th style="text-align: center;">Multinomial with Taylor Approx Probability Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\frac{\texttt{r}_1}{\texttt{r}_1 + \texttt{r}_2} \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{r}_1 \cdot \Delta t\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\frac{\texttt{r}_2}{\texttt{r}_1 + \texttt{r}_2} \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\texttt{r}_2 \cdot \Delta t\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 - \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 - (\texttt{r}_1 + \texttt{r}_2) \Delta t\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>IMPORTANT:</p>
+<ul>
+<li>
+<p>The transition variable group table formulas generalize to an arbitrary number of outgoing compartments -- however, this is not shown here.</p>
+</li>
+<li>
+<p>Note that Poisson is not included in the above table. Recall the splitting property of Poisson processes. If the total outflow (going to either compartment, <span class="arithmatex">\(\texttt{C}_1\)</span> or <span class="arithmatex">\(\texttt{C}_2\)</span>) is Poisson, we can split the process into two independent Poisson processes. So joint sampling is not actually needed. </p>
+</li>
+<li>
+<p>In contrast, the binomial distribution does not have such a splitting property. If the total outflow is binomial with parameters <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(p\)</span>, then we cannot use a similar Poisson splitting technique to create two independent binomial random variables with the same number of trial parameters <span class="arithmatex">\(n\)</span>. Thus, joint sampling is needed. </p>
+</li>
+<li>
+<p>An advantage of binomial/multinomial transition variables (with joint sampling when there are multiple outflows from a compartment) is that we cannot have more people leaving the origin compartment than are actually in the compartment. We set the "number of trials" parameter in the multinomial distribution to be the current number of people in the compartment. This is <strong><em>NOT</em></strong> the case for Poisson transition variables, which are unbounded! Thus, we recommend using binomial/multinomial transition types.</p>
+</li>
+</ul>
 <h2 id="general-model-discretized-stochastic-implementation">General model: discretized stochastic implementation</h2>
 <p>We make the important note that the flu model's discretized stochastic implementation can be generalized to models with different structures. More broadly, we let <span class="arithmatex">\(\boldsymbol{\mathcal C}(t)\)</span> be a model's set of epidemiological compartments, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> its set of aggregate epidemiological metrics, and <span class="arithmatex">\(\boldsymbol{S (t)}\)</span> its set of schedule-dependent (time-dependent) deterministic values. Then the above formulation still holds.</p>
-<p>In fact, in our code, we model <span class="arithmatex">\(\boldsymbol{\mathcal C(t)}\)</span> using an <code>EpiCompartment</code> class, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> using an <code>EpiMetric</code> class, and <span class="arithmatex">\(\boldsymbol{\mathcal S(t)}\)</span> using a <code>Schedule</code> class. These classes form some of the building blocks of the base model code.</p>
+<p>In fact, in our code, we model <span class="arithmatex">\(\boldsymbol{\mathcal C(t)}\)</span> using an <code>EpiCompartment</code> class, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> using an <code>EpiMetric</code> class, and <span class="arithmatex">\(\boldsymbol{\mathcal S(t)}\)</span> using a <code>Schedule</code> class. We handle stochastic transitions using <code>TransitionVariable</code> and <code>TransitionVariableGroup</code> classes. These classes form some of the building blocks of the base model code. </p>
 
 
 
@@ -702,6 +767,10 @@ and corresponds to the probability that a Poisson process with rate <span class=
         <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script>
       
     
   </body>
