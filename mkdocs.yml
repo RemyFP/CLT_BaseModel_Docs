@@ -14,7 +14,13 @@ theme:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - markdown_katex:
+      no_inline_svg: True
+      insert_fonts_css: True
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js
+

@@ -1,6 +1,6 @@
 # Flu Model: Mathematical Formulation
 
-> **_Written by LP, updated 11/11/2024 (work in progress)_** 
+> **_Written by LP, updated 11/12/2024 (work in progress)_** 
 
 ## Flu model: deterministic differential equations
 - $t \in \mathbb N$: current simulation day
@@ -127,7 +127,7 @@ Note that prevalence is time-dependent, but we use $\boldsymbol{p} = \boldsymbol
 
 ## Flu model: discretized stochastic implementation
 
-To simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.
+To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.
 
 Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), \boldsymbol{p}(t), V(t)\right\}$** be the "simulate state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
 
@@ -143,7 +143,7 @@ where $f$ is parametrized by $\boldsymbol{\Theta}$, and depends on the step size
 
 Now we formulate how we implement discretized stochastic transitions between epidemiological compartments $\boldsymbol{\mathcal C}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t)\right\}$.  The population-level immunity variables $\boldsymbol{M(t)} = \left\{\boldsymbol{M}^I(t), \boldsymbol{M}^H(t)\right\}$ are updated using $\boldsymbol{M}^I(t+\Delta t) = \boldsymbol{M}^I(t) + \frac{d\boldsymbol{M}^I(t)}{dt} \Delta t$ and $\boldsymbol{M}^H(t+\Delta t) = \boldsymbol{M}^H(t) + \frac{d\boldsymbol{M}^H(t)}{dt} \Delta t$, where $\frac{d\boldsymbol{M}^I(t)}{dt}$ and $\frac{d\boldsymbol{M}^H(t)}{dt}$ are defined in the previous section. Note that we can think of them as aggregate epidemiological metrics that are are deterministic functions of the simulation state. We also assume that $q(t)$, **$\boldsymbol{\phi}(t)$**, **$\boldsymbol{p}(t)$**, and $V(t)$  are updated deterministically according to some "schedule." 
 
-We model stochastic transitions between compartments using "transition variables." The `TransitionVariable` class in the code is another building block of the base model. Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each $\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)$ is an $\lvert A \rvert \times \lvert L \rvert$ matrix with elements corresponding to age-risk group $a, \ell$.  
+We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each $\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)$ is an $\lvert A \rvert \times \lvert L \rvert$ matrix with elements corresponding to age-risk group $a, \ell$.  
 
 Below we formulate the discretized stochastic transitions between compartments:
 
@@ -177,7 +177,11 @@ $$
 D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
 $$
 
-IMPORTANT: the "$*$" superscript indicates that the transition variable has a joint distribution with another transition variable. For example, consider the two transitions out of the infected compartment: new recovered from home and new hospitalized. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. If a compartment has more than one outgoing transition variable, we model these transition variables as a `TransitionVariableGroup` in the code. Details are provided in the next section on transition types.
+IMPORTANT: the "$*$" superscript indicates that the transition variable has a joint distribution with another transition variable. In general, if a compartment has more than one outgoing transition variable, these transition variables must be modeled jointly. 
+
+Consider the two transitions out of the infected compartment, for example. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. Joint distribution derivation details are provided in the next section on transition types.
+
+In flu model above, new recovered from home and new hospitalized are jointly distributed (they both leave from the infected compartment), and new recovered from hospital and new dead are jointly distributed (they both leave from the hospital compartment). 
 
 Each transition variable depends on a "base count" and a "rate" (which both depend on the current state of the system). This decomposition is displayed in the table below.
 
@@ -191,37 +195,60 @@ Each transition variable depends on a "base count" and a "rate" (which both depe
 | New recovered from hospital | $y^*_{H \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$  | $H_{a, \ell}(t)$                                          | $(1-\tilde{\nu}_{a,\ell})\gamma_H$                                                                                                                                                 |
 | New dead                    | $y^*_{H \rightarrow D, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$  | $H_{a, \ell}(t)$                                          | $\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}$                                                                                                              |
 
-Transition variable realizations depend on their transition types, which we outline in a table in the next section. 
+The base count and rate of a transition variable parameterize the distribution that defines its realization. We elaborate on "transition types" in the next two sections. 
 
-## Flu model: transition types
+## Flu model: marginal transition types
 
 Our codebase currently implements six types of transitions: three stochastic transitions and three deterministic counterparts.
 
-First we consider marginal (not joint) transition variables. Consider $y_{\texttt{C}\rightarrow\texttt{C}^\prime, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ from compartment $\texttt{C}$ to $\texttt{C}^\prime$. Let $\texttt{b} = \texttt{b}_{a, \ell}(t)$ be its current value of its base count and $\texttt{r} = \texttt{r}_{a, \ell}(t)$ be its current value of its rate. Then depending on its transition type, its distribution (or deterministic value) is given below.
+First we consider marginal (not joint) transition variables. For the following table, consider $y_{\texttt{C}\rightarrow\texttt{C}^\prime, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ from compartment $\texttt{C}$ to $\texttt{C}^\prime$. Let $\texttt{b} = \texttt{b}_{a, \ell}(t)$ be its current value of its base count and $\texttt{r} = \texttt{r}_{a, \ell}(t)$ be its current value of its rate. Then depending on its transition type, its distribution (or deterministic value) is given below.
 
-Note that $\alpha(\cdot, \cdot)$ is a function that converts a "rate" into a probability. It is given by:
+Note that $\alpha$ is a function that converts a "rate" into a probability. It is given by:
 $$
-\alpha(\texttt{r}, \Delta t) = 1 - \exp(-\texttt{r} /\Delta t)
+\alpha(\texttt{r}, \Delta t) = 1 - \exp(-\texttt{r} \cdot \Delta t)
 $$
 and corresponds to the probability that a Poisson process with rate $\texttt{r}$ produces at least one event in an interval of length $\Delta t$. 
+
+The following table provides the mathematical distribution or deterministic output for each transition type. 
 
 |                                      | Output                                                                           |
 |--------------------------------------|----------------------------------------------------------------------------------|
 | Binomial                             | $\sim \text{Binom}\left(n = \texttt{b}, p = \alpha(\texttt{r}, \Delta t)\right)$ |
-| Binomial  Taylor Approx              | $\sim \text{Binom}\left(n = \texttt{b}, p = \texttt{r} / \Delta t\right)$        |
-| Poisson                              | $\sim \text{Poisson}\left(\lambda = \texttt{b} \cdot \texttt{r} / \Delta t\right)$      |
+| Binomial  Taylor Approx              | $\sim \text{Binom}\left(n = \texttt{b}, p = \texttt{r} \cdot \Delta t\right)$        |
+| Poisson                              | $\sim \text{Poisson}\left(\lambda = \texttt{b} \cdot \texttt{r} \cdot \Delta t\right)$      |
 | Binomial Deterministic               | $\texttt{b} \cdot \alpha(\texttt{r}, \Delta t)$                                        |
-| Binomial Taylor Approx Deterministic | $\texttt{b} \cdot \texttt{r} / \Delta t$                                                 |
-| Poisson Deterministic                | $\texttt{b} \cdot \texttt{r} / \Delta t$                                               |
+| Binomial Taylor Approx Deterministic | $\texttt{b} \cdot \texttt{r} \cdot \Delta t$                                                 |
+| Poisson Deterministic                | $\texttt{b} \cdot \texttt{r} \cdot \Delta t$                                               |
 
-In the next table, we describe joint transition variables. 
+## Flu model: joint transition types
 
-...
+Here we describe joint transition variables. For the following table, consider a compartment $\texttt{C}_0$ with two outgoing compartments, $\texttt{C}_1$ and $\texttt{C}_2$. We describe $2$ transition variables: $y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ and $y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$. They respectively correspond to the number of people that transition from $\texttt{C}_0$ to $\texttt{C}_1$ and the number that transition from $\texttt{C}_0$ to $\texttt{C}_2$ at a given simulate state. Let their rates be $\texttt{r}_1$ and $\texttt{r}_2$ respectively.  
 
-[IN PROGRESS, CHECK BACK SOON]
+We can also write the number that remain in $\texttt{C}_0$ explicitly as 
+$y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right) = \texttt{C}_{0, a, \ell}(t) - y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right) - y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$. Note that this quantity is purely for parametrizing multinomial distributions (which needs to have its probability parameters sum to $1$) and does not need to be literally modeled as a transition variable either mathematically or in code. 
+
+Let $\alpha$ be defined as in the previous section on marginal transition types.
+
+The following table gives the parameters for multinomial transitions when $\texttt{C}_0$ has two outgoing compartments $\texttt{C}_1$ and $\texttt{C}_2$. The values $[y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$, $y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$, $y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)]$ are sampled jointly, using $\texttt{b} = \texttt{b}_{a, \ell}(t) = \texttt{C}_{0, a, \ell}(t)$ as the "number of trials" parameter $n$ in a multinomial distribution.
+
+|                                             Transition  Variable Group (Jointly Sampled)                                           |                                 Multinomial Probability Parameter                                | Multinomial with Taylor Approx Probability Parameter |
+|:-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|:----------------------------------------------------:|
+| $y_{\texttt{C}_0\rightarrow\texttt{C}_1, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ | $\frac{\texttt{r}_1}{\texttt{r}_1 + \texttt{r}_2} \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)$ | $\texttt{r}_1 \cdot \Delta t$                              |
+| $y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ | $\frac{\texttt{r}_2}{\texttt{r}_1 + \texttt{r}_2} \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)$ | $\texttt{r}_2 \cdot \Delta t$                              |
+| $y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ | $1 - \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)$                                              | $1 - (\texttt{r}_1 + \texttt{r}_2) \Delta t$         |
+
+IMPORTANT:
+
+- The transition variable group table formulas generalize to an arbitrary number of outgoing compartments -- however, this is not shown here.
+
+- Note that Poisson is not included in the above table. Recall the splitting property of Poisson processes. If the total outflow (going to either compartment, $\texttt{C}_1$ or $\texttt{C}_2$) is Poisson, we can split the process into two independent Poisson processes. So joint sampling is not actually needed. 
+
+- In contrast, the binomial distribution does not have such a splitting property. If the total outflow is binomial with parameters $n$ and $p$, then we cannot use a similar Poisson splitting technique to create two independent binomial random variables with the same number of trial parameters $n$. Thus, joint sampling is needed. 
+
+- An advantage of binomial/multinomial transition variables (with joint sampling when there are multiple outflows from a compartment) is that we cannot have more people leaving the origin compartment than are actually in the compartment. We set the "number of trials" parameter in the multinomial distribution to be the current number of people in the compartment. This is ***NOT*** the case for Poisson transition variables, which are unbounded! Thus, we recommend using binomial/multinomial transition types.
 
 ## General model: discretized stochastic implementation
 
 We make the important note that the flu model's discretized stochastic implementation can be generalized to models with different structures. More broadly, we let $\boldsymbol{\mathcal C}(t)$ be a model's set of epidemiological compartments, $\boldsymbol{\mathcal M}(t)$ its set of aggregate epidemiological metrics, and $\boldsymbol{S (t)}$ its set of schedule-dependent (time-dependent) deterministic values. Then the above formulation still holds.
 
-In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `EpiCompartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. These classes form some of the building blocks of the base model code.
+In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `EpiCompartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. We handle stochastic transitions using `TransitionVariable` and `TransitionVariableGroup` classes. These classes form some of the building blocks of the base model code. 
