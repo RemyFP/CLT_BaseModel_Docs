@@ -15,12 +15,12 @@
         <link rel="next" href="../reference/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Flu Model Mathematical Form - CLT Base Model</title>
+        <title>Flu Model: Mathematical Formulation - CLT Base Model</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flu-model-mathematical-form" class="md-skip">
+        <a href="#flu-model-mathematical-formulation" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flu Model Mathematical Form
+              Flu Model: Mathematical Formulation
             
           </span>
         </div>
@@ -226,7 +226,7 @@
           
   
   <span class="md-ellipsis">
-    Flu Model Mathematical Form
+    Flu Model: Mathematical Formulation
   </span>
   
 
@@ -237,7 +237,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Mathematical Form
+    Flu Model: Mathematical Formulation
   </span>
   
 
@@ -259,9 +259,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-mathematical-structure-deterministic-differential-equations" class="md-nav__link">
+  <a href="#flu-model-deterministic-differential-equations" class="md-nav__link">
     <span class="md-ellipsis">
-      General mathematical structure: deterministic differential equations
+      Flu model: deterministic differential equations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-discretized-stochastic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: discretized stochastic implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-transition-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: transition types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-model-discretized-stochastic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      General model: discretized stochastic implementation
     </span>
   </a>
   
@@ -322,9 +349,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-mathematical-structure-deterministic-differential-equations" class="md-nav__link">
+  <a href="#flu-model-deterministic-differential-equations" class="md-nav__link">
     <span class="md-ellipsis">
-      General mathematical structure: deterministic differential equations
+      Flu model: deterministic differential equations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-discretized-stochastic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: discretized stochastic implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flu-model-transition-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flu model: transition types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-model-discretized-stochastic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      General model: discretized stochastic implementation
     </span>
   </a>
   
@@ -345,11 +399,11 @@
                   
 
 
-<h1 id="flu-model-mathematical-form">Flu Model Mathematical Form</h1>
+<h1 id="flu-model-mathematical-formulation">Flu Model: Mathematical Formulation</h1>
 <blockquote>
-<p><strong><em>Updated 11/8/2024 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 11/11/2024 (work in progress)</em></strong> </p>
 </blockquote>
-<h2 id="general-mathematical-structure-deterministic-differential-equations">General mathematical structure: deterministic differential equations</h2>
+<h2 id="flu-model-deterministic-differential-equations">Flu model: deterministic differential equations</h2>
 <ul>
 <li><span class="arithmatex">\(t \in \mathbb N\)</span>: current simulation day</li>
 <li><span class="arithmatex">\(a\)</span>: age group, <span class="arithmatex">\(A\)</span>: set of all age groups</li>
@@ -372,8 +426,8 @@
 <li><span class="arithmatex">\(g^I_{H1}\)</span>: factor by which population-level immunity against infection grows after each H1N1 case that recovers.</li>
 <li><span class="arithmatex">\(g^I_{H3}\)</span>: factor by which population-level immunity against infection grows after each H3N2 case that recovers.</li>
 <li><span class="arithmatex">\(g^I_V\)</span>: factor by which population-level immunity against infection grows after each vaccination.</li>
-<li><span class="arithmatex">\(N_{a, \ell}\)</span>: total population of age group <span class="arithmatex">\(a\)</span> and risk group <span class="arithmatex">\(\ell\)</span>.</li>
-<li><span class="arithmatex">\(p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)\)</span>: prevalence of H1N1, H3N2 respectively.</li>
+<li><span class="arithmatex">\(\boldsymbol{N}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix corresponding to total population, where element <span class="arithmatex">\(N_{a, \ell}\)</span> is the total population of age group <span class="arithmatex">\(a\)</span> and risk group <span class="arithmatex">\(\ell\)</span>.</li>
+<li><span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t) = [p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)]\)</span>: where elements correspond to prevalence of H1N1, H3N2 respectively.</li>
 <li><span class="arithmatex">\(w^I_{H1}\)</span>: rate at which H1N1 infection-induced immunity against infection wanes.</li>
 <li><span class="arithmatex">\(w^I_{H3}\)</span>: rate at which H3N2 infection-induced immunity against infection wanes.</li>
 <li><span class="arithmatex">\(w^I_V\)</span>: rate at which vaccine-induced immunity against infection wanes.</li>
@@ -402,46 +456,198 @@
 </ul>
 <p><strong>SEIHRD equations</strong></p>
 <div class="arithmatex">\[
-\frac{dS_{a,\ell}(t)}{dt} = -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{K_{a,\ell}^I(p)}^T \boldsymbol{M_{a,\ell}^I})}}_{\text{new exposed}} + \underbrace{\eta R_{a,\ell}(t)}_{\text{new susceptible}}
+\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{new susceptible}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{new exposed}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{K_{a,\ell}^I(p)}^T \boldsymbol{M_{a,\ell}^I})}}_{\text{new exposed}} - \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}}
+\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{new exposed}} - \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dI_{a,\ell}(t)}{dt} = \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I_{a,\ell}(t)}_{\text{new recovered from home}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{K_{a,\ell}^H(p)}^T \boldsymbol{M_{a,\ell}^H}}}_{\text{new hospitalized}}
+\frac{dI_{a,\ell}(t)}{dt} = \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I_{a,\ell}(t)}_{\text{new recovered from home}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new hospitalized}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dH_{a,\ell}(t)}{dt} = \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{K_{a,\ell}^H(p)}^T \boldsymbol{M_{a,\ell}^H}}}_{\text{new hospitalized}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{new recovered from hospital}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{K_{a,\ell}^D(p)}^T\boldsymbol{M_{a,\ell}^H}}}_{\text{new dead}}
+\frac{dH_{a,\ell}(t)}{dt} = \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new hospitalized}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{new recovered from hospital}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new dead}}
 \]</div>
 <div class="arithmatex">\[
 \frac{dR_{a,\ell}(t)}{dt} = \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I_{a,\ell}(t)}_{\text{new recovered from home}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{new recovered from hospital}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{new susceptible}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{K_{a,\ell}^D(p)}^T\boldsymbol{M_{a,\ell}^H}}}_{\text{new dead}}
+\frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{new dead}}
 \]</div>
-<p>where</p>
+<p>where we have the following terms that characterize the effect of population-level immunities:</p>
+<div class="arithmatex">\[
+\boldsymbol{\Lambda^{I, I}(t)} = \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)
+\]</div>
+<div class="arithmatex">\[
+\boldsymbol{\Lambda^{H, H}(t)} = \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)
+\]</div>
+<div class="arithmatex">\[
+\boldsymbol{\Lambda^{D, H}}(t) = \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
+\]</div>
+<p>and where</p>
 <ul>
 <li><span class="arithmatex">\(\beta(t) = \beta_0 (1 + q(t))\)</span>: time-dependent transmission rate per day.</li>
 <li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity.</li>
-<li><span class="arithmatex">\(\phi_{a, \ell, a^\prime, \ell^\prime}(t)\)</span>: mixing rates between age-risk group <span class="arithmatex">\(a, \ell\)</span> and <span class="arithmatex">\(a^\prime, \ell^\prime\)</span>. Specifically, the interpretation is: for an individual in age-risk group <span class="arithmatex">\(a, \ell\)</span>, the number of contacts they have in age-risk group <span class="arithmatex">\(a^\prime, ell^\prime\)</span> per day.</li>
+<li><span class="arithmatex">\(\phi_{a, \ell, a^\prime, \ell^\prime}(t)\)</span>: mixing rates between age-risk group <span class="arithmatex">\(a, \ell\)</span> and <span class="arithmatex">\(a^\prime, \ell^\prime\)</span>. Specifically, the interpretation is: for an individual in age-risk group <span class="arithmatex">\(a, \ell\)</span>, the number of contacts they have in age-risk group <span class="arithmatex">\(a^\prime, \ell^\prime\)</span> per day.</li>
 <li><span class="arithmatex">\(\gamma, \gamma_H\)</span>: recovery rates for infected and hospital compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\gamma_H\)</span> is analogous, but for an infected person in the hospital. </li>
 <li><span class="arithmatex">\(\sigma\)</span>: infection rate (exposed to infected transition rate), so that <span class="arithmatex">\(1/\sigma\)</span> is the average number of days after exposure before a person becomes infectious.</li>
-<li><span class="arithmatex">\([\tilde{\mu}_{a, \ell}]\)</span>, where <span class="arithmatex">\(\tilde{\mu}_{a, \ell} = \frac{\mu_{a, \ell}\gamma}{\zeta - \mu_{a, \ell}(\zeta-\gamma)}\)</span>: adjusted hospitalization rate vector (as in, proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span> group) actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates <span class="arithmatex">\([\mu_{a, \ell}]\)</span>.</li>
-<li><span class="arithmatex">\([\mu_{a, \ell}]\)</span>: hospitalization rate vector (proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
+<li><span class="arithmatex">\(\boldsymbol{\tilde{\mu}}\)</span>, where <span class="arithmatex">\(\tilde{\mu}_{a, \ell} = \frac{\mu_{a, \ell}\gamma}{\zeta - \mu_{a, \ell}(\zeta-\gamma)}\)</span>: adjusted hospitalization rate (as in, proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span> group) actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates <span class="arithmatex">\([\mu_{a, \ell}]\)</span>.</li>
+<li><span class="arithmatex">\(\boldsymbol{\mu}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> hospitalization rate (proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
 <li><span class="arithmatex">\(\zeta\)</span>: hospitalization rate (infected to hospital transition rate), so that <span class="arithmatex">\(1/\zeta\)</span> is the average number of days a person is infected before going to the hospital.</li>
-<li><span class="arithmatex">\([\tilde{\nu}_{a, \ell}]\)</span>, where <span class="arithmatex">\(\tilde{\nu}_{a, \ell} = \frac{\nu_{a, \ell}\gamma_H}{\pi - \nu_{a, \ell}(\zeta-\gamma_H)}\)</span>: adjusted hospitalization rate vector (as in, proportion hospitalized based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates <span class="arithmatex">\([\nu_{a, \ell}]\)</span>.</li>
-<li><span class="arithmatex">\([\nu_{a, \ell}]\)</span>: in-hospital mortality rate vector (proportion who die based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
+<li><span class="arithmatex">\(\boldsymbol{\tilde{\nu}}\)</span>, where <span class="arithmatex">\(\tilde{\nu}_{a, \ell} = \frac{\nu_{a, \ell}\gamma_H}{\pi - \nu_{a, \ell}(\zeta-\gamma_H)}\)</span>: adjusted hospitalization rate (as in, proportion hospitalized based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates <span class="arithmatex">\([\nu_{a, \ell}]\)</span>.</li>
+<li><span class="arithmatex">\(\boldsymbol{\nu}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> in-hospital mortality rate (proportion who die based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
 <li><span class="arithmatex">\(\pi\)</span>: death rate from hospital, so that <span class="arithmatex">\(1/\pi\)</span> is the average number of days a person spends in the hospital before dying.</li>
 <li><span class="arithmatex">\(\eta\)</span>: rate at which recovered individuals become susceptible, so that <span class="arithmatex">\(1/\eta\)</span> is the average number of days a person is totally immune from reinfection until being susceptible again.</li>
 </ul>
 <p>The following are all <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert \times \lvert \mathcal I \rvert\)</span> matrices:</p>
 <ul>
-<li><strong><span class="arithmatex">\(\boldsymbol{K^I(p)} = [\boldsymbol{K^I}_{H1}(p_{H1}), \boldsymbol{K^I}_{H3}(p_{H3}), \boldsymbol{K^I}_{V}]\)</span></strong>: reduction in infection risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{K^H(p)} = [\boldsymbol{K^H}_{H1}(p_{H1}), \boldsymbol{K^H}_{H3}(p_{H3}), \boldsymbol{K^H}_{V}]\)</span></strong>: reduction in hospitalization risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{K^D(p)} = [\boldsymbol{K^D}_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K^D}_{V}]\)</span></strong>: reduction in death risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{M^I} = \boldsymbol{M^I}(t) = [\boldsymbol{M^I}_{H1}(t), \boldsymbol{M^I}_{H3}(t), \boldsymbol{M^I}_{V}(t)]\)</span></strong>: population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{M^H} = \boldsymbol{M^H}(t) = [\boldsymbol{M^H}_{H1}(t), \boldsymbol{M^H}_{H3}(t), \boldsymbol{M^H}_{V}(t)]\)</span></strong>: population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).</li>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]\)</span></strong>: reduction in infection risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]\)</span></strong>: reduction in hospitalization risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]\)</span></strong>: reduction in death risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{M}^I = \boldsymbol{M}^I(t) = [\boldsymbol{M}^I_{H1}(t), \boldsymbol{M}^I_{H3}(t), \boldsymbol{M}^I_{V}(t)]\)</span></strong>: population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{M}^H = \boldsymbol{M}^H(t) = [\boldsymbol{M}^H_{H1}(t), \boldsymbol{M}^H_{H3}(t), \boldsymbol{M}^H_{V}(t)]\)</span></strong>: population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).</li>
 </ul>
+<p>Note that prevalence is time-dependent, but we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
+<h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
+<p>To simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
+<p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), \boldsymbol{p}(t), V(t)\right\}\)</span></strong> be the "simulate state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
+<p>Let <strong><span class="arithmatex">\(\boldsymbol{\Theta} = \left\{\boldsymbol{O}, \boldsymbol{N}, \boldsymbol{g}^I, \boldsymbol{w}^I, \boldsymbol{g}^H, \boldsymbol{w^H}, \beta_0, \gamma, \gamma_H, \sigma, \boldsymbol{\mu}, \zeta, \boldsymbol{\nu}, \pi, \eta \right\}\)</span></strong> be the set of fixed parameters. We define notation <span class="arithmatex">\(\boldsymbol{g}^I = [g^I_{H1}, g^I_{H3}, g^I_V]\)</span>,  <span class="arithmatex">\(\boldsymbol{w}^I = [w^I_{H1}, w^I_{H3}, w^I_V]\)</span>, <span class="arithmatex">\(\boldsymbol{g}^H = [g^H_{H1}, g^H_{H3}, g^H_V]\)</span>, and <span class="arithmatex">\(\boldsymbol{w}^H = [w^H_{H1}, w^H_{H3}, w^H_V]\)</span>. </p>
+<p>Then given initial state <span class="arithmatex">\(\boldsymbol{\mathcal X}_0 = \boldsymbol{\mathcal X}(0)\)</span>, we can formulate our discretized stochastic implementation as</p>
+<div class="arithmatex">\[
+\boldsymbol{\mathcal X}(t + \Delta t) = \boldsymbol{\mathcal X}(t) + f\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega; \boldsymbol{\Theta}\right) \quad \text{for} \quad t \ge 0,
+\]</div>
+<p>where <span class="arithmatex">\(f\)</span> is parametrized by <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, and depends on the step size of discretization <span class="arithmatex">\(\Delta t\)</span> and a sample path <span class="arithmatex">\(\omega\)</span>. We assume that each sample path <span class="arithmatex">\(\omega\)</span> is realized from a random process that does not depend on <span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span> or <span class="arithmatex">\(\Delta t\)</span> for each <span class="arithmatex">\(t\)</span>. When we are discussing a single model with a fixed set of parameters <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, we drop the <span class="arithmatex">\(\boldsymbol{\Theta}\)</span> notation for simplicity.  </p>
+<p>Now we formulate how we implement discretized stochastic transitions between epidemiological compartments <span class="arithmatex">\(\boldsymbol{\mathcal C}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t)\right\}\)</span>.  The population-level immunity variables <span class="arithmatex">\(\boldsymbol{M(t)} = \left\{\boldsymbol{M}^I(t), \boldsymbol{M}^H(t)\right\}\)</span> are updated using <span class="arithmatex">\(\boldsymbol{M}^I(t+\Delta t) = \boldsymbol{M}^I(t) + \frac{d\boldsymbol{M}^I(t)}{dt} \Delta t\)</span> and <span class="arithmatex">\(\boldsymbol{M}^H(t+\Delta t) = \boldsymbol{M}^H(t) + \frac{d\boldsymbol{M}^H(t)}{dt} \Delta t\)</span>, where <span class="arithmatex">\(\frac{d\boldsymbol{M}^I(t)}{dt}\)</span> and <span class="arithmatex">\(\frac{d\boldsymbol{M}^H(t)}{dt}\)</span> are defined in the previous section. Note that we can think of them as aggregate epidemiological metrics that are are deterministic functions of the simulation state. We also assume that <span class="arithmatex">\(q(t)\)</span>, <strong><span class="arithmatex">\(\boldsymbol{\phi}(t)\)</span></strong>, <strong><span class="arithmatex">\(\boldsymbol{p}(t)\)</span></strong>, and <span class="arithmatex">\(V(t)\)</span>  are updated deterministically according to some "schedule." </p>
+<p>We model stochastic transitions between compartments using "transition variables." The <code>TransitionVariable</code> class in the code is another building block of the base model. Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each <span class="arithmatex">\(\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)\)</span> is an <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix with elements corresponding to age-risk group <span class="arithmatex">\(a, \ell\)</span>.  </p>
+<p>Below we formulate the discretized stochastic transitions between compartments:</p>
+<div class="arithmatex">\[
+S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}}
+\]</div>
+<div class="arithmatex">\[
+E_{a,\ell}(t + \Delta t) = E_{a, \ell}(t) + \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}} - \underbrace{y_{E\rightarrow I,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new infected}}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+I_{a,\ell}(t + \Delta t) = I_{a, \ell}(t) &amp;+ \underbrace{y_{E\rightarrow I,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new infected}} \\ &amp;- \underbrace{y^*_{I\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from home}} - \underbrace{y^*_{I\rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new hospitalized}}
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+H_{a,\ell}(t + \Delta t) = H_{a, \ell}(t) &amp;+ \underbrace{y^*_{I\rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new hospitalized}} \\ &amp;- \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from hospital}} - \underbrace{y^*_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+R_{a,\ell}(t + \Delta t) = R_{a, \ell}(t) &amp;+ \underbrace{y^*_{I\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from home}} + \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from hospital}} \\ &amp;- \underbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}}
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
+\]</div>
+<p>IMPORTANT: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. For example, consider the two transitions out of the infected compartment: new recovered from home and new hospitalized. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. If a compartment has more than one outgoing transition variable, we model these transition variables as a <code>TransitionVariableGroup</code> in the code. Details are provided in the next section on transition types.</p>
+<p>Each transition variable depends on a "base count" and a "rate" (which both depend on the current state of the system). This decomposition is displayed in the table below.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Name</th>
+<th style="text-align: center;">Transition variable</th>
+<th style="text-align: center;">Base count</th>
+<th style="text-align: center;">Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">New susceptible</td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{R \rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(R_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\eta\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New exposed</td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{S \rightarrow E, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(S_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New infected</td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{E \rightarrow I, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(E_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sigma\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New recovered  from home</td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\mu}_{a,\ell})\gamma\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New hospitalized</td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I \rightarrow H, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New recovered from hospital</td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\nu}_{a,\ell})\gamma_H\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">New dead</td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow D, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Transition variable realizations depend on their transition types, which we outline in a table in the next section. </p>
+<h2 id="flu-model-transition-types">Flu model: transition types</h2>
+<p>Our codebase currently implements six types of transitions: three stochastic transitions and three deterministic counterparts.</p>
+<p>First we consider marginal (not joint) transition variables. Consider <span class="arithmatex">\(y_{\texttt{C}\rightarrow\texttt{C}^\prime, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span> from compartment <span class="arithmatex">\(\texttt{C}\)</span> to <span class="arithmatex">\(\texttt{C}^\prime\)</span>. Let <span class="arithmatex">\(\texttt{b} = \texttt{b}_{a, \ell}(t)\)</span> be its current value of its base count and <span class="arithmatex">\(\texttt{r} = \texttt{r}_{a, \ell}(t)\)</span> be its current value of its rate. Then depending on its transition type, its distribution (or deterministic value) is given below.</p>
+<p>Note that <span class="arithmatex">\(\alpha(\cdot, \cdot)\)</span> is a function that converts a "rate" into a probability. It is given by:
+$$
+\alpha(\texttt{r}, \Delta t) = 1 - \exp(-\texttt{r} /\Delta t)
+$$
+and corresponds to the probability that a Poisson process with rate <span class="arithmatex">\(\texttt{r}\)</span> produces at least one event in an interval of length <span class="arithmatex">\(\Delta t\)</span>. </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binomial</td>
+<td><span class="arithmatex">\(\sim \text{Binom}\left(n = \texttt{b}, p = \alpha(\texttt{r}, \Delta t)\right)\)</span></td>
+</tr>
+<tr>
+<td>Binomial  Taylor Approx</td>
+<td><span class="arithmatex">\(\sim \text{Binom}\left(n = \texttt{b}, p = \texttt{r} / \Delta t\right)\)</span></td>
+</tr>
+<tr>
+<td>Poisson</td>
+<td><span class="arithmatex">\(\sim \text{Poisson}\left(\lambda = \texttt{b} \cdot \texttt{r} / \Delta t\right)\)</span></td>
+</tr>
+<tr>
+<td>Binomial Deterministic</td>
+<td><span class="arithmatex">\(\texttt{b} \cdot \alpha(\texttt{r}, \Delta t)\)</span></td>
+</tr>
+<tr>
+<td>Binomial Taylor Approx Deterministic</td>
+<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} / \Delta t\)</span></td>
+</tr>
+<tr>
+<td>Poisson Deterministic</td>
+<td><span class="arithmatex">\(\texttt{b} \cdot \texttt{r} / \Delta t\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In the next table, we describe joint transition variables. </p>
+<p>...</p>
+<p>[IN PROGRESS, CHECK BACK SOON]</p>
+<h2 id="general-model-discretized-stochastic-implementation">General model: discretized stochastic implementation</h2>
+<p>We make the important note that the flu model's discretized stochastic implementation can be generalized to models with different structures. More broadly, we let <span class="arithmatex">\(\boldsymbol{\mathcal C}(t)\)</span> be a model's set of epidemiological compartments, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> its set of aggregate epidemiological metrics, and <span class="arithmatex">\(\boldsymbol{S (t)}\)</span> its set of schedule-dependent (time-dependent) deterministic values. Then the above formulation still holds.</p>
+<p>In fact, in our code, we model <span class="arithmatex">\(\boldsymbol{\mathcal C(t)}\)</span> using an <code>EpiCompartment</code> class, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> using an <code>EpiMetric</code> class, and <span class="arithmatex">\(\boldsymbol{\mathcal S(t)}\)</span> using a <code>Schedule</code> class. These classes form some of the building blocks of the base model code.</p>
 
 
 
