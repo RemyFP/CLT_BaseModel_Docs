@@ -12,15 +12,15 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../reference/">
+        <link rel="next" href="../flu_model_code_quickstart/">
       
       
-      <link rel="icon" href="../images/favicon.ico">
+      <link rel="icon" href="../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Flu Model: Mathematical Formulation - CLT Base Model</title>
+        <title>Flu Model Mathematical Formulation - CLT Base Model</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flu Model: Mathematical Formulation
+              Flu Model Mathematical Formulation
             
           </span>
         </div>
@@ -226,7 +226,7 @@
           
   
   <span class="md-ellipsis">
-    Flu Model: Mathematical Formulation
+    Flu Model Mathematical Formulation
   </span>
   
 
@@ -237,7 +237,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model: Mathematical Formulation
+    Flu Model Mathematical Formulation
   </span>
   
 
@@ -318,11 +318,71 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/" class="md-nav__link">
+      <a href="../flu_model_code_quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Code Documentation
+    Flu Model Code Quickstart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_model_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Model Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base_components_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base Components Code Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_components_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Components Code Documentation
   </span>
   
 
@@ -417,7 +477,7 @@
                   
 
 
-<h1 id="flu-model-mathematical-formulation">Flu Model: Mathematical Formulation</h1>
+<h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
 <blockquote>
 <p><strong><em>Written by LP, updated 11/12/2024 (work in progress)</em></strong> </p>
 </blockquote>
@@ -504,7 +564,7 @@
 <p>and where</p>
 <ul>
 <li><span class="arithmatex">\(\beta(t) = \beta_0 (1 + q(t))\)</span>: time-dependent transmission rate per day.</li>
-<li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity.</li>
+<li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity, where <span class="arithmatex">\(q(t)\)</span> is a function of historical absolute humidity data times <span class="arithmatex">\(\xi\)</span>, a humidity impact factor</li>
 <li><span class="arithmatex">\(\phi_{a, \ell, a^\prime, \ell^\prime}(t)\)</span>: mixing rates between age-risk group <span class="arithmatex">\(a, \ell\)</span> and <span class="arithmatex">\(a^\prime, \ell^\prime\)</span>. Specifically, the interpretation is: for an individual in age-risk group <span class="arithmatex">\(a, \ell\)</span>, the number of contacts they have in age-risk group <span class="arithmatex">\(a^\prime, \ell^\prime\)</span> per day.</li>
 <li><span class="arithmatex">\(\gamma, \gamma_H\)</span>: recovery rates for infected and hospital compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\gamma_H\)</span> is analogous, but for an infected person in the hospital. </li>
 <li><span class="arithmatex">\(\sigma\)</span>: infection rate (exposed to infected transition rate), so that <span class="arithmatex">\(1/\sigma\)</span> is the average number of days after exposure before a person becomes infectious.</li>
