@@ -1,4 +1,4 @@
-# Flu Model: Mathematical Formulation
+# Flu Model Mathematical Formulation
 
 > **_Written by LP, updated 11/12/2024 (work in progress)_** 
 

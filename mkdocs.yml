@@ -6,6 +6,7 @@ plugins:
 nav:
 - Home: index.md
 - math_flu_components.md
+- flu_model_code_quickstart.md
 - flu_model_code.md
 - base_components_reference.md
 - flu_components_reference.md
