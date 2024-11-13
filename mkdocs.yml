@@ -6,17 +6,26 @@ plugins:
 nav:
 - Home: index.md
 - math_flu_components.md
-- reference.md
+- flu_model_code.md
+- base_components_reference.md
+- flu_components_reference.md
 theme: 
   name: material 
-  favicon: images/favicon.ico
+  favicon: img/favicon.ico
 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - markdown_katex:
-      no_inline_svg: True
-      insert_fonts_css: True
+      no_inline_svg: true
+      insert_fonts_css: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 extra_javascript:
   - javascripts/mathjax.js

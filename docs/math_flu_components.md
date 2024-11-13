@@ -103,7 +103,7 @@ $$
 and where
 
 - $\beta(t) = \beta_0 (1 + q(t))$: time-dependent transmission rate per day.
-- $q(t)$: seasonality parameter based on absolute humidity.
+- $q(t)$: seasonality parameter based on absolute humidity, where $q(t)$ is a function of historical absolute humidity data times $\xi$, a humidity impact factor
 - $\phi_{a, \ell, a^\prime, \ell^\prime}(t)$: mixing rates between age-risk group $a, \ell$ and $a^\prime, \ell^\prime$. Specifically, the interpretation is: for an individual in age-risk group $a, \ell$, the number of contacts they have in age-risk group $a^\prime, \ell^\prime$ per day.
 - $\gamma, \gamma_H$: recovery rates for infected and hospital compartments respectively, so that $1/\gamma$ is the average number of days it takes for an infected person not in the hospital to recover, and $1/\gamma_H$ is analogous, but for an infected person in the hospital. 
 - $\sigma$: infection rate (exposed to infected transition rate), so that $1/\sigma$ is the average number of days after exposure before a person becomes infectious.
