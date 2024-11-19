@@ -350,7 +350,92 @@
 
 
 <h1 id="flu-model-code-quickstart">Flu Model Code Quickstart</h1>
-<p>Under construction... check back soon!</p>
+<p>Here we provide a quickstart tutorial to help users immediately start playing with the flu model in <code>flu_components.py</code> with "toy" inputs given by <code>JSON</code> files in <code>flu_demo_input_files</code>. Recall that the <em>structure</em> (functional form) of the flu model is specified in <code>flu_components.py</code>, and the input files simply specify fixed parameter values and initial values for state variables.  See <a href="../math_flu_components/">this page</a> for the mathematical formulation of the flu model. For creating their own custom input files, users should refer to tables on <a href="../flu_model_code/">this page</a> that map code variable names to their respective math variables and specify variable dimensions. </p>
+<p>The code snippet below is from <code>flu_demo.py</code>. The script can be run directly from the terminal using </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>flu_demo.py
+</span></code></pre></div>
+<p>Here’s the basic procedure to populate the flu model using input files:</p>
+<ol>
+<li>
+<p>Create a <code>FluModelConstructor</code> instance that takes three file paths as input: the configuration file path, fixed parameter values file path, and initial values file path (all in <code>JSON</code> format).</p>
+</li>
+<li>
+<p>Use this constructor to create a <code>TransmissionModel</code> instance whose functional form is specified by <code>flu_components.py</code> and whose fixed parameter values and initial values are specified in the three aforementioend files.</p>
+</li>
+</ol>
+<p>After this, we can simulate the model and plot its behavior. Below, we simulate 300 days. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span> <span class="nn">flu_components</span> <span class="kn">import</span> <span class="n">FluModelConstructor</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span> <span class="nn">plotting</span> <span class="kn">import</span> <span class="n">create_basic_compartment_history_plot</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Obtain path to folder with JSON input files</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">base_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;flu_demo_input_files&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Get filepaths for configuration, fixed parameter values, and</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">#   initial values of state variables</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">config_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;config.json&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">fixed_params_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;fixed_params.json&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">state_vars_init_vals_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;state_variables_init_vals.json&quot;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># Create a constructor using these filepaths</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">flu_demo_constructor</span> <span class="o">=</span> \
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">FluModelConstructor</span><span class="p">(</span><span class="n">config_filepath</span><span class="p">,</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                        <span class="n">fixed_params_filepath</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                        <span class="n">state_vars_init_vals_filepath</span><span class="p">)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># Create TransmissionModel instance from the constructor,</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1">#   using a random number generator with starting seed 888888</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1">#   to generate random variables</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">flu_demo_model</span> <span class="o">=</span> <span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">create_transmission_model</span><span class="p">(</span><span class="mi">888888</span><span class="p">)</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="c1"># Simulate 300 days</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1"># Plot</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">create_basic_compartment_history_plot</span><span class="p">(</span><span class="n">flu_demo_model</span><span class="p">,</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                                      <span class="s2">&quot;flu_demo_model.png&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><img alt="title" src="../figs/flu_demo_model.png" /></p>
+<p>The following code snippets and outputs below replicate the experience of working in a Python interactive console.</p>
+<p>After simulating 300 days, the <code>current_simulation_day</code> counter indeed is 300, and the attribute <code>current_real_date</code> gives us the corresponding real-world date associated with the simulation day counter.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_simulation_day</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 300</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_real_date</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># datetime.date(2023, 6, 4)</span>
+</span></code></pre></div>
+<p><code>TransmissionModel</code> instances have a <code>StateVariableManager</code> that manages and holds StateVariables (EpiCompartments, EpiMetrics, DynamicVals, and Schedules). Using the command below, we can access the state of the simulation after we simulated the model for 300 days. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">state_variable_manager</span><span class="o">.</span><span class="n">sim_state</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># FluSimState(S=array([[306539.],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">#       [261363.]]), E=array([[31501.],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#       [36027.]]), I=array([[105991.],</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#       [114542.]]), H=array([[ 98354.],</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#       [104663.]]), R=array([[175885.],</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">#       [186626.]]), D=array([[281730.],</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#       [296779.]]), population_immunity_hosp=array([[0.11555325],</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">#       [0.12078151]]), population_immunity_inf=array([[0.11555325],</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">#       [0.12078151]]), absolute_humidity=12.31748, </span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">#       flu_contact_matrix=array([[[[2.], [0.5]]], [[[1.95], [1.4]]]]))</span>
+</span></code></pre></div>
+<p>We can also use our model's built-in dictionary to look up simulation objects (any StateVariable, as well as any TransitionVariable and TransitionVariableGroup) by name. Here, <code>S</code> is an <code>EpiCompartment</code> instance, and we can see its current value at the current day of the simulation. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># &lt;base_components.EpiCompartment object at 0x174a79750&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_val</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># array([[306539.],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#        [261363.]])</span>
+</span></code></pre></div>
+<p>Here, we look at the current value (most recent realization) of the TransitionVariable <code>new_dead.</code> We also look at its <code>current_rate</code> attribute, which is the rate that generated the most recent realization. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;new_dead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_val</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># array([[406.],</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#        [435.]])</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;new_dead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_rate</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># array([[0.00823744],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">#        [0.00820603]])</span>
+</span></code></pre></div>
 
 
 
