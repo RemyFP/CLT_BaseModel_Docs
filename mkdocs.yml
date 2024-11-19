@@ -2,6 +2,11 @@ site_name: CLT Base Model
 plugins:
 - mkdocstrings:
     enable_inventory: true
+    handlers:
+      python:
+        selection:
+          private: true
+          protected: true
 - search
 nav:
 - Home: index.md

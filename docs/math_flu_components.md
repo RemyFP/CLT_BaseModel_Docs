@@ -141,11 +141,27 @@ $$
 
 where $f$ is parametrized by $\boldsymbol{\Theta}$, and depends on the step size of discretization $\Delta t$ and a sample path $\omega$. We assume that each sample path $\omega$ is realized from a random process that does not depend on $\boldsymbol{\mathcal X}(t)$ or $\Delta t$ for each $t$. When we are discussing a single model with a fixed set of parameters $\boldsymbol{\Theta}$, we drop the $\boldsymbol{\Theta}$ notation for simplicity.  
 
-Now we formulate how we implement discretized stochastic transitions between epidemiological compartments $\boldsymbol{\mathcal C}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t)\right\}$.  The population-level immunity variables $\boldsymbol{M(t)} = \left\{\boldsymbol{M}^I(t), \boldsymbol{M}^H(t)\right\}$ are updated using $\boldsymbol{M}^I(t+\Delta t) = \boldsymbol{M}^I(t) + \frac{d\boldsymbol{M}^I(t)}{dt} \Delta t$ and $\boldsymbol{M}^H(t+\Delta t) = \boldsymbol{M}^H(t) + \frac{d\boldsymbol{M}^H(t)}{dt} \Delta t$, where $\frac{d\boldsymbol{M}^I(t)}{dt}$ and $\frac{d\boldsymbol{M}^H(t)}{dt}$ are defined in the previous section. Note that we can think of them as aggregate epidemiological metrics that are are deterministic functions of the simulation state. We also assume that $q(t)$, **$\boldsymbol{\phi}(t)$**, **$\boldsymbol{p}(t)$**, and $V(t)$  are updated deterministically according to some "schedule." 
+Now we formulate how we implement discretized stochastic transitions. We assume that $q(t)$, **$\boldsymbol{\phi}(t)$**, **$\boldsymbol{p}(t)$**, and $V(t)$  are updated deterministically according to some "schedule."  
 
 We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each $\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)$ is an $\lvert A \rvert \times \lvert L \rvert$ matrix with elements corresponding to age-risk group $a, \ell$.  
 
-Below we formulate the discretized stochastic transitions between compartments:
+Below we formulate the discretized stochastic transitions. For brevity, we omit the update formulas for $\boldsymbol{M}^H(t)$ since it is analogous to the discretized update for $\boldsymbol{M}^I(t)$. Note that the population-level immunity variables behave as aggregate epidemiological metrics. They are deterministic functions of the simulation state and transitions between compartments.
+
+$$
+M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
+$$
+
+$$
+M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
+$$
+
+$$
+dM^I_{a,\ell,V}(t + \Delta t) = dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)\right] \Delta t
+$$
+
+$$
+\vdots
+$$
 
 $$
 S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}}
