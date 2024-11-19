@@ -479,7 +479,7 @@
 
 <h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
 <blockquote>
-<p><strong><em>Written by LP, updated 11/12/2024 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 11/19/2024 (work in progress)</em></strong> </p>
 </blockquote>
 <h2 id="flu-model-deterministic-differential-equations">Flu model: deterministic differential equations</h2>
 <ul>
@@ -597,12 +597,12 @@
 <p>Now we formulate how we implement discretized stochastic transitions. We assume that <span class="arithmatex">\(q(t)\)</span>, <strong><span class="arithmatex">\(\boldsymbol{\phi}(t)\)</span></strong>, <strong><span class="arithmatex">\(\boldsymbol{p}(t)\)</span></strong>, and <span class="arithmatex">\(V(t)\)</span>  are updated deterministically according to some "schedule."  </p>
 <p>We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each <span class="arithmatex">\(\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)\)</span> is an <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix with elements corresponding to age-risk group <span class="arithmatex">\(a, \ell\)</span>.  </p>
 <p>Below we formulate the discretized stochastic transitions. For brevity, we omit the update formulas for <span class="arithmatex">\(\boldsymbol{M}^H(t)\)</span> since it is analogous to the discretized update for <span class="arithmatex">\(\boldsymbol{M}^I(t)\)</span>. Note that the population-level immunity variables behave as aggregate epidemiological metrics. They are deterministic functions of the simulation state and transitions between compartments.</p>
-<div class="arithmatex">\[
-M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
-\]</div>
-<div class="arithmatex">\[
-M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
-\]</div>
+<div class="arithmatex">\[\begin{multline}
+M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \\ \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
+\end{multline}\]</div>
+<div class="arithmatex">\[\begin{multline}
+M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \\ \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
+\end{multline}\]</div>
 <div class="arithmatex">\[
 dM^I_{a,\ell,V}(t + \Delta t) = dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)\right] \Delta t
 \]</div>
