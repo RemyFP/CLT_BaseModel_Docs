@@ -65,10 +65,12 @@ flu_demo_model.current_real_date
 # datetime.date(2023, 6, 4)
 ```
 
+Note that subsequent ```simulate_until_time_period``` calls will start from where the simulation last ended, and its argument ```last_simulation_day``` must be greater than the model's ```current_simulation_day```. For example, after running ```flu_demo_model.simulate_until_time_period(300)```, a command like ```flu_demo_model.simulate_until_time_period(100)``` is invalid (we cannot simulate backwards in time), but ```flu_demo_model.simulate_until_timeperiod(305)``` starts from day 300 and continues.
+
 ```TransmissionModel``` instances have a ```StateVariableManager``` that manages and holds StateVariables (EpiCompartments, EpiMetrics, DynamicVals, and Schedules). Using the command below, we can access the state of the simulation after we simulated the model for 300 days. 
 
 ```python
-flu_demo_model.state_variable_manager.sim_state
+flu_demo_model.sim_state
 # FluSimState(S=array([[306539.],
 #       [261363.]]), E=array([[31501.],
 #       [36027.]]), I=array([[105991.],
@@ -92,7 +94,9 @@ flu_demo_model.lookup_by_name["S"].current_val
 #        [261363.]])
 ```
 
-Here, we look at the current value (most recent realization) of the TransitionVariable ```new_dead.``` We also look at its ```current_rate``` attribute, which is the rate that generated the most recent realization. 
+We can also access a StateVariable's history with the attribute ```history_vals_list```. For example, ```flu_demo_model.lookup_by_name["S"].history_vals_list``` gives a list of all the previous current values of the "Susceptible" compartment. The $i$th element in the list holds the compartment's value at the end of simulation day $i$. 
+
+Next, we look at the current value (most recent realization) of the TransitionVariable ```new_dead.``` We also look at its ```current_rate``` attribute, which is the rate that generated the most recent realization. 
 
 ```python
 flu_demo_model.lookup_by_name["new_dead"].current_val
@@ -103,3 +107,45 @@ flu_demo_model.lookup_by_name["new_dead"].current_rate
 # array([[0.00823744],
 #        [0.00820603]])
 ```
+
+We can reset the simulation to restart the simulation or clear the simulation's state and history to run a new replication on the same model, with the same initial conditions. *Important note: resetting the simulation does NOT reset the random number generator -- random numbers will continue where the generator last left off.*
+```python
+flu_demo_model.reset_simulation()
+```
+
+Notice that the current simulation day has returned to 0 and the simulation state has returned to its initial state. Each StateVariable's history has also been cleared.  
+```python
+flu_demo_model.current_simulation_day
+# 0
+
+flu_demo_model.sim_state
+# FluSimState(S=array([[980000.],
+#       [980000.]]), E=array([[10000.],
+#       [10000.]]), I=array([[10000.],
+#       [10000.]]), H=array([[0.],
+#       [0.]]), R=array([[0.],
+#       [0.]]), D=array([[0.],
+#       [0.]]), population_immunity_hosp=array([[0.5],
+#       [0.5]]), population_immunity_inf=array([[0.5],
+#       [0.5]]), absolute_humidity=None, flu_contact_matrix=None)
+
+flu_demo_model.lookup_by_name["S"].history_vals_list
+# []
+```
+
+To reset the random number generator, we must use the ```modify_random_seed``` method -- and pass the initial random seed. This resets the numpy RNG object to a state given by this seed. We can also use the ```modify_random_seed``` method to handle random number generation more broadly, and ensure that each simulation replication uses independent random numbers. To handle random number generation responsibly, refer to these two links [here](https://numpy.org/doc/2.0/reference/random/bit_generators/index.html) and [here](https://blog.scientific-python.org/numpy/numpy-rng/).
+
+Suppose that we want to modify configuration values, values of fixed parameters, or initial values. We can modify these values on our model constructor, and then create a new model instance. For example, below we change the transition type to "binomial_deterministic" and the beta baseline value to be $0$. By changing ```beta_baseline``` to $0$, no transmission occurs, and the plot verifies this. 
+
+```python
+flu_demo_constructor.config.transition_type = "binomial_deterministic"
+flu_demo_constructor.fixed_params.beta_baseline = 0
+
+flu_demo_model_beta_baseline_zero = \
+    flu_demo_constructor.create_transmission_model(999999)
+
+create_basic_compartment_history_plot(flu_demo_model_beta_baseline_zero,
+                                      "flu_demo_model_beta_baseline_zero.png")
+```
+
+![flu_demo_model_beta_baseline_zero](figs/flu_demo_model_beta_baseline_zero.png)
