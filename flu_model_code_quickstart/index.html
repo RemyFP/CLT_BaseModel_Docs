@@ -406,8 +406,9 @@
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_real_date</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># datetime.date(2023, 6, 4)</span>
 </span></code></pre></div>
+<p>Note that subsequent <code>simulate_until_time_period</code> calls will start from where the simulation last ended, and its argument <code>last_simulation_day</code> must be greater than the model's <code>current_simulation_day</code>. For example, after running <code>flu_demo_model.simulate_until_time_period(300)</code>, a command like <code>flu_demo_model.simulate_until_time_period(100)</code> is invalid (we cannot simulate backwards in time), but <code>flu_demo_model.simulate_until_timeperiod(305)</code> starts from day 300 and continues.</p>
 <p><code>TransmissionModel</code> instances have a <code>StateVariableManager</code> that manages and holds StateVariables (EpiCompartments, EpiMetrics, DynamicVals, and Schedules). Using the command below, we can access the state of the simulation after we simulated the model for 300 days. </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">state_variable_manager</span><span class="o">.</span><span class="n">sim_state</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">sim_state</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># FluSimState(S=array([[306539.],</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">#       [261363.]]), E=array([[31501.],</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#       [36027.]]), I=array([[105991.],</span>
@@ -427,7 +428,8 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># array([[306539.],</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#        [261363.]])</span>
 </span></code></pre></div>
-<p>Here, we look at the current value (most recent realization) of the TransitionVariable <code>new_dead.</code> We also look at its <code>current_rate</code> attribute, which is the rate that generated the most recent realization. </p>
+<p>We can also access a StateVariable's history with the attribute <code>history_vals_list</code>. For example, <code>flu_demo_model.lookup_by_name["S"].history_vals_list</code> gives a list of all the previous current values of the "Susceptible" compartment. The <span class="arithmatex">\(i\)</span>th element in the list holds the compartment's value at the end of simulation day <span class="arithmatex">\(i\)</span>. </p>
+<p>Next, we look at the current value (most recent realization) of the TransitionVariable <code>new_dead.</code> We also look at its <code>current_rate</code> attribute, which is the rate that generated the most recent realization. </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;new_dead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_val</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># array([[406.],</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#        [435.]])</span>
@@ -436,6 +438,39 @@
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># array([[0.00823744],</span>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">#        [0.00820603]])</span>
 </span></code></pre></div>
+<p>We can reset the simulation to restart the simulation or clear the simulation's state and history to run a new replication on the same model, with the same initial conditions. <em>Important note: resetting the simulation does NOT reset the random number generator -- random numbers will continue where the generator last left off.</em>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">reset_simulation</span><span class="p">()</span>
+</span></code></pre></div></p>
+<p>Notice that the current simulation day has returned to 0 and the simulation state has returned to its initial state. Each StateVariable's history has also been cleared.<br />
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_simulation_day</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># 0</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">sim_state</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># FluSimState(S=array([[980000.],</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">#       [980000.]]), E=array([[10000.],</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">#       [10000.]]), I=array([[10000.],</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">#       [10000.]]), H=array([[0.],</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">#       [0.]]), R=array([[0.],</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1">#       [0.]]), D=array([[0.],</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1">#       [0.]]), population_immunity_hosp=array([[0.5],</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1">#       [0.5]]), population_immunity_inf=array([[0.5],</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1">#       [0.5]]), absolute_humidity=None, flu_contact_matrix=None)</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">history_vals_list</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1"># []</span>
+</span></code></pre></div></p>
+<p>To reset the random number generator, we must use the <code>modify_random_seed</code> method -- and pass the initial random seed. This resets the numpy RNG object to a state given by this seed. We can also use the <code>modify_random_seed</code> method to handle random number generation more broadly, and ensure that each simulation replication uses independent random numbers. To handle random number generation responsibly, refer to these two links <a href="https://numpy.org/doc/2.0/reference/random/bit_generators/index.html">here</a> and <a href="https://blog.scientific-python.org/numpy/numpy-rng/">here</a>.</p>
+<p>Suppose that we want to modify configuration values, values of fixed parameters, or initial values. We can modify these values on our model constructor, and then create a new model instance. For example, below we change the transition type to "binomial_deterministic" and the beta baseline value to be <span class="arithmatex">\(0\)</span>. By changing <code>beta_baseline</code> to <span class="arithmatex">\(0\)</span>, no transmission occurs, and the plot verifies this. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">transition_type</span> <span class="o">=</span> <span class="s2">&quot;binomial_deterministic&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">fixed_params</span><span class="o">.</span><span class="n">beta_baseline</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">flu_demo_model_beta_baseline_zero</span> <span class="o">=</span> \
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">create_transmission_model</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">create_basic_compartment_history_plot</span><span class="p">(</span><span class="n">flu_demo_model_beta_baseline_zero</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>                                      <span class="s2">&quot;flu_demo_model_beta_baseline_zero.png&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><img alt="flu_demo_model_beta_baseline_zero" src="../figs/flu_demo_model_beta_baseline_zero.png" /></p>
 
 
 
