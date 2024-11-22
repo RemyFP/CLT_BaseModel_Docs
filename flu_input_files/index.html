@@ -794,6 +794,15 @@
 </table>
 <h2 id="initial-values-of-state-variables">Initial values of state variables</h2>
 <p>The table below has a variable name to math variable mapping for the <code>JSON</code> file used to initialize <code>FluSimState</code> instances. This file specifies initial conditions for <code>StateVariable</code> objects (which includes <code>EpiCompartment</code>, <code>EpiMetric</code>, <code>Schedule</code>, and <code>DynamicVal</code> objects). </p>
+<p>Important notes:</p>
+<ul>
+<li>
+<p>In <code>state_variables_init_vals.json</code> in <code>flu_demo_input_files</code>, <code>absolute_humidity</code> and <code>flu_contact_matrix</code> have initial values of <code>null</code> (which gets translated to <code>None</code> in <code>Python</code>). This is because absolute humidity and the flu contact matrix are <code>Schedule</code> instances, and get their values deterministically updated according to a schedule. At every simulation day <code>t</code>, their values are well-defined (taken from a schedule calendar), regardless of the initial value. Therefore, the initial value does not matter and we initialize these objects with a current value of <code>None</code>. However, these objects are indeed updated and used in the simulation.</p>
+</li>
+<li>
+<p>Currently, <code>beta_reduct</code> is not a part of the <a href="../math_flu_components/">mathematical formulation</a>. In the code, <code>beta_reduct</code> is a <code>DynamicVal</code> that decreases <code>beta_baseline</code> when a certain simulation state is triggered. This emulates a very simple staged-alert policy. In <code>flu_components.py</code>, <code>beta_reduct</code> is automatically disabled, so that the simple staged-alert policy is not in effect during default flu model runs. When enabled, <code>beta_reduct</code> has a value of <code>0.5</code> (corresponding to a <span class="arithmatex">\(50\%\)</span> decrease in transmission rates) when more than <span class="arithmatex">\(5\%\)</span> of the population is infected, and it has a value of <code>0.0</code> otherwise. </p>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -860,7 +869,6 @@
 </tr>
 </tbody>
 </table>
-<p>Note: currently, <code>beta_reduct</code> is not a part of the <a href="../math_flu_components/">mathematical formulation</a>. In the code, <code>beta_reduct</code> is a <code>DynamicVal</code> that decreases <code>beta_baseline</code> when a certain simulation state is triggered. This emulates a very simple staged-alert policy. In <code>flu_components.py</code>, <code>beta_reduct</code> is automatically disabled, so that the simple staged-alert policy is not in effect during default flu model runs. When enabled, <code>beta_reduct</code> has a value of <code>0.5</code> (corresponding to a 50% decrease in transmission rates) when more than 5% of the population is infected, and it has a value of <code>0.0</code> otherwise. </p>
 
 
 
