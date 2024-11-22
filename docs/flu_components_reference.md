@@ -1,4 +1,4 @@
-# Flu Components Code Documentation
+# Flu Components Code API Reference
 
 Docstrings and references for `flu_components.py`.
 

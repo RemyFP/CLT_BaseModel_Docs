@@ -2,7 +2,7 @@
 
 > ***The CLT base model is a mathematical framework and modular Python codebase for scalable compartmental models of respiratory virus transmission in a city. This model is written by the [Meyers Lab](http://www.bio.utexas.edu/research/meyers/) and [epiENGAGE center](https://www.cdc.gov/insight-net/php/implementers/index.html).***
 
-Please visit [this website](https://LP-relaxation.github.io/CLT_BaseModel_Docs/) for mathematical formulations, code documentation, a code quick start tutorial, and other code tutorials. 
+Please visit [this website](https://LP-relaxation.github.io/CLT_BaseModel_Docs/) for mathematical formulations, code documentation including tutorials, and code API references. 
 
 The mathematical framework is inspired by the immunoSEIRS model of the Meyers Lab (see [Bi and Bandekar et al. 2023](https://www.researchgate.net/publication/375193467_Scenario_Projections_for_SARS-CoV-2_Influenza_and_RSV_Burden_in_the_US_2023-2024), [Bi et al. 2022](https://repositories.lib.utexas.edu/server/api/core/bitstreams/da7bb152-3343-4135-86e3-040546d6e5b5/content) and [Bouchnita et al. 2021](https://repositories.lib.utexas.edu/items/e8d50517-6e78-488b-8c95-8c1138d90c28) for some related recent publications).
 

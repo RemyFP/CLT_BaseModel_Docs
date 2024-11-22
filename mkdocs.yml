@@ -8,13 +8,20 @@ plugins:
           private: true
           protected: true
 - search
+
 nav:
 - Home: index.md
-- math_flu_components.md
-- flu_model_code_quickstart.md
-- flu_model_code.md
-- base_components_reference.md
-- flu_components_reference.md
+- Mathematical Formulation:
+    - math_flu_components.md
+    - math_transitions.md
+- Flu Model Code Documentation:
+    - flu_model_code_overview.md
+    - flu_code_quickstart.md
+    - flu_input_files.md
+    - flu_components_walkthrough.md
+- Code API Reference:
+    - base_components_reference.md
+    - flu_components_reference.md
 theme: 
   name: material 
   favicon: img/favicon.ico
