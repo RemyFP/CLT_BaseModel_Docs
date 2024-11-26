@@ -627,7 +627,11 @@
 <p>The module <code>flu_components.py</code> extends the base classes of <code>base_components.py</code> to implement a compartmental model with a specific structure. This model is given by the <a href="../math_flu_components/">mathematical formulation of the flu model</a> with a few simplifying assumptions. The script <code>flu_demo.py</code> runs the flu model with input data given in <code>flu_demo_input_files</code>. Note that this input data gives "toy" values. For a realistic model, we would estimate or calibrate these values using real-world historical data. </p>
 <p>The simplifying assumptions of <code>flu_components.py</code> include:</p>
 <ul>
-<li>We model only one strain (and thus disregard prevalence) and we do not model vaccination -- thus, there is only one immunity inducing event (say, H1N1).</li>
+<li>We model <em>only one</em> immunity inducing event (say, H1N1).<ul>
+<li>We model only one strain (and thus disregard prevalence).</li>
+<li>We do not model vaccination.</li>
+</ul>
+</li>
 <li>Matrices that would otherwise have <span class="arithmatex">\(3\)</span> indices (e.g. <span class="arithmatex">\(\boldsymbol{M}_{a, \ell, H1}^H(t)\)</span> because they are <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert \times \lvert \mathcal I \rvert\)</span>) only have <span class="arithmatex">\(2\)</span> indices in the code (for age-risk group). In other words, these matrices are now only <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> and we drop the immunity-inducing event dimension entirely.</li>
 </ul>
 <p>A more comprehensive model relaxing these simplifying assumptions is coming soon!</p>

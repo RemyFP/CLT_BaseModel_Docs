@@ -638,6 +638,9 @@
 
 
 <h1 id="flu-model-input-files-overview">Flu Model Input Files Overview</h1>
+<blockquote>
+<p><strong><em>Written by LP, updated 11/26/2024 (work in progress)</em></strong> </p>
+</blockquote>
 <p>Here we provide a mapping between the input variable names in the flu model's <code>JSON</code> files (and corresponding <code>dataclasses</code>), which become object attribute names in the model) and the mathematical variable. </p>
 <p>The folder <code>flu_demo_input_files</code> contains 3 <code>JSON</code> input files used to run <code>flu_demo.py</code>: <code>config.json</code>, <code>fixed_params.json</code>, and <code>state_variables_init_vals.json</code>. These input files respectively initialize <code>Config</code> instances, <code>FluFixedParams</code> instances, and <code>FluSimState</code> instances.</p>
 <p>In general, for users to customize the <em>values</em> (not the structure) of the flu model given in <code>flu_components.py</code>, they must provide analogous 3 <code>JSON</code> input files with the following formats.</p>
@@ -688,17 +691,17 @@
 <tr>
 <td><code>num_age_groups</code></td>
 <td><span class="arithmatex">\(\lvert A \rvert\)</span></td>
-<td>scalar</td>
+<td>positive <code>int</code></td>
 </tr>
 <tr>
 <td><code>num_risk_groups</code></td>
 <td><span class="arithmatex">\(\lvert L \rvert\)</span></td>
-<td>scalar</td>
+<td>positive <code>int</code></td>
 </tr>
 <tr>
 <td><code>beta_baseline</code></td>
 <td><span class="arithmatex">\(\beta_0\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>total_population_val</code></td>
@@ -728,12 +731,12 @@
 <tr>
 <td><code>waning_factor_hosp</code></td>
 <td><span class="arithmatex">\(w^H\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>waning_factor_inf</code></td>
 <td><span class="arithmatex">\(w^I\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>hosp_risk_reduction</code></td>
@@ -753,42 +756,67 @@
 <tr>
 <td><code>R_to_S_rate</code></td>
 <td><span class="arithmatex">\(\eta\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>E_to_I_rate</code></td>
 <td><span class="arithmatex">\(\sigma\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
-<td><code>I_to_R_rate</code></td>
+<td><code>IP_to_IS_rate</code></td>
+<td><span class="arithmatex">\(\rho\)</span></td>
+<td>positive scalar</td>
+</tr>
+<tr>
+<td><code>IS_to_R_rate</code></td>
 <td><span class="arithmatex">\(\gamma\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
-<td><code>I_to_H_rate</code></td>
+<td><code>IA_to_R_rate</code></td>
+<td><span class="arithmatex">\(\gamma_{IA}\)</span></td>
+<td>positive scalar</td>
+</tr>
+<tr>
+<td><code>IS_to_H_rate</code></td>
 <td><span class="arithmatex">\(\zeta\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>H_to_R_rate</code></td>
 <td><span class="arithmatex">\(\gamma_H\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
 <td><code>H_to_D_rate</code></td>
 <td><span class="arithmatex">\(\pi\)</span></td>
-<td>scalar</td>
+<td>positive scalar</td>
 </tr>
 <tr>
-<td><code>H_to_D_adjusted_proportion</code></td>
+<td><code>E_to_IA_prop</code></td>
+<td><span class="arithmatex">\(\tau\)</span></td>
+<td>scalar in <span class="arithmatex">\([0,1]\)</span></td>
+</tr>
+<tr>
+<td><code>H_to_D_adjusted_prop</code></td>
 <td><span class="arithmatex">\(\boldsymbol{\tilde{\nu}}\)</span></td>
 <td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>I_to_H_adjusted_proportion</code></td>
+<td><code>IS_to_H_adjusted_prop</code></td>
 <td><span class="arithmatex">\(\boldsymbol{\tilde{\mu}}\)</span></td>
 <td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>IP_relative_inf</code></td>
+<td><span class="arithmatex">\(r_{IP}\)</span></td>
+<td>positive scalar</td>
+</tr>
+<tr>
+<td><code>IA_relative_inf</code></td>
+<td><span class="arithmatex">\(r_{IA}\)</span></td>
+<td>positive scalar</td>
 </tr>
 </tbody>
 </table>
@@ -823,8 +851,18 @@
 <td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>I</code></td>
-<td><span class="arithmatex">\(\boldsymbol{I}(0)\)</span></td>
+<td><code>IP</code></td>
+<td><span class="arithmatex">\(\boldsymbol{I^P}(0)\)</span></td>
+<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>IS</code></td>
+<td><span class="arithmatex">\(\boldsymbol{I^S}(0)\)</span></td>
+<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>IA</code></td>
+<td><span class="arithmatex">\(\boldsymbol{I^A}(0)\)</span></td>
 <td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
 </tr>
 <tr>

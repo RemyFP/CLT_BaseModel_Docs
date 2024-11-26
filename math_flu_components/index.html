@@ -639,7 +639,7 @@
 
 <h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
 <blockquote>
-<p><strong><em>Written by LP, updated 11/19/2024 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 11/26/2024 (work in progress)</em></strong> </p>
 </blockquote>
 <h2 id="flu-model-deterministic-differential-equations">Flu model: deterministic differential equations</h2>
 <ul>
@@ -692,24 +692,30 @@
 <li><span class="arithmatex">\(w^H_{H3}\)</span>: rate at which H3N2 infection-induced immunity against hospitalization wanes.</li>
 <li><span class="arithmatex">\(w^H_V\)</span>: rate at which vaccine-induced immunity against hospitalization wanes.</li>
 </ul>
-<p><strong>SEIHRD equations</strong></p>
+<p><strong>Compartment equations</strong></p>
 <div class="arithmatex">\[
-\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{new susceptible}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{new exposed}}
+\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{new exposed}} - \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}}
+\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} - \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dI_{a,\ell}(t)}{dt} = \underbrace{\sigma E_{a,\ell}(t)}_{\text{new infected}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I_{a,\ell}(t)}_{\text{new recovered from home}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new hospitalized}}
+\frac{dI^P_{a,\ell}(t)}{dt} = \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dH_{a,\ell}(t)}{dt} = \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new hospitalized}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{new recovered from hospital}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{new dead}}
+\frac{dI^S_{a,\ell}(t)}{dt} = \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dR_{a,\ell}(t)}{dt} = \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I_{a,\ell}(t)}_{\text{new recovered from home}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{new recovered from hospital}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{new susceptible}}
+\frac{dI^A_{a,\ell}(t)}{dt} = \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}} - \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{new dead}}
+\frac{dH_{a,\ell}(t)}{dt} = \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$H$ to $D$}}
+\]</div>
+<div class="arithmatex">\[
+\frac{dR_{a,\ell}(t)}{dt} = \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} + \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}}
+\]</div>
+<div class="arithmatex">\[
+\frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}}
 \]</div>
 <p>where we have the following terms that characterize the effect of population-level immunities:</p>
 <div class="arithmatex">\[
@@ -726,8 +732,11 @@
 <li><span class="arithmatex">\(\beta(t) = \beta_0 (1 + q(t))\)</span>: time-dependent transmission rate per day.</li>
 <li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity, where <span class="arithmatex">\(q(t)\)</span> is a function of historical absolute humidity data times <span class="arithmatex">\(\xi\)</span>, a humidity impact factor</li>
 <li><span class="arithmatex">\(\phi_{a, \ell, a^\prime, \ell^\prime}(t)\)</span>: mixing rates between age-risk group <span class="arithmatex">\(a, \ell\)</span> and <span class="arithmatex">\(a^\prime, \ell^\prime\)</span>. Specifically, the interpretation is: for an individual in age-risk group <span class="arithmatex">\(a, \ell\)</span>, the number of contacts they have in age-risk group <span class="arithmatex">\(a^\prime, \ell^\prime\)</span> per day.</li>
-<li><span class="arithmatex">\(\gamma, \gamma_H\)</span>: recovery rates for infected and hospital compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\gamma_H\)</span> is analogous, but for an infected person in the hospital. </li>
-<li><span class="arithmatex">\(\sigma\)</span>: infection rate (exposed to infected transition rate), so that <span class="arithmatex">\(1/\sigma\)</span> is the average number of days after exposure before a person becomes infectious.</li>
+<li><span class="arithmatex">\(\tau\)</span>: proportion exposed who are completely asymptomatic when infectious.</li>
+<li>$r_{IP}, <span class="arithmatex">\(r_{IA}\)</span>: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. </li>
+<li><span class="arithmatex">\(\gamma, \gamma_H, \gamma_{IA}\)</span>: recovery rates for infected symptomatic (<span class="arithmatex">\(I^S\)</span>),  hospital (<span class="arithmatex">\(H\)</span>), and infected asymptomatic (<span class="arithmatex">\(I^A\)</span>) compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\gamma_H\)</span> is analogous, but for an infected person in the hospital. </li>
+<li><span class="arithmatex">\(\sigma\)</span>: infection rate (both exposed to infected presymptomatic transition rate and exposed to infected asymptomatic transition rate), so that <span class="arithmatex">\(1/\sigma\)</span> is the average number of days after exposure before a person becomes infectious.</li>
+<li><span class="arithmatex">\(\rho\)</span>: infected presymptomatic to infected symptomatic transition rate, so that <span class="arithmatex">\(1/rho\)</span> is the average number of days that an infected person is presymptomatic before becoming symptomatic. </li>
 <li><span class="arithmatex">\(\boldsymbol{\tilde{\mu}}\)</span>, where <span class="arithmatex">\(\tilde{\mu}_{a, \ell} = \frac{\mu_{a, \ell}\gamma}{\zeta - \mu_{a, \ell}(\zeta-\gamma)}\)</span>: adjusted hospitalization rate (as in, proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span> group) actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates <span class="arithmatex">\([\mu_{a, \ell}]\)</span>.</li>
 <li><span class="arithmatex">\(\boldsymbol{\mu}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> hospitalization rate (proportion hospitalized based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
 <li><span class="arithmatex">\(\zeta\)</span>: hospitalization rate (infected to hospital transition rate), so that <span class="arithmatex">\(1/\zeta\)</span> is the average number of days a person is infected before going to the hospital.</li>
@@ -755,13 +764,13 @@
 \]</div>
 <p>where <span class="arithmatex">\(f\)</span> is parametrized by <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, and depends on the step size of discretization <span class="arithmatex">\(\Delta t\)</span> and a sample path <span class="arithmatex">\(\omega\)</span>. We assume that each sample path <span class="arithmatex">\(\omega\)</span> is realized from a random process that does not depend on <span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span> or <span class="arithmatex">\(\Delta t\)</span> for each <span class="arithmatex">\(t\)</span>. When we are discussing a single model with a fixed set of parameters <span class="arithmatex">\(\boldsymbol{\Theta}\)</span>, we drop the <span class="arithmatex">\(\boldsymbol{\Theta}\)</span> notation for simplicity.  </p>
 <p>Now we formulate how we implement discretized stochastic transitions. We assume that <span class="arithmatex">\(q(t)\)</span>, <strong><span class="arithmatex">\(\boldsymbol{\phi}(t)\)</span></strong>, <strong><span class="arithmatex">\(\boldsymbol{p}(t)\)</span></strong>, and <span class="arithmatex">\(V(t)\)</span>  are updated deterministically according to some "schedule."  </p>
-<p>We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the SEIHRD equations above). In total, we have transition variables for: new exposed, new susceptible, new infected, new recovered from home, new hospitalized, new recovered from hospital, and new dead. Each <span class="arithmatex">\(\boldsymbol{T}^i(t) \in \boldsymbol{\mathcal T}(t)\)</span> is an <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> matrix with elements corresponding to age-risk group <span class="arithmatex">\(a, \ell\)</span>.  </p>
+<p>We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the compartment equations above). </p>
 <p>Below we formulate the discretized stochastic transitions. For brevity, we omit the update formulas for <span class="arithmatex">\(\boldsymbol{M}^H(t)\)</span> since it is analogous to the discretized update for <span class="arithmatex">\(\boldsymbol{M}^I(t)\)</span>. Note that the population-level immunity variables behave as aggregate epidemiological metrics. They are deterministic functions of the simulation state and transitions between compartments.</p>
 <div class="arithmatex">\[\begin{multline}
-M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \\ \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
+M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \\ \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
 \end{multline}\]</div>
 <div class="arithmatex">\[\begin{multline}
-M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \\ \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{new susceptible}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
+M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \\ \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
 \end{multline}\]</div>
 <div class="arithmatex">\[
 dM^I_{a,\ell,V}(t + \Delta t) = dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)\right] \Delta t
@@ -770,32 +779,37 @@ dM^I_{a,\ell,V}(t + \Delta t) = dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) -
 \vdots
 \]</div>
 <div class="arithmatex">\[
-S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}}
+S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$R$ to $S$}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$S$ to $E$}}
 \]</div>
 <div class="arithmatex">\[
-E_{a,\ell}(t + \Delta t) = E_{a, \ell}(t) + \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new exposed}} - \underbrace{y_{E\rightarrow I,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new infected}}
+E_{a,\ell}(t + \Delta t) = E_{a, \ell}(t) + \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$S$ to $E$}} - \underbrace{y^*_{E\rightarrow I^P,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} - \underbrace{y^*_{E\rightarrow I^A,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^A$}}
+\]</div>
+<div class="arithmatex">\[
+I^P_{a,\ell}(t + \Delta t) = I^P_{a,\ell}(t) + \underbrace{y^*_{E\rightarrow I^P,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} - \underbrace{y_{I^P \rightarrow I^S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^P$ to $I^S$}}
+\]</div>
+<div class="arithmatex">\[
+I^A_{a, \ell}(t + \Delta t) = I^A_{a, \ell}(t) + \underbrace{y^*_{E\rightarrow I^A,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^A$}} - \underbrace{y_{I^A \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^A$ to $R$}}
 \]</div>
 <div class="arithmatex">\[
 \begin{align*}
-I_{a,\ell}(t + \Delta t) = I_{a, \ell}(t) &amp;+ \underbrace{y_{E\rightarrow I,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new infected}} \\ &amp;- \underbrace{y^*_{I\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from home}} - \underbrace{y^*_{I\rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new hospitalized}}
+I^S_{a,\ell}(t + \Delta t) = I^S_{a, \ell}(t) &amp;+ \underbrace{y_{E \rightarrow I^S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} \\ &amp;- \underbrace{y^*_{I^S \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $R$}} - \underbrace{y^*_{I^S \rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $H$}}
 \end{align*}
 \]</div>
 <div class="arithmatex">\[
 \begin{align*}
-H_{a,\ell}(t + \Delta t) = H_{a, \ell}(t) &amp;+ \underbrace{y^*_{I\rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new hospitalized}} \\ &amp;- \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from hospital}} - \underbrace{y^*_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
+H_{a,\ell}(t + \Delta t) = H_{a, \ell}(t) &amp;+ \underbrace{y^*_{I^S \rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $H$}} \\ &amp;- \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $R$}} - \underbrace{y^*_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $D$}}
 \end{align*}
 \]</div>
 <div class="arithmatex">\[
 \begin{align*}
-R_{a,\ell}(t + \Delta t) = R_{a, \ell}(t) &amp;+ \underbrace{y^*_{I\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from home}} + \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new recovered from hospital}} \\ &amp;- \underbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new susceptible}}
+R_{a,\ell}(t + \Delta t) = R_{a, \ell}(t) &amp;+ \underbrace{y^*_{I^S \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $R$}} + \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $R$}} \\ &amp;- \underbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$R$ to $S$}}
 \end{align*}
 \]</div>
 <div class="arithmatex">\[
-D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{new dead}}
+D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $D$}}
 \]</div>
 <p>IMPORTANT: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. In general, if a compartment has more than one outgoing transition variable, these transition variables must be modeled jointly. </p>
-<p>Consider the two transitions out of the infected compartment, for example. Given that a patient is infected, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. Joint distribution derivation details are provided in the next section on transition types.</p>
-<p>In flu model above, new recovered from home and new hospitalized are jointly distributed (they both leave from the infected compartment), and new recovered from hospital and new dead are jointly distributed (they both leave from the hospital compartment). </p>
+<p>Consider the two transitions out of the infected symptomatic compartment, for example. Given that a patient is infected and symptomatic, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. Joint distribution derivation details are provided in the next section on transition types.</p>
 <p>Each transition variable depends on a "base count" and a "rate" (which both depend on the current state of the system). This decomposition is displayed in the table below.</p>
 <table>
 <thead>
@@ -808,43 +822,61 @@ D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">New susceptible</td>
+<td style="text-align: center;"><span class="arithmatex">\(R\)</span> to <span class="arithmatex">\(S\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(y_{R \rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(R_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\eta\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New exposed</td>
+<td style="text-align: center;"><span class="arithmatex">\(S\)</span> to <span class="arithmatex">\(E\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(y_{S \rightarrow E, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(S_{a, \ell}(t)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(\sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t)  \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New infected</td>
-<td style="text-align: center;"><span class="arithmatex">\(y_{E \rightarrow I, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(E\)</span> to <span class="arithmatex">\(I^P\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^P, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(E_{a, \ell}(t)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(\sigma\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sigma (1 - \tau)\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New recovered  from home</td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{I \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(I_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(E\)</span> to <span class="arithmatex">\(I^A\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^A, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(E_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sigma \tau\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(I^P\)</span> to <span class="arithmatex">\(I^S\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{IP  \rightarrow I^S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I^P_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\rho\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(I^S\)</span> to <span class="arithmatex">\(R\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I^S_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\mu}_{a,\ell})\gamma\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New hospitalized</td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{I \rightarrow H, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(I_{a, \ell}(t)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(\frac{\zeta \tilde{\mu}_{a,\ell} I_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I^S\)</span> to <span class="arithmatex">\(H\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow H, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I^S_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New recovered from hospital</td>
+<td style="text-align: center;"><span class="arithmatex">\(I^A\)</span> to <span class="arithmatex">\(R\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{I^A \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(I^A_{a, \ell}(t)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\gamma_{IA} I^A_{a,\ell}(t)\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(R\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\nu}_{a,\ell})\gamma_H\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">New dead</td>
+<td style="text-align: center;"><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(D\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow D, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
