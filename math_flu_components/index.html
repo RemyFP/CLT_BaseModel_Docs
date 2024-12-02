@@ -694,10 +694,10 @@
 </ul>
 <p><strong>Compartment equations</strong></p>
 <div class="arithmatex">\[
-\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}}
+\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}}
 \]</div>
 <div class="arithmatex">\[
-\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} - \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}}
+\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} - \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}}
 \]</div>
 <div class="arithmatex">\[
 \frac{dI^P_{a,\ell}(t)}{dt} = \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}}
@@ -717,15 +717,19 @@
 <div class="arithmatex">\[
 \frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}}
 \]</div>
-<p>where we have the following terms that characterize the effect of population-level immunities:</p>
+<p>where </p>
 <div class="arithmatex">\[
-\boldsymbol{\Lambda^{I, I}(t)} = \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)
+I^{\text{weighted}}_{a^\prime, \ell^\prime}(t) := \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]
+\]</div>
+<p>and where we have the following terms that characterize the effect of population-level immunities:</p>
+<div class="arithmatex">\[
+\boldsymbol{\Lambda^{I, I}(t)} := \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)
 \]</div>
 <div class="arithmatex">\[
-\boldsymbol{\Lambda^{H, H}(t)} = \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)
+\boldsymbol{\Lambda^{H, H}(t)} := \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)
 \]</div>
 <div class="arithmatex">\[
-\boldsymbol{\Lambda^{D, H}}(t) = \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
+\boldsymbol{\Lambda^{D, H}}(t) := \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
 \]</div>
 <p>and where</p>
 <ul>
