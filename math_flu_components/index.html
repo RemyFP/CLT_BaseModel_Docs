@@ -650,15 +650,11 @@
 <li><span class="arithmatex">\(\boldsymbol{O}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert \times \lvert \mathcal{I} \rvert\)</span> matrix, where the <span class="arithmatex">\((a, \ell, i)\)</span>th element is the positive constant modeling the saturation of antibody production in individuals in age group <span class="arithmatex">\(a\)</span> and risk group <span class="arithmatex">\(\ell\)</span> who had immunity-inducing event <span class="arithmatex">\(i\)</span>.</li>
 </ul>
 <p><strong>Population-level immunity against <em>infection</em> (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)</strong></p>
-<div class="arithmatex">\[
-\frac{dM^I_{a,\ell,H1}(t)}{dt} = \frac{g^I_{H1} p_{H1}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)
-\]</div>
-<div class="arithmatex">\[
-\frac{dM^I_{a,\ell,H3}(t)}{dt} = \frac{g^I_{H3} p_{H3}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)
-\]</div>
-<div class="arithmatex">\[
-\frac{dM^I_{a,\ell,V}(t)}{dt} = g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)
-\]</div>
+<div class="arithmatex">\[\begin{align}
+\frac{dM^I_{a,\ell,H1}(t)}{dt} &amp;= \frac{g^I_{H1} p_{H1}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t) \\
+\frac{dM^I_{a,\ell,H3}(t)}{dt} &amp;= \frac{g^I_{H3} p_{H3}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t) \\
+\frac{dM^I_{a,\ell,V}(t)}{dt} &amp;= g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)
+\end{align}\]</div>
 <p>where</p>
 <ul>
 <li><span class="arithmatex">\(g^I_{H1}\)</span>: factor by which population-level immunity against infection grows after each H1N1 case that recovers.</li>
@@ -673,15 +669,11 @@
 <li><span class="arithmatex">\(\delta\)</span>: number of days after dose for vaccine to become effective.</li>
 </ul>
 <p><strong>Population-level immunity against <em>hospitalization</em> (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)</strong></p>
-<div class="arithmatex">\[
-\frac{dM^H_{a,\ell,H1}(t)}{dt} = \frac{g^H_{H1} p_{H1}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal{I}} O_{a,\ell, i} M^H_{a,\ell, i}(t)\right)} - w^H_{H1} M^H_{a,\ell,H1}(t)
-\]</div>
-<div class="arithmatex">\[
-\frac{dM^H_{a,\ell,H3}(t)}{dt} = \frac{g^H_{H3} p_{H3}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal{I}} O_{a,\ell, i} M^H_{a,\ell, i}(t)\right)} - w^H_{H3} M^H_{a,\ell,H3}(t)
-\]</div>
-<div class="arithmatex">\[
-\frac{dM^H_{a,\ell,V}(t)}{dt} = g^H_V V(t) - w^H_V M^H_{a,\ell,V}(t)
-\]</div>
+<div class="arithmatex">\[\begin{align}
+\frac{dM^H_{a,\ell,H1}(t)}{dt} &amp;= \frac{g^H_{H1} p_{H1}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal{I}} O_{a,\ell, i} M^H_{a,\ell, i}(t)\right)} - w^H_{H1} M^H_{a,\ell,H1}(t) \\
+\frac{dM^H_{a,\ell,H3}(t)}{dt} &amp;= \frac{g^H_{H3} p_{H3}(t) \eta(t) R_{a,\ell}(t)}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal{I}} O_{a,\ell, i} M^H_{a,\ell, i}(t)\right)} - w^H_{H3} M^H_{a,\ell,H3}(t) \\
+\frac{dM^H_{a,\ell,V}(t)}{dt} &amp;= g^H_V V(t) - w^H_V M^H_{a,\ell,V}(t)
+\end{align}\]</div>
 <p>where</p>
 <ul>
 <li><span class="arithmatex">\(p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)\)</span>, <span class="arithmatex">\(V(t)\)</span>, <span class="arithmatex">\(\delta\)</span>: see above.</li>
@@ -693,44 +685,26 @@
 <li><span class="arithmatex">\(w^H_V\)</span>: rate at which vaccine-induced immunity against hospitalization wanes.</li>
 </ul>
 <p><strong>Compartment equations</strong></p>
-<div class="arithmatex">\[
-\frac{dS_{a,\ell}(t)}{dt} = \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dE_{a,\ell}(t)}{dt} = \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} - \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dI^P_{a,\ell}(t)}{dt} = \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dI^S_{a,\ell}(t)}{dt} = \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dI^A_{a,\ell}(t)}{dt} = \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}} - \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dH_{a,\ell}(t)}{dt} = \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$H$ to $D$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dR_{a,\ell}(t)}{dt} = \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} + \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}}
-\]</div>
-<div class="arithmatex">\[
-\frac{dD_{a,\ell}(t)}{dt} = \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}}
-\]</div>
+<div class="arithmatex">\[\begin{align}
+\frac{dS_{a,\ell}(t)}{dt} &amp;= \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} -\underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} \\
+\frac{dE_{a,\ell}(t)}{dt} &amp;= \underbrace{S_{a,\ell}(t) \cdot \sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t) I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}}_{\text{$S$ to $E$}} - \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}} \\
+\frac{dI^P_{a,\ell}(t)}{dt} &amp;= \underbrace{\sigma (1-\tau) E_{a,\ell}(t)}_{\text{$E$ to $I^P$}} - \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}} \\
+\frac{dI^S_{a,\ell}(t)}{dt} &amp;= \underbrace{\rho I^P_{a,\ell}(t)}_{\text{$I^P$ to $I^S$}} - \underbrace{(1-\tilde{\mu}_{a,\ell})\gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} - \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}} \\
+\frac{dI^A_{a,\ell}(t)}{dt} &amp;= \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}} - \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} \\
+\frac{dH_{a,\ell}(t)}{dt} &amp;= \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$H$ to $D$}} \\
+\frac{dR_{a,\ell}(t)}{dt} &amp;= \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} + \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} \\
+\frac{dD_{a,\ell}(t)}{dt} &amp;= \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}}
+\end{align}\]</div>
 <p>where </p>
 <div class="arithmatex">\[
 I^{\text{weighted}}_{a^\prime, \ell^\prime}(t) := \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]
 \]</div>
 <p>and where we have the following terms that characterize the effect of population-level immunities:</p>
-<div class="arithmatex">\[
-\boldsymbol{\Lambda^{I, I}(t)} := \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)
-\]</div>
-<div class="arithmatex">\[
-\boldsymbol{\Lambda^{H, H}(t)} := \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)
-\]</div>
-<div class="arithmatex">\[
-\boldsymbol{\Lambda^{D, H}}(t) := \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
-\]</div>
+<p>\begin{align}
+\boldsymbol{\Lambda^{I, I}(t)} &amp;:= \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)</p>
+<p>\boldsymbol{\Lambda^{H, H}(t)} &amp;:= \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)</p>
+<p>\boldsymbol{\Lambda^{D, H}}(t) &amp;:= \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
+\end{align}</p>
 <p>and where</p>
 <ul>
 <li><span class="arithmatex">\(\beta(t) = \beta_0 (1 + q(t))\)</span>: time-dependent transmission rate per day.</li>
@@ -770,48 +744,27 @@ I^{\text{weighted}}_{a^\prime, \ell^\prime}(t) := \left[I^S_{a^\prime, \ell^\pri
 <p>Now we formulate how we implement discretized stochastic transitions. We assume that <span class="arithmatex">\(q(t)\)</span>, <strong><span class="arithmatex">\(\boldsymbol{\phi}(t)\)</span></strong>, <strong><span class="arithmatex">\(\boldsymbol{p}(t)\)</span></strong>, and <span class="arithmatex">\(V(t)\)</span>  are updated deterministically according to some "schedule."  </p>
 <p>We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the compartment equations above). </p>
 <p>Below we formulate the discretized stochastic transitions. For brevity, we omit the update formulas for <span class="arithmatex">\(\boldsymbol{M}^H(t)\)</span> since it is analogous to the discretized update for <span class="arithmatex">\(\boldsymbol{M}^I(t)\)</span>. Note that the population-level immunity variables behave as aggregate epidemiological metrics. They are deterministic functions of the simulation state and transitions between compartments.</p>
-<div class="arithmatex">\[\begin{multline}
-M_{a, \ell, H1}^I(t + \Delta t) = M_{a, \ell, H1}^I(t) + \\ \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t
-\end{multline}\]</div>
-<div class="arithmatex">\[\begin{multline}
-M_{a, \ell, H3}^I(t + \Delta t) = M_{a, \ell, H3}^I(t) + \\ \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t
-\end{multline}\]</div>
-<div class="arithmatex">\[
-dM^I_{a,\ell,V}(t + \Delta t) = dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)\right] \Delta t
-\]</div>
+<blockquote>
+<p><strong><em>Note: all <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(y^*\)</span>-variables depend on <span class="arithmatex">\(\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span>. For notation simplicity, we define <span class="arithmatex">\(\boldsymbol{\Xi}_t := \left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span> and write <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(y^*\)</span>-variables as functions of <span class="arithmatex">\(\boldsymbol{\Xi}_t\)</span>.</em></strong></p>
+</blockquote>
+<div class="arithmatex">\[\begin{align}
+M_{a, \ell, H1}^I(t + \Delta t) &amp;= M_{a, \ell, H1}^I(t) + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}(\boldsymbol{\Xi}_t)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H1} M^I_{a,\ell,H1}(t)\right] \Delta t \\
+M_{a, \ell, H3}^I(t + \Delta t) &amp;= M_{a, \ell, H3}^I(t) + \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{y_{R\rightarrow S,  a, \ell}(\boldsymbol{\Xi}_t)}^{\text{$R$ to $S$}}}{N_{a,\ell} \left(1 + \sum_{i \in \mathcal I} O_{a,\ell, i} M^I_{a,\ell, i}(t)\right)} - w^I_{H3} M^I_{a,\ell,H3}(t)\right] \Delta t \\
+dM^I_{a,\ell,V}(t + \Delta t) &amp;= dM^I_{a,\ell,V}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,\ell,V}(t)\right] \Delta t
+\end{align}\]</div>
 <div class="arithmatex">\[
 \vdots
 \]</div>
-<div class="arithmatex">\[
-S_{a,\ell}(t + \Delta t) = S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$R$ to $S$}} - \\ \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$S$ to $E$}}
-\]</div>
-<div class="arithmatex">\[
-E_{a,\ell}(t + \Delta t) = E_{a, \ell}(t) + \underbrace{y_{S\rightarrow E,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$S$ to $E$}} - \underbrace{y^*_{E\rightarrow I^P,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} - \underbrace{y^*_{E\rightarrow I^A,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^A$}}
-\]</div>
-<div class="arithmatex">\[
-I^P_{a,\ell}(t + \Delta t) = I^P_{a,\ell}(t) + \underbrace{y^*_{E\rightarrow I^P,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} - \underbrace{y_{I^P \rightarrow I^S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^P$ to $I^S$}}
-\]</div>
-<div class="arithmatex">\[
-I^A_{a, \ell}(t + \Delta t) = I^A_{a, \ell}(t) + \underbrace{y^*_{E\rightarrow I^A,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^A$}} - \underbrace{y_{I^A \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^A$ to $R$}}
-\]</div>
-<div class="arithmatex">\[
-\begin{align*}
-I^S_{a,\ell}(t + \Delta t) = I^S_{a, \ell}(t) &amp;+ \underbrace{y_{E \rightarrow I^S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$E$ to $I^P$}} \\ &amp;- \underbrace{y^*_{I^S \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $R$}} - \underbrace{y^*_{I^S \rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $H$}}
-\end{align*}
-\]</div>
-<div class="arithmatex">\[
-\begin{align*}
-H_{a,\ell}(t + \Delta t) = H_{a, \ell}(t) &amp;+ \underbrace{y^*_{I^S \rightarrow H,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $H$}} \\ &amp;- \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $R$}} - \underbrace{y^*_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $D$}}
-\end{align*}
-\]</div>
-<div class="arithmatex">\[
-\begin{align*}
-R_{a,\ell}(t + \Delta t) = R_{a, \ell}(t) &amp;+ \underbrace{y^*_{I^S \rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$I^S$ to $R$}} + \underbrace{y^*_{H\rightarrow R,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $R$}} \\ &amp;- \underbrace{y_{R\rightarrow S,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$R$ to $S$}}
-\end{align*}
-\]</div>
-<div class="arithmatex">\[
-D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)}_{\text{$H$ to $D$}}
-\]</div>
+<div class="arithmatex">\[\begin{align}
+S_{a,\ell}(t + \Delta t) &amp;= S_{a, \ell}(t) + \underbrace{y_{R\rightarrow S, a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$R$ to $S$}} - \underbrace{y_{S\rightarrow E,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$S$ to $E$}} \\
+E_{a,\ell}(t + \Delta t) &amp;= E_{a, \ell}(t) + \underbrace{y_{S\rightarrow E,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$S$ to $E$}} - \underbrace{y^*_{E\rightarrow I^P,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$E$ to $I^P$}} - \underbrace{y^*_{E\rightarrow I^A,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$E$ to $I^A$}} \\
+I^P_{a,\ell}(t + \Delta t) &amp;= I^P_{a,\ell}(t) + \underbrace{y^*_{E\rightarrow I^P,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$E$ to $I^P$}} - \underbrace{y_{I^P \rightarrow I^S,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^P$ to $I^S$}} \\
+I^A_{a, \ell}(t + \Delta t) &amp;= I^A_{a, \ell}(t) + \underbrace{y^*_{E\rightarrow I^A,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$E$ to $I^A$}} - \underbrace{y_{I^A \rightarrow R,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^A$ to $R$}} \\
+I^S_{a,\ell}(t + \Delta t) &amp;= I^S_{a, \ell}(t) + \underbrace{y_{E \rightarrow I^S,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$E$ to $I^P$}} - \underbrace{y^*_{I^S \rightarrow R,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^S$ to $R$}} - \underbrace{y^*_{I^S \rightarrow H,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^S$ to $H$}} \\
+H_{a,\ell}(t + \Delta t) &amp;= H_{a, \ell}(t) + \underbrace{y^*_{I^S \rightarrow H,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^S$ to $H$}} - \underbrace{y^*_{H\rightarrow R,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$H$ to $R$}} - \underbrace{y^*_{H\rightarrow D,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$H$ to $D$}} \\
+R_{a,\ell}(t + \Delta t) &amp;= R_{a, \ell}(t) + \underbrace{y^*_{I^S \rightarrow R,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$I^S$ to $R$}} + \underbrace{y^*_{H\rightarrow R,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$H$ to $R$}} - \underbrace{y_{R\rightarrow S,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$R$ to $S$}} \\
+D_{a,\ell}(t + \Delta t) &amp;= D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \ell}(\boldsymbol{\Xi}_t)}_{\text{$H$ to $D$}} 
+\end{align}\]</div>
 <p>IMPORTANT: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. In general, if a compartment has more than one outgoing transition variable, these transition variables must be modeled jointly. </p>
 <p>Consider the two transitions out of the infected symptomatic compartment, for example. Given that a patient is infected and symptomatic, exactly one outcome occurs: they recover (from home) or they go to the hospital. Since one and only one of these outcomes must occur, we must model these two transition variables jointly. Joint distribution derivation details are provided in the next section on transition types.</p>
 <p>Each transition variable depends on a "base count" and a "rate" (which both depend on the current state of the system). This decomposition is displayed in the table below.</p>
@@ -827,61 +780,61 @@ D_{a,\ell}(t + \Delta t) = D_{a, \ell}(t) + \underbrace{y_{H\rightarrow D,  a, \
 <tbody>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(R\)</span> to <span class="arithmatex">\(S\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y_{R \rightarrow S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{R \rightarrow S, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(R_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\eta\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(S\)</span> to <span class="arithmatex">\(E\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y_{S \rightarrow E, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{S \rightarrow E, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(S_{a, \ell}(t)\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(\sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t)  \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\sum_{a^\prime \in A, \ell^\prime \in L} \frac{\beta(t) \phi_{a, \ell, a^\prime, \ell^\prime}(t)  I^{\text{weighted}}_{a^\prime, \ell^\prime}(t)}{N_{a^\prime, \ell^\prime} (1 + \boldsymbol{\Lambda^{I, I}(t)})}\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(E\)</span> to <span class="arithmatex">\(I^P\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^P, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^P, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(E_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\sigma (1 - \tau)\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(E\)</span> to <span class="arithmatex">\(I^A\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^A, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{E \rightarrow I^A, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(E_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\sigma \tau\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(I^P\)</span> to <span class="arithmatex">\(I^S\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y_{IP  \rightarrow I^S, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{IP  \rightarrow I^S, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(I^P_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\rho\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(I^S\)</span> to <span class="arithmatex">\(R\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow R, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(I^S_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\mu}_{a,\ell})\gamma\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(I^S\)</span> to <span class="arithmatex">\(H\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow H, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{I^S \rightarrow H, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(I^S_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(I^A\)</span> to <span class="arithmatex">\(R\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y_{I^A \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y_{I^A \rightarrow R, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(I^A_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\gamma_{IA} I^A_{a,\ell}(t)\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(R\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow R, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow R, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\((1-\tilde{\nu}_{a,\ell})\gamma_H\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;"><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(D\)</span></td>
-<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow D, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y^*_{H \rightarrow D, a, \ell}(\boldsymbol{\Xi}_t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(H_{a, \ell}(t)\)</span></td>
 <td style="text-align: center;"><span class="arithmatex">\(\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}\)</span></td>
 </tr>
