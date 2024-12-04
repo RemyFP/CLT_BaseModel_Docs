@@ -713,18 +713,18 @@
 \frac{dI^A_{a,\ell}(t)}{dt} &amp;= \underbrace{\sigma \tau E_{a,\ell}(t)}_{\text{$E$ to $I^A$}} - \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} \\
 \frac{dH_{a,\ell}(t)}{dt} &amp;= \underbrace{\frac{\zeta \tilde{\mu}_{a,\ell} I^S_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$I^S$ to $H$}} - \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{H, H}(t)}}}_{\text{$H$ to $D$}} \\
 \frac{dR_{a,\ell}(t)}{dt} &amp;= \underbrace{(1-\tilde{\mu}_{a,\ell}) \gamma I^S_{a,\ell}(t)}_{\text{$I^S$ to $R$}} + \underbrace{\gamma_{IA} I^A_{a,\ell}(t)}_{\text{$I^A$ to $R$}} + \underbrace{(1-\tilde{\nu}_{a,\ell})\gamma_H H_{a,\ell}(t)}_{\text{$H$ to $R$}} - \underbrace{\eta R_{a,\ell}(t)}_{\text{$R$ to $S$}} \\
-\frac{dD_{a,\ell}(t)}{dt} &amp;= \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}}
+\frac{dD_{a,\ell}(t)}{dt} &amp;= \underbrace{\frac{\pi \tilde{\nu}_{a,\ell} H_{a,\ell}(t)}{1 + \boldsymbol{\Lambda^{D, H}}(t)}}_{\text{$H$ to $D$}} 
 \end{align}\]</div>
 <p>where </p>
 <div class="arithmatex">\[
 I^{\text{weighted}}_{a^\prime, \ell^\prime}(t) := \left[I^S_{a^\prime, \ell^\prime}(t) + r_{IP} I^P_{a^\prime, \ell^\prime}(t) + r_{IA} I^A_{a^\prime, \ell^\prime}(t)\right]
 \]</div>
 <p>and where we have the following terms that characterize the effect of population-level immunities:</p>
-<p>\begin{align}
-\boldsymbol{\Lambda^{I, I}(t)} &amp;:= \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t)</p>
-<p>\boldsymbol{\Lambda^{H, H}(t)} &amp;:= \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t)</p>
-<p>\boldsymbol{\Lambda^{D, H}}(t) &amp;:= \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
-\end{align}</p>
+<div class="arithmatex">\[\begin{align}
+\boldsymbol{\Lambda^{I, I}(t)} &amp;= \left[\boldsymbol{K_{a,\ell}^I}(p(t))\right]^T \boldsymbol{M_{a,\ell}^I}(t) \\
+\boldsymbol{\Lambda^{H, H}(t)} &amp;= \left[\boldsymbol{K_{a,\ell}^H}(p(t))\right]^T \boldsymbol{M_{a,\ell}^H}(t) \\
+\boldsymbol{\Lambda^{D, H}}(t) &amp;= \left[\boldsymbol{K_{a,\ell}^D}(p(t))\right]^T\boldsymbol{M_{a,\ell}^H}(t)
+\end{align}\]</div>
 <p>and where</p>
 <ul>
 <li><span class="arithmatex">\(\beta(t) = \beta_0 (1 + q(t))\)</span>: time-dependent transmission rate per day.</li>
