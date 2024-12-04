@@ -23,6 +23,7 @@
 
 where
 
+- $\eta$: rate at which recovered individuals become susceptible, so that $1/\eta$ is the average number of days a person is totally immune from reinfection until being susceptible again.
 - $g^I_{H1}$: factor by which population-level immunity against infection grows after each H1N1 case that recovers.
 - $g^I_{H3}$: factor by which population-level immunity against infection grows after each H3N2 case that recovers.
 - $g^I_V$: factor by which population-level immunity against infection grows after each vaccination.
@@ -95,7 +96,6 @@ and where
 - $\boldsymbol{\tilde{\nu}}$, where $\tilde{\nu}_{a, \ell} = \frac{\nu_{a, \ell}\gamma_H}{\pi - \nu_{a, \ell}(\zeta-\gamma_H)}$: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates $[\nu_{a, \ell}]$.
 - $\boldsymbol{\nu}$: $\lvert A \rvert \times \lvert L \rvert$ in-hospital mortality rate (proportion who die based on age-risk group $a, \ell$).
 - $\pi$: death rate from hospital, so that $1/\pi$ is the average number of days a person spends in the hospital before dying.
-- $\eta$: rate at which recovered individuals become susceptible, so that $1/\eta$ is the average number of days a person is totally immune from reinfection until being susceptible again.
 
 The following are all $\lvert A \rvert \times \lvert L \rvert \times \lvert \mathcal I \rvert$ matrices:
 
