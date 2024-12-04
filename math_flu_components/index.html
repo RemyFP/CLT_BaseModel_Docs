@@ -677,6 +677,7 @@
 \end{align}\]</div>
 <p>where</p>
 <ul>
+<li><span class="arithmatex">\(\eta\)</span>: rate at which recovered individuals become susceptible, so that <span class="arithmatex">\(1/\eta\)</span> is the average number of days a person is totally immune from reinfection until being susceptible again.</li>
 <li><span class="arithmatex">\(g^I_{H1}\)</span>: factor by which population-level immunity against infection grows after each H1N1 case that recovers.</li>
 <li><span class="arithmatex">\(g^I_{H3}\)</span>: factor by which population-level immunity against infection grows after each H3N2 case that recovers.</li>
 <li><span class="arithmatex">\(g^I_V\)</span>: factor by which population-level immunity against infection grows after each vaccination.</li>
@@ -741,7 +742,6 @@ I^{\text{weighted}}_{a^\prime, \ell^\prime}(t) := \left[I^S_{a^\prime, \ell^\pri
 <li><span class="arithmatex">\(\boldsymbol{\tilde{\nu}}\)</span>, where <span class="arithmatex">\(\tilde{\nu}_{a, \ell} = \frac{\nu_{a, \ell}\gamma_H}{\pi - \nu_{a, \ell}(\zeta-\gamma_H)}\)</span>: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates <span class="arithmatex">\([\nu_{a, \ell}]\)</span>.</li>
 <li><span class="arithmatex">\(\boldsymbol{\nu}\)</span>: <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span> in-hospital mortality rate (proportion who die based on age-risk group <span class="arithmatex">\(a, \ell\)</span>).</li>
 <li><span class="arithmatex">\(\pi\)</span>: death rate from hospital, so that <span class="arithmatex">\(1/\pi\)</span> is the average number of days a person spends in the hospital before dying.</li>
-<li><span class="arithmatex">\(\eta\)</span>: rate at which recovered individuals become susceptible, so that <span class="arithmatex">\(1/\eta\)</span> is the average number of days a person is totally immune from reinfection until being susceptible again.</li>
 </ul>
 <p>The following are all <span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert \times \lvert \mathcal I \rvert\)</span> matrices:</p>
 <ul>
