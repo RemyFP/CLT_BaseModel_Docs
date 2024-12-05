@@ -658,15 +658,15 @@
 </li>
 <li>
 <p>For each transition in the model, create a subclass of <code>base.TransitionVariable</code> and provide a concrete implementation of the abstract method <code>get_current_rate</code>. The function <code>get_current_rate</code> <em>returns</em> the value of the current rate, and is a function of a <code>FluSimState</code> instance and a <code>FluFixedParams</code> instance. These arguments allow us to access various values needed for the computation. </p>
-</li>
-<li>
-<p>See <code>SusceptibleToExposed</code> subclass in <code>flu_components.py</code>. The function <code>get_current_rate</code> implements the formula for computing the current rate that people transition from the susceptible to exposed compartment. For example, <code>get_current_rate</code> grabs <code>sim_state.IS</code>, <code>sim_state.IP</code>, and <code>sim_state.IA</code>, because the current values of the symptomatic, pre-symptomatic, and asymptomatic infectious compartments are needed for the rate computation.</p>
+<ul>
+<li>See <code>SusceptibleToExposed</code> subclass in <code>flu_components.py</code>. The function <code>get_current_rate</code> implements the formula for computing the current rate that people transition from the susceptible to exposed compartment. For example, <code>get_current_rate</code> grabs <code>sim_state.IS</code>, <code>sim_state.IP</code>, and <code>sim_state.IA</code>, because the current values of the symptomatic, pre-symptomatic, and asymptomatic infectious compartments are needed for the rate computation.</li>
+</ul>
 </li>
 <li>
 <p>For each dynamic value in the model, create a subclass of <code>base.DynamicVal</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>. The function <code>update_current_val</code> also takes a <code>FluSimState</code> instances and <code>FluFixedParams</code> instance as arguments, analogously to <code>TransitionVariable</code> subclasses. It updates the <code>current_val</code> attribute <em>in-place.</em></p>
-</li>
-<li>
-<p>See <code>BetaReduct</code> in <code>flu_components.py</code>. Note here we have also customized the <code>_init_</code> method and added an attribute <code>permanent_lockdown</code>, to accommodate additional functionality. </p>
+<ul>
+<li>See <code>BetaReduct</code> in <code>flu_components.py</code>. Note here we have also customized the <code>_init_</code> method and added an attribute <code>permanent_lockdown</code>, to accommodate additional functionality. </li>
+</ul>
 </li>
 <li>
 <p>For each schedule in the model, create a subclass of <code>base.Schedule</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>, which should be a function of the current date (a <code>datetime.date</code> instance). This function updates the <code>current_val</code> attribute <em>in place</em>.  </p>
@@ -705,15 +705,15 @@
 </li>
 <li>
 <p>Create two <code>JSON</code> files: one for fixed parameters and one for initial values of state variables. </p>
-</li>
-<li>
-<p>Initial values for schedules and dynamic values can be left as <code>null</code>, but they still must have a field in the <code>JSON</code> file. </p>
+<ul>
+<li>Initial values for schedules and dynamic values can be left as <code>null</code>, but they still must have a field in the <code>JSON</code> file. </li>
+</ul>
 </li>
 <li>
 <p>Create subclasses to hold data: a subclass of <code>base.FixedParams</code> and a subclass of <code>base.SimState</code>. </p>
-</li>
-<li>
-<p>Note that there should be a one-to-one mapping between the fixed parameters <code>JSON</code> file and the attributes of <code>base.FixedParams</code>, and similarly for the initial values of state variables <code>JSON</code> and the attributes of <code>base.SimState</code>. </p>
+<ul>
+<li>Note that there should be a one-to-one mapping between the fixed parameters <code>JSON</code> file and the attributes of <code>base.FixedParams</code>, and similarly for the initial values of state variables <code>JSON</code> and the attributes of <code>base.SimState</code>. </li>
+</ul>
 </li>
 <li>
 <p>For each transition variable in the model, create a unique subclass of <code>base.TransitionVariable</code> corresponding to that transition and provide a concrete implementation of <code>get_current_rate</code>.</p>
