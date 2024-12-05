@@ -406,6 +406,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Flu Model Creation Walkthrough
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -415,6 +426,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -532,6 +580,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -546,7 +620,114 @@
 
 
 <h1 id="flu-model-creation-walkthrough">Flu Model Creation Walkthrough</h1>
-<p>Coming soon!</p>
+<blockquote>
+<p><strong><em>Written by LP, updated 12/05/2024</em></strong> </p>
+</blockquote>
+<p>In this section, we provide an explanation of how the flu model (in <code>flu_components.py</code>) is created from the base model components (in <code>base_components.py</code>). In doing so, we also demonstrate how to create other customized models from the base model components. We also provide justification for design choices, in a way intended to educate users on some of the implementation and computation challenges in writing scalable and adaptable compartmental models. </p>
+<p>Writing code to create a customized compartmental model requires correct use of inheritance, composition, and abstract base classes. We <em>strongly</em> recommend reading <a href="https://realpython.com/inheritance-composition-python/">this tutorial</a> for a good primer on those subjects. We also recommend learning about the <code>dataclass</code> decorator in Python (see <a href="https://www.dataquest.io/blog/how-to-use-python-data-classes/">this blogpost</a>, for example).</p>
+<h2 id="creating-a-model-from-base-components-details">Creating a model from base components: details</h2>
+<p>Creating a compartment model requires the following steps.</p>
+<ol>
+<li>
+<p>Formulate the compartment model mathematically, and write down all <code>EpiCompartment</code>, <code>TransitionVariable</code>, <code>TransitionVariableGroup</code> (jointly sampled sets of transition variables), and <code>StateVariable</code> objects needed for the model. </p>
+</li>
+<li>
+<p>Create a new file that imports the <code>base_components</code> module. We import this module as <code>base</code>. </p>
+</li>
+<li>
+<p>Create two <code>JSON</code> files: one for fixed parameters and one for initial values of state variables. </p>
+<p>a. For the fixed parameters <code>JSON</code> file, required fields are <code>"num_age_groups"</code>, <code>"num_risk_groups"</code>, and <code>"total_population_val"</code>. All other fields must correspond to fixed parameters in the model -- these are used throughout model computation.</p>
+<ul>
+<li>See <code>flu_demo_input_files / fixed_params.json</code>.</li>
+</ul>
+<p>b. For the initial values of state variables <code>JSON</code> file, there must be a field for each <code>StateVariable</code> object used in the model. These values correspond to the initial values of these state variables. For example, this file contains initial populations of each <code>EpiCompartment</code>, expressed as a list of lists corresponding to age groups and risk groups. Similarly, this file contains starting values for each <code>EpiMetric</code>. We also need fields for all <code>DynamicVal</code> and <code>Schedule</code> objects in the model, although their values can be set to <code>null</code> since their initial state will be updated automatically (either according to a deterministic calendar or a simulate state trigger). We just need to include their names for bookkeeping purposes. </p>
+<ul>
+<li>See <code>flu_demo_input_files / state_variables_init_vals.json</code>.</li>
+</ul>
+</li>
+<li>
+<p>Create subclasses to hold data. </p>
+<p>a. Create a subclass of <code>base.FixedParams</code> to hold the model's fixed parameters. For each name in the fixed parameters <code>JSON</code> file, there should be a corresponding attribute (with the same name) in this subclass.</p>
+<ul>
+<li>See <code>FluFixedParams</code> in <code>flu_components.py</code>.</li>
+</ul>
+<p>b. Create a subclass of <code>base.SimState</code> to hold the model's simulation state. For each name in the initial values of state variables <code>JSON</code> file, there should be a corresponding attribute (with the same name) in this subclass. </p>
+<ul>
+<li>See <code>FluSimState</code> in <code>flu_components.py</code>.</li>
+</ul>
+</li>
+<li>
+<p>For each transition in the model, create a subclass of <code>base.TransitionVariable</code> and provide a concrete implementation of the abstract method <code>get_current_rate</code>. The function <code>get_current_rate</code> <em>returns</em> the value of the current rate, and is a function of a <code>FluSimState</code> instance and a <code>FluFixedParams</code> instance. These arguments allow us to access various values needed for the computation. </p>
+</li>
+<li>
+<p>See <code>SusceptibleToExposed</code> subclass in <code>flu_components.py</code>. The function <code>get_current_rate</code> implements the formula for computing the current rate that people transition from the susceptible to exposed compartment. For example, <code>get_current_rate</code> grabs <code>sim_state.IS</code>, <code>sim_state.IP</code>, and <code>sim_state.IA</code>, because the current values of the symptomatic, pre-symptomatic, and asymptomatic infectious compartments are needed for the rate computation.</p>
+</li>
+<li>
+<p>For each dynamic value in the model, create a subclass of <code>base.DynamicVal</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>. The function <code>update_current_val</code> also takes a <code>FluSimState</code> instances and <code>FluFixedParams</code> instance as arguments, analogously to <code>TransitionVariable</code> subclasses. It updates the <code>current_val</code> attribute <em>in-place.</em></p>
+</li>
+<li>
+<p>See <code>BetaReduct</code> in <code>flu_components.py</code>. Note here we have also customized the <code>_init_</code> method and added an attribute <code>permanent_lockdown</code>, to accommodate additional functionality. </p>
+</li>
+<li>
+<p>For each schedule in the model, create a subclass of <code>base.Schedule</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>, which should be a function of the current date (a <code>datetime.date</code> instance). This function updates the <code>current_val</code> attribute <em>in place</em>.  </p>
+<ul>
+<li>See <code>AbsoluteHumidity</code> in <code>flu_components.py</code>. Note we update the current value using the helper function <code>absolute_humidity_func</code>.   </li>
+</ul>
+</li>
+<li>
+<p>Create a subclass of <code>base.ModelConstructor</code>. Customize the <code>_init_</code> function and provide concrete implementations for the six abstract methods (listed below). </p>
+<ul>
+<li>See <code>FluModelConstructor</code> in <code>flu_components.py</code>.</li>
+</ul>
+<p>a. Customize the <code>_init_</code> function.</p>
+<ul>
+<li>See <code>_init_</code> in <code>FluModelConstructor</code>. This method first calls <code>super()._init_()</code>, which runs the initialization method of the parent class. Importantly, the parent class initialization creates dictionaries that hold our objects (for example, it creates the attribute <code>compartment_lookup</code>). Then we assign the <code>config</code>, <code>fixed_params</code>, and <code>sim_state</code> attributes according to the contents of user-specified <code>JSON</code> files.</li>
+</ul>
+<p>b. Provide a concrete implementation of <code>setup_epi_compartments</code>. Specifically, for every compartment, create an entry in <code>compartment_lookup</code>, with the name as the key and the value as the corresponding <code>EpiCompartment</code> instance. Names should match the compartment names in the initial values of state variables <code>JSON</code>.</p>
+<p>c. Provide a concrete implementation of <code>setup_dynamic_vals</code>. Specifically, for every dynamic value, create an entry in <code>dynamic_val_lookup</code>, with the name as the key and the value as the corresponding <code>DynamicVal</code> instance. Names should match the dynamic value names in the initial values of state variables <code>JSON</code>.</p>
+<ul>
+<li>In <code>FluModelConstructor</code>, we create an entry in <code>dynamic_val_lookup</code> with the key of <code>"beta_reduct"</code> and the value of a properly initialized <code>BetaReduct</code> instance. Note that <code>BetaReduct</code> <em>is</em> a <code>DynamicVal</code>, but we cannot use <code>DynamicVal</code> directly, as it is an abstract class. We have to use the relevant concretely implemented subclass.</li>
+</ul>
+<p>d. Provide a concrete implementation of <code>setup_schedules</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).</p>
+<p>e. Provide a concrete implementation of <code>setup_transition_variables</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).</p>
+<p>f. Provide a concrete implementation of <code>setup_transition_variable_groups</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).      </p>
+<p>g. Provide a concrete implementation of <code>setup_epi_metrics</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).  </p>
+</li>
+</ol>
+<h2 id="creating-a-model-from-base-components-checklist">Creating a model from base components: checklist</h2>
+<p>Here we provide a brief outline of steps for creating a compartment model, intended as a reminder checklist. Please see the previous section for explanatory details. </p>
+<ol>
+<li>
+<p>Formulate the compartment model.</p>
+</li>
+<li>
+<p>Create a new file that imports the <code>base_components</code> module. We import this module as <code>base</code>. </p>
+</li>
+<li>
+<p>Create two <code>JSON</code> files: one for fixed parameters and one for initial values of state variables. </p>
+</li>
+<li>
+<p>Initial values for schedules and dynamic values can be left as <code>null</code>, but they still must have a field in the <code>JSON</code> file. </p>
+</li>
+<li>
+<p>Create subclasses to hold data: a subclass of <code>base.FixedParams</code> and a subclass of <code>base.SimState</code>. </p>
+</li>
+<li>
+<p>Note that there should be a one-to-one mapping between the fixed parameters <code>JSON</code> file and the attributes of <code>base.FixedParams</code>, and similarly for the initial values of state variables <code>JSON</code> and the attributes of <code>base.SimState</code>. </p>
+</li>
+<li>
+<p>For each transition variable in the model, create a unique subclass of <code>base.TransitionVariable</code> corresponding to that transition and provide a concrete implementation of <code>get_current_rate</code>.</p>
+</li>
+<li>
+<p>For each dynamic value in the model, create a subclass of <code>base.DynamicVal</code> and provide a concrete implementation of <code>update_current_val</code>.</p>
+</li>
+<li>
+<p>For each schedule in the model, create a subclass of <code>base.Schedule</code> and provide a concrete implementation of <code>update_current_val</code>.</p>
+</li>
+<li>
+<p>Create a subclass of <code>base.ModelConstructor</code>. Customize the <code>_init_</code> function, making sure to assign the <code>config</code>, <code>fixed_params</code>, and <code>sim_state</code> attributes to instances of <code>base.Config</code>, <code>base.FixedParams</code>, and <code>base.SimState</code>. Provide concrete implementations of <code>setup_epi_compartments</code>, <code>setup_dynamic_vals</code>, <code>setup_schedules</code>, <code>setup_transition_variables</code>, <code>setup_transition_variable_groups</code>, and <code>setup_epi_metrics</code>. </p>
+</li>
+</ol>
 
 
 
