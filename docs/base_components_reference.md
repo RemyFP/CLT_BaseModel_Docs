@@ -1,7 +1,7 @@
 # Base Components Code API Reference
 
-Docstrings and references for `base_components.py`.
+Docstrings and references for `clt_base` module.
 
-::: CLT_BaseModel.base_components
+::: CLT_BaseModel.clt_base
 	options:
 	      members: true
