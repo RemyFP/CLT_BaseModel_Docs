@@ -639,7 +639,8 @@
 
 <h1 id="flu-model-input-files-overview">Flu Model Input Files Overview</h1>
 <blockquote>
-<p><strong><em>Written by LP, updated 11/26/2024 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 01/07/2025 (work in progress)</em></strong> </p>
+<p><strong><em>Important note: we are updating this page with wastewater inputs -- check back soon.</em></strong></p>
 </blockquote>
 <p>Here we provide a mapping between the input variable names in the flu model's <code>JSON</code> files (and corresponding <code>dataclasses</code>), which become object attribute names in the model) and the mathematical variable. </p>
 <p>The folder <code>flu_demo_input_files</code> contains 3 <code>JSON</code> input files used to run <code>flu_demo.py</code>: <code>config.json</code>, <code>fixed_params.json</code>, and <code>state_variables_init_vals.json</code>. These input files respectively initialize <code>Config</code> instances, <code>FluFixedParams</code> instances, and <code>FluSimState</code> instances.</p>
@@ -704,7 +705,7 @@
 <td>positive scalar</td>
 </tr>
 <tr>
-<td><code>total_population_val</code></td>
+<td><code>total_pop_age_risk</code></td>
 <td><span class="arithmatex">\(\boldsymbol{N}\)</span></td>
 <td><span class="arithmatex">\(\boldsymbol{\tilde{\nu}}\)</span></td>
 </tr>

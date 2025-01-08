@@ -1,0 +1,848 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Old - CLT Base Model</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creating-a-model-from-base-components-details" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CLT Base Model" class="md-header__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CLT Base Model
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Old
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CLT Base Model" class="md-nav__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CLT Base Model
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Mathematical Formulation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Mathematical Formulation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math_flu_components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Model Mathematical Formulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math_transitions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stochastic Transitions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flu Model Code Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flu Model Code Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_model_code_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Model Code Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_code_quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Code Quickstart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_input_files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Model Input Files Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_components_walkthrough/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Model Creation Walkthrough
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Code API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Code API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base_components_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base Components Code API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_components_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Components Code API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model-from-base-components-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model from base components: checklist
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Old</h1>
+
+<p>In this section, we provide an explanation of how the flu model (in <code>flu_components.py</code>) is created from the base model components (in <code>base_components.py</code>). In doing so, we also demonstrate how to create other customized models from the base model components. We also provide justification for design choices, in a way intended to educate users on some of the implementation and computation challenges in writing scalable and adaptable compartmental models. </p>
+<p>Writing code to create a customized compartmental model requires correct use of inheritance, composition, and abstract base classes. We <em>strongly</em> recommend reading <a href="https://realpython.com/inheritance-composition-python/">this tutorial</a> for a good primer on those subjects. We also recommend learning about the <code>dataclass</code> decorator in Python (see <a href="https://www.dataquest.io/blog/how-to-use-python-data-classes/">this blogpost</a>, for example).</p>
+<h2 id="creating-a-model-from-base-components-details">Creating a model from base components: details</h2>
+<p>Creating a compartment model requires the following steps.</p>
+<ol>
+<li>
+<p>Formulate the compartment model mathematically, and write down all <code>EpiCompartment</code>, <code>TransitionVariable</code>, <code>TransitionVariableGroup</code> (jointly sampled sets of transition variables), and <code>StateVariable</code> objects needed for the model. </p>
+</li>
+<li>
+<p>Create a new file that imports the <code>base_components</code> module. We import this module as <code>base</code>. </p>
+</li>
+<li>
+<p>Create two <code>JSON</code> files: one for fixed parameters and one for initial values of state variables. </p>
+<p>a. For the fixed parameters <code>JSON</code> file, required fields are <code>"num_age_groups"</code>, <code>"num_risk_groups"</code>, and <code>"total_population_val"</code>. All other fields must correspond to fixed parameters in the model -- these are used throughout model computation.</p>
+<ul>
+<li>See <code>flu_demo_input_files / fixed_params.json</code>.</li>
+</ul>
+<p>b. For the initial values of state variables <code>JSON</code> file, there must be a field for each <code>StateVariable</code> object used in the model. These values correspond to the initial values of these state variables. For example, this file contains initial populations of each <code>EpiCompartment</code>, expressed as a list of lists corresponding to age groups and risk groups. Similarly, this file contains starting values for each <code>EpiMetric</code>. We also need fields for all <code>DynamicVal</code> and <code>Schedule</code> objects in the model, although their values can be set to <code>null</code> since their initial state will be updated automatically (either according to a deterministic calendar or a simulate state trigger). We just need to include their names for bookkeeping purposes. </p>
+<ul>
+<li>See <code>flu_demo_input_files / state_variables_init_vals.json</code>.</li>
+</ul>
+</li>
+<li>
+<p>Create subclasses to hold data. </p>
+<p>a. Create a subclass of <code>base.FixedParams</code> to hold the model's fixed parameters. For each name in the fixed parameters <code>JSON</code> file, there should be a corresponding attribute (with the same name) in this subclass.</p>
+<ul>
+<li>See <code>FluFixedParams</code> in <code>flu_components.py</code>.</li>
+</ul>
+<p>b. Create a subclass of <code>base.SimState</code> to hold the model's simulation state. For each name in the initial values of state variables <code>JSON</code> file, there should be a corresponding attribute (with the same name) in this subclass. </p>
+<ul>
+<li>See <code>FluSimState</code> in <code>flu_components.py</code>.</li>
+</ul>
+</li>
+<li>
+<p>For each transition in the model, create a subclass of <code>base.TransitionVariable</code> and provide a concrete implementation of the abstract method <code>get_current_rate</code>. The function <code>get_current_rate</code> <em>returns</em> the value of the current rate, and is a function of a <code>FluSimState</code> instance and a <code>FluFixedParams</code> instance. These arguments allow us to access various values needed for the computation. </p>
+<ul>
+<li>See <code>SusceptibleToExposed</code> subclass in <code>flu_components.py</code>. The function <code>get_current_rate</code> implements the formula for computing the current rate that people transition from the susceptible to exposed compartment. For example, <code>get_current_rate</code> grabs <code>sim_state.IS</code>, <code>sim_state.IP</code>, and <code>sim_state.IA</code>, because the current values of the symptomatic, pre-symptomatic, and asymptomatic infectious compartments are needed for the rate computation.</li>
+</ul>
+</li>
+<li>
+<p>For each dynamic value in the model, create a subclass of <code>base.DynamicVal</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>. The function <code>update_current_val</code> also takes a <code>FluSimState</code> instances and <code>FluFixedParams</code> instance as arguments, analogously to <code>TransitionVariable</code> subclasses. It updates the <code>current_val</code> attribute <em>in-place.</em></p>
+<ul>
+<li>See <code>BetaReduct</code> in <code>flu_components.py</code>. Note here we have also customized the <code>_init_</code> method and added an attribute <code>permanent_lockdown</code>, to accommodate additional functionality. </li>
+</ul>
+</li>
+<li>
+<p>For each schedule in the model, create a subclass of <code>base.Schedule</code> and provide a concrete implementation of the abstract method <code>update_current_val</code>, which should be a function of the current date (a <code>datetime.date</code> instance). This function updates the <code>current_val</code> attribute <em>in place</em>.  </p>
+<ul>
+<li>See <code>AbsoluteHumidity</code> in <code>flu_components.py</code>. Note we update the current value using the helper function <code>absolute_humidity_func</code>.   </li>
+</ul>
+</li>
+<li>
+<p>Create a subclass of <code>base.ModelConstructor</code>. Customize the <code>_init_</code> function and provide concrete implementations for the six abstract methods (listed below). </p>
+<ul>
+<li>See <code>FluModelConstructor</code> in <code>flu_components.py</code>.</li>
+</ul>
+<p>a. Customize the <code>_init_</code> function.</p>
+<ul>
+<li>See <code>_init_</code> in <code>FluModelConstructor</code>. This method first calls <code>super()._init_()</code>, which runs the initialization method of the parent class. Importantly, the parent class initialization creates dictionaries that hold our objects (for example, it creates the attribute <code>compartment_lookup</code>). Then we assign the <code>config</code>, <code>fixed_params</code>, and <code>sim_state</code> attributes according to the contents of user-specified <code>JSON</code> files.</li>
+</ul>
+<p>b. Provide a concrete implementation of <code>setup_epi_compartments</code>. Specifically, for every compartment, create an entry in <code>compartment_lookup</code>, with the name as the key and the value as the corresponding <code>EpiCompartment</code> instance. Names should match the compartment names in the initial values of state variables <code>JSON</code>.</p>
+<p>c. Provide a concrete implementation of <code>setup_dynamic_vals</code>. Specifically, for every dynamic value, create an entry in <code>dynamic_val_lookup</code>, with the name as the key and the value as the corresponding <code>DynamicVal</code> instance. Names should match the dynamic value names in the initial values of state variables <code>JSON</code>.</p>
+<ul>
+<li>In <code>FluModelConstructor</code>, we create an entry in <code>dynamic_val_lookup</code> with the key of <code>"beta_reduct"</code> and the value of a properly initialized <code>BetaReduct</code> instance. Note that <code>BetaReduct</code> <em>is</em> a <code>DynamicVal</code>, but we cannot use <code>DynamicVal</code> directly, as it is an abstract class. We have to use the relevant concretely implemented subclass.</li>
+</ul>
+<p>d. Provide a concrete implementation of <code>setup_schedules</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).</p>
+<p>e. Provide a concrete implementation of <code>setup_transition_variables</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).</p>
+<p>f. Provide a concrete implementation of <code>setup_transition_variable_groups</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).      </p>
+<p>g. Provide a concrete implementation of <code>setup_epi_metrics</code> (instructions are analogous to those for <code>setup_dynamic_vals</code>).  </p>
+</li>
+</ol>
+<h2 id="creating-a-model-from-base-components-checklist">Creating a model from base components: checklist</h2>
+<p>Here we provide a brief outline of steps for creating a compartment model, intended as a reminder checklist. Please see the previous section for explanatory details. </p>
+<ol>
+<li>
+<p>Formulate the compartment model.</p>
+</li>
+<li>
+<p>Create a new file that imports the <code>base_components</code> module. We import this module as <code>base</code>. </p>
+</li>
+<li>
+<p>Create two <code>JSON</code> files: one for fixed parameters and one for initial values of state variables. </p>
+<ul>
+<li>Initial values for schedules and dynamic values can be left as <code>null</code>, but they still must have a field in the <code>JSON</code> file. </li>
+</ul>
+</li>
+<li>
+<p>Create subclasses to hold data: a subclass of <code>base.FixedParams</code> and a subclass of <code>base.SimState</code>. </p>
+<ul>
+<li>Note that there should be a one-to-one mapping between the fixed parameters <code>JSON</code> file and the attributes of <code>base.FixedParams</code>, and similarly for the initial values of state variables <code>JSON</code> and the attributes of <code>base.SimState</code>. </li>
+</ul>
+</li>
+<li>
+<p>For each transition variable in the model, create a unique subclass of <code>base.TransitionVariable</code> corresponding to that transition and provide a concrete implementation of <code>get_current_rate</code>.</p>
+</li>
+<li>
+<p>For each dynamic value in the model, create a subclass of <code>base.DynamicVal</code> and provide a concrete implementation of <code>update_current_val</code>.</p>
+</li>
+<li>
+<p>For each schedule in the model, create a subclass of <code>base.Schedule</code> and provide a concrete implementation of <code>update_current_val</code>.</p>
+</li>
+<li>
+<p>Create a subclass of <code>base.ModelConstructor</code>. Customize the <code>_init_</code> function, making sure to assign the <code>config</code>, <code>fixed_params</code>, and <code>sim_state</code> attributes to instances of <code>base.Config</code>, <code>base.FixedParams</code>, and <code>base.SimState</code>. Provide concrete implementations of <code>setup_epi_compartments</code>, <code>setup_dynamic_vals</code>, <code>setup_schedules</code>, <code>setup_transition_variables</code>, <code>setup_transition_variable_groups</code>, and <code>setup_epi_metrics</code>. </p>
+</li>
+</ol>
+<blockquote>
+<p>Note: figures below were generated with older flu model version without presymptomatic and asymptomatic infected compartments -- figures generated with updated code will look slightly different. </p>
+</blockquote>
+<p>Here we provide a quickstart tutorial to help users immediately start playing with the flu model in <code>flu_components.py</code> with "toy" inputs given by <code>JSON</code> files in <code>flu_demo_input_files</code>. Recall that the <em>structure</em> (functional form) of the flu model is specified in <code>flu_components.py</code>, and the input files simply specify fixed parameter values and initial values for state variables.  See <a href="../math_flu_components/">this page</a> for the mathematical formulation of the flu model. For creating their own custom input files, users should refer to tables on <a href="../flu_input_files/">this page</a> that map code variable names to their respective math variables and specify variable dimensions. </p>
+<p>The code snippet below is from <code>flu_demo.py</code>. The script can be run directly from the terminal using </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>flu_demo.py
+</span></code></pre></div>
+<p>Here’s the basic procedure to populate the flu model using input files:</p>
+<ol>
+<li>
+<p>Create a <code>FluModelConstructor</code> instance that takes three file paths as input: the configuration file path, fixed parameter values file path, and initial values file path (all in <code>JSON</code> format).</p>
+</li>
+<li>
+<p>Use this constructor to create a <code>TransmissionModel</code> instance whose functional form is specified by <code>flu_components.py</code> and whose fixed parameter values and initial values are specified in the three aforementioend files.</p>
+</li>
+</ol>
+<p>After this, we can simulate the model and plot its behavior. Below, we simulate 300 days. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span> <span class="nn">flu_components</span> <span class="kn">import</span> <span class="n">FluModelConstructor</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span> <span class="nn">plotting</span> <span class="kn">import</span> <span class="n">create_basic_compartment_history_plot</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Obtain path to folder with JSON input files</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">base_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;flu_demo_input_files&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Get filepaths for configuration, fixed parameter values, and</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">#   initial values of state variables</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">config_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;config.json&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">fixed_params_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;fixed_params.json&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">state_vars_init_vals_filepath</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;state_variables_init_vals.json&quot;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># Create a constructor using these filepaths</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">flu_demo_constructor</span> <span class="o">=</span> \
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">FluModelConstructor</span><span class="p">(</span><span class="n">config_filepath</span><span class="p">,</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                        <span class="n">fixed_params_filepath</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                        <span class="n">state_vars_init_vals_filepath</span><span class="p">)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># Create TransmissionModel instance from the constructor,</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1">#   using a random number generator with starting seed 888888</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1">#   to generate random variables</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">flu_demo_model</span> <span class="o">=</span> <span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">create_transmission_model</span><span class="p">(</span><span class="mi">888888</span><span class="p">)</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="c1"># Simulate 300 days</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1"># Plot</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">create_basic_compartment_history_plot</span><span class="p">(</span><span class="n">flu_demo_model</span><span class="p">,</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                                      <span class="s2">&quot;flu_demo_model.png&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><img alt="title" src="../figs/flu_demo_model.png" /></p>
+<p>The following code snippets and outputs below replicate the experience of working in a Python interactive console.</p>
+<p>After simulating 300 days, the <code>current_simulation_day</code> counter indeed is 300, and the attribute <code>current_real_date</code> gives us the corresponding real-world date associated with the simulation day counter.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_simulation_day</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 300</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_real_date</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># datetime.date(2023, 6, 4)</span>
+</span></code></pre></div>
+<p>Note that subsequent <code>simulate_until_time_period</code> calls will start from where the simulation last ended, and its argument <code>last_simulation_day</code> must be greater than the model's <code>current_simulation_day</code>. For example, after running <code>flu_demo_model.simulate_until_time_period(300)</code>, a command like <code>flu_demo_model.simulate_until_time_period(100)</code> is invalid (we cannot simulate backwards in time), but <code>flu_demo_model.simulate_until_timeperiod(305)</code> starts from day 300 and continues.</p>
+<p><code>TransmissionModel</code> instances have a <code>StateVariableManager</code> that manages and holds StateVariables (EpiCompartments, EpiMetrics, DynamicVals, and Schedules). Using the command below, we can access the state of the simulation after we simulated the model for 300 days. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">sim_state</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># FluSimState(S=array([[306539.],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">#       [261363.]]), E=array([[31501.],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#       [36027.]]), I=array([[105991.],</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#       [114542.]]), H=array([[ 98354.],</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#       [104663.]]), R=array([[175885.],</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">#       [186626.]]), D=array([[281730.],</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#       [296779.]]), population_immunity_hosp=array([[0.11555325],</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">#       [0.12078151]]), population_immunity_inf=array([[0.11555325],</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">#       [0.12078151]]), absolute_humidity=12.31748, </span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">#       flu_contact_matrix=array([[[[2.], [0.5]]], [[[1.95], [1.4]]]]))</span>
+</span></code></pre></div>
+<p>We can also use our model's built-in dictionary to look up simulation objects (any StateVariable, as well as any TransitionVariable and TransitionVariableGroup) by name. Here, <code>S</code> is an <code>EpiCompartment</code> instance, and we can see its current value at the current day of the simulation. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># &lt;base_components.EpiCompartment object at 0x174a79750&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_val</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># array([[306539.],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#        [261363.]])</span>
+</span></code></pre></div>
+<p>We can also access a StateVariable's history with the attribute <code>history_vals_list</code>. For example, <code>flu_demo_model.lookup_by_name["S"].history_vals_list</code> gives a list of all the previous current values of the "Susceptible" compartment. The <span class="arithmatex">\(i\)</span>th element in the list holds the compartment's value at the end of simulation day <span class="arithmatex">\(i\)</span>. </p>
+<p>Next, we look at the current value (most recent realization) of the TransitionVariable <code>new_dead.</code> We also look at its <code>current_rate</code> attribute, which is the rate that generated the most recent realization. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;new_dead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_val</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># array([[406.],</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#        [435.]])</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;new_dead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_rate</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># array([[0.00823744],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">#        [0.00820603]])</span>
+</span></code></pre></div>
+<p>We can reset the simulation to restart the simulation or clear the simulation's state and history to run a new replication on the same model, with the same initial conditions. <em>Important note: resetting the simulation does NOT reset the random number generator -- random numbers will continue where the generator last left off.</em>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">reset_simulation</span><span class="p">()</span>
+</span></code></pre></div></p>
+<p>Notice that the current simulation day has returned to 0 and the simulation state has returned to its initial state. Each StateVariable's history has also been cleared.<br />
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">current_simulation_day</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># 0</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">sim_state</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># FluSimState(S=array([[980000.],</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">#       [980000.]]), E=array([[10000.],</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">#       [10000.]]), I=array([[10000.],</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">#       [10000.]]), H=array([[0.],</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">#       [0.]]), R=array([[0.],</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1">#       [0.]]), D=array([[0.],</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1">#       [0.]]), population_immunity_hosp=array([[0.5],</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1">#       [0.5]]), population_immunity_inf=array([[0.5],</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1">#       [0.5]]), absolute_humidity=None, flu_contact_matrix=None)</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">flu_demo_model</span><span class="o">.</span><span class="n">lookup_by_name</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">history_vals_list</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1"># []</span>
+</span></code></pre></div></p>
+<p>To reset the random number generator, we must use the <code>modify_random_seed</code> method -- and pass the initial random seed. This resets the numpy RNG object to a state given by this seed. We can also use the <code>modify_random_seed</code> method to handle random number generation more broadly, and ensure that each simulation replication uses independent random numbers. To handle random number generation responsibly, refer to these two links <a href="https://numpy.org/doc/2.0/reference/random/bit_generators/index.html">here</a> and <a href="https://blog.scientific-python.org/numpy/numpy-rng/">here</a>.</p>
+<p>Suppose that we want to modify configuration values, values of fixed parameters, or initial values. We can modify these values on our model constructor, and then create a new model instance. For example, below we change the transition type to "binomial_deterministic" and the beta baseline value to be <span class="arithmatex">\(0\)</span>. By changing <code>beta_baseline</code> to <span class="arithmatex">\(0\)</span>, no transmission occurs, and the plot verifies this. </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">transition_type</span> <span class="o">=</span> <span class="s2">&quot;binomial_deterministic&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">fixed_params</span><span class="o">.</span><span class="n">beta_baseline</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">flu_demo_model_beta_baseline_zero</span> <span class="o">=</span> \
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">flu_demo_constructor</span><span class="o">.</span><span class="n">create_transmission_model</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">create_basic_compartment_history_plot</span><span class="p">(</span><span class="n">flu_demo_model_beta_baseline_zero</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>                                      <span class="s2">&quot;flu_demo_model_beta_baseline_zero.png&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><img alt="flu_demo_model_beta_baseline_zero" src="../figs/flu_demo_model_beta_baseline_zero.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
