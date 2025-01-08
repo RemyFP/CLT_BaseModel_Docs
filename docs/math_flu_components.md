@@ -1,6 +1,8 @@
 # Flu Model Mathematical Formulation
 
-> **_Written by LP, updated 12/10/2024 (work in progress)_** 
+> **_Written by LP, updated 01/07/2025 (work in progress)_** 
+
+> **_Important note: we are updating this page to include wastewater viral load and a metapopulation travel model -- check back soon._**
 
 ## Flu model: diagram
 

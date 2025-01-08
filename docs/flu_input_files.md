@@ -1,6 +1,8 @@
 # Flu Model Input Files Overview
 
-> **_Written by LP, updated 11/26/2024 (work in progress)_** 
+> **_Written by LP, updated 01/07/2025 (work in progress)_** 
+
+> **_Important note: we are updating this page with wastewater inputs -- check back soon._**
 
 Here we provide a mapping between the input variable names in the flu model's `JSON` files (and corresponding `dataclasses`), which become object attribute names in the model) and the mathematical variable. 
 
@@ -29,7 +31,7 @@ The table below has a variable name to math variable mapping for the `JSON` file
 | `num_age_groups`                | $\lvert A \rvert$          | positive `int`                           |
 | `num_risk_groups`               | $\lvert L \rvert$          | positive `int`							  |
 | `beta_baseline`                 | $\beta_0$                  | positive scalar                          |
-| `total_population_val`          | $\boldsymbol{N}$           | $\boldsymbol{\tilde{\nu}}$ | $\lvert A \rvert                            |
+| `total_pop_age_risk`          | $\boldsymbol{N}$           | $\boldsymbol{\tilde{\nu}}$ | $\lvert A \rvert                            |
 | `humidity_impact`               | $\xi$                      | scalar                                   |
 | `immunity_hosp_increase_factor` | $g^H$                      | scalar                                   |
 | `immunity_inf_increase_factor`  | $g^I$                      | scalar                                   |

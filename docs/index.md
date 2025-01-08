@@ -6,7 +6,7 @@ Please visit [this website](https://LP-relaxation.github.io/CLT_BaseModel_Docs/)
 
 The mathematical framework is inspired by the immunoSEIRS model of the Meyers Lab (see [Bi and Bandekar et al. 2023](https://www.researchgate.net/publication/375193467_Scenario_Projections_for_SARS-CoV-2_Influenza_and_RSV_Burden_in_the_US_2023-2024), [Bi et al. 2022](https://repositories.lib.utexas.edu/server/api/core/bitstreams/da7bb152-3343-4135-86e3-040546d6e5b5/content) and [Bouchnita et al. 2021](https://repositories.lib.utexas.edu/items/e8d50517-6e78-488b-8c95-8c1138d90c28) for some related recent publications).
 
-Documentation is created by Linda Pei ("LP"). Base model code is created by LP in collaboration with Shuotao "Sonny" Diao, Remy Pasco, and Emily Javan, and with supervision from Dave Morton and Lauren Meyers. Special thanks to Cary Murray for generous guidance on software engineering design. 
+Documentation is created by Linda Pei ("LP"). Base model code is created by LP in collaboration with Shuotao "Sonny" Diao, Remy Pasco, and Emily Javan, and with supervision from Dave Morton and Lauren Meyers. Special thanks to Cary Murray for generous guidance on software engineering design. Special credit to Sonny for his ideas about updating compartments analogously to pushing flow on a graph and creating simulation logic that works for arbitrarily many compartments and transition variables. 
 
 ## Setup
 
