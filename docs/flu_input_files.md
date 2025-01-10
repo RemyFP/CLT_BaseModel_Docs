@@ -69,7 +69,7 @@ The table below has a variable name to math variable mapping for the `JSON` file
 | `H_to_D_rate`                   | $\rateHtoD$                      | positive scalar                          |
 | `E_to_IA_prop`                  | $\propIA$                     | scalar in $[0,1]$                        |
 | `H_to_D_adjusted_prop`    	  | $\boldsymbol{\adjustedpropD}$ | $\lvert A \rvert \times \lvert L \rvert$ |
-| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\adjustedpropH$ | $\lvert A \rvert \times \lvert L \rvert$ |
+| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\adjustedpropH}$ | $\lvert A \rvert \times \lvert L \rvert$ |
 | `IP_relative_inf`   			  | $r_{IP}$ 				   | positive scalar 						  |
 | `IA_relative_inf`			   	  | $r_{IA}$ 				   | positive scalar                          |
 
