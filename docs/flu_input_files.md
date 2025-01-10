@@ -1,8 +1,26 @@
+$\def\rateRtoS{\sigma^{R\rightarrow S}}$
+$\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
+$\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$
+$\def\rateIStoH{\sigma^{IS\rightarrow H}}$
+$\def\rateHtoD{\sigma^{H\rightarrow D}}$
+
+$\def\rateIAtoR{\gamma^{IA\rightarrow R}}$
+$\def\rateHtoR{\gamma^{H\rightarrow R}}$
+$\def\rateIStoR{\gamma^{IS\rightarrow R}}$
+
+$\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a,r}(t)}$
+$\def\propIA{\pi^{IA}}$
+$\def\propH{\pi^H}$
+$\def\propD{\pi^D}$
+
+$\def\adjustedpropH{\tilde{\pi}^H}$
+$\def\adjustedpropD{\tilde{\pi}^D}$
+
 # Flu Model Input Files Overview
 
-> **_Written by LP, updated 01/07/2025 (work in progress)_** 
+> **_Written by LP, updated 01/10/2025 (work in progress)_** 
 
-> **_Important note: we are updating this page with wastewater inputs -- check back soon._**
+> **_Important note: we are updating this page with travel model and wastewater inputs -- check back soon._**
 
 Here we provide a mapping between the input variable names in the flu model's `JSON` files (and corresponding `dataclasses`), which become object attribute names in the model) and the mathematical variable. 
 
@@ -41,17 +59,17 @@ The table below has a variable name to math variable mapping for the `JSON` file
 | `hosp_risk_reduction`           | $\boldsymbol{K}^H$         | $\lvert A \rvert \times \lvert L \rvert$ |
 | `inf_risk_reduction`            | $\boldsymbol{K}^I$         | $\lvert A \rvert \times \lvert L \rvert$ |
 | `death_risk_reduction`          | $\boldsymbol{K}^D$         | $\lvert A \rvert \times \lvert L \rvert$ |
-| `R_to_S_rate`                   | $\rateRS$                     | positive scalar                          |
-| `E_to_I_rate`                   | $\sigma$                   | positive scalar                          |
-| `IP_to_IS_rate`				  | $\rho$					   | positive scalar						  |
-| `IS_to_R_rate`                  | $\gamma$                   | positive scalar                          |
-| `IA_to_R_rate`				  | $\gamma_{IA}$			   | positive scalar						  |
-| `IS_to_H_rate`                  | $\zeta$                    | positive scalar                          |
-| `H_to_R_rate`                   | $\gamma_H$                 | positive scalar                          |
-| `H_to_D_rate`                   | $\pi$                      | positive scalar                          |
-| `E_to_IA_prop`                  | $\tau$                     | scalar in $[0,1]$                        |
-| `H_to_D_adjusted_prop`    	  | $\boldsymbol{\tilde{\nu}}$ | $\lvert A \rvert \times \lvert L \rvert$ |
-| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\tilde{\mu}}$ | $\lvert A \rvert \times \lvert L \rvert$ |
+| `R_to_S_rate`                   | $\rateRtoS$                     | positive scalar                          |
+| `E_to_I_rate`                   | $\rateEtoI$                   | positive scalar                          |
+| `IP_to_IS_rate`				  | $\rateIPtoIS$					   | positive scalar						  |
+| `IS_to_R_rate`                  | $\rateIStoR$                   | positive scalar                          |
+| `IA_to_R_rate`				  | $\rateIAtoR$			   | positive scalar						  |
+| `IS_to_H_rate`                  | $\rateIStoH$                    | positive scalar                          |
+| `H_to_R_rate`                   | $\rateHtoR$                 | positive scalar                          |
+| `H_to_D_rate`                   | $\rateHtoD$                      | positive scalar                          |
+| `E_to_IA_prop`                  | $\propIA$                     | scalar in $[0,1]$                        |
+| `H_to_D_adjusted_prop`    	  | $\boldsymbol{\adjustedpropD}$ | $\lvert A \rvert \times \lvert L \rvert$ |
+| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\adjustedpropH$ | $\lvert A \rvert \times \lvert L \rvert$ |
 | `IP_relative_inf`   			  | $r_{IP}$ 				   | positive scalar 						  |
 | `IA_relative_inf`			   	  | $r_{IA}$ 				   | positive scalar                          |
 
