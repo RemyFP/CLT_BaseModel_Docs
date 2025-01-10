@@ -20,7 +20,7 @@
     
     
       
-        <title>Math flu components - CLT Base Model</title>
+        <title>Flu Model Mathematical Formulation - CLT Base Model</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Math flu components
+              Flu Model Mathematical Formulation
             
           </span>
         </div>
@@ -263,7 +263,7 @@
           
   
   <span class="md-ellipsis">
-    Math flu components
+    Flu Model Mathematical Formulation
   </span>
   
 
@@ -274,7 +274,7 @@
         
   
   <span class="md-ellipsis">
-    Math flu components
+    Flu Model Mathematical Formulation
   </span>
   
 
@@ -465,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Flu input files
+    Flu Model Input Files
   </span>
   
 
@@ -673,6 +673,7 @@
                   
 
 
+<h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
 <p><span style="display: none;">
 <span class="arithmatex">\(\def\rateRtoS{\sigma^{R\rightarrow S}}\)</span>
 <span class="arithmatex">\(\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}\)</span>
@@ -695,6 +696,11 @@
 <span class="arithmatex">\(\def\LambdaDHlocagerisktime{\Lambda^{(\ell), D, H}_{a,r}(t)}\)</span>
 <span class="arithmatex">\(\def\locagerisk{^{(\ell)}_{a, r}}\)</span>
 <span class="arithmatex">\(\def\locagerisktime{\locagerisk(t)}\)</span>
+<span class="arithmatex">\(\def\locationell{^{(\ell)}}\)</span>
+<span class="arithmatex">\(\def\locationk{^{(k)}}\)</span>
+<span class="arithmatex">\(\def\agerisk{_{a, r}}\)</span>
+<span class="arithmatex">\(\def\agerisktime{_{a, r}(t)}\)</span>
+<span class="arithmatex">\(\def\ageprimeriskprime{_{a^\prime, r^\prime}}\)</span>
 <span class="arithmatex">\(\def\locageprimeriskprime{^{(\ell)}_{a^\prime, r^\prime}}\)</span>
 <span class="arithmatex">\(\def\Nlocagerisk{N^{(\ell)}_{a,r}}\)</span>
 <span class="arithmatex">\(\def\effectiveNlocagerisktime{\tilde{N}^{(\ell)}_{a,r}(t)}\)</span>
@@ -709,7 +715,6 @@
 <span class="arithmatex">\(\def\numagegroups{\lvert \agegroups \rvert}\)</span>
 <span class="arithmatex">\(\def\numriskgroups{\lvert \riskgroups \rvert}\)</span>
 </span></p>
-<h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
 <blockquote>
 <p><strong><em>Updated 01/10/2025 (work in progress)</em></strong></p>
 <p><strong><em>Written by LP. Travel model formulated by Remy.</em></strong> </p>
@@ -823,8 +828,8 @@
 <div class="arithmatex">\[\begin{align*}
 \totalforceofinfection &amp;= \lambda^{\ell \rightarrow \ell}_{a, r}(t) + \sum_{k \in \mathcal L \setminus \{\ell\}} \left(\lambda^{k \rightarrow \ell}_{a, r}(t) + \lambda^{\ell \rightarrow k}_{a, r}(t)\right) \\[1.5em]
 \lambda^{\ell \rightarrow \ell}_{a, r}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a}{\left(1 + \LambdaIIlocagerisktime\right)} \left(1 - c_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \\ &amp;\quad\quad\quad \cdot \sum \limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a,a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{k \rightarrow \ell}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{\left(1 + \LambdaIIlocagerisktime\right)} \cdot \proptravelktoell \\ &amp;\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{\ell \rightarrow k}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{{\left(1 + \LambdaIIlocagerisktime\right)}} \cdot  \proptravelelltok  \cdot c_a \\ &amp;\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
+\lambda_{a,r}^{k \rightarrow \ell}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{\left(1 + \LambdaIIlocagerisktime\right)} \cdot \proptravelktoell \\ &amp;\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
+\lambda_{a,r}^{\ell \rightarrow k}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{{\left(1 + \LambdaIIlocagerisktime\right)}} \cdot  \proptravelelltok  \cdot c_a \\ &amp;\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
 \end{align*}\]</div>
 <p>where</p>
 <div class="arithmatex">\[\begin{align*}
@@ -840,6 +845,11 @@
 <li><span class="arithmatex">\(c_a\)</span>: proportion of time individuals in age group <span class="arithmatex">\(a \in \agegroups\)</span> spend away from home region when traveling. </li>
 <li><span class="arithmatex">\(\multipliertravel \in [0,1]\)</span>: multiplier to reduce contact rate of traveling individuals. </li>
 <li><span class="arithmatex">\(\multipliersymptom \in [0,1]\)</span>: multiplier to reduce contact rate of symptomatic individuals.</li>
+</ul>
+<p>Note that the decompositions model the following phenomenon:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda^{k \rightarrow \ell}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span> but travel to location <span class="arithmatex">\(\ell\)</span> (note: this contact occurs in location <span class="arithmatex">\(\ell\)</span>).</li>
+<li><span class="arithmatex">\(\lambda^{\ell \rightarrow k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span>, due to individuals who live in location <span class="arithmatex">\(\ell\)</span> traveling to location <span class="arithmatex">\(k\)</span> (note: this contact occurs in location <span class="arithmatex">\(k\)</span>).</li>
 </ul>
 <h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
 <p>To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
