@@ -41,7 +41,7 @@ The table below has a variable name to math variable mapping for the `JSON` file
 | `hosp_risk_reduction`           | $\boldsymbol{K}^H$         | $\lvert A \rvert \times \lvert L \rvert$ |
 | `inf_risk_reduction`            | $\boldsymbol{K}^I$         | $\lvert A \rvert \times \lvert L \rvert$ |
 | `death_risk_reduction`          | $\boldsymbol{K}^D$         | $\lvert A \rvert \times \lvert L \rvert$ |
-| `R_to_S_rate`                   | $\eta$                     | positive scalar                          |
+| `R_to_S_rate`                   | $\rateRS$                     | positive scalar                          |
 | `E_to_I_rate`                   | $\sigma$                   | positive scalar                          |
 | `IP_to_IS_rate`				  | $\rho$					   | positive scalar						  |
 | `IS_to_R_rate`                  | $\gamma$                   | positive scalar                          |
