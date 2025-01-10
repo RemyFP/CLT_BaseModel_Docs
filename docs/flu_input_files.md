@@ -1,20 +1,19 @@
+<span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
 $\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
 $\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$
 $\def\rateIStoH{\sigma^{IS\rightarrow H}}$
 $\def\rateHtoD{\sigma^{H\rightarrow D}}$
-
 $\def\rateIAtoR{\gamma^{IA\rightarrow R}}$
 $\def\rateHtoR{\gamma^{H\rightarrow R}}$
 $\def\rateIStoR{\gamma^{IS\rightarrow R}}$
-
 $\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a,r}(t)}$
 $\def\propIA{\pi^{IA}}$
 $\def\propH{\pi^H}$
 $\def\propD{\pi^D}$
-
 $\def\adjustedpropH{\tilde{\pi}^H}$
 $\def\adjustedpropD{\tilde{\pi}^D}$
+</span>
 
 # Flu Model Input Files Overview
 
