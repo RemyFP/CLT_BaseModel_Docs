@@ -1,3 +1,5 @@
+# Flu Model Input Files
+
 <span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
 $\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
@@ -14,8 +16,6 @@ $\def\propD{\pi^D}$
 $\def\adjustedpropH{\tilde{\pi}^H}$
 $\def\adjustedpropD{\tilde{\pi}^D}$
 </span>
-
-# Flu Model Input Files Overview
 
 > **_Written by LP, updated 01/10/2025 (work in progress)_** 
 

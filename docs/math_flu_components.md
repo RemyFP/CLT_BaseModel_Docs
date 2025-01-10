@@ -1,3 +1,5 @@
+# Flu Model Mathematical Formulation
+
 <span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
 $\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
@@ -20,6 +22,11 @@ $\def\LambdaHHlocagerisktime{\Lambda^{(\ell), H, H}_{a,r}(t)}$
 $\def\LambdaDHlocagerisktime{\Lambda^{(\ell), D, H}_{a,r}(t)}$
 $\def\locagerisk{^{(\ell)}_{a, r}}$
 $\def\locagerisktime{\locagerisk(t)}$
+$\def\locationell{^{(\ell)}}$
+$\def\locationk{^{(k)}}$
+$\def\agerisk{_{a, r}}$
+$\def\agerisktime{_{a, r}(t)}$
+$\def\ageprimeriskprime{_{a^\prime, r^\prime}}$
 $\def\locageprimeriskprime{^{(\ell)}_{a^\prime, r^\prime}}$
 $\def\Nlocagerisk{N^{(\ell)}_{a,r}}$
 $\def\effectiveNlocagerisktime{\tilde{N}^{(\ell)}_{a,r}(t)}$
@@ -34,8 +41,6 @@ $\def\riskgroups{\mathcal R}$
 $\def\numagegroups{\lvert \agegroups \rvert}$
 $\def\numriskgroups{\lvert \riskgroups \rvert}$
 </span>
-
-# Flu Model Mathematical Formulation
 
 > **_Updated 01/10/2025 (work in progress)_**
 
@@ -169,8 +174,8 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 \begin{align*}
 \totalforceofinfection &= \lambda^{\ell \rightarrow \ell}_{a, r}(t) + \sum_{k \in \mathcal L \setminus \{\ell\}} \left(\lambda^{k \rightarrow \ell}_{a, r}(t) + \lambda^{\ell \rightarrow k}_{a, r}(t)\right) \\[1.5em]
 \lambda^{\ell \rightarrow \ell}_{a, r}(t) &= \frac{\beta^{(\ell)}(t) \cdot \psi_a}{\left(1 + \LambdaIIlocagerisktime\right)} \left(1 - c_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \\ &\quad\quad\quad \cdot \sum \limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a,a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{k \rightarrow \ell}(t) &= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{\left(1 + \LambdaIIlocagerisktime\right)} \cdot \proptravelktoell \\ &\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{\ell \rightarrow k}(t) &= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{{\left(1 + \LambdaIIlocagerisktime\right)}} \cdot  \proptravelelltok  \cdot c_a \\ &\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
+\lambda_{a,r}^{k \rightarrow \ell}(t) &= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{\left(1 + \LambdaIIlocagerisktime\right)} \cdot \proptravelktoell \\ &\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
+\lambda_{a,r}^{\ell \rightarrow k}(t) &= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{{\left(1 + \LambdaIIlocagerisktime\right)}} \cdot  \proptravelelltok  \cdot c_a \\ &\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
 \end{align*}
 
 where
@@ -189,6 +194,11 @@ is the effective population in location $\ell \in \mathcal L$ and age-risk group
 - $c_a$: proportion of time individuals in age group $a \in \agegroups$ spend away from home region when traveling. 
 - $\multipliertravel \in [0,1]$: multiplier to reduce contact rate of traveling individuals. 
 - $\multipliersymptom \in [0,1]$: multiplier to reduce contact rate of symptomatic individuals.
+
+Note that the decompositions model the following phenomenon:
+
+- $\lambda^{k \rightarrow \ell}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (note: this contact occurs in location $\ell$).
+- $\lambda^{\ell \rightarrow k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (note: this contact occurs in location $k$).
 
 ## Flu model: discretized stochastic implementation
 
