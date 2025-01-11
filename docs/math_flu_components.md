@@ -181,7 +181,7 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 where
 
 \begin{align*}
-\effectiveNlocagerisktime &= \Nlocagerisk + c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelktoell \cdot (N^{(k)}_{a, r} - (1-c_{\text{symptom}}) I^{(k)}_{a,r}(t) - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - (1-c_{\text{symptom}}) I\locagerisktime - H^{(\ell)}_{a,r}(t))
+\effectiveNlocagerisktime &= \Nlocagerisk + c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelktoell \cdot (N^{(k)}_{a, r} - (1-\multipliersymptom) I^{(k)}_{a,r}(t) - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - (1-\multipliersymptom) I\locagerisktime - H^{(\ell)}_{a,r}(t))
 \end{align*}
 
 is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$, and where
