@@ -2957,7 +2957,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.create_pop_by_age_cache" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_pop_by_age_cache</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_pop_by_age_cache</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h3>
 
@@ -3018,7 +3018,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.create_pop_healthy_by_age" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_pop_healthy_by_age</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_pop_healthy_by_age</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h3>
 
@@ -3104,7 +3104,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.create_wtd_no_symp_by_age_cache" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_wtd_no_symp_by_age_cache</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_wtd_no_symp_by_age_cache</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h3>
 
@@ -3170,7 +3170,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.inf_from_home_region_movement_prob" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">inf_from_home_region_movement_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">inf_from_home_region_movement_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -3252,7 +3252,7 @@ subpopulation, where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.inf_from_residents_traveling_prob" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">inf_from_residents_traveling_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">inf_from_residents_traveling_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -3403,7 +3403,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.inf_from_visitors_prob" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">inf_from_visitors_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">inf_from_visitors_prob</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wtd_no_symp_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">effective_pop_by_age_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -3551,7 +3551,7 @@ where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.inf_total_rate" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">inf_total_rate</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">inf_total_rate</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -3668,7 +3668,7 @@ to given subpopulation, where |A| is the number of age groups.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluInterSubpopRepo.sum_wtd_visitors_by_age" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">sum_wtd_visitors_by_age</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">,</span> <span class="n">pop_healthy_by_age</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">sum_wtd_visitors_by_age</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pop_healthy_by_age</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -4605,7 +4605,7 @@ and pop_immunity_hosp epi metrics. </p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">params_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">calendar_df</span><span class="p">,</span> <span class="n">RNG</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">wastewater_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">state_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">params_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">calendar_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">wastewater_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -4893,7 +4893,7 @@ excludes it.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_compartments" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_compartments</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_compartments</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -4938,7 +4938,7 @@ excludes it.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_dynamic_vals" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_dynamic_vals</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_dynamic_vals</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -4980,7 +4980,7 @@ excludes it.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_epi_metrics" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_epi_metrics</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_epi_metrics</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -5061,7 +5061,7 @@ variables total), save in sc.objdict, and return objdict</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_interaction_terms" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_interaction_terms</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_interaction_terms</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -5114,7 +5114,7 @@ SubpopModel.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_schedules" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_schedules</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_schedules</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">()</span></code>
 
 </h3>
 
@@ -5158,7 +5158,7 @@ SubpopModel.</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_transition_variable_groups" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_transition_variable_groups</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_transition_variable_groups</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -5249,7 +5249,7 @@ variable groups total), save in sc.objdict, return</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.FluSubpopModel.create_transition_variables" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">create_transition_variables</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">create_transition_variables</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -8171,7 +8171,7 @@ transition variables are jointly distributed).</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.Wastewater.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8225,7 +8225,7 @@ transition variables are jointly distributed).</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.Wastewater.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8266,7 +8266,7 @@ transition variables are jointly distributed).</p>
 
 
 <h3 id="CLT_BaseModel.flu_model.flu_components.Wastewater.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8348,7 +8348,7 @@ transition variables are jointly distributed).</p>
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.absolute_humidity_func" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">absolute_humidity_func</span><span class="p">(</span><span class="n">current_date</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">absolute_humidity_func</span><span class="p">(</span><span class="n">current_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
 
 </h2>
 
@@ -8499,7 +8499,7 @@ that day of the year</p>
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.compute_beta_humidity_adjusted" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_beta_humidity_adjusted</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">compute_beta_humidity_adjusted</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">:</span> <span class="n">FluSubpopState</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">:</span> <span class="n">FluSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
 
 </h2>
 
@@ -8537,7 +8537,7 @@ that day of the year</p>
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.compute_common_coeff_infection_force" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_common_coeff_infection_force</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">compute_common_coeff_infection_force</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">:</span> <span class="n">FluSubpopState</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">:</span> <span class="n">FluSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h2>
 
@@ -8626,7 +8626,7 @@ many computations</p>
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.compute_immunity_force" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_immunity_force</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">compute_immunity_force</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">:</span> <span class="n">FluSubpopState</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">:</span> <span class="n">FluSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h2>
 
@@ -8706,7 +8706,7 @@ the force of population-level immunity against infection
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.compute_pop_by_age" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_pop_by_age</span><span class="p">(</span><span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">compute_pop_by_age</span><span class="p">(</span><span class="n">subpop_params</span><span class="p">:</span> <span class="n">FluSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h2>
 
@@ -8774,7 +8774,7 @@ in age group i</p>
 
 
 <h2 id="CLT_BaseModel.flu_model.flu_components.compute_wtd_presymp_asymp" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_wtd_presymp_asymp</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">compute_wtd_presymp_asymp</span><span class="p">(</span><span class="n">subpop_state</span><span class="p">:</span> <span class="n">FluSubpopState</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">:</span> <span class="n">FluSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h2>
 

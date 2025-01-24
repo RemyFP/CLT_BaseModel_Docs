@@ -2789,7 +2789,7 @@ end of simulation day t.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Compartment.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -2821,7 +2821,7 @@ end of simulation day t.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Compartment.reset_inflow" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">reset_inflow</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">reset_inflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -2851,7 +2851,7 @@ end of simulation day t.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Compartment.reset_outflow" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">reset_outflow</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">reset_outflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -2881,7 +2881,7 @@ end of simulation day t.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Compartment.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -2931,7 +2931,7 @@ have the same value for all elements</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Compartment.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -3406,7 +3406,7 @@ at end of simulation day t.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.DynamicVal.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">init_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">init_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_enabled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3514,7 +3514,7 @@ and other interventions.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.DynamicVal.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -3558,7 +3558,7 @@ and other interventions.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.DynamicVal.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SubpopState</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -4045,7 +4045,7 @@ risk group j.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.EpiMetric.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -4077,7 +4077,7 @@ risk group j.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.EpiMetric.get_change_in_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_change_in_current_val</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_change_in_current_val</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SubpopState</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -4247,7 +4247,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.EpiMetric.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -4291,7 +4291,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.EpiMetric.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -4578,7 +4578,7 @@ two SubpopModels, one named "north" and one named "south"):
 
 
 <h3 id="CLT_BaseModel.clt_base.InterSubpopRepo.prop_residents_traveling_df" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">prop_residents_traveling_df</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">prop_residents_traveling_df</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span></code>
 
 </h3>
 
@@ -4626,7 +4626,7 @@ two SubpopModels, one named "north" and one named "south"):
 
 
 <h3 id="CLT_BaseModel.clt_base.InterSubpopRepo.prop_residents_traveling_pairwise" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">prop_residents_traveling_pairwise</span><span class="p">(</span><span class="n">origin_subpop_name</span><span class="p">,</span> <span class="n">dest_subpop_name</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">prop_residents_traveling_pairwise</span><span class="p">(</span><span class="n">origin_subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest_subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
 
 </h3>
 
@@ -4693,7 +4693,7 @@ who travel to the given destination subpopulation.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.InterSubpopRepo.sum_prop_residents_traveling_out" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">sum_prop_residents_traveling_out</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">sum_prop_residents_traveling_out</span><span class="p">(</span><span class="n">subpop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
 
 </h3>
 
@@ -4966,7 +4966,7 @@ and one SubpopParams instance to update its current value.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.InteractionTerm.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -4998,7 +4998,7 @@ and one SubpopParams instance to update its current value.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.InteractionTerm.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -5042,7 +5042,7 @@ and one SubpopParams instance to update its current value.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.InteractionTerm.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">inter_subpop_repo</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">inter_subpop_repo</span><span class="p">:</span> <span class="n">InterSubpopRepo</span><span class="p">,</span> <span class="n">subpop_params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -5498,7 +5498,7 @@ methods to query current values.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.MetapopModel.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">subpop_models</span><span class="p">,</span> <span class="n">travel_proportions</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">subpop_models</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">travel_proportions</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h3>
 
@@ -5676,7 +5676,7 @@ two SubpopModels, one named "north" and one named "south"):
 
 
 <h3 id="CLT_BaseModel.clt_base.MetapopModel.assign_inter_subpop_repo" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">assign_inter_subpop_repo</span><span class="p">(</span><span class="n">subpop_models</span><span class="p">,</span> <span class="n">travel_proportions</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">assign_inter_subpop_repo</span><span class="p">(</span><span class="n">subpop_models</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">,</span> <span class="n">travel_proportions</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterSubpopRepo</span></code>
 
 </h3>
 
@@ -5715,7 +5715,7 @@ two SubpopModels, one named "north" and one named "south"):
 
 
 <h3 id="CLT_BaseModel.clt_base.MetapopModel.extract_states_dict_from_models_dict" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_states_dict_from_models_dict</span><span class="p">(</span><span class="n">models_dict</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">extract_states_dict_from_models_dict</span><span class="p">(</span><span class="n">models_dict</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span></code>
 
 </h3>
 
@@ -5769,7 +5769,7 @@ two SubpopModels, one named "north" and one named "south"):
 
 
 <h3 id="CLT_BaseModel.clt_base.MetapopModel.simulate_until_time_period" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="n">last_simulation_day</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="n">last_simulation_day</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -6006,7 +6006,7 @@ vaccination data, and seasonality.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Schedule.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">init_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeseries_df</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">init_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeseries_df</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -6104,7 +6104,7 @@ corresponding to values on those days</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.Schedule.update_current_val" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">current_date</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">update_current_val</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">,</span> <span class="n">current_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -7515,7 +7515,7 @@ have completed.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">RNG</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">metapop_model</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SubpopState</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span> <span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">metapop_model</span><span class="p">:</span> <span class="n">MetapopModel</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -7787,7 +7787,7 @@ associated with this SubpopModel.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -7852,7 +7852,7 @@ associated with this SubpopModel.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.compute_total_pop_age_risk" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compute_total_pop_age_risk</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">compute_total_pop_age_risk</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -7938,7 +7938,7 @@ over all compartments in the subpop model).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.display" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">display</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">display</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8072,7 +8072,7 @@ over all compartments in the subpop model).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.find_name_by_compartment" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">find_name_by_compartment</span><span class="p">(</span><span class="n">target_compartment</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">find_name_by_compartment</span><span class="p">(</span><span class="n">target_compartment</span><span class="p">:</span> <span class="n">Compartment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 </h3>
 
@@ -8273,7 +8273,7 @@ simulation.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.increment_simulation_day" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">increment_simulation_day</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">increment_simulation_day</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8310,7 +8310,7 @@ simulation.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.modify_random_seed" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">modify_random_seed</span><span class="p">(</span><span class="n">new_seed_number</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">modify_random_seed</span><span class="p">(</span><span class="n">new_seed_number</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8386,7 +8386,7 @@ seeded at new_seed_number.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.prepare_daily_state" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">prepare_daily_state</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">prepare_daily_state</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8493,7 +8493,7 @@ for every discretized timestep.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.reset_simulation" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">reset_simulation</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">reset_simulation</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8586,7 +8586,7 @@ initial starting seed.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.sample_transitions" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">sample_transitions</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">sample_transitions</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8664,7 +8664,7 @@ initial starting seed.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.save_daily_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_daily_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_daily_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8717,7 +8717,7 @@ Update history of state variables other than Schedule
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.simulate_timesteps" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">simulate_timesteps</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">simulate_timesteps</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8834,7 +8834,7 @@ length for discretization.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.simulate_until_time_period" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="n">last_simulation_day</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">simulate_until_time_period</span><span class="p">(</span><span class="n">last_simulation_day</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -8963,7 +8963,7 @@ simulate up to but not including last_simulation_day).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.update_compartments" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_compartments</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_compartments</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -9026,7 +9026,7 @@ simulate up to but not including last_simulation_day).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.update_epi_metrics" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_epi_metrics</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_epi_metrics</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -9079,7 +9079,7 @@ simulate up to but not including last_simulation_day).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.SubpopModel.update_transition_rates" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_transition_rates</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_transition_rates</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -10298,7 +10298,7 @@ probability distribution of transitions between compartments.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.clear_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -10330,7 +10330,7 @@ probability distribution of transitions between compartments.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_binomial_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_binomial_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_binomial_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -10485,7 +10485,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_binomial_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_binomial_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_binomial_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -10635,7 +10635,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_binomial_taylor_approx_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_binomial_taylor_approx_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_binomial_taylor_approx_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -10783,7 +10783,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_binomial_taylor_approx_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_binomial_taylor_approx_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_binomial_taylor_approx_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -10925,7 +10925,7 @@ is number of risk groups.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_current_rate" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_current_rate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_current_rate</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SubpopState</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">SubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -11070,7 +11070,7 @@ and |R| is number of risk groups.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_poisson_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_poisson_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_poisson_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -11212,7 +11212,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_poisson_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_poisson_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_poisson_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -11352,7 +11352,7 @@ size |A| x |R|, where |A| is the number of age groups and
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.get_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -11471,7 +11471,7 @@ length for discretization.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.save_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">save_history</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -11515,7 +11515,7 @@ length for discretization.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.update_destination_inflow" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_destination_inflow</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_destination_inflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -11556,7 +11556,7 @@ length for discretization.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariable.update_origin_outflow" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_origin_outflow</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_origin_outflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -12653,7 +12653,7 @@ probability distribution of transitions between compartments.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_current_rates_array" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_current_rates_array</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">get_current_rates_array</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -12734,7 +12734,7 @@ transition variables list x number of age groups x number of risk groups).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_joint_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_joint_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_joint_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -12850,7 +12850,7 @@ length for discretization.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_multinomial_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_multinomial_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_multinomial_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13006,7 +13006,7 @@ epi compartment).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_multinomial_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_multinomial_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_multinomial_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13186,7 +13186,7 @@ epi compartment).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_multinomial_taylor_approx_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_multinomial_taylor_approx_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_multinomial_taylor_approx_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13342,7 +13342,7 @@ epi compartment).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_multinomial_taylor_approx_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_multinomial_taylor_approx_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_multinomial_taylor_approx_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13542,7 +13542,7 @@ epi compartment).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_poisson_deterministic_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_poisson_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_poisson_deterministic_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13684,7 +13684,7 @@ x number of age groups x number of risk groups).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_poisson_realization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_poisson_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_poisson_realization</span><span class="p">(</span><span class="n">RNG</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -13855,7 +13855,7 @@ number of age groups x number of risk groups).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_probabilities_array" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_probabilities_array</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_probabilities_array</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span></code>
 
 </h3>
 
@@ -13977,7 +13977,7 @@ epi compartment).</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.get_total_rate" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_total_rate</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">get_total_rate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h3>
 
@@ -14072,7 +14072,7 @@ transition variable group.</p>
 
 
 <h3 id="CLT_BaseModel.clt_base.TransitionVariableGroup.update_transition_variable_realizations" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">update_transition_variable_realizations</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">update_transition_variable_realizations</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
 
 </h3>
 
@@ -14131,7 +14131,7 @@ transition variable group.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.approx_binomial_probability_from_rate" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">approx_binomial_probability_from_rate</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span> <span class="n">interval_length</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">approx_binomial_probability_from_rate</span><span class="p">(</span><span class="n">rate</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">interval_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
 
 </h2>
 
@@ -14290,7 +14290,7 @@ array of positive scalars, dimension |A| x |R|</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.convert_dict_vals_lists_to_arrays" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">convert_dict_vals_lists_to_arrays</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">convert_dict_vals_lists_to_arrays</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h2>
 
@@ -14324,7 +14324,7 @@ array of positive scalars, dimension |A| x |R|</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.load_json_augment_dict" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">load_json_augment_dict</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">load_json_augment_dict</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h2>
 
@@ -14364,7 +14364,7 @@ array of positive scalars, dimension |A| x |R|</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.load_json_new_dict" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">load_json_new_dict</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">load_json_new_dict</span><span class="p">(</span><span class="n">json_filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 </h2>
 
@@ -14406,7 +14406,7 @@ array of positive scalars, dimension |A| x |R|</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.make_dataclass_from_dict" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">make_dataclass_from_dict</span><span class="p">(</span><span class="n">dataclass_ref</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">make_dataclass_from_dict</span><span class="p">(</span><span class="n">dataclass_ref</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">DataClassProtocol</span><span class="p">],</span> <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClassProtocol</span></code>
 
 </h2>
 
@@ -14546,7 +14546,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.make_dataclass_from_json" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">make_dataclass_from_json</span><span class="p">(</span><span class="n">dataclass_ref</span><span class="p">,</span> <span class="n">json_filepath</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">make_dataclass_from_json</span><span class="p">(</span><span class="n">dataclass_ref</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">DataClassProtocol</span><span class="p">],</span> <span class="n">json_filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClassProtocol</span></code>
 
 </h2>
 
@@ -14692,7 +14692,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_metapop_basic_compartment_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_metapop_basic_compartment_history</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_metapop_basic_compartment_history</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">:</span> <span class="n">MetapopModel</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
@@ -14875,7 +14875,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_metapop_epi_metrics" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_metapop_epi_metrics</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">,</span> <span class="n">axes</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_metapop_epi_metrics</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">:</span> <span class="n">MetapopModel</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span></code>
 
 </h2>
 
@@ -14972,7 +14972,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_metapop_total_infected_deaths" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_metapop_total_infected_deaths</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">,</span> <span class="n">axes</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_metapop_total_infected_deaths</span><span class="p">(</span><span class="n">metapop_model</span><span class="p">:</span> <span class="n">MetapopModel</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span></code>
 
 </h2>
 
@@ -15071,7 +15071,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_subpop_basic_compartment_history" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_subpop_basic_compartment_history</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_subpop_basic_compartment_history</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">:</span> <span class="n">SubpopModel</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
@@ -15276,7 +15276,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_subpop_epi_metrics" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_subpop_epi_metrics</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_subpop_epi_metrics</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">:</span> <span class="n">SubpopModel</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
@@ -15397,7 +15397,7 @@ assigned by json_filepath file contents.</p>
 
 
 <h2 id="CLT_BaseModel.clt_base.plot_subpop_total_infected_deaths" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_subpop_total_infected_deaths</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_subpop_total_infected_deaths</span><span class="p">(</span><span class="n">subpop_model</span><span class="p">:</span> <span class="n">SubpopModel</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
