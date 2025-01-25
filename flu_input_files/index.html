@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../flu_code_quickstart/">
+        <link rel="prev" href="../flu_model_demo/">
       
       
         <link rel="next" href="../flu_components_walkthrough/">
@@ -355,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../flu_code_quickstart/" class="md-nav__link">
+      <a href="../flu_model_demo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -434,6 +434,24 @@
   <a href="#fixed-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       Fixed parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact-matrix-and-school-work-calendar-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact matrix and school-work calendar CSV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#travel-models-travel-proportions-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Travel model's travel proportions CSV
     </span>
   </a>
   
@@ -614,6 +632,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#contact-matrix-and-school-work-calendar-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact matrix and school-work calendar CSV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#travel-models-travel-proportions-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Travel model's travel proportions CSV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#initial-values-of-state-variables" class="md-nav__link">
     <span class="md-ellipsis">
       Initial values of state variables
@@ -707,12 +743,12 @@
 <tbody>
 <tr>
 <td><code>num_age_groups</code></td>
-<td><span class="arithmatex">\(\lvert A \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert\)</span></td>
 <td>positive <code>int</code></td>
 </tr>
 <tr>
 <td><code>num_risk_groups</code></td>
-<td><span class="arithmatex">\(\lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal R \rvert\)</span></td>
 <td>positive <code>int</code></td>
 </tr>
 <tr>
@@ -743,7 +779,7 @@
 <tr>
 <td><code>immune_saturation</code></td>
 <td><span class="arithmatex">\(\boldsymbol{O}\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>hosp_immune_wane</code></td>
@@ -758,17 +794,17 @@
 <tr>
 <td><code>hosp_risk_reduce</code></td>
 <td><span class="arithmatex">\(\boldsymbol{K}^H\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>inf_risk_reduce</code></td>
 <td><span class="arithmatex">\(\boldsymbol{K}^I\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>death_risk_reduce</code></td>
 <td><span class="arithmatex">\(\boldsymbol{K}^D\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>R_to_S_rate</code></td>
@@ -818,12 +854,12 @@
 <tr>
 <td><code>H_to_D_adjusted_prop</code></td>
 <td><span class="arithmatex">\(\boldsymbol{\adjustedpropD}\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>IS_to_H_adjusted_prop</code></td>
 <td><span class="arithmatex">\(\boldsymbol{\adjustedpropH}\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>IP_relative_inf</code></td>
@@ -835,8 +871,73 @@
 <td><span class="arithmatex">\(r_{IA}\)</span></td>
 <td>positive scalar</td>
 </tr>
+<tr>
+<td><code>relative_suscept_by_age</code></td>
+<td><span class="arithmatex">\(\psi\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times 1\)</span></td>
+</tr>
+<tr>
+<td><code>prop_time_away_by_age</code></td>
+<td><span class="arithmatex">\(c\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times 1\)</span></td>
+</tr>
+<tr>
+<td><code>contact_mult_travel</code></td>
+<td><span class="arithmatex">\(h_{\text{travel}}\)</span></td>
+<td>scalar</td>
+</tr>
+<tr>
+<td><code>contact_mult_symp</code></td>
+<td><span class="arithmatex">\(h_{\text{symp}}\)</span></td>
+<td>scalar</td>
+</tr>
+<tr>
+<td><code>total_contact_matrix</code></td>
+<td>\text{see below}</td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>school_contact_matrix</code></td>
+<td>\text{see below}</td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>work_contact_matrix</code></td>
+<td>\text{see below}</td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
+</tr>
 </tbody>
 </table>
+<h2 id="contact-matrix-and-school-work-calendar-csv">Contact matrix and school-work calendar CSV</h2>
+<p>Let <span class="arithmatex">\(\phi^{(\ell), \text{total}}\)</span>, <span class="arithmatex">\(\phi^{(\ell), \text{work}}\)</span>, and <span class="arithmatex">\(\phi^{(\ell), \text{school}}\)</span> represent the <code>total_contact_matrix</code>, <code>school_contact_matrix</code>, and <code>work_contact_matrix</code> respectively for subpopulation <span class="arithmatex">\(\ell\)</span>.</p>
+<p>The school-work calendar CSV must have 3 columns with names: <code>"date"</code>, <code>"is_school_day"</code>, and <code>"is_work_day"</code>. The <code>"date"</code> column contains strings corresponding to dates, in the format <code>"YYYY-MM-DD"</code>. The other two columns are Booleans indicating if the real-world date is a school day or work day. </p>
+<p>Then the contact matrix for the subpopulation at time <span class="arithmatex">\(t\)</span> is
+$$
+\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - d_{\text{work}}(t) \phi^{(\ell), \text{work}} - d_{\text{school}}(t) \phi^{(\ell), \text{school}}
+$$
+where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="arithmatex">\(1\)</span> if the real-world date corresponding to simulation time <span class="arithmatex">\(t\)</span> is a work day, specified by the school-work calendar input CSV, and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> is defined analogously, but for school days.</p>
+<h2 id="travel-models-travel-proportions-csv">Travel model's travel proportions CSV</h2>
+<p>The travel proportions CSV must have the following specifications (see excerpt from <code>InterSubpopRepo</code> docstring):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">    travel_proportions (pd.DataFrame):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">        DataFrame with specific structure that identifies</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">        traveling proportions. One column is named &quot;subpop_name&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">        and has strings corresponding to SubpopModel names</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">        (strings must match). For each string in &quot;subpop_name&quot; column,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="sd">        there is another column with the same name as that string.</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">        Other values in the DataFrame are floats in [0,1] corresponding</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">        to proportion of people in subpop i who travel to subpop j. Subpop i</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">        is given by row position in &quot;subpop_name&quot; column, and subpop j is</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd">        given by column position and corresponding name of that column.</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="sd">        Example valid DataFrame (corresponding to MetapopModel with</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="sd">        two SubpopModels, one named &quot;north&quot; and one named &quot;south&quot;):</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">            subpop_name,north,south</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">            &quot;north&quot;,0.1,0.2</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">            &quot;south&quot;,0.8,0.1</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="sd">&quot;&quot;&quot;</span>
+</span></code></pre></div>
+<p>The table created by the travel proportions CSV corresponds to the mathematical variable <span class="arithmatex">\(v^{\ell\rightarrow k}\)</span> for subpopulations <span class="arithmatex">\(\ell, k \in \mathcal L\)</span>.</p>
 <h2 id="initial-values-of-state-variables">Initial values of state variables</h2>
 <p>The table below has a variable name to math variable mapping for the <code>JSON</code> file used to initialize <code>FluSubpopState</code> instances. This file specifies initial conditions for <code>StateVariable</code> objects (which includes <code>Compartment</code>, <code>EpiMetric</code>, <code>Schedule</code>, and <code>DynamicVal</code> objects). </p>
 <p>Important notes:</p>
@@ -860,52 +961,52 @@
 <tr>
 <td><code>S</code></td>
 <td><span class="arithmatex">\(\boldsymbol{S}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>E</code></td>
 <td><span class="arithmatex">\(\boldsymbol{E}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>IP</code></td>
 <td><span class="arithmatex">\(\boldsymbol{I^P}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>IS</code></td>
 <td><span class="arithmatex">\(\boldsymbol{I^S}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>IA</code></td>
 <td><span class="arithmatex">\(\boldsymbol{I^A}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>H</code></td>
 <td><span class="arithmatex">\(\boldsymbol{H}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>R</code></td>
 <td><span class="arithmatex">\(\boldsymbol{R}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>D</code></td>
 <td><span class="arithmatex">\(\boldsymbol{D}(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>population_immunity_inf</code></td>
 <td><span class="arithmatex">\(\boldsymbol{M}^I(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>population_immunity_hosp</code></td>
 <td><span class="arithmatex">\(\boldsymbol{M}^H(0)\)</span></td>
-<td><span class="arithmatex">\(\lvert A \rvert \times \lvert L \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
