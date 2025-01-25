@@ -774,7 +774,7 @@
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align}
 \frac{dS\locagerisktime}{dt} &amp;= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
--\underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \psi_a}{\left(1 + \LambdaIIlocagerisktime\right)}\totalforceofinfection}_{\text{$S$ to $E$}} \\[1.5em]
+-\underbrace{S\locagerisktime \totalforceofinfection}_{\text{$S$ to $E$}} \\[1.5em]
 \frac{dE\locagerisktime}{dt} &amp;= \underbrace{S\locagerisktime \totalforceofinfection}_{\text{$S$ to $E$}} 
 - \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} 
 - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \\[1.5em]
