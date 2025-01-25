@@ -915,7 +915,7 @@
 $$
 \phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - d_{\text{work}}(t) \phi^{(\ell), \text{work}} - d_{\text{school}}(t) \phi^{(\ell), \text{school}}
 $$
-where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="arithmatex">\(1\)</span> if the real-world date corresponding to simulation time <span class="arithmatex">\(t\)</span> is a work day, specified by the school-work calendar input CSV, and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> is defined analogously, but for school days.</p>
+where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="arithmatex">\(1\)</span> if the real-world date corresponding to simulation time <span class="arithmatex">\(t\)</span> is a work day and <span class="arithmatex">\(0\)</span> otherwise, specified by the school-work calendar input CSV, and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> is defined analogously, but for school days.</p>
 <h2 id="travel-models-travel-proportions-csv">Travel model's travel proportions CSV</h2>
 <p>The travel proportions CSV must have the following specifications (see excerpt from <code>InterSubpopRepo</code> docstring):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">&quot;&quot;&quot;</span>
