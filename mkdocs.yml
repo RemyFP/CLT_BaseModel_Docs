@@ -18,8 +18,8 @@ nav:
     - math_transitions.md
 - Flu Model Code Documentation:
     - flu_model_code_overview.md
-    - flu_code_quickstart.md
-    - flu_input_files.md
+    - flu_model_demo.md
+    - flu_input_requirements.md
     - flu_components_walkthrough.md
 - Code API Reference:
     - base_components_reference.md
