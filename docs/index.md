@@ -43,12 +43,12 @@ Below is an overview of the files in the CLT base model code.
                               Realistic applications will use estimation 
                               and calibration from real-world data. 
 
-To execute the simple flu demo model, run
+To execute the simple flu demo model, run the following in Terminal (on Mac):
 ```
 python flu_demo.py
 ```
 
-To execute the flu model tests, run
+To execute the flu model tests, run the following in Terminal (on Mac):
 ```
 pytest -v flu_tests.py
 ```

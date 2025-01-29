@@ -42,7 +42,7 @@ The following table gives the parameters for multinomial transitions when $\text
 | $y_{\texttt{C}_0\rightarrow\texttt{C}_2, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ | $\frac{\texttt{r}_2}{\texttt{r}_1 + \texttt{r}_2} \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)$ | $\texttt{r}_2 \cdot \Delta t$                              |
 | $y_{\texttt{C}_0\rightarrow\texttt{C}_0, a, \ell}\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega\right)$ | $1 - \alpha(\texttt{r}_1 + \texttt{r}_2, \Delta t)$                                              | $1 - (\texttt{r}_1 + \texttt{r}_2) \Delta t$         |
 
-IMPORTANT:
+## Important notes
 
 - The transition variable group table formulas generalize to an arbitrary number of outgoing compartments -- however, this is not shown here.
 
@@ -51,3 +51,5 @@ IMPORTANT:
 - In contrast, the binomial distribution does not have such a splitting property. If the total outflow is binomial with parameters $n$ and $p$, then we cannot use a similar Poisson splitting technique to create two independent binomial random variables with the same number of trial parameters $n$. Thus, joint sampling is needed. 
 
 - An advantage of binomial/multinomial transition variables (with joint sampling when there are multiple outflows from a compartment) is that we cannot have more people leaving the origin compartment than are actually in the compartment. We set the "number of trials" parameter in the multinomial distribution to be the current number of people in the compartment. This is ***NOT*** the case for Poisson transition variables, which are unbounded! Thus, we recommend using binomial/multinomial transition types.
+
+- For the binomial/multinomial Taylor approximation transition type, if the simulation discretization parameter $\Delta t$ is too large, then it is possible for the "probability parameter" to be nonsensical. For example, in the table above, it is possible for $r_1 \Delta t > 1$ or $r_2 \Delta t > 1$ if $\Delta t$ is not sufficiently small. Similarly, it is possible for $1 - (r_1 + r_2) \Delta t < 0$ if $\Delta t$ is not sufficiently small. Thus, we cannot use these values as probabilities input for the binomial distribution. As a result, we recommend using the binomial transition type with no Taylor approximation. This transition type converts rates into probabilities that are always between $[0,1]$ and thus always well-defined to be input as a probability parameter in a binomial distribution.

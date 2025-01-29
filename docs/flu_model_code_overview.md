@@ -22,5 +22,5 @@ Follow the links below for code readme's, tutorials, and other resources.
 | Name 															| Explanation													|
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | [Flu Model Demo](flu_code_demo.md)		| Must-read. Explanation of `flu_demo.py` and basic simulation functionality. Helps user get started with a concrete simulation right away. |
-| [Flu Input Files Overview](flu_input_requirements.md)	| Must-read. Explanation of `flu_demo_input_files` and the required `JSON` specifications and formats for customizing flu model *values.* |
+| [Flu Input Requirements](flu_input_requirements.md)	| Must-read. Explanation of `flu_demo_input_files` and the required specifications and formats for customizing flu model *values.* |
 | [Flu Components Walkthrough](flu_components_walkthrough.md) | Advanced. Must-read for users who want to create a custom model *structure.* Explains `flu_components.py` subclasses to demonstrate how to create custom subclasses for a customized flu model or another model. |
