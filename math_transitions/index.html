@@ -334,6 +334,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important notes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -604,6 +613,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important notes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -698,7 +716,7 @@ and corresponds to the probability that a Poisson process with rate <span class=
 </tr>
 </tbody>
 </table>
-<p>IMPORTANT:</p>
+<h2 id="important-notes">Important notes</h2>
 <ul>
 <li>
 <p>The transition variable group table formulas generalize to an arbitrary number of outgoing compartments -- however, this is not shown here.</p>
@@ -711,6 +729,9 @@ and corresponds to the probability that a Poisson process with rate <span class=
 </li>
 <li>
 <p>An advantage of binomial/multinomial transition variables (with joint sampling when there are multiple outflows from a compartment) is that we cannot have more people leaving the origin compartment than are actually in the compartment. We set the "number of trials" parameter in the multinomial distribution to be the current number of people in the compartment. This is <strong><em>NOT</em></strong> the case for Poisson transition variables, which are unbounded! Thus, we recommend using binomial/multinomial transition types.</p>
+</li>
+<li>
+<p>For the binomial/multinomial Taylor approximation transition type, if the simulation discretization parameter <span class="arithmatex">\(\Delta t\)</span> is too large, then it is possible for the "probability parameter" to be nonsensical. For example, in the table above, it is possible for <span class="arithmatex">\(r_1 \Delta t &gt; 1\)</span> or <span class="arithmatex">\(r_2 \Delta t &gt; 1\)</span> if <span class="arithmatex">\(\Delta t\)</span> is not sufficiently small. Similarly, it is possible for <span class="arithmatex">\(1 - (r_1 + r_2) \Delta t &lt; 0\)</span> if <span class="arithmatex">\(\Delta t\)</span> is not sufficiently small. Thus, we cannot use these values as probabilities input for the binomial distribution. As a result, we recommend using the binomial transition type with no Taylor approximation. This transition type converts rates into probabilities that are always between <span class="arithmatex">\([0,1]\)</span> and thus always well-defined to be input as a probability parameter in a binomial distribution.</p>
 </li>
 </ul>
 
