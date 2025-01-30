@@ -13,6 +13,8 @@ plugins:
 
 nav:
 - Home: index.md
+- Python for Modelers:
+    - python_resources.md
 - Mathematical Formulation:
     - math_flu_components.md
     - math_transitions.md

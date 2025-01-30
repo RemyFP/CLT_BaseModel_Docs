@@ -1,6 +1,6 @@
 # Stochastic Transitions
 
-> **_Written by LP, updated 11/21/2024 (work in progress)_** 
+> **_Written by LP, updated 01/30/2025_** 
 
 ## Marginal transition types
 
