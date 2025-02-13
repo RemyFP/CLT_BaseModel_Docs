@@ -1,6 +1,6 @@
 # Flu Model Demo
 
-> **_Written by LP, updated 01/24/2025 (work in progress)_** 
+> **_Written by LP, updated 02/13/2025 (work in progress)_** 
 
 In this tutorial, we work through ```flu_demo.py,``` which is a toy implementation of the flu model mathematically formulated [here](math_flu_components.md) and coded in the `flu_model` module. Inputs are given by the contents of ```flu_demo_input_files.```
 
@@ -24,15 +24,14 @@ Next, we obtain our filepaths. Note that all our input files we want to use here
 # Obtain path to folder with JSON input files
 base_path = Path(__file__).parent / "flu_demo_input_files"
 
-# Get filepaths for initial values of compartments and epi metrics, fixed parameters,
-#   and configuration
+# Get filepaths for initial values of compartments and epi metrics, fixed parameters, configuration, and travel proportions
 compartments_epi_metrics_init_vals_filepath = base_path / "compartments_epi_metrics_init_vals.json"
 params_filepath = base_path / "common_params.json"
 config_filepath = base_path / "config.json"
+travel_proportions_filepath = base_path / "travel_proportions.json"
 
-# Get filepaths for school-work calendar CSV and travel proportions CSV
+# Get filepaths for school-work calendar CSV 
 calendar_filepath = base_path / "school_work_calendar.csv"
-travel_proportions_filepath = base_path / "travel_proportions.csv"
 ```
 
 To create a `SubpopModel`, we need 5 inputs: (1) a dictionary of initial values for compartments and epi metrics, which will set up a 
@@ -47,9 +46,9 @@ Details on input file requirements are given [here](flu_input_requirements.md).
 state_dict = clt.load_json_new_dict(compartments_epi_metrics_init_vals_filepath)
 params_dict = clt.load_json_new_dict(params_filepath)
 config_dict = clt.load_json_new_dict(config_filepath)
+travel_proportions = clt.load_json_new_dict(travel_proportions_filepath)
 
 calendar_df = pd.read_csv(calendar_filepath, index_col=0)
-travel_proportions_df = pd.read_csv(travel_proportions_filepath)
 ```
 
 Note that responsible random number generation means using the proper Generator objects, not using something like `np.random.seed(123)`. For more information, read the official Python `numpy.random` documentation. 
@@ -112,10 +111,17 @@ south.params.beta_baseline = 10
 
 Recall that `MetapopModel` instances are made up of the `SubpopModel` instances that comprise the travel model. `FluMetapopModel` is a subclass of the base `MetapopModel`. `FluSubpopModel` is a subclass of the base `SubpopModel`, customized for a specific functional form (with pre-specified) state variables and transition variables. Below, we create a metapopulation model that is comprised of our two previously defined subpopulation models.
 
+To start, we create a `FluInterSubpopRepo`, a subclass of the base `InterSubpopRepo`, which manages inter-subpopulation interactions. For our flu metapopulation model, we model travel between subpopulations. `FluInterSubpopRepo` allows easy querying of subpopulation states and has functions to compute complicated quantities used to model travel.
+
 ```python
+# Create FluInterSubpopRepo instance that manages the subpopulation models
+#   and the travel dynamics that link them together
+flu_inter_subpop_repo = flu.FluInterSubpopRepo({"north": north, "south": south},
+                                               travel_proportions["subpop_names_mapping"],
+                                               travel_proportions["travel_proportions_array"])
+
 # Combine two subpopulations into one metapopulation model (travel model)
-flu_demo_model = flu.FluMetapopModel({"north": north, "south": south},
-                                     travel_proportions_df)
+flu_demo_model = flu.FluMetapopModel(flu_inter_subpop_repo)
 ```
 
 It is vital to check that our model inputs are sensible. Below, we display our model and also run model checks. 
