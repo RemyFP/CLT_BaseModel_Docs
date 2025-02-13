@@ -137,7 +137,7 @@ Simulating the flu model is simple. The following command simulates the model fr
 
 ```python
 # Simulate for 50 days
-flu_demo_model.simulate_until_time_period(50)
+flu_demo_model.simulate_until_day(50)
 ```
 
 Here's how we access the current simulation day and current real date: 
@@ -154,7 +154,7 @@ print(flu_demo_model.current_real_date)
 We can start and stop the `MetapopModel` simulation at any time. 
 ```python
 # Simulate for another 50 days, from where we last left off
-flu_demo_model.simulate_until_time_period(100)
+flu_demo_model.simulate_until_day(100)
 ```
 
 Keeping track of the many moving parts in the model is straightforward. We can combine and process these values after we simulate to create our own plots and own analysis. 
@@ -227,7 +227,7 @@ for subpop_model in flu_demo_model.subpop_models.values():
     subpop_model.params.school_contact_matrix = np.zeros((num_age_groups, num_age_groups))
     subpop_model.params.work_contact_matrix = np.zeros((num_age_groups, num_age_groups))
 
-flu_demo_model.simulate_until_time_period(100)
+flu_demo_model.simulate_until_day(100)
 
 clt.plot_metapop_basic_compartment_history(flu_demo_model,
                                            "basic_compartment_history_no_periodicity.png")
