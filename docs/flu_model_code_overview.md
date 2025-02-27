@@ -10,7 +10,7 @@ The simplifying assumptions of `flu_components.py` include:
 
 - We model *only one* immunity inducing event (say, H1N1).
 	- As a result, we model only one strain (and thus disregard prevalence) and we do not model vaccination. 
-	- Matrices that would otherwise have $3$ indices for age, risk, and immunity-inducing event (e.g. $\boldsymbol{M}_{a, \ell, H1}^H(t)$ because they are $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert \times \lvert \mathcal I \rvert$) only have $2$ indices in the code (for age-risk group). In other words, these matrices are now only $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ and we drop the immunity-inducing event dimension entirely.
+	- Matrices that would otherwise have $4$ indices for subpopulation, age, risk, and immunity-inducing event (e.g. $\boldsymbol{M}_{a, r, H1}^{(\ell), H(t)}$ because they are $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert \times \lvert \mathcal I \rvert$) only have $3$ indices in the code (for subpopulation and age-risk group). In other words, for a given subpopulation, these matrices are now only $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ and we drop the immunity-inducing event dimension entirely.
 	- Population-level immunity against infection and population-level immunity against hospitalization is modeled only for H1N1, and not for H3N2 or vaccination. 
 
 A more comprehensive model relaxing these simplifying assumptions is coming soon!
@@ -21,6 +21,6 @@ Follow the links below for code readme's, tutorials, and other resources.
 
 | Name 															| Explanation													|
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| [Flu Model Demo](flu_code_demo.md)		| Must-read. Explanation of `flu_demo.py` and basic simulation functionality. Helps user get started with a concrete simulation right away. |
+| [Flu Model Demo](flu_model_demo.md)		| Must-read. Explanation of `flu_demo.py` and basic simulation functionality. Helps user get started with a concrete simulation right away. |
 | [Flu Input Requirements](flu_input_requirements.md)	| Must-read. Explanation of `flu_demo_input_files` and the required specifications and formats for customizing flu model *values.* |
 | [Flu Components Walkthrough](flu_components_walkthrough.md) | Advanced. Must-read for users who want to create a custom model *structure.* Explains `flu_components.py` subclasses to demonstrate how to create custom subclasses for a customized flu model or another model. |

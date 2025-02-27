@@ -27,7 +27,9 @@ Recall that the class `FluSubpopModel` simulates the flu model given by [this ma
 
 Each `FluSubpopModel` instance requires user-specified inputs for demographics and initial values of compartments and epi metrics, values of fixed parameters, experiment configuration details, and a school-work calendar. Each `FluMetapopModel` instance requires data for pairwise travel proportions (the proportion of people in subpopulation $\ell$ who travel to a different subpopulation $k$.) Depending on the type of input, these inputs may be read from `JSON` or `CSV` files, or defined directly in code as a `dict` or `pd.DataFrame`.
 
-As a concrete example, we refer the user to `flu_demo.py` and its input folder `flu_demo_input_files`. The demo model has two subpopulations with the exact same inputs. The folder contains 3 `JSON` input files used to run `flu_demo.py`: `compartments_epi_metrics_init_vals.json`, `fixed_params.json`, and `config.json`. These input files respectively are used to initialize a `FluSubpopState` instance, `FluSubpopParams` instance, and `Config` instance. The folder also contains a file `school_work_calendar.csv` that provides necessary calendar data (indicating if a date is a school or work day). In general, for an arbitrary number of subpopulations with different inputs, the user should have 4 input files per `FluSubpopModel` instance (3 are the aforementioned `JSON` files and 1 is the aforementioned `CSV` file). The folder also contains a file `travel_proportions.csv` that provides pairwise travel proportions between subpopulations. This is used for travel computations in the `FluMetapopModel` instance that contains the subpopulations.
+As a concrete example, we refer the user to `flu_demo.py` and its input folder `flu_demo_input_files`. The demo model has two subpopulations with the exact same inputs. The folder contains 4 `JSON` input files used to run `flu_demo.py`: `compartments_epi_metrics_init_vals.json`, `fixed_params.json`, `config.json`, and `travel_proportions.json`. These input files respectively are used to initialize a `FluSubpopState` instance, `FluSubpopParams` instance, `Config` instance, and `FluInterSubpopRepo` instance. The folder also contains a file `school_work_calendar.csv` that provides necessary calendar data (indicating if a date is a school or work day). In general, for an arbitrary number of subpopulations with different inputs, the user should have 5 input files per `FluSubpopModel` instance (4 are the aforementioned `JSON` files and 1 is the aforementioned `CSV` file).
+
+The file `travel_proportions.JSON` provides pairwise travel proportions between subpopulations. This is used for travel computations in the `FluMetapopModel` instance that contains the subpopulations. This file is *not required* if only one `FluSubpopModel` is used (so there is no metapopulation model or travel model).
 
 In the following sections we discuss the input requirements for: for demographics and initial values of compartments and epi metrics (for each `FluSubpopModel`), values of fixed parameters (for each `FluSubpopModel`), experiment configuration details (for each `FluSubpopModel`), school-work calendars (for each `FluSubpopModel`), and travel proportions (for each `FluMetapopModel`).
 
@@ -41,13 +43,15 @@ Important notes:
 
 - Currently, `beta_reduct` is not a part of the [mathematical formulation](math_flu_components.md). In the code, `beta_reduct` is a `DynamicVal` that decreases `beta_baseline` when a certain simulation state is triggered. This emulates a very simple staged-alert policy. In `flu_components.py`, `beta_reduct` is automatically disabled, so that the simple staged-alert policy is not in effect during default flu model runs. When enabled, `beta_reduct` has a value of `0.5` (corresponding to a $50\%$ decrease in transmission rates) when more than $5\%$ of the population is infected, and it has a value of `0.0` otherwise. Again, these values are "toy" values for the sake of demonstration.
 
+Note that there is one `FluSubpopState` for each `SubpopModel` instance. The following matrices are for a specific subpopulation. But here we remove the superscript $(\ell)$ for subpopulation $\ell$ for readability ease. 
+
 | Name                       | Math Variable                        | Dimension                                |
 |----------------------------|--------------------------------------|------------------------------------------|
 | `S`                        | $\boldsymbol{S}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `E`                        | $\boldsymbol{E}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `IP`                        | $\boldsymbol{I^P}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `IS`                        | $\boldsymbol{I^S}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `IA`                        | $\boldsymbol{I^A}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IP`                        | $\boldsymbol{IP}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IS`                        | $\boldsymbol{IS}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IA`                        | $\boldsymbol{IA}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `H`                        | $\boldsymbol{H}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `R`                        | $\boldsymbol{R}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `D`                        | $\boldsymbol{D}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
@@ -71,12 +75,18 @@ The table below describes the `JSON` file used to initialize `Config` instances.
 
 The table below has a variable name to math variable mapping for the `JSON` file used to initialize `FluSubpopParams` instances. We can think of this file as the "Greek letter file" -- it specifies values such as transition rates as well as number of age groups and risk groups. We assume that these values do not change throughout the course of the simulation.  
 
+Notes
+
+- There is one `FluSubpopParams` instance for each `SubpopModel` instance. 
+- The following variables are for a specific subpopulation, although many of these variables will be the same across subpopulations in practice. The [mathematical formulation](math_flu_components.md) for the flu model assumes that only $\boldsymbol{N}^{(\ell)}$ and $\beta_0^{(\ell)}$ are different across subpopulations, although it is straightforward to generalize the notation and relax this assumption. Here in the table below we remove the superscript $(\ell)$ for subpopulation $\ell$ for readability ease. 
+- Variables that are positive scalars can be generalized to be age or risk dependent.
+
 | Name                            | Math Variable              | Dimension                                |
 |---------------------------------|----------------------------|------------------------------------------|
 | `num_age_groups`                | $\lvert \mathcal A \rvert$          | positive `int`                           |
 | `num_risk_groups`               | $\lvert \mathcal R \rvert$          | positive `int`							  |
 | `beta_baseline`                 | $\beta_0$                  | positive scalar                          |
-| `total_pop_age_risk`          | $\boldsymbol{N}$           | $\boldsymbol{\tilde{\nu}}$ | $\lvert \mathcal A \rvert                            |
+| `total_pop_age_risk`          | $\boldsymbol{N}$           | $\lvert \mathcal A \rvert$                           |
 | `humidity_impact`               | $\xi$                      | scalar                                   |
 | `hosp_immune_gain` | $g^H$                      | scalar                                   |
 | `inf_immune_gain`  | $g^I$                      | scalar                                   |
@@ -120,29 +130,20 @@ $$
 where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simulation time $t$ is a work day and $0$ otherwise, specified by the school-work calendar input CSV, and $d_{\text{school}}(t)$ is defined analogously, but for school days.
 
 
-## Travel model's travel proportions CSV 
+## Travel model's travel proportions JSON 
 
-The travel proportions CSV must have the following specifications (see excerpt from `InterSubpopRepo` docstring):
+The travel proportions `JSON` must have the following fields
 
-```python
-"""
-    travel_proportions (pd.DataFrame):
-        DataFrame with specific structure that identifies
-        traveling proportions. One column is named "subpop_name"
-        and has strings corresponding to SubpopModel names
-        (strings must match). For each string in "subpop_name" column,
-        there is another column with the same name as that string.
-        Other values in the DataFrame are floats in [0,1] corresponding
-        to proportion of people in subpop i who travel to subpop j. Subpop i
-        is given by row position in "subpop_name" column, and subpop j is
-        given by column position and corresponding name of that column.
+ Name                            | Math Variable              | Dimension                                |
+|---------------------------------|----------------------------|------------------------------------------|
+| `subpop_names_mapping`                |    N/A       | `dict`                            |
+| `travel_proportions_array`               |    $v^{\ell \rightarrow k}$       | $\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert$                              |
 
-        Example valid DataFrame (corresponding to MetapopModel with
-        two SubpopModels, one named "north" and one named "south"):
-            subpop_name,north,south
-            "north",0.1,0.2
-            "south",0.8,0.1
-"""
-```
+The field `subpop_names_mapping` must be a dictionary where
 
-The table created by the travel proportions CSV corresponds to the mathematical variable $v^{\ell\rightarrow k}$ for subpopulations $\ell, k \in \mathcal L$.
+- Keys are strings that match the names of each associated `FluSubpopModel` instance.
+- Values are integers in $\{0, 1, \dots, \lvert \mathcal L \rvert\}$.
+
+This dictionary provides a mapping between the `FluSubpopModel` instance (its name) and the index it occupies in the `travel_proportions_array`.
+
+The field `travel_proportions_array` must be a list of $\lvert \mathcal L \rvert$ lists, each of length $\lvert \mathcal L \rvert$. Recall that `JSON` does not support `numpy` arrays natively, but the base model code is able to convert lists to `numpy` arrays for use. The $(\ell, k)$th element of `travel_proportions_array` corresponds to the proportion of people in subpopulation $\ell$ who travel to subpopulation $k$. Again, the mapping between indices and subpopulations is given in `subpop_names_mapping`.
