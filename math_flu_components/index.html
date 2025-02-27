@@ -779,7 +779,7 @@
 <span class="arithmatex">\(\def\numriskgroups{\lvert \riskgroups \rvert}\)</span>
 </span></p>
 <blockquote>
-<p><strong><em>Updated 02/12/2025 (work in progress)</em></strong></p>
+<p><strong><em>Updated 02/26/2025 (work in progress)</em></strong></p>
 <p><strong><em>Written by LP. Travel model formulated by Remy.</em></strong> </p>
 <p><strong><em>Important notes: we are updating this page to include wastewater viral load (from Sonny) -- check back soon. Also, please report any typos!</em></strong></p>
 </blockquote>
@@ -833,12 +833,18 @@
 <li><span class="arithmatex">\(w^H_V\)</span>: rate at which vaccine-induced immunity against hospitalization wanes.</li>
 </ul>
 <p><strong>Compartment equations</strong></p>
-<p>Note: the <span class="arithmatex">\(\lambda\)</span>-terms are location/subpopulation mixing terms that we define in the next section on the travel model. </p>
-<p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
+<p>To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation <span class="arithmatex">\(\ell\)</span>, age <span class="arithmatex">\(a\)</span>, and risk <span class="arithmatex">\(r\)</span>:</p>
+<div class="arithmatex">\[\begin{align}
+\LambdaIIlocagerisktime &amp;= \left[\frac{K_{a,r}^{I}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{I}(p(t))}\right]^T M_{a,r}^{(\ell), I}(t) \\
+\LambdaHHlocagerisktime &amp;= \left[\frac{K_{a,r}^{H}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{H}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t) \\
+\LambdaDHlocagerisktime &amp;= \left[\frac{K_{a,r}^{D}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{D}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t)
+\end{align}\]</div>
+<p>where <span class="arithmatex">\(\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert}\)</span> is an <span class="arithmatex">\(\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert\)</span> matrix of <span class="arithmatex">\(1\)</span>'s and the fraction notation indicates element-wise division. </p>
+<p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have the following equations that characterize transitions between compartments:</p>
 <div class="arithmatex">\[\begin{align}
 \frac{dS\locagerisktime}{dt} &amp;= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
--\underbrace{S\locagerisktime \totalforceofinfection}_{\text{$S$ to $E$}} \\[1.5em]
-\frac{dE\locagerisktime}{dt} &amp;= \underbrace{S\locagerisktime \totalforceofinfection}_{\text{$S$ to $E$}} 
+-\underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIIlocagerisktime\right)}}_{\text{$S$ to $E$}} \\[1.5em]
+\frac{dE\locagerisktime}{dt} &amp;= \underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIIlocagerisktime\right)}}_{\text{$S$ to $E$}} 
 - \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} 
 - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \\[1.5em]
 \frac{dIP\locagerisktime}{dt} &amp;= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} 
@@ -857,14 +863,9 @@
 - \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} \\[1.5em]
 \frac{dD\locagerisktime}{dt} &amp;= \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDHlocagerisktime}}_{\text{$H$ to $D$}}. 
 \end{align}\]</div>
-<p>We have the following terms that characterize the effect of population-level immunities:</p>
-<div class="arithmatex">\[\begin{align}
-\LambdaIIlocagerisktime &amp;= \left[K_{a,r}^{I}(p(t))\right]^T M_{a,r}^{(\ell), I}(t) \\
-\LambdaHHlocagerisktime &amp;= \left[K_{a,r}^{H}(p(t))\right]^T M_{a,r}^{(\ell), H}(t) \\
-\LambdaDHlocagerisktime &amp;= \left[K_{a,r}^{D}(p(t))\right]^T M_{a,r}^{(\ell), H}(t)
-\end{align}\]</div>
-<p>and where</p>
+<p>where</p>
 <ul>
+<li>The <span class="arithmatex">\(\lambda\)</span>-terms are location/subpopulation mixing terms that we define in the next section on the travel model. </li>
 <li><span class="arithmatex">\(\propIA\)</span>: proportion exposed who are completely asymptomatic when infectious.</li>
 <li><span class="arithmatex">\(r_{IP}\)</span>, <span class="arithmatex">\(r_{IA}\)</span>: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. </li>
 <li><span class="arithmatex">\(\rateIStoR, \rateHtoR, \rateIAtoR\)</span>: recovery rates for infected symptomatic (<span class="arithmatex">\(IS\)</span>),  hospital (<span class="arithmatex">\(H\)</span>), and infected asymptomatic (<span class="arithmatex">\(IA\)</span>) compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\rateHtoR\)</span> is analogous, but for an infected person in the hospital. </li>
@@ -890,9 +891,9 @@
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(k \in \mathcal L \setminus \{\ell\}\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have</p>
 <div class="arithmatex">\[\begin{align*}
 \totalforceofinfection &amp;= \lambda^{(\ell), \ell \rightarrow \ell}_{a, r}(t) + \sum_{k \in \mathcal L \setminus \{\ell\}} \left(\lambda^{(\ell), k \rightarrow \ell}_{a, r}(t) + \lambda^{(\ell), \ell \rightarrow k}_{a, r}(t)\right) \\[1.5em]
-\lambda^{(\ell), \ell \rightarrow \ell}_{a, r}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a}{\left(1 + \LambdaIIlocagerisktime\right)} \left(1 - c_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \\ &amp;\quad\quad\quad \cdot \sum \limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a,a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{(\ell), k \rightarrow \ell}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{\left(1 + \LambdaIIlocagerisktime\right)} \cdot \proptravelktoell \\ &amp;\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{(\ell), \ell \rightarrow k}(t) &amp;= \frac{\beta^{(\ell)}(t) \cdot \psi_a \cdot \multipliertravel}{{\left(1 + \LambdaIIlocagerisktime\right)}} \cdot  \proptravelelltok  \cdot c_a \\ &amp;\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
+\lambda^{(\ell), \ell \rightarrow \ell}_{a, r}(t) &amp;= \psi_a \left(1 - c_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \\ &amp;\quad\quad\quad \cdot \sum \limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a,a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
+\lambda_{a,r}^{(\ell), k \rightarrow \ell}(t) &amp;= \psi_a \cdot \multipliertravel \cdot \proptravelktoell \\ &amp;\quad \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
+\lambda_{a,r}^{(\ell), \ell \rightarrow k}(t) &amp;= \psi_a \cdot \multipliertravel \cdot \proptravelelltok  \cdot c_a \\ &amp;\quad\quad\quad \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
 \end{align*}\]</div>
 <p>where</p>
 <div class="arithmatex">\[\begin{align*}
