@@ -866,6 +866,8 @@
 <p>where</p>
 <ul>
 <li>The <span class="arithmatex">\(\lambda\)</span>-terms are location/subpopulation mixing terms that we define in the next section on the travel model. </li>
+<li><span class="arithmatex">\(\beta^{(\ell)}(t) = \beta^{(\ell)}_0 (1 + q(t))\)</span>: time-dependent transmission rate per day for individuals residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>. </li>
+<li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity, where <span class="arithmatex">\(q(t)\)</span> is a function of historical absolute humidity data times <span class="arithmatex">\(\xi\)</span>, a humidity impact factor.</li>
 <li><span class="arithmatex">\(\propIA\)</span>: proportion exposed who are completely asymptomatic when infectious.</li>
 <li><span class="arithmatex">\(r_{IP}\)</span>, <span class="arithmatex">\(r_{IA}\)</span>: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. </li>
 <li><span class="arithmatex">\(\rateIStoR, \rateHtoR, \rateIAtoR\)</span>: recovery rates for infected symptomatic (<span class="arithmatex">\(IS\)</span>),  hospital (<span class="arithmatex">\(H\)</span>), and infected asymptomatic (<span class="arithmatex">\(IA\)</span>) compartments respectively, so that <span class="arithmatex">\(1/\gamma\)</span> is the average number of days it takes for an infected person not in the hospital to recover, and <span class="arithmatex">\(1/\rateHtoR\)</span> is analogous, but for an infected person in the hospital. </li>
@@ -901,8 +903,6 @@
 \end{align*}\]</div>
 <p>is the effective population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span> and age-risk group <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span> at time <span class="arithmatex">\(t\)</span>, and where</p>
 <ul>
-<li><span class="arithmatex">\(\beta^{(\ell)}(t) = \beta^{(\ell)}_0 (1 + q(t))\)</span>: time-dependent transmission rate per day for individuals residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>.</li>
-<li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity, where <span class="arithmatex">\(q(t)\)</span> is a function of historical absolute humidity data times <span class="arithmatex">\(\xi\)</span>, a humidity impact factor.</li>
 <li><span class="arithmatex">\(\phi_{a, a^\prime}^{(\ell)}(t)\)</span>: the number of contacts that individuals in age group <span class="arithmatex">\(a \in \agegroups\)</span> residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span> have with other individuals (regardless of location) in age group <span class="arithmatex">\(a^\prime \in \agegroups\)</span>. </li>
 <li><span class="arithmatex">\(\psi_a \in [0, 1]\)</span>: relative susceptibility of individuals in age group <span class="arithmatex">\(a \in \agegroups\)</span>.</li>
 <li><span class="arithmatex">\(\proptravelktoell\)</span>: proportion of population in location <span class="arithmatex">\(k \in \mathcal L\)</span> that travels to location <span class="arithmatex">\(\ell \in \mathcal L\)</span>.</li>

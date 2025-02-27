@@ -692,7 +692,7 @@
 <ul>
 <li>We model <em>only one</em> immunity inducing event (say, H1N1).<ul>
 <li>As a result, we model only one strain (and thus disregard prevalence) and we do not model vaccination. </li>
-<li>Matrices that would otherwise have <span class="arithmatex">\(3\)</span> indices for age, risk, and immunity-inducing event (e.g. <span class="arithmatex">\(\boldsymbol{M}_{a, \ell, H1}^H(t)\)</span> because they are <span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert \times \lvert \mathcal I \rvert\)</span>) only have <span class="arithmatex">\(2\)</span> indices in the code (for age-risk group). In other words, these matrices are now only <span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span> and we drop the immunity-inducing event dimension entirely.</li>
+<li>Matrices that would otherwise have <span class="arithmatex">\(4\)</span> indices for subpopulation, age, risk, and immunity-inducing event (e.g. <span class="arithmatex">\(\boldsymbol{M}_{a, r, H1}^{(\ell), H(t)}\)</span> because they are <span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert \times \lvert \mathcal I \rvert\)</span>) only have <span class="arithmatex">\(3\)</span> indices in the code (for subpopulation and age-risk group). In other words, for a given subpopulation, these matrices are now only <span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span> and we drop the immunity-inducing event dimension entirely.</li>
 <li>Population-level immunity against infection and population-level immunity against hospitalization is modeled only for H1N1, and not for H3N2 or vaccination. </li>
 </ul>
 </li>
@@ -709,7 +709,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="flu_code_demo.md">Flu Model Demo</a></td>
+<td><a href="../flu_model_demo/">Flu Model Demo</a></td>
 <td>Must-read. Explanation of <code>flu_demo.py</code> and basic simulation functionality. Helps user get started with a concrete simulation right away.</td>
 </tr>
 <tr>
