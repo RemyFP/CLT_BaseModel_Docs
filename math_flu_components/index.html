@@ -932,8 +932,8 @@
 </blockquote>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, and <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align}
-M_{a, r, H1}^{(\ell), I}(t + \Delta t) \\[1em] &amp;\quad\quad\quad = M_{a, r, H1}^{(\ell), I}(t) + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H1} M^I_{a,r,H1}(t)\right] \Delta t \\
-M_{a, r, H3}^{(\ell), I}(t + \Delta t) \\[1em] &amp;\quad\quad\quad M_{a, r, H3}^{(\ell), I}(t) + \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H3} M^I_{a,r,H3}(t)\right] \Delta t \\
+M_{a, r, H1}^{(\ell), I}(t + \Delta t) &amp;= M_{a, r, H1}^{(\ell), I}(t) \\[1em] &amp;\quad\quad\quad + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H1} M^I_{a,r,H1}(t)\right] \Delta t \\
+M_{a, r, H3}^{(\ell), I}(t + \Delta t) &amp;= M_{a, r, H3}^{(\ell), I}(t) + \\[1em] &amp;\quad\quad\quad \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H3} M^I_{a,r,H3}(t)\right] \Delta t \\
 M_{a,r,V}^{(\ell), I}(t + \Delta t) &amp;= M_{a,r,V}^{(\ell), I}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,r,V}(t)\right] \Delta t
 \end{align}\]</div>
 <div class="arithmatex">\[
