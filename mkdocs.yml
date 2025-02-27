@@ -24,7 +24,7 @@ nav:
     - flu_input_requirements.md
     - flu_components_walkthrough.md
 - Code API Reference:
-    - base_components_reference.md
+    - clt_base_package_reference.md
     - flu_components_reference.md
 theme: 
   name: material 
