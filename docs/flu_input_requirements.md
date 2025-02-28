@@ -17,7 +17,7 @@ $\def\adjustedpropH{\tilde{\pi}^H}$
 $\def\adjustedpropD{\tilde{\pi}^D}$
 </span>
 
-> **_Written by LP, updated 01/24/2025 (work in progress)_** 
+> **_Written by LP, updated 02/26/2025 (work in progress)_** 
 
 > **_Important note: we are updating this page with wastewater inputs -- check back soon._**
 

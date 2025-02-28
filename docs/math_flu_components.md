@@ -122,7 +122,7 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 \frac{dS\locagerisktime}{dt} &= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
 -\underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIIlocagerisktime\right)}}_{\text{$S$ to $E$}} \\[1.5em]
 \frac{dE\locagerisktime}{dt} &= \underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIIlocagerisktime\right)}}_{\text{$S$ to $E$}} 
-- \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} 
+- \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} \\[1em] &\quad\quad\quad
 - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \\[1.5em]
 \frac{dIP\locagerisktime}{dt} &= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} 
 - \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} \\[1.5em]
@@ -228,8 +228,8 @@ Below we formulate the discretized stochastic transitions. For brevity, we omit 
 For each $\ell \in \mathcal L$, $a \in \agegroups$, and $r \in \riskgroups$:
 
 \begin{align}
-M_{a, r, H1}^{(\ell), I}(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H1} M^I_{a,r,H1}(t)\right] \Delta t \\
-M_{a, r, H3}^{(\ell), I}(t + \Delta t) &= M_{a, r, H3}^{(\ell), I}(t) + \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H3} M^I_{a,r,H3}(t)\right] \Delta t \\
+M_{a, r, H1}^{(\ell), I}(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) \\[1em] &\quad\quad\quad + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H1} M^I_{a,r,H1}(t)\right] \Delta t \\
+M_{a, r, H3}^{(\ell), I}(t + \Delta t) &= M_{a, r, H3}^{(\ell), I}(t) + \\[1em] &\quad\quad\quad \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H3} M^I_{a,r,H3}(t)\right] \Delta t \\
 M_{a,r,V}^{(\ell), I}(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,r,V}(t)\right] \Delta t
 \end{align}
 
