@@ -758,12 +758,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#creating-transition-variable-instances" class="md-nav__link">
     <span class="md-ellipsis">
       Creating Transition Variable Instances
@@ -771,13 +766,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#creating-a-transitionvariablegroup" class="md-nav__link">
     <span class="md-ellipsis">
       Creating a TransitionVariableGroup
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1097,12 +1097,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#creating-transition-variable-instances" class="md-nav__link">
     <span class="md-ellipsis">
       Creating Transition Variable Instances
@@ -1110,13 +1105,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#creating-a-transitionvariablegroup" class="md-nav__link">
     <span class="md-ellipsis">
       Creating a TransitionVariableGroup
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1496,7 +1496,7 @@
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="k">return</span> <span class="n">compartments</span>
 </span></code></pre></div>
-<h2 id="creating-transition-variable-instances">Creating Transition Variable Instances</h2>
+<h3 id="creating-transition-variable-instances">Creating Transition Variable Instances</h3>
 <p>For each transition (we have 4 total), create an instance of the associated <code>clt.TransitionVariable</code> subclass. To initialize each <code>TransitionVariable</code>, we need to specify the origin <code>Compartment</code>, the destination <code>Compartment</code>, and the transition type.  </p>
 <p>For example, for the transition between the <code>"S"</code> and <code>"I"</code> compartments, create an instance of <code>SusceptibleToInfected</code> (which we created in the code above). We need to pass the corresponding <code>Compartment</code> instances to the <code>origin</code> and <code>destination</code> arguments, in addition to specifying the <code>transition_type</code>.  </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    <span class="k">def</span> <span class="nf">create_transition_variables</span><span class="p">(</span>
@@ -1520,7 +1520,7 @@
 </span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
 </span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>        <span class="k">return</span> <span class="n">transition_variables</span>
 </span></code></pre></div>
-<h2 id="creating-a-transitionvariablegroup">Creating a <code>TransitionVariableGroup</code></h2>
+<h3 id="creating-a-transitionvariablegroup">Creating a <code>TransitionVariableGroup</code></h3>
 <p>When there are multiple transitions out of a single compartment, we need a <code>TransitionVariableGroup</code> to handle the jointly distributed transition logic properly.  </p>
 <p>In our model, the <code>"I"</code> compartment has two outgoing arcs: one to <code>"H"</code> and one to <code>"R"</code>.  </p>
 <p>We create a <code>TransitionVariableGroup</code> saved as <code>"I_out"</code> in the transition variable group dictionary. We need to specify:  </p>
