@@ -817,7 +817,7 @@
 <span class="arithmatex">\(\def\adjustedpropD{\tilde{\pi}^D}\)</span>
 </span></p>
 <blockquote>
-<p><strong><em>Written by LP, updated 02/26/2025 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, edited by Susan Ptak, updated 04/08/2025 (work in progress)</em></strong> </p>
 <p><strong><em>Important note: we are updating this page with wastewater inputs -- check back soon.</em></strong></p>
 </blockquote>
 <p>Here, we document input requirements for creating a <code>FluSubpopModel</code> instance and a <code>FluMetapopModel</code> instance, as well as provide mappings between the input variable names in the <a href="../flu_components_reference/">code</a> and the mathematical variables in the <a href="../math_flu_components/">mathematical formulation</a>. For users to customize the <em>values</em> (not the structure) of the flu model given in <code>flu_components.py</code>, they must abide by certain input specifications.</p>
@@ -1121,7 +1121,7 @@
 <p>The school-work calendar CSV must have 3 columns with names: <code>"date"</code>, <code>"is_school_day"</code>, and <code>"is_work_day"</code>. The <code>"date"</code> column contains strings corresponding to dates, in the format <code>"YYYY-MM-DD"</code>. The other two columns are Booleans indicating if the real-world date is a school day or work day. </p>
 <p>Then the contact matrix for the subpopulation at time <span class="arithmatex">\(t\)</span> is
 $$
-\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - d_{\text{work}}(t) \phi^{(\ell), \text{work}} - d_{\text{school}}(t) \phi^{(\ell), \text{school}}
+\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - (1 - d_{\text{work}}(t)) \phi^{(\ell), \text{work}} - (1 - d_{\text{school}}(t)) \phi^{(\ell), \text{school}}
 $$
 where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="arithmatex">\(1\)</span> if the real-world date corresponding to simulation time <span class="arithmatex">\(t\)</span> is a work day and <span class="arithmatex">\(0\)</span> otherwise, specified by the school-work calendar input CSV, and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> is defined analogously, but for school days.</p>
 <h2 id="travel-models-travel-proportions-json">Travel model's travel proportions JSON</h2>
