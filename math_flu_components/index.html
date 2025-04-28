@@ -842,7 +842,7 @@
 <span class="arithmatex">\(\def\numriskgroups{\lvert \riskgroups \rvert}\)</span>
 </span></p>
 <blockquote>
-<p><strong><em>Written by LP, edited by Susan Ptak, travel model formulated by Remy, updated 04/08/2025 (work in progress)</em></strong></p>
+<p><strong><em>Written by LP, edited by Susan Ptak, travel model formulated by Remy, updated 04/28/2025 (work in progress)</em></strong></p>
 <p><strong><em>Important notes: we are updating this page to include wastewater viral load (from Sonny) -- check back soon. Also, please report any typos!</em></strong></p>
 </blockquote>
 <h2 id="flu-model-diagram">Flu model: diagram</h2>
@@ -859,9 +859,9 @@
 <p><strong>Population-level immunity against <em>infection</em> (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)</strong></p>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align*}
-\frac{dM^{(\ell), I}_{a, r, H1}(t)}{dt} &amp;= \frac{g^I_{H1} p_{H1}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a, r, H1}(t) \\
-\frac{dM^{(\ell), I}_{a, r, H3}(t)}{dt} &amp;= \frac{g^I_{H3} p_{H3}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a, r, H3}(t) \\
-\frac{dM^{(\ell), I}_{a, r, V}(t)}{dt} &amp;= g^I_V V^{(\ell)}(t - \delta) - w^I_V M^{(\ell), I}_{a, r, V}(t).
+\frac{dM^{(\ell), I}_{a, r, H1}(t)}{dt} &amp;= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a, r, H1}(t) \\
+\frac{dM^{(\ell), I}_{a, r, H3}(t)}{dt} &amp;= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a, r, H3}(t) \\
+\frac{dM^{(\ell), I}_{a, r, V}(t)}{dt} &amp;= \frac{V^{(\ell)}(t - \delta)}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_V M^{(\ell), I}_{a, r, V}(t).
 \end{align*}\]</div>
 <p>where</p>
 <ul>
@@ -870,9 +870,6 @@
 <li><span class="arithmatex">\(V^{(\ell)}(t)\)</span>: number of vaccine doses administered at time <span class="arithmatex">\(t\)</span> to individuals residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>.</li>
 <li><span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t) = [p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)]\)</span>: where elements correspond to prevalence of H1N1, H3N2 respectively.</li>
 <li><span class="arithmatex">\(\delta\)</span>: number of days after dose for vaccine to become effective.</li>
-<li><span class="arithmatex">\(g^I_{H1}\)</span>: factor by which population-level immunity against infection grows after each H1N1 case that recovers.</li>
-<li><span class="arithmatex">\(g^I_{H3}\)</span>: factor by which population-level immunity against infection grows after each H3N2 case that recovers.</li>
-<li><span class="arithmatex">\(g^I_V\)</span>: factor by which population-level immunity against infection grows after each vaccination.</li>
 <li><span class="arithmatex">\(w^I_{H1}\)</span>: rate at which H1N1 infection-induced immunity against infection wanes.</li>
 <li><span class="arithmatex">\(w^I_{H3}\)</span>: rate at which H3N2 infection-induced immunity against infection wanes.</li>
 <li><span class="arithmatex">\(w^I_V\)</span>: rate at which vaccine-induced immunity against infection wanes.</li>
@@ -880,16 +877,13 @@
 <p><strong>Population-level immunity against <em>hospitalization</em> (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)</strong></p>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align}
-\frac{dM^{(\ell), H}_{a, r, H1}(t)}{dt} &amp;= \frac{g^H_{H1} p_{H1}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H1} M^{(\ell), H}_{a, r, H1}(t) \\
-\frac{dM^{(\ell), H}_{a, r, H3}(t)}{dt} &amp;= \frac{g^H_{H3} p_{H3}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H3} M^{(\ell), H}_{a, r, H3}(t) \\
-\frac{dM^{(\ell), H}_{a, r, V}(t)}{dt} &amp;= g^H_V V(t - \delta) - w^H_V M^{(\ell), H}_{a, r, V}(t).
+\frac{dM^{(\ell), H}_{a, r, H1}(t)}{dt} &amp;= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H1} M^{(\ell), H}_{a, r, H1}(t) \\
+\frac{dM^{(\ell), H}_{a, r, H3}(t)}{dt} &amp;= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H3} M^{(\ell), H}_{a, r, H3}(t) \\
+\frac{dM^{(\ell), H}_{a, r, V}(t)}{dt} &amp;= \frac{V(t - \delta)}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_V M^{(\ell), H}_{a, r, V}(t).
 \end{align}\]</div>
 <p>where</p>
 <ul>
 <li><span class="arithmatex">\(\rateRtoS\)</span>, <span class="arithmatex">\(\boldsymbol{N}^{(\ell)}\)</span>, <span class="arithmatex">\(p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)\)</span>, <span class="arithmatex">\(V^{(\ell)}(t)\)</span>, <span class="arithmatex">\(\delta\)</span>: see above.</li>
-<li><span class="arithmatex">\(g^H_{H1}\)</span>: factor by which population-level immunity against hospitalization grows after each H1N1 case that recovers.</li>
-<li><span class="arithmatex">\(g^H_{H3}\)</span>: factor by which population-level immunity against hospitalization grows after each H3N2 case that recovers.</li>
-<li><span class="arithmatex">\(g^H_V\)</span>: factor by which population-level immunity against hospitalization grows after each vaccination.</li>
 <li><span class="arithmatex">\(w^H_{H1}\)</span>: rate at which H1N1 infection-induced immunity against hospitalization wanes.</li>
 <li><span class="arithmatex">\(w^H_{H3}\)</span>: rate at which H3N2 infection-induced immunity against hospitalization wanes.</li>
 <li><span class="arithmatex">\(w^H_V\)</span>: rate at which vaccine-induced immunity against hospitalization wanes.</li>
