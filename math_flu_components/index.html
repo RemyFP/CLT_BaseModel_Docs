@@ -20,7 +20,7 @@
     
     
       
-        <title>Flu Model Mathematical Formulation - CLT Base Model</title>
+        <title>MetroFluSim Mathematical Formulation - City-level Transmission Toolkit</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flu-model-mathematical-formulation" class="md-skip">
+        <a href="#metroflusim-mathematical-formulation" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CLT Base Model" class="md-header__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-header__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -94,13 +94,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            CLT Base Model
+            City-level Transmission Toolkit
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flu Model Mathematical Formulation
+              MetroFluSim Mathematical Formulation
             
           </span>
         </div>
@@ -175,13 +175,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CLT Base Model" class="md-nav__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-nav__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    CLT Base Model
+    City-level Transmission Toolkit
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -326,7 +326,7 @@
           
   
   <span class="md-ellipsis">
-    Flu Model Mathematical Formulation
+    MetroFluSim Mathematical Formulation
   </span>
   
 
@@ -337,7 +337,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Mathematical Formulation
+    MetroFluSim Mathematical Formulation
   </span>
   
 
@@ -461,7 +461,7 @@
             
   
   <span class="md-ellipsis">
-    Flu Model Code Documentation
+    MetroFluSim Code Documentation
   </span>
   
 
@@ -471,7 +471,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Flu Model Code Documentation
+            MetroFluSim Code Documentation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -486,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Code Overview
+    MetroFluSim Code Overview
   </span>
   
 
@@ -799,7 +799,7 @@
                   
 
 
-<h1 id="flu-model-mathematical-formulation">Flu Model Mathematical Formulation</h1>
+<h1 id="metroflusim-mathematical-formulation">MetroFluSim Mathematical Formulation</h1>
 <p><span style="display: none;">
 <span class="arithmatex">\(\def\rateRtoS{\sigma^{R\rightarrow S}}\)</span>
 <span class="arithmatex">\(\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}\)</span>
@@ -842,8 +842,8 @@
 <span class="arithmatex">\(\def\numriskgroups{\lvert \riskgroups \rvert}\)</span>
 </span></p>
 <blockquote>
-<p><strong><em>Written by LP, edited by Susan Ptak, travel model formulated by Remy, updated 04/28/2025 (work in progress)</em></strong></p>
-<p><strong><em>Important notes: we are updating this page to include wastewater viral load (from Sonny) -- check back soon. Also, please report any typos!</em></strong></p>
+<p><strong><em>Written by LP, edited by Susan Ptak, travel model formulated by Rémy Pasco, immunity formulation advised by Anass Bouchnita, updated 04/30/2025 (work in progress)</em></strong></p>
+<p><strong><em>Important notes: we are updating this page to include wastewater viral load (from Shuotao "Sonny Diao") -- check back soon. Also, please report any typos!</em></strong></p>
 </blockquote>
 <h2 id="flu-model-diagram">Flu model: diagram</h2>
 <p><img alt="flu_model_diagram" src="../figs/flu_model_diagram.png" /></p>
@@ -861,17 +861,17 @@
 <div class="arithmatex">\[\begin{align*}
 \frac{dM^{(\ell), I}_{a, r, H1}(t)}{dt} &amp;= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a, r, H1}(t) \\
 \frac{dM^{(\ell), I}_{a, r, H3}(t)}{dt} &amp;= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a, r, H3}(t) \\
-\frac{dM^{(\ell), I}_{a, r, V}(t)}{dt} &amp;= \frac{V^{(\ell)}(t - \delta)}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_V M^{(\ell), I}_{a, r, V}(t).
+\frac{dM^{(\ell), I}_{a, r, V}(t)}{dt} &amp;= g^I_V V^{(\ell)}(t - \delta) - w^I_V M^{(\ell), I}_{a, r, V}(t).
 \end{align*}\]</div>
 <p>where</p>
 <ul>
 <li><span class="arithmatex">\(\rateRtoS\)</span>: rate at which recovered individuals become susceptible, so that <span class="arithmatex">\(1/\rateRtoS\)</span> is the average number of days a person is totally immune from reinfection until being susceptible again.</li>
-<li><span class="arithmatex">\(\boldsymbol{N}^{(\ell)}\)</span>: <span class="arithmatex">\(\numagegroups \times \numriskgroups\)</span> matrix corresponding to total population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>, where element <span class="arithmatex">\(N\locagerisk\)</span> is the total population of age group <span class="arithmatex">\(a\)</span> and risk group <span class="arithmatex">\(\ell\)</span> in location <span class="arithmatex">\(\ell\)</span>.</li>
 <li><span class="arithmatex">\(V^{(\ell)}(t)\)</span>: number of vaccine doses administered at time <span class="arithmatex">\(t\)</span> to individuals residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>.</li>
 <li><span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t) = [p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)]\)</span>: where elements correspond to prevalence of H1N1, H3N2 respectively.</li>
 <li><span class="arithmatex">\(\delta\)</span>: number of days after dose for vaccine to become effective.</li>
 <li><span class="arithmatex">\(w^I_{H1}\)</span>: rate at which H1N1 infection-induced immunity against infection wanes.</li>
 <li><span class="arithmatex">\(w^I_{H3}\)</span>: rate at which H3N2 infection-induced immunity against infection wanes.</li>
+<li><span class="arithmatex">\(g^I_V\)</span>: the rate at which vaccination-induced immunity against infection grows for each new vaccination.</li>
 <li><span class="arithmatex">\(w^I_V\)</span>: rate at which vaccine-induced immunity against infection wanes.</li>
 </ul>
 <p><strong>Population-level immunity against <em>hospitalization</em> (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)</strong></p>
@@ -879,23 +879,33 @@
 <div class="arithmatex">\[\begin{align}
 \frac{dM^{(\ell), H}_{a, r, H1}(t)}{dt} &amp;= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H1} M^{(\ell), H}_{a, r, H1}(t) \\
 \frac{dM^{(\ell), H}_{a, r, H3}(t)}{dt} &amp;= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H3} M^{(\ell), H}_{a, r, H3}(t) \\
-\frac{dM^{(\ell), H}_{a, r, V}(t)}{dt} &amp;= \frac{V(t - \delta)}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_V M^{(\ell), H}_{a, r, V}(t).
+\frac{dM^{(\ell), H}_{a, r, V}(t)}{dt} &amp;= g^H_V V(t - \delta) - w^H_V M^{(\ell), H}_{a, r, V}(t).
 \end{align}\]</div>
 <p>where</p>
 <ul>
-<li><span class="arithmatex">\(\rateRtoS\)</span>, <span class="arithmatex">\(\boldsymbol{N}^{(\ell)}\)</span>, <span class="arithmatex">\(p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)\)</span>, <span class="arithmatex">\(V^{(\ell)}(t)\)</span>, <span class="arithmatex">\(\delta\)</span>: see above.</li>
+<li><span class="arithmatex">\(\rateRtoS\)</span>, <span class="arithmatex">\(p_{H1}(t)\)</span>, <span class="arithmatex">\(p_{H3}(t)\)</span>, <span class="arithmatex">\(V^{(\ell)}(t)\)</span>, <span class="arithmatex">\(\delta\)</span>: see above.</li>
 <li><span class="arithmatex">\(w^H_{H1}\)</span>: rate at which H1N1 infection-induced immunity against hospitalization wanes.</li>
 <li><span class="arithmatex">\(w^H_{H3}\)</span>: rate at which H3N2 infection-induced immunity against hospitalization wanes.</li>
+<li><span class="arithmatex">\(g^H_V\)</span>: the rate at which vaccination-induced immunity against hospitalization grows for each new vaccination.</li>
 <li><span class="arithmatex">\(w^H_V\)</span>: rate at which vaccine-induced immunity against hospitalization wanes.</li>
 </ul>
 <p><strong>Compartment equations</strong></p>
+<p>Note that the following are all <span class="arithmatex">\(\numagegroups \times \numriskgroups \times \lvert \mathcal I \rvert\)</span> matrices:</p>
+<ul>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]\)</span></strong>: reduction in infection risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]\)</span></strong>: reduction in hospitalization risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]\)</span></strong>: reduction in death risk from given immunity-inducing event.  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), H} = \boldsymbol{M}^{(\ell), H}(t) = [\boldsymbol{M}^{(\ell), H}_{H1}(t), \boldsymbol{M}^{(\ell), H}_{H3}(t), \boldsymbol{M}^{(\ell), H}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).</li>
+</ul>
+<p>Note that prevalence is time-dependent, but occassionally we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
 <p>To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation <span class="arithmatex">\(\ell\)</span>, age <span class="arithmatex">\(a\)</span>, and risk <span class="arithmatex">\(r\)</span>:</p>
 <div class="arithmatex">\[\begin{align}
-\LambdaIIlocagerisktime &amp;= \left[\frac{K_{a,r}^{I}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{I}(p(t))}\right]^T M_{a,r}^{(\ell), I}(t) \\
-\LambdaHHlocagerisktime &amp;= \left[\frac{K_{a,r}^{H}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{H}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t) \\
-\LambdaDHlocagerisktime &amp;= \left[\frac{K_{a,r}^{D}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{D}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t)
+\LambdaIIlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \\
+\LambdaHHlocagerisktime &amp;= \left[\frac{K_{a,r}^{H}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - K_{a,r}^{H}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t) \\
+\LambdaDHlocagerisktime &amp;= \left[\frac{K_{a,r}^{D}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - K_{a,r}^{D}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t)
 \end{align}\]</div>
-<p>where <span class="arithmatex">\(\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert}\)</span> is an <span class="arithmatex">\(\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert\)</span> matrix of <span class="arithmatex">\(1\)</span>'s and the fraction notation indicates element-wise division. </p>
+<p>where <span class="arithmatex">\(\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1}\)</span> is an <span class="arithmatex">\(\lvert \mathcal L \rvert \times 1\)</span> vector of <span class="arithmatex">\(1\)</span>'s and the fraction notation indicates element-wise division. </p>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have the following equations that characterize transitions between compartments:</p>
 <div class="arithmatex">\[\begin{align}
 \frac{dS\locagerisktime}{dt} &amp;= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
@@ -922,6 +932,7 @@
 <p>where</p>
 <ul>
 <li>The <span class="arithmatex">\(\lambda\)</span>-terms are location/subpopulation mixing terms that we define in the next section on the travel model. </li>
+<li><span class="arithmatex">\(\boldsymbol{N}^{(\ell)}\)</span>: <span class="arithmatex">\(\numagegroups \times \numriskgroups\)</span> matrix corresponding to total population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>, where element <span class="arithmatex">\(N\locagerisk\)</span> is the total population of age group <span class="arithmatex">\(a\)</span> and risk group <span class="arithmatex">\(\ell\)</span> in location <span class="arithmatex">\(\ell\)</span>.</li>
 <li><span class="arithmatex">\(\beta^{(\ell)}(t) = \beta^{(\ell)}_0 (1 + q(t))\)</span>: time-dependent transmission rate per day for individuals residing in location <span class="arithmatex">\(\ell \in \mathcal L\)</span>. </li>
 <li><span class="arithmatex">\(q(t)\)</span>: seasonality parameter based on absolute humidity, where <span class="arithmatex">\(q(t)\)</span> is a function of historical absolute humidity data times <span class="arithmatex">\(\xi\)</span>, a humidity impact factor.</li>
 <li><span class="arithmatex">\(\propIA\)</span>: proportion exposed who are completely asymptomatic when infectious.</li>
@@ -936,15 +947,6 @@
 <li><span class="arithmatex">\(\boldsymbol{\adjustedpropD}\)</span>, where <span class="arithmatex">\(\adjustedpropD_{a, r} = \frac{\propD_{a, r} \rateHtoR}{\rateHtoD - \propD_{a, r} (\rateHtoD-\rateHtoR)}\)</span>: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates <span class="arithmatex">\([\propD_{a, r} ]\)</span>.</li>
 <li><span class="arithmatex">\(\boldsymbol{\propD}\)</span>: <span class="arithmatex">\(\numagegroups \times \numriskgroups\)</span> in-hospital mortality rate (proportion who die based on age-risk group <span class="arithmatex">\(a, r\)</span>).</li>
 </ul>
-<p>Note that the following are all <span class="arithmatex">\(\numagegroups \times \numriskgroups \times \lvert \mathcal I \rvert\)</span> matrices:</p>
-<ul>
-<li><strong><span class="arithmatex">\(\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]\)</span></strong>: reduction in infection risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]\)</span></strong>: reduction in hospitalization risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]\)</span></strong>: reduction in death risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), H} = \boldsymbol{M}^{(\ell), H}(t) = [\boldsymbol{M}^{(\ell), H}_{H1}(t), \boldsymbol{M}^{(\ell), H}_{H3}(t), \boldsymbol{M}^{(\ell), H}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).</li>
-</ul>
-<p>Note that prevalence is time-dependent, but we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
 <h2 id="flu-model-travel-model">Flu model: travel model</h2>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(k \in \mathcal L \setminus \{\ell\}\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have</p>
 <div class="arithmatex">\[\begin{align*}

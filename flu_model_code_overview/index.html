@@ -20,7 +20,7 @@
     
     
       
-        <title>Flu Model Code Overview - CLT Base Model</title>
+        <title>MetroFluSim Code Overview - City-level Transmission Toolkit</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flu-model-code-overview" class="md-skip">
+        <a href="#metroflusim-code-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CLT Base Model" class="md-header__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-header__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -94,13 +94,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            CLT Base Model
+            City-level Transmission Toolkit
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flu Model Code Overview
+              MetroFluSim Code Overview
             
           </span>
         </div>
@@ -175,13 +175,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CLT Base Model" class="md-nav__button md-logo" aria-label="CLT Base Model" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-nav__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    CLT Base Model
+    City-level Transmission Toolkit
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -315,7 +315,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Mathematical Formulation
+    MetroFluSim Mathematical Formulation
   </span>
   
 
@@ -376,7 +376,7 @@
             
   
   <span class="md-ellipsis">
-    Flu Model Code Documentation
+    MetroFluSim Code Documentation
   </span>
   
 
@@ -386,7 +386,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Flu Model Code Documentation
+            MetroFluSim Code Documentation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -410,7 +410,7 @@
           
   
   <span class="md-ellipsis">
-    Flu Model Code Overview
+    MetroFluSim Code Overview
   </span>
   
 
@@ -421,7 +421,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Code Overview
+    MetroFluSim Code Overview
   </span>
   
 
@@ -745,12 +745,12 @@
                   
 
 
-<h1 id="flu-model-code-overview">Flu Model Code Overview</h1>
+<h1 id="metroflusim-code-overview">MetroFluSim Code Overview</h1>
 <blockquote>
 <p><strong><em>Written by LP, updated 1/23/2025 (work in progress)</em></strong></p>
 </blockquote>
 <h2 id="overview-assumptions">Overview &amp; Assumptions</h2>
-<p>The module <code>flu_components.py</code> extends the base classes of <code>base_components.py</code> to implement a compartmental model with a specific structure. This model is given by the <a href="../math_flu_components/">mathematical formulation of the flu model</a> with a few simplifying assumptions. The script <code>flu_demo.py</code> runs the flu model with input data given in <code>flu_demo_input_files</code>. Note that this input data gives "toy" values. For a realistic model, we would estimate or calibrate these values using real-world historical data. </p>
+<p>The module <code>flu_components.py</code> extends the base classes of <code>base_components.py</code> to implement <strong>MetroFluSim</strong>, a compartmental model with a specific structure. This model is given by <a href="../math_flu_components/">this mathematical formulation</a> with a few simplifying assumptions. The script <code>flu_demo.py</code> runs the flu model with input data given in <code>flu_demo_input_files</code>. Note that this input data gives "toy" values. For a realistic model, we would estimate or calibrate these values using real-world historical data. </p>
 <p>The simplifying assumptions of <code>flu_components.py</code> include:</p>
 <ul>
 <li>We model <em>only one</em> immunity inducing event (say, H1N1).<ul>
@@ -773,15 +773,15 @@
 <tbody>
 <tr>
 <td><a href="../flu_model_demo/">Flu Model Demo</a></td>
-<td>Must-read. Explanation of <code>flu_demo.py</code> and basic simulation functionality. Helps user get started with a concrete simulation right away.</td>
+<td>Must-read. Explanation of <code>flu_demo.py</code> and basic simulation functionality. Helps user get started with a concrete MetroFluSim simulation right away.</td>
 </tr>
 <tr>
 <td><a href="../flu_input_requirements/">Flu Input Requirements</a></td>
-<td>Must-read. Explanation of <code>flu_demo_input_files</code> and the required specifications and formats for customizing flu model <em>values.</em></td>
+<td>Must-read. Explanation of <code>flu_demo_input_files</code> and the required specifications and formats for customizing MetroFluSim model <em>values.</em></td>
 </tr>
 <tr>
 <td><a href="../flu_components_walkthrough/">Flu Components Walkthrough</a></td>
-<td>Advanced. Must-read for users who want to create a custom model <em>structure.</em> Explains <code>flu_components.py</code> subclasses to demonstrate how to create custom subclasses for a customized flu model or another model.</td>
+<td>Advanced. Explains how <code>flu_components.py</code> subclasses are created to build the MetroFluSim model. Must-read for users who want to create a custom model <em>structure.</em> Users can use this walkthrough as reference to create custom subclasses for a customized model with a different functional form than MetroFluSim.</td>
 </tr>
 </tbody>
 </table>
