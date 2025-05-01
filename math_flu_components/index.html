@@ -901,10 +901,11 @@
 </ul>
 <p>Note that prevalence is time-dependent, but occassionally we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
 <p>To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation <span class="arithmatex">\(\ell\)</span>, age <span class="arithmatex">\(a\)</span>, and risk <span class="arithmatex">\(r\)</span>:</p>
-<p>\LambdaIIlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \
-\LambdaHHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{H}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{H}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)} \
-\LambdaDHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{D}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{D}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)}
-\end{align}</p>
+<div class="arithmatex">\[\begin{align*}
+\LambdaIIlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \\
+\LambdaHHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{H}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{H}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)} \\
+\LambdaDHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{D}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{D}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)}
+\end{align*}\]</div>
 <p>where <span class="arithmatex">\(\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1}\)</span> is an <span class="arithmatex">\(\lvert \mathcal L \rvert \times 1\)</span> vector of <span class="arithmatex">\(1\)</span>'s and the fraction notation indicates element-wise division. </p>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have the following equations that characterize transitions between compartments:</p>
 <div class="arithmatex">\[\begin{align}
