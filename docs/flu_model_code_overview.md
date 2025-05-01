@@ -1,10 +1,10 @@
-# Flu Model Code Overview
+# MetroFluSim Code Overview
 
 > ***Written by LP, updated 1/23/2025 (work in progress)***
 
 ## Overview & Assumptions
 
-The module `flu_components.py` extends the base classes of `base_components.py` to implement a compartmental model with a specific structure. This model is given by the [mathematical formulation of the flu model](math_flu_components.md) with a few simplifying assumptions. The script `flu_demo.py` runs the flu model with input data given in `flu_demo_input_files`. Note that this input data gives "toy" values. For a realistic model, we would estimate or calibrate these values using real-world historical data. 
+The module `flu_components.py` extends the base classes of `base_components.py` to implement **MetroFluSim**, a compartmental model with a specific structure. This model is given by [this mathematical formulation](math_flu_components.md) with a few simplifying assumptions. The script `flu_demo.py` runs the flu model with input data given in `flu_demo_input_files`. Note that this input data gives "toy" values. For a realistic model, we would estimate or calibrate these values using real-world historical data. 
 
 The simplifying assumptions of `flu_components.py` include:
 
@@ -21,6 +21,6 @@ Follow the links below for code readme's, tutorials, and other resources.
 
 | Name 															| Explanation													|
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| [Flu Model Demo](flu_model_demo.md)		| Must-read. Explanation of `flu_demo.py` and basic simulation functionality. Helps user get started with a concrete simulation right away. |
-| [Flu Input Requirements](flu_input_requirements.md)	| Must-read. Explanation of `flu_demo_input_files` and the required specifications and formats for customizing flu model *values.* |
-| [Flu Components Walkthrough](flu_components_walkthrough.md) | Advanced. Must-read for users who want to create a custom model *structure.* Explains `flu_components.py` subclasses to demonstrate how to create custom subclasses for a customized flu model or another model. |
+| [Flu Model Demo](flu_model_demo.md)		| Must-read. Explanation of `flu_demo.py` and basic simulation functionality. Helps user get started with a concrete MetroFluSim simulation right away. |
+| [Flu Input Requirements](flu_input_requirements.md)	| Must-read. Explanation of `flu_demo_input_files` and the required specifications and formats for customizing MetroFluSim model *values.* |
+| [Flu Components Walkthrough](flu_components_walkthrough.md) | Advanced. Explains how `flu_components.py` subclasses are created to build the MetroFluSim model. Must-read for users who want to create a custom model *structure.* Users can use this walkthrough as reference to create custom subclasses for a customized model with a different functional form than MetroFluSim. |

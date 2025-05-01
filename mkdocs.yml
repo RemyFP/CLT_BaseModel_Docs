@@ -1,4 +1,4 @@
-site_name: CLT Base Model
+site_name: City-level Transmission Toolkit
 plugins:
 - mkdocstrings:
     enable_inventory: true
@@ -18,7 +18,7 @@ nav:
 - Mathematical Formulation:
     - math_flu_components.md
     - math_transitions.md
-- Flu Model Code Documentation:
+- MetroFluSim Code Documentation:
     - flu_model_code_overview.md
     - flu_model_demo.md
     - flu_input_requirements.md

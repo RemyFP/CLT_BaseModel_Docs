@@ -406,7 +406,7 @@ Here we create a `Compartment` instance for each compartment ("S", "I", "H", "R"
         return compartments
 ```
 
-## Creating Transition Variable Instances  
+### Creating Transition Variable Instances  
 
 For each transition (we have 4 total), create an instance of the associated `clt.TransitionVariable` subclass. To initialize each `TransitionVariable`, we need to specify the origin `Compartment`, the destination `Compartment`, and the transition type.  
 
@@ -435,7 +435,7 @@ For example, for the transition between the `"S"` and `"I"` compartments, create
         return transition_variables
 ```
 
-## Creating a `TransitionVariableGroup`  
+### Creating a `TransitionVariableGroup`  
 
 When there are multiple transitions out of a single compartment, we need a `TransitionVariableGroup` to handle the jointly distributed transition logic properly.  
 

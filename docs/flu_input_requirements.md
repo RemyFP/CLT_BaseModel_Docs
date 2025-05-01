@@ -17,7 +17,7 @@ $\def\adjustedpropH{\tilde{\pi}^H}$
 $\def\adjustedpropD{\tilde{\pi}^D}$
 </span>
 
-> **_Written by LP, updated 02/26/2025 (work in progress)_** 
+> **_Written by LP, edited by Susan Ptak, updated 04/08/2025 (work in progress)_** 
 
 > **_Important note: we are updating this page with wastewater inputs -- check back soon._**
 
@@ -125,7 +125,7 @@ The school-work calendar CSV must have 3 columns with names: `"date"`, `"is_scho
 
 Then the contact matrix for the subpopulation at time $t$ is
 $$
-\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - d_{\text{work}}(t) \phi^{(\ell), \text{work}} - d_{\text{school}}(t) \phi^{(\ell), \text{school}}
+\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - (1 - d_{\text{work}}(t)) \phi^{(\ell), \text{work}} - (1 - d_{\text{school}}(t)) \phi^{(\ell), \text{school}}
 $$
 where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simulation time $t$ is a work day and $0$ otherwise, specified by the school-work calendar input CSV, and $d_{\text{school}}(t)$ is defined analogously, but for school days.
 

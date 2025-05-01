@@ -1,4 +1,4 @@
-# Flu Model Mathematical Formulation
+# MetroFluSim Mathematical Formulation
 
 <span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
@@ -42,11 +42,9 @@ $\def\numagegroups{\lvert \agegroups \rvert}$
 $\def\numriskgroups{\lvert \riskgroups \rvert}$
 </span>
 
-> **_Updated 02/26/2025 (work in progress)_**
+> **_Written by LP, edited by Susan Ptak, travel model formulated by Rémy Pasco, immunity formulation advised by Anass Bouchnita, updated 04/30/2025 (work in progress)_**
 
-> **_Written by LP. Travel model formulated by Remy._** 
-
-> **_Important notes: we are updating this page to include wastewater viral load (from Sonny) -- check back soon. Also, please report any typos!_**
+> **_Important notes: we are updating this page to include wastewater viral load (from Shuotao "Sonny Diao") -- check back soon. Also, please report any typos!_**
 
 ## Flu model: diagram
 
@@ -65,23 +63,20 @@ $\def\numriskgroups{\lvert \riskgroups \rvert}$
 For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$:
 
 \begin{align*}
-\frac{dM^{(\ell), I}_{a, r, H1}(t)}{dt} &= \frac{g^I_{H1} p_{H1}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a, r, H1}(t) \\
-\frac{dM^{(\ell), I}_{a, r, H3}(t)}{dt} &= \frac{g^I_{H3} p_{H3}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a, r, H3}(t) \\
+\frac{dM^{(\ell), I}_{a, r, H1}(t)}{dt} &= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a, r, H1}(t) \\
+\frac{dM^{(\ell), I}_{a, r, H3}(t)}{dt} &= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), I}_{a, r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a, r, H3}(t) \\
 \frac{dM^{(\ell), I}_{a, r, V}(t)}{dt} &= g^I_V V^{(\ell)}(t - \delta) - w^I_V M^{(\ell), I}_{a, r, V}(t).
 \end{align*}
 
 where
 
 - $\rateRtoS$: rate at which recovered individuals become susceptible, so that $1/\rateRtoS$ is the average number of days a person is totally immune from reinfection until being susceptible again.
-- $\boldsymbol{N}^{(\ell)}$: $\numagegroups \times \numriskgroups$ matrix corresponding to total population in location $\ell \in \mathcal L$, where element $N\locagerisk$ is the total population of age group $a$ and risk group $\ell$ in location $\ell$.
 - $V^{(\ell)}(t)$: number of vaccine doses administered at time $t$ to individuals residing in location $\ell \in \mathcal L$.
 - $\boldsymbol{p} = \boldsymbol{p}(t) = [p_{H1}(t)$, $p_{H3}(t)]$: where elements correspond to prevalence of H1N1, H3N2 respectively.
 - $\delta$: number of days after dose for vaccine to become effective.
-- $g^I_{H1}$: factor by which population-level immunity against infection grows after each H1N1 case that recovers.
-- $g^I_{H3}$: factor by which population-level immunity against infection grows after each H3N2 case that recovers.
-- $g^I_V$: factor by which population-level immunity against infection grows after each vaccination.
 - $w^I_{H1}$: rate at which H1N1 infection-induced immunity against infection wanes.
 - $w^I_{H3}$: rate at which H3N2 infection-induced immunity against infection wanes.
+- $g^I_V$: the rate at which vaccination-induced immunity against infection grows for each new vaccination.
 - $w^I_V$: rate at which vaccine-induced immunity against infection wanes.
 
 **Population-level immunity against _hospitalization_ (derived from H1N1 infections, H3N2 infections, and vaccinations respectively)**
@@ -89,32 +84,41 @@ where
 For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$:
 
 \begin{align}
-\frac{dM^{(\ell), H}_{a, r, H1}(t)}{dt} &= \frac{g^H_{H1} p_{H1}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H1} M^{(\ell), H}_{a, r, H1}(t) \\
-\frac{dM^{(\ell), H}_{a, r, H3}(t)}{dt} &= \frac{g^H_{H3} p_{H3}(t) \rateRtoS(t) R\locagerisktime}{N\locagerisk \left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H3} M^{(\ell), H}_{a, r, H3}(t) \\
+\frac{dM^{(\ell), H}_{a, r, H1}(t)}{dt} &= \frac{p_{H1}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H1} M^{(\ell), H}_{a, r, H1}(t) \\
+\frac{dM^{(\ell), H}_{a, r, H3}(t)}{dt} &= \frac{p_{H3}(t) \rateRtoS(t) R\locagerisktime}{\left(1 + \sum_{i \in \mathcal I} O_{a, r, i} M^{(\ell), H}_{a, r, i}(t)\right)} - w^H_{H3} M^{(\ell), H}_{a, r, H3}(t) \\
 \frac{dM^{(\ell), H}_{a, r, V}(t)}{dt} &= g^H_V V(t - \delta) - w^H_V M^{(\ell), H}_{a, r, V}(t).
 \end{align}
 
 where
 
-- $\rateRtoS$, $\boldsymbol{N}^{(\ell)}$, $p_{H1}(t)$, $p_{H3}(t)$, $V^{(\ell)}(t)$, $\delta$: see above.
-- $g^H_{H1}$: factor by which population-level immunity against hospitalization grows after each H1N1 case that recovers.
-- $g^H_{H3}$: factor by which population-level immunity against hospitalization grows after each H3N2 case that recovers.
-- $g^H_V$: factor by which population-level immunity against hospitalization grows after each vaccination.
+- $\rateRtoS$, $p_{H1}(t)$, $p_{H3}(t)$, $V^{(\ell)}(t)$, $\delta$: see above.
 - $w^H_{H1}$: rate at which H1N1 infection-induced immunity against hospitalization wanes.
 - $w^H_{H3}$: rate at which H3N2 infection-induced immunity against hospitalization wanes.
+- $g^H_V$: the rate at which vaccination-induced immunity against hospitalization grows for each new vaccination.
 - $w^H_V$: rate at which vaccine-induced immunity against hospitalization wanes.
 
 **Compartment equations**
 
+Note that the following are all $\numagegroups \times \numriskgroups \times \lvert \mathcal I \rvert$ matrices:
+
+- **$\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]$**: reduction in infection risk from given immunity-inducing event.  
+- **$\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]$**: reduction in hospitalization risk from given immunity-inducing event.  
+- **$\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]$**: reduction in death risk from given immunity-inducing event.  
+- **$\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  
+\begin{align}
+- **$\boldsymbol{M}^{(\ell), H} = \boldsymbol{M}^{(\ell), H}(t) = [\boldsymbol{M}^{(\ell), H}_{H1}(t), \boldsymbol{M}^{(\ell), H}_{H3}(t), \boldsymbol{M}^{(\ell), H}_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).
+
+Note that prevalence is time-dependent, but occassionally we use $\boldsymbol{p} = \boldsymbol{p}(t)$ for notation simplicity. 
+
 To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation $\ell$, age $a$, and risk $r$:
 
-\begin{align}
-\LambdaIIlocagerisktime &= \left[\frac{K_{a,r}^{I}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{I}(p(t))}\right]^T M_{a,r}^{(\ell), I}(t) \\
-\LambdaHHlocagerisktime &= \left[\frac{K_{a,r}^{H}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{H}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t) \\
-\LambdaDHlocagerisktime &= \left[\frac{K_{a,r}^{D}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert} - K_{a,r}^{D}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t)
-\end{align}
+\begin{align*}
+\LambdaIIlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \\
+\LambdaHHlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{H}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{H}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)} \\
+\LambdaDHlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{D}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{D}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)}
+\end{align*}
 
-where $\boldsymbol{1}_{\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert}$ is an $\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert$ matrix of $1$'s and the fraction notation indicates element-wise division. 
+where $\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1}$ is an $\lvert \mathcal L \rvert \times 1$ vector of $1$'s and the fraction notation indicates element-wise division. 
 
 For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have the following equations that characterize transitions between compartments:
 
@@ -133,7 +137,7 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 - \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} \\[1.5em]
 \frac{dH\locagerisktime}{dt} &= \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHHlocagerisktime}}_{\text{$IS$ to $H$}} 
 - \underbrace{(1-\adjustedpropD_{a, r})\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} 
-- \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaHHlocagerisktime}}_{\text{$H$ to $D$}} \\[1.5em]
+- \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDHlocagerisktime}}_{\text{$H$ to $D$}} \\[1.5em]
 \frac{dR\locagerisktime}{dt} &= \underbrace{(1-\adjustedpropH_{a, r}) \rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} 
 + \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} 
 + \underbrace{(1-\adjustedpropD_{a, r})\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} \\[1em] &\quad\quad\quad
@@ -145,6 +149,7 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 where
 
 - The $\lambda$-terms are location/subpopulation mixing terms that we define in the next section on the travel model. 
+- $\boldsymbol{N}^{(\ell)}$: $\numagegroups \times \numriskgroups$ matrix corresponding to total population in location $\ell \in \mathcal L$, where element $N\locagerisk$ is the total population of age group $a$ and risk group $\ell$ in location $\ell$.
 - $\beta^{(\ell)}(t) = \beta^{(\ell)}_0 (1 + q(t))$: time-dependent transmission rate per day for individuals residing in location $\ell \in \mathcal L$. 
 - $q(t)$: seasonality parameter based on absolute humidity, where $q(t)$ is a function of historical absolute humidity data times $\xi$, a humidity impact factor.
 - $\propIA$: proportion exposed who are completely asymptomatic when infectious.
@@ -154,21 +159,10 @@ where
 - $\rateIPtoIS$: infected presymptomatic to infected symptomatic transition rate, so that $1/\rateIPtoIS$ is the average number of days that an infected person is presymptomatic before becoming symptomatic. 
 - $\rateIStoH$: hospitalization rate (infected to hospital transition rate), so that $1/\rateIStoH$ is the average number of days a person is infected before going to the hospital.
 - $\rateHtoD$: death rate from hospital, so that $1/\rateHtoD$ is the average number of days a person spends in the hospital before dying.
-- $\boldsymbol{\adjustedpropH}$, where $\adjustedpropH_{a, r} = \frac{\propH_{a, r}\gamma}{\rateIStoH - \propH_{a, r}(\rateIStoH-\rateIStoR)}$: adjusted proportion hospitalized based on age-risk group $a, r$ group actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates $[\propH_{a, r}]$.
+- $\boldsymbol{\adjustedpropH}$, where $\adjustedpropH_{a, r} = \frac{\propH_{a, r}\rateIStoR}{\rateIStoH - \propH_{a, r}(\rateIStoH-\rateIStoR)}$: adjusted proportion hospitalized based on age-risk group $a, r$ group actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates $[\propH_{a, r}]$.
 - $\boldsymbol{\propH}$: $\numagegroups \times \numriskgroups$ proportion hospitalized based on age-risk group $a, r$.
-- $\boldsymbol{\adjustedpropD}$, where $\adjustedpropD_{a, r} = \frac{\propD_{a, r} \rateHtoR}{\rateHtoD - \propD_{a, r} (\rateIStoH-\rateHtoR)}$: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates $[\propD_{a, r} ]$.
+- $\boldsymbol{\adjustedpropD}$, where $\adjustedpropD_{a, r} = \frac{\propD_{a, r} \rateHtoR}{\rateHtoD - \propD_{a, r} (\rateHtoD-\rateHtoR)}$: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates $[\propD_{a, r} ]$.
 - $\boldsymbol{\propD}$: $\numagegroups \times \numriskgroups$ in-hospital mortality rate (proportion who die based on age-risk group $a, r$).
-
-
-Note that the following are all $\numagegroups \times \numriskgroups \times \lvert \mathcal I \rvert$ matrices:
-
-- **$\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]$**: reduction in infection risk from given immunity-inducing event.  
-- **$\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]$**: reduction in hospitalization risk from given immunity-inducing event.  
-- **$\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]$**: reduction in death risk from given immunity-inducing event.  
-- **$\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  
-- **$\boldsymbol{M}^{(\ell), H} = \boldsymbol{M}^{(\ell), H}(t) = [\boldsymbol{M}^{(\ell), H}_{H1}(t), \boldsymbol{M}^{(\ell), H}_{H3}(t), \boldsymbol{M}^{(\ell), H}_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).
-
-Note that prevalence is time-dependent, but we use $\boldsymbol{p} = \boldsymbol{p}(t)$ for notation simplicity. 
 
 ## Flu model: travel model
 
@@ -228,9 +222,9 @@ Below we formulate the discretized stochastic transitions. For brevity, we omit 
 For each $\ell \in \mathcal L$, $a \in \agegroups$, and $r \in \riskgroups$:
 
 \begin{align}
-M_{a, r, H1}^{(\ell), I}(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) \\[1em] &\quad\quad\quad + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H1} M^I_{a,r,H1}(t)\right] \Delta t \\
-M_{a, r, H3}^{(\ell), I}(t + \Delta t) &= M_{a, r, H3}^{(\ell), I}(t) + \\[1em] &\quad\quad\quad \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^I_{a,r, i}(t)\right)} - w^I_{H3} M^I_{a,r,H3}(t)\right] \Delta t \\
-M_{a,r,V}^{(\ell), I}(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \left[g^I_V V(t - \delta) - w^I_V M^I_{a,r,V}(t)\right] \Delta t
+M_{a, r, H1}^{(\ell), I}(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) \\[1em] &\quad\quad\quad + \left[\frac{g^I_{H1} p_{H1}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^{(\ell), I}_{a,r, i}(t)\right)} - w^I_{H1} M^{(\ell), I}_{a,r,H1}(t)\right] \Delta t \\
+M_{a, r, H3}^{(\ell), I}(t + \Delta t) &= M_{a, r, H3}^{(\ell), I}(t) + \\[1em] &\quad\quad\quad \left[\frac{g^I_{H3} p_{H3}(t) \cdot \overbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}^{\text{$R$ to $S$}}}{N_{a,r} \left(1 + \sum_{i \in \mathcal I} O_{a,r, i} M^{(\ell), I}_{a,r, i}(t)\right)} - w^I_{H3} M^{(\ell), I}_{a,r,H3}(t)\right] \Delta t \\
+M_{a,r,V}^{(\ell), I}(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \left[g^I_V V(t - \delta) - w^I_V M^{(\ell), I}_{a,r,V}(t)\right] \Delta t
 \end{align}
 
 $$
