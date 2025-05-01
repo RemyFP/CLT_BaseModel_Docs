@@ -895,16 +895,16 @@
 <li><strong><span class="arithmatex">\(\boldsymbol{K}^I(\boldsymbol{p}) = [\boldsymbol{K}^I_{H1}(p_{H1}), \boldsymbol{K}^I_{H3}(p_{H3}), \boldsymbol{K}^I_{V}]\)</span></strong>: reduction in infection risk from given immunity-inducing event.  </li>
 <li><strong><span class="arithmatex">\(\boldsymbol{K}^{H}(\boldsymbol{p}) = [\boldsymbol{K}^H_{H1}(p_{H1}), \boldsymbol{K}^H_{H3}(p_{H3}), \boldsymbol{K}^H_{V}]\)</span></strong>: reduction in hospitalization risk from given immunity-inducing event.  </li>
 <li><strong><span class="arithmatex">\(\boldsymbol{K}^D(\boldsymbol{p}) = [\boldsymbol{K}^D_{H1}(p_{H1}), \boldsymbol{K^D}_{H3}(p_{H3}), \boldsymbol{K}^D_{V}]\)</span></strong>: reduction in death risk from given immunity-inducing event.  </li>
-<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).  </li>
+<li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), I} = \boldsymbol{M}^{(\ell), I}(t) = [\boldsymbol{M}^{(\ell), I}_{H1}(t), \boldsymbol{M}^{(\ell), I}_{H3}(t), \boldsymbol{M}^{(\ell), I}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from infection (induced by H1 infection, H3 infection, vaccination respectively).<br />
+\begin{align}</li>
 <li><strong><span class="arithmatex">\(\boldsymbol{M}^{(\ell), H} = \boldsymbol{M}^{(\ell), H}(t) = [\boldsymbol{M}^{(\ell), H}_{H1}(t), \boldsymbol{M}^{(\ell), H}_{H3}(t), \boldsymbol{M}^{(\ell), H}_{V}(t)]\)</span></strong>: location <span class="arithmatex">\(\ell \in \mathcal L\)</span> population-level immunity from hospitalization (induced by H1 infection, H3 infection, vaccination respectively).</li>
 </ul>
 <p>Note that prevalence is time-dependent, but occassionally we use <span class="arithmatex">\(\boldsymbol{p} = \boldsymbol{p}(t)\)</span> for notation simplicity. </p>
 <p>To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation <span class="arithmatex">\(\ell\)</span>, age <span class="arithmatex">\(a\)</span>, and risk <span class="arithmatex">\(r\)</span>:</p>
-<div class="arithmatex">\[\begin{align}
-\LambdaIIlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \\
-\LambdaHHlocagerisktime &amp;= \left[\frac{K_{a,r}^{H}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - K_{a,r}^{H}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t) \\
-\LambdaDHlocagerisktime &amp;= \left[\frac{K_{a,r}^{D}(p(t))}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - K_{a,r}^{D}(p(t))}\right]^T M_{a,r}^{(\ell), H}(t)
-\end{align}\]</div>
+<p>\LambdaIIlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{I}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{I}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), I}(t)} \
+\LambdaHHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{H}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{H}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)} \
+\LambdaDHlocagerisktime &amp;= \left[\frac{\boldsymbol{K_{a,r}^{D}(p(t))}}{\boldsymbol{1}<em>{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K</em>{a,r}^{D}(p(t))}}\right]^T \boldsymbol{M_{a,r}^{(\ell), H}(t)}
+\end{align}</p>
 <p>where <span class="arithmatex">\(\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1}\)</span> is an <span class="arithmatex">\(\lvert \mathcal L \rvert \times 1\)</span> vector of <span class="arithmatex">\(1\)</span>'s and the fraction notation indicates element-wise division. </p>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have the following equations that characterize transitions between compartments:</p>
 <div class="arithmatex">\[\begin{align}
