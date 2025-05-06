@@ -1,4 +1,4 @@
-site_name: City-level Transmission Toolkit
+site_name: City-level Transmission Toolbox
 plugins:
 - mkdocstrings:
     enable_inventory: true
