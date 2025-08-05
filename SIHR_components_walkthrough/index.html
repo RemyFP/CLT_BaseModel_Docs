@@ -173,7 +173,9 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="City-level Transmission Toolbox" class="md-nav__button md-logo" aria-label="City-level Transmission Toolbox" data-md-component="logo">
       
@@ -888,245 +890,6 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#imports" class="md-nav__link">
-    <span class="md-ellipsis">
-      Imports
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-subclasses" class="md-nav__link">
-    <span class="md-ellipsis">
-      Required Subclasses
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-zero-planning-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step Zero: Planning the Model
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step Zero: Planning the Model">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#compartments" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compartments
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transition-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Transition Variables
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixedconstant-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fixed/Constant Parameters
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mathematical-formulas-for-transitions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mathematical Formulas for Transitions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-subpopparams-subclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a SubpopParams Subclass
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-subpopstate-subclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a SubpopState subclass
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-transitionvariable-subclasses" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating TransitionVariable Subclasses
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating TransitionVariable Subclasses">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#implementing-get_current_rate" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementing get_current_rate
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-subpopmodel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a SubpopModel
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating a SubpopModel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#customizing-the-__init__-method-in-cltsubpopmodel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Customizing the __init__ Method in clt.SubpopModel
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-custom-functionality" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding Custom Functionality
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#is-customizing-__init__-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is Customizing __init__ Required?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implementation-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementation Steps
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementing-abstract-methods-in-cltsubpopmodel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementing Abstract Methods in clt.SubpopModel
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Implementing Abstract Methods in clt.SubpopModel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#handling-interactionterm-instances" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handling InteractionTerm Instances
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-other-unused-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handling Other Unused Methods
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-transition-variable-instances" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating Transition Variable Instances
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-transitionvariablegroup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a TransitionVariableGroup
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           
             <div class="md-content" data-md-component="content">
@@ -1155,14 +918,14 @@
 <li><code>typing</code> (specifically Optional) gives us the ability to allow optional arguments for instantiating dataclasses.</li>
 <li>And finally, don't forget to import the <code>clt_base</code> package -- we'll need this to create our model!</li>
 </ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">sciris</span> <span class="k">as</span> <span class="nn">sc</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sciris</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">import</span> <span class="nn">clt_base</span> <span class="k">as</span> <span class="nn">clt</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">clt_base</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">clt</span>
 </span></code></pre></div>
 <h2 id="required-subclasses">Required Subclasses</h2>
 <p>When creating a custom model, we need to define the following subclasses:  </p>
@@ -1239,7 +1002,7 @@
 </ul>
 <p>For more details on <code>dataclasses</code>, refer to the official Python documentation.  </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@dataclass</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span> <span class="nc">SIHRSubpopParams</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopParams</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">SIHRSubpopParams</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopParams</span><span class="p">):</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">    Data container for pre-specified and fixed epidemiological</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd">    parameters in SIHR model.</span>
@@ -1286,7 +1049,7 @@
 <h2 id="creating-a-subpopstate-subclass">Creating a <code>SubpopState</code> subclass</h2>
 <p>Next, we create our <code>clt.SubpopState</code> subclass. We also need the <code>@dataclass</code> decorator here and we also need to specify the datatype of each field.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@dataclass</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span> <span class="nc">SIHRSubpopState</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopState</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">SIHRSubpopState</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopState</span><span class="p">):</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="sd">    Data container for pre-specified and fixed set of</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">    Compartment initial values and EpiMetric initial values</span>
@@ -1331,34 +1094,34 @@
 <li>These arguments provide <strong>easy access</strong> to parameters and the simulation state.  </li>
 </ul>
 <p>For each transition variable subclass, we must implement <code>get_current_rate</code> to return the <strong>actual current rate</strong>, which depends on the parameters and simulation state. The implementation follows the <strong>mathematical formulas</strong> we previously defined.  </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span> <span class="nc">SusceptibleToInfected</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SusceptibleToInfected</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">def</span> <span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>                         <span class="n">state</span><span class="p">:</span> <span class="n">SIHRSubpopState</span><span class="p">,</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>                         <span class="n">params</span><span class="p">:</span> <span class="n">SIHRSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">I</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">beta</span> <span class="o">/</span> <span class="n">params</span><span class="o">.</span><span class="n">total_pop_age_risk</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">class</span> <span class="nc">InfectedToHospitalized</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">InfectedToHospitalized</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
 </span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">def</span> <span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>                         <span class="n">state</span><span class="p">:</span> <span class="n">SIHRSubpopState</span><span class="p">,</span>
 </span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>                         <span class="n">params</span><span class="p">:</span> <span class="n">SIHRSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="k">return</span> <span class="n">params</span><span class="o">.</span><span class="n">I_to_H_rate</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">I_to_H_prop</span>
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">class</span> <span class="nc">HospitalizedToRecovered</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">HospitalizedToRecovered</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="k">def</span> <span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>                         <span class="n">state</span><span class="p">:</span> <span class="n">SIHRSubpopState</span><span class="p">,</span>
 </span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>                         <span class="n">params</span><span class="p">:</span> <span class="n">SIHRSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 </span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>        <span class="k">return</span> <span class="n">params</span><span class="o">.</span><span class="n">H_to_R_rate</span>
 </span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
 </span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="k">class</span> <span class="nc">InfectedToRecovered</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="k">class</span><span class="w"> </span><span class="nc">InfectedToRecovered</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">):</span>
 </span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    <span class="k">def</span> <span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>                         <span class="n">state</span><span class="p">:</span> <span class="n">SIHRSubpopState</span><span class="p">,</span>
 </span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>                         <span class="n">params</span><span class="p">:</span> <span class="n">SIHRSubpopParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 </span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>
@@ -1387,9 +1150,9 @@
 <li>Call <code>super().__init__</code> to execute the original initialization from the parent class.  </li>
 </ol>
 <p>This approach ensures all components are properly initialized and brought together into a functional model.  </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span> <span class="nc">SIHRSubpopModel</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopModel</span><span class="p">):</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SIHRSubpopModel</span><span class="p">(</span><span class="n">clt</span><span class="o">.</span><span class="n">SubpopModel</span><span class="p">):</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>                 <span class="n">compartments_epi_metrics_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>                 <span class="n">params_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>                 <span class="n">config_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
@@ -1461,23 +1224,23 @@
 <li><code>create_epi_metrics</code>  </li>
 </ul>
 <p>By implementing these methods in this way, we satisfy the requirements of <code>clt.SubpopModel</code> while keeping our simple model clean and functional.  </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>    <span class="k">def</span> <span class="nf">create_interaction_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">InteractionTerm</span><span class="p">]:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_interaction_terms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">InteractionTerm</span><span class="p">]:</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="k">return</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">()</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">def</span> <span class="nf">create_dynamic_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">DynamicVal</span><span class="p">]:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_dynamic_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">DynamicVal</span><span class="p">]:</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">dynamic_vals</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">()</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="k">return</span> <span class="n">dynamic_vals</span>
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">def</span> <span class="nf">create_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Schedule</span><span class="p">]:</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Schedule</span><span class="p">]:</span>
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
 </span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="n">schedules</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">()</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
 </span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="k">return</span> <span class="n">schedules</span>
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="k">def</span> <span class="nf">create_epi_metrics</span><span class="p">(</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_epi_metrics</span><span class="p">(</span>
 </span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>            <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>            <span class="n">transition_variables</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">])</span> \
 </span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>            <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">EpiMetric</span><span class="p">]:</span>
@@ -1487,7 +1250,7 @@
 </span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        <span class="k">return</span> <span class="n">epi_metrics</span>
 </span></code></pre></div>
 <p>Here we create a <code>Compartment</code> instance for each compartment ("S", "I", "H", "R"). Store each instance in an <code>sc.objdict</code>, where the keys are the names (strings) of each compartment, and the values are the compartment instances themselves. Return the dictionary.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>    <span class="k">def</span> <span class="nf">create_compartments</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Compartment</span><span class="p">]:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_compartments</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Compartment</span><span class="p">]:</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="n">compartments</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">()</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
@@ -1499,7 +1262,7 @@
 <h3 id="creating-transition-variable-instances">Creating Transition Variable Instances</h3>
 <p>For each transition (we have 4 total), create an instance of the associated <code>clt.TransitionVariable</code> subclass. To initialize each <code>TransitionVariable</code>, we need to specify the origin <code>Compartment</code>, the destination <code>Compartment</code>, and the transition type.  </p>
 <p>For example, for the transition between the <code>"S"</code> and <code>"I"</code> compartments, create an instance of <code>SusceptibleToInfected</code> (which we created in the code above). We need to pass the corresponding <code>Compartment</code> instances to the <code>origin</code> and <code>destination</code> arguments, in addition to specifying the <code>transition_type</code>.  </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    <span class="k">def</span> <span class="nf">create_transition_variables</span><span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_transition_variables</span><span class="p">(</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>            <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>            <span class="n">compartments</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Compartment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">]:</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
@@ -1529,7 +1292,7 @@
 <li>The <code>transition_type</code>  </li>
 <li>A tuple (or list) of <code>TransitionVariable</code> instances that make up this joint distribution  </li>
 </ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    <span class="k">def</span> <span class="nf">create_transition_variable_groups</span><span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_transition_variable_groups</span><span class="p">(</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>            <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>            <span class="n">compartments</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">Compartment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>            <span class="n">transition_variables</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">objdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">clt</span><span class="o">.</span><span class="n">TransitionVariable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
@@ -1594,7 +1357,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
