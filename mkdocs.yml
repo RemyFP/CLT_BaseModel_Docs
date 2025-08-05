@@ -31,13 +31,13 @@ nav:
 theme: 
   name: material 
   favicon: img/favicon.ico
+  features:
+    - toc.integrate
+
 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
-  - markdown_katex:
-      no_inline_svg: true
-      insert_fonts_css: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
