@@ -856,19 +856,19 @@
 <div class="arithmatex">\[
 \totalforceofinfection = \lambda^{(\ell), \text{local}}\agerisktime + \lambda^{(\ell), \text{visitors}}\agerisktime + \lambda^{(\ell), \text{residents traveling}}\agerisktime. \tag{T1}
 \]</div>
-<p>This can loosely can be interpreted as the (weighted) proportion of the population that interacts with <span class="arithmatex">\(\ell,a,r\)</span> individuals that is infectious. Specifically, we have</p>
+<p>This can loosely can be interpreted as the (weighted) proportion of the population that interacts with <span class="arithmatex">\(\ell,a,r\)</span> individuals that are infectious. Specifically, we have</p>
 <div class="arithmatex">\[\begin{align*}
-\lambda^{(\ell), \text{local}}\agerisktime &amp;= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{wtd-I}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
-\lambda^{(\ell), \text{visitors}}\agerisktime &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{wtd-I}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agerisktime} \tag{T3} \\[1.5em]
-\lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{wtd-I}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
+\lambda^{(\ell), \text{local}}\agerisktime &amp;= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
+\lambda^{(\ell), \text{visitors}}\agerisktime &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agerisktime} \tag{T3} \\[1.5em]
+\lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
 \end{align*}\]</div>
 <p>where</p>
 <div class="arithmatex">\[
-\texttt{wtd-I}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[IS\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5}
+\texttt{I_weighted}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[IS\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5}
 \]</div>
 <p>and where</p>
 <div class="arithmatex">\[\begin{align*}
-\effectiveNlocagerisktime &amp;= \Nlocagerisk + m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - IS^{(k)}_{a,r}(t) - H^{(k)}_{a,r}(t)) \\ &amp;\quad\quad\quad - m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - IS\locagerisktime - H\locationell_{a,r}(t)) \tag{T6}
+\effectiveNlocagerisktime &amp;= \Nlocagerisk + m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - H^{(k)}_{a,r}(t)) \\ &amp;\quad\quad\quad - m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - H\locationell_{a,r}(t)) \tag{T6}
 \end{align*}\]</div>
 <p>is the effective population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span> and age-risk group <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span> at time <span class="arithmatex">\(t\)</span>, and where</p>
 <ul>
@@ -879,18 +879,17 @@
 </ul>
 <p>Note that the arrows in <span class="arithmatex">\(\propdaytravelktoell\)</span> correspond to direction of travel (e.g. <span class="arithmatex">\(k \rightarrow \ell\)</span> represents residents of location <span class="arithmatex">\(k\)</span> traveling to location <span class="arithmatex">\(\ell\)</span>). The <span class="arithmatex">\(\propdaytravelktoell\)</span> values are calculated from mobility data, corresponding to</p>
 <div class="arithmatex">\[
-\propdaytravelktoell := \sum_{\poiell} c^{\poiell} \cdot v^{\ell \rightarrow \poik} \tag{T7}
+\propdaytravelktoell := \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7}
 \]</div>
 <p>where</p>
 <ul>
 <li><span class="arithmatex">\(c^{\poiell}\)</span>: average proportion of a day spent at <span class="arithmatex">\(\poiell\)</span>.</li>
-<li><span class="arithmatex">\(v^{\ell \rightarrow \poik}\)</span>: average number of visits per day per resident of <span class="arithmatex">\(\ell\)</span> to <span class="arithmatex">\(\poik\)</span>.</li>
+<li><span class="arithmatex">\(v^{k \rightarrow \poiell}\)</span>: average number of visits per day per resident of <span class="arithmatex">\(k\)</span> to <span class="arithmatex">\(\poiell\)</span>.</li>
 </ul>
-<p>Note that the decompositions model the following phenomenon:</p>
-<ul>
-<li><span class="arithmatex">\(\lambda^{(\ell), \text{visitors from } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span> but travel to location <span class="arithmatex">\(\ell\)</span> (note: this contact occurs in location <span class="arithmatex">\(\ell\)</span>).</li>
-<li><span class="arithmatex">\(\lambda^{(\ell), \text{residents traveling to } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span>, due to individuals who live in location <span class="arithmatex">\(\ell\)</span> traveling to location <span class="arithmatex">\(k\)</span> (note: this contact occurs in location <span class="arithmatex">\(k\)</span>).</li>
-</ul>
+<p>Note that the decompositions model the following phenomenon:
+- <span class="arithmatex">\(\lambda^{(\ell), \text{local}}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
+- <span class="arithmatex">\(\lambda^{(\ell), \text{visitors from } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span> but travel to location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
+- <span class="arithmatex">\(\lambda^{(\ell), \text{residents traveling to } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span>, due to individuals who live in location <span class="arithmatex">\(\ell\)</span> traveling to location <span class="arithmatex">\(k\)</span> (this contact occurs in location <span class="arithmatex">\(k\)</span>).</p>
 <h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
 <p>To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
 <p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}\)</span></strong> be the "simulate state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
