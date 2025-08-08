@@ -15,23 +15,22 @@ $\def\propH{\pi^H}$
 $\def\propD{\pi^D}$
 $\def\adjustedpropH{\tilde{\pi}^H}$
 $\def\adjustedpropD{\tilde{\pi}^D}$
-$\def\proptravelelltok{v^{\ell \rightarrow k}}$
-$\def\proptravelktoell{v^{k \rightarrow \ell}}$
+$\def\proptravelelltok{p^{\ell \rightarrow k}}$
+$\def\propdaytravelktoell{p^{k \rightarrow \ell}}$
 $\def\LambdaIlocagerisktime{\Lambda^{(\ell), I}_{a,r}(t)}$
 $\def\LambdaHlocagerisktime{\Lambda^{(\ell), H}_{a,r}(t)}$
 $\def\LambdaDlocagerisktime{\Lambda^{(\ell), D}_{a,r}(t)}$
-$\def\locagerisk{^{(\ell)}_{a, r}}$
-$\def\locagerisktime{\locagerisk(t)}$
 $\def\locationell{^{(\ell)}}$
 $\def\locationk{^{(k)}}$
+$\def\locagerisk{\locationell_{a, r}}$
+$\def\locagerisktime{\locagerisk(t)}$
 $\def\agerisk{_{a, r}}$
 $\def\agerisktime{_{a, r}(t)}$
 $\def\ageprimeriskprime{_{a^\prime, r^\prime}}$
-$\def\locageprimeriskprime{^{(\ell)}_{a^\prime, r^\prime}}$
-$\def\Nlocagerisk{N^{(\ell)}_{a,r}}$
-$\def\effectiveNlocagerisktime{\tilde{N}^{(\ell)}_{a,r}(t)}$
-$\def\effectiveNlocageprimeriskprimetime{\tilde{N}^{(\ell)}_{a^\prime,r^\prime}(t)}$
-$\def\multipliertravel{h_{\text{travel}}}$
+$\def\locageprimeriskprime{\locationell_{a^\prime, r^\prime}}$
+$\def\Nlocagerisk{N\locationell_{a,r}}$
+$\def\effectiveNlocagerisktime{\tilde{N}\locationell_{a,r}(t)}$
+$\def\effectiveNlocageprimeriskprimetime{\tilde{N}\locationell_{a^\prime,r^\prime}(t)}$
 $\def\multipliersymptom{h_{\text{symp}}}$
 $\def\tvarloc{y^{(\ell)}}$
 $\def\jointtvarloc{y^{(\ell) *}}$
@@ -40,9 +39,11 @@ $\def\agegroups{\mathcal A}$
 $\def\riskgroups{\mathcal R}$
 $\def\numagegroups{\lvert \agegroups \rvert}$
 $\def\numriskgroups{\lvert \riskgroups \rvert}$
+$\def\poik{\text{POI}(k)}$
+$\def\poiell{\text{POI}(\ell)}$
 </span>
 
-> **_Written by LP, edited by Susan Ptak, travel model formulated by Rémy Pasco, immunity formulation advised by Anass Bouchnita, overall formulation advised by Lauren Meyers and Dave Morton, updated 08/05/2025 (work in progress)_**
+> **_Written by LP, travel model by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita, overall formulation advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang, updated 08/08/2025 (work in progress)_**
 
 ## Flu model: diagram
 
@@ -61,14 +62,14 @@ $\def\numriskgroups{\lvert \riskgroups \rvert}$
 For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$:
 
 \begin{align*}
-\frac{dM^{(\ell)}\agerisktime}{dt} &= \frac{\rateRtoS(t) R\locagerisktime}{N^{(\ell)}_{a, r}} \cdot (1 - oM^{(\ell)}\agerisktime - o_v MV^{(\ell), I}\agerisktime) - wM^{(\ell), I}\agerisktime\\
-\frac{dMV^{(\ell)}\agerisktime}{dt} &= \frac{V^{(\ell)}\agerisk(t - \delta)}{N^{(\ell)}\agerisk} - w_v MV^{(\ell)}\agerisktime 
+\frac{dM\locationell\agerisktime}{dt} &= \frac{\rateRtoS(t) R\locagerisktime}{N\locationell_{a, r}} \cdot (1 - oM\locationell\agerisktime - o_v MV\locationell\agerisktime) - wM\locationell\agerisktime \tag{M1} \\
+\frac{dMV\locationell\agerisktime}{dt} &= \frac{V\locationell\agerisk(t - \delta)}{N\locationell\agerisk} - w_v MV\locationell\agerisktime \tag{M2}
 \end{align*}
 
 where
 
 - $\rateRtoS$: rate at which recovered individuals become susceptible, so that $1/\rateRtoS$ is the average number of days a person is totally immune from reinfection until being susceptible again.
-- $V^{(\ell)}\agerisktime$: number of vaccine doses administered at time $t$ to individuals residing in location $\ell \in \mathcal L$ in age-risk group $a$, $r$.
+- $V\locationell\agerisktime$: number of vaccine doses administered at time $t$ to individuals residing in location $\ell \in \mathcal L$ in age-risk group $a$, $r$.
 - $\delta$: number of days after dose for vaccine to become effective.
 - $w$: rate at which infection-induced immunity wanes.
 - $w_V$: rate at which vaccine-induced immunity wanes.
@@ -80,14 +81,14 @@ Note that the following are all $\numagegroups \times \numriskgroups \times \lve
 - **$\boldsymbol{K}^I = [\boldsymbol{K}^I, \boldsymbol{K}^I_{V}]$**: reduction in infection risk from given immunity-inducing event.  
 - **$\boldsymbol{K}^{H} = [\boldsymbol{K}^H, \boldsymbol{K}^H_{V}]$**: reduction in hospitalization risk from given immunity-inducing event.  
 - **$\boldsymbol{K}^D = [\boldsymbol{K}^D, \boldsymbol{K}^D_{V}]$**: reduction in death risk from given immunity-inducing event.  
-- **$\boldsymbol{M}^{(\ell)} = \boldsymbol{M}^{(\ell)}(t) = [\boldsymbol{M}^{(\ell)}(t), \boldsymbol{M}^{(\ell)}_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity.  
+- **$\boldsymbol{M}\locationell = \boldsymbol{M}\locationell(t) = [\boldsymbol{M}\locationell(t), \boldsymbol{M}\locationell_{V}(t)]$**: location $\ell \in \mathcal L$ population-level immunity.  
 
 To simplify notation, we have the following terms that characterize the effect of population-level immunities for a given subpopulation $\ell$, age $a$, and risk $r$:
 
 \begin{align*}
-\LambdaIlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{I}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}}}\right]^T \boldsymbol{M_{a,r}^{(\ell)}(t)} \\
-\LambdaHlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{H}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{H}}}\right]^T \boldsymbol{M_{a,r}^{(\ell)}(t)} \\
-\LambdaDlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{D}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{D}}}\right]^T \boldsymbol{M_{a,r}^{(\ell)}(t)}
+\LambdaIlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{I}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{I}}}\right]^T \boldsymbol{M_{a,r}\locationell(t)} \tag{I1} \\
+\LambdaHlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{H}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{H}}}\right]^T \boldsymbol{M_{a,r}\locationell(t)} \tag{I2} \\
+\LambdaDlocagerisktime &= \left[\frac{\boldsymbol{K_{a,r}^{D}}}{\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1} - \boldsymbol{K_{a,r}^{D}}}\right]^T \boldsymbol{M_{a,r}\locationell(t)} \tag{I3}
 \end{align*}
 
 where $\boldsymbol{1}_{\lvert \mathcal L \rvert \times 1}$ is an $\lvert \mathcal L \rvert \times 1$ vector of $1$'s and the fraction notation indicates element-wise division. 
@@ -96,27 +97,26 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 
 \begin{align}
 \frac{dS\locagerisktime}{dt} &= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
--\underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} \\[1.5em]
-\frac{dE\locagerisktime}{dt} &= \underbrace{S\locagerisktime \frac{\beta^{(\ell)}(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} - \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \\[1.5em]
-\frac{dIP\locagerisktime}{dt} &= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} \\[1.5em]
+-\underbrace{S\locagerisktime \frac{\beta\locationell(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} \tag{C1} \\[1.5em]
+\frac{dE\locagerisktime}{dt} &= \underbrace{S\locagerisktime \frac{\beta\locationell(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} - \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \tag{C2} \\[1.5em]
+\frac{dIP\locagerisktime}{dt} &= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} \tag{C3} \\[1.5em]
 \frac{dIS\locagerisktime}{dt} &= \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} 
-- \underbrace{\left(1-\frac{\adjustedpropH_{a, r}}{1 + \LambdaHlocagerisktime}\right)\rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} - \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IS$ to $H$}} \\[1.5em]
+- \underbrace{\left(1-\frac{\adjustedpropH_{a, r}}{1 + \LambdaHlocagerisktime}\right)\rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} - \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IS$ to $H$}} \tag{C4} \\[1.5em]
 \frac{dIA\locagerisktime}{dt} &= \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} 
-- \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} \\[1.5em]
+- \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} \tag{C5} \\[1.5em]
 \frac{dH\locagerisktime}{dt} &= \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IS$ to $H$}} - \underbrace{\left(1-\frac{\adjustedpropD_{a, r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} 
-- \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}} \\[1.5em]
+- \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}} \tag{C6} \\[1.5em]
 \frac{dR\locagerisktime}{dt} &= \underbrace{\left(1-\frac{\adjustedpropH_{a, r}}{1 + \LambdaHlocagerisktime}\right) \rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} + \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} 
 \\[1em] &\quad\quad\quad + \underbrace{\left(1-\frac{\adjustedpropD_{a, r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} 
-- \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} \\[1.5em]
-\frac{dD\locagerisktime}{dt} &= \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}}. 
+- \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} \tag{C7} \\[1.5em]
+\frac{dD\locagerisktime}{dt} &= \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}}. \tag{C8}
 \end{align}
-
 
 where
 
 - The $\lambda$-terms are location/subpopulation mixing terms that we define in the next section on the travel model. 
-- $\boldsymbol{N}^{(\ell)}$: $\numagegroups \times \numriskgroups$ matrix corresponding to total population in location $\ell \in \mathcal L$, where element $N\locagerisk$ is the total population of age group $a$ and risk group $\ell$ in location $\ell$.
-- $\beta^{(\ell)}(t) = \beta^{(\ell)}_0 (1 + q(t))$: time-dependent transmission rate per day for individuals residing in location $\ell \in \mathcal L$. 
+- $\boldsymbol{N}\locationell$: $\numagegroups \times \numriskgroups$ matrix corresponding to total population in location $\ell \in \mathcal L$, where element $N\locagerisk$ is the total population of age group $a$ and risk group $\ell$ in location $\ell$.
+- $\beta\locationell(t) = \beta\locationell_0 (1 + q(t))$: time-dependent transmission rate per day for individuals residing in location $\ell \in \mathcal L$. 
 - $q(t)$: seasonality parameter based on absolute humidity, where $q(t)$ is a function of historical absolute humidity data times $\xi$, a humidity impact factor.
 - $\propIA$: proportion exposed who are completely asymptomatic when infectious.
 - $r_{IP}$, $r_{IA}$: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. 
@@ -134,38 +134,58 @@ where
 
 For each $\ell \in \mathcal L$, $k \in \mathcal L \setminus \{\ell\}$, $a \in \agegroups$, $r \in \riskgroups$, we have
 
+\[
+\totalforceofinfection = \lambda^{(\ell), \text{local}}\agerisktime + \lambda^{(\ell), \text{visitors}}\agerisktime + \lambda^{(\ell), \text{residents traveling}}\agerisktime. \tag{T1}
+\]
+
+This can loosely can be interpreted as the (weighted) proportion of the population that interacts with $\ell,a,r$ individuals that is infectious. Specifically, we have
+
 \begin{align*}
-\totalforceofinfection &= \lambda^{(\ell), \ell \rightarrow \ell}_{a, r}(t) + \sum_{k \in \mathcal L \setminus \{\ell\}} \left(\lambda^{(\ell), k \rightarrow \ell}_{a, r}(t) + \lambda^{(\ell), \ell \rightarrow k}_{a, r}(t)\right) \\[1.5em]
-\lambda^{(\ell), \ell \rightarrow \ell}_{a, r}(t) &= \psi_a \left(1 - c_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a,a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locageprimeriskprime(t) + r_{IP} IP\locageprimeriskprime(t) + r_{IA} IA\locageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{(\ell), k \rightarrow \ell}(t) &= \psi_a \cdot \multipliertravel \cdot \proptravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} c_{a^\prime} \cdot \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups}\left[\multipliersymptom IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \\[1.5em]
-\lambda_{a,r}^{(\ell), \ell \rightarrow k}(t) &= \psi_a \cdot \multipliertravel \cdot \proptravelelltok  \cdot c_a \cdot \sum\limits_{a^\prime \in \agegroups} \phi^{(\ell)}_{a, a^\prime}(t) \frac{\sum_{r^\prime \in \riskgroups} \left[IS\locationk\ageprimeriskprime(t) + r_{IP} IP\locationk\ageprimeriskprime(t) + r_{IA} IA\locationk\ageprimeriskprime(t)\right]}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}
+\lambda^{(\ell), \text{local}}\agerisktime &= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{wtd-I}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
+\lambda^{(\ell), \text{visitors}}\agerisktime &= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{wtd-I}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agerisktime} \tag{T3} \\[1.5em]
+\lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{wtd-I}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
 \end{align*}
 
 where
 
+\[
+\texttt{wtd-I}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[IS\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5}
+\]
+
+and where
+
 \begin{align*}
-\effectiveNlocagerisktime &= \Nlocagerisk + c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelktoell \cdot (N^{(k)}_{a, r} - (1-\multipliersymptom) IS^{(k)}_{a,r}(t) - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - c_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - (1-\multipliersymptom) IS\locagerisktime - H^{(\ell)}_{a,r}(t))
+\effectiveNlocagerisktime &= \Nlocagerisk + m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - IS^{(k)}_{a,r}(t) - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - IS\locagerisktime - H\locationell_{a,r}(t)) \tag{T6}
 \end{align*}
 
 is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$, and where
 
-- $\phi_{a, a^\prime}^{(\ell)}(t)$: the number of contacts that individuals in age group $a \in \agegroups$ residing in location $\ell \in \mathcal L$ have with other individuals (regardless of location) in age group $a^\prime \in \agegroups$. 
+- $\phi_{a, a^\prime}\locationell(t)$: the number of contacts that individuals in age group $a \in \agegroups$ residing in location $\ell \in \mathcal L$ have with other individuals (regardless of location) in age group $a^\prime \in \agegroups$ on day $t$.
 - $\psi_a \in [0, 1]$: relative susceptibility of individuals in age group $a \in \agegroups$.
-- $\proptravelktoell$: proportion of population in location $k \in \mathcal L$ that travels to location $\ell \in \mathcal L$.
-- $c_a$: proportion of time individuals in age group $a \in \agegroups$ spend away from home region when traveling. 
-- $\multipliertravel \in [0,1]$: multiplier to reduce contact rate of traveling individuals. 
-- $\multipliersymptom \in [0,1]$: multiplier to reduce contact rate of symptomatic individuals.
+- $m_a(t)$: a positive scalar modifying travel intensity depending on age $a$ and day $t$.
+- $\propdaytravelktoell$: (on average) proportion of the day that a resident of $k$ spends traveling to location $\ell \in \mathcal L$.
+
+Note that the arrows in $\propdaytravelktoell$ correspond to direction of travel (e.g. $k \rightarrow \ell$ represents residents of location $k$ traveling to location $\ell$). The $\propdaytravelktoell$ values are calculated from mobility data, corresponding to
+
+\[
+\propdaytravelktoell := \sum_{\poiell} c^{\poiell} \cdot v^{\ell \rightarrow \poik} \tag{T7}
+\]
+
+where
+
+- $c^{\poiell}$: average proportion of a day spent at $\poiell$.
+- $v^{\ell \rightarrow \poik}$: average number of visits per day per resident of $\ell$ to $\poik$.
 
 Note that the decompositions model the following phenomenon:
 
-- $\lambda^{(\ell), k \rightarrow \ell}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (note: this contact occurs in location $\ell$).
-- $\lambda^{(\ell), \ell \rightarrow k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (note: this contact occurs in location $k$).
+- $\lambda^{(\ell), \text{visitors from } k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (note: this contact occurs in location $\ell$).
+- $\lambda^{(\ell), \text{residents traveling to } k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (note: this contact occurs in location $k$).
 
 ## Flu model: discretized stochastic implementation
 
 To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.
 
-Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V^{(\ell)}(t)\right\}$** be the "simulate state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
+Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}$** be the "simulate state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
 
 Let **$\boldsymbol{\Theta} = \left\{\boldsymbol{O}, \boldsymbol{N}, \boldsymbol{g}^I, \boldsymbol{w}^I, \boldsymbol{g}^H, \boldsymbol{w^H}, \beta_0, \gamma, \rateHtoR, \rateEtoI, \boldsymbol{\propH}, \rateIStoH, \boldsymbol{\propD}, \rateHtoD, \rateRtoS \right\}$** be the set of fixed parameters. We define notation $\boldsymbol{g}^I = [g^I, g^I_{H3}, g^I_V]$,  $\boldsymbol{w}^I = [w^I, w^I_{H3}, w^I_V]$, $\boldsymbol{g}^H = [g^H, g^H_{H3}, g^H_V]$, and $\boldsymbol{w}^H = [w^H, w^H_{H3}, w^H_V]$. 
 
@@ -177,7 +197,7 @@ $$
 
 where $f$ is parametrized by $\boldsymbol{\Theta}$, and depends on the step size of discretization $\Delta t$ and a sample path $\omega$. We assume that each sample path $\omega$ is realized from a random process that does not depend on $\boldsymbol{\mathcal X}(t)$ or $\Delta t$ for each $t$. When we are discussing a single model with a fixed set of parameters $\boldsymbol{\Theta}$, we drop the $\boldsymbol{\Theta}$ notation for simplicity.  
 
-Now we formulate how we implement discretized stochastic transitions. We assume that $q(t)$, **$\boldsymbol{\phi}(t)$**, and $V^{(\ell)}(t)$  are updated deterministically according to some "schedule."  
+Now we formulate how we implement discretized stochastic transitions. We assume that $q(t)$, **$\boldsymbol{\phi}(t)$**, and $V\locationell(t)$  are updated deterministically according to some "schedule."  
 
 We model stochastic transitions between compartments using "transition variables." Transition variables correspond to incoming and outgoing flows of epidemiological compartments (see the compartment equations above). 
 
@@ -188,16 +208,16 @@ Below we formulate the discretized stochastic transitions. Note that the populat
 For each $\ell \in \mathcal L$, $a \in \agegroups$, and $r \in \riskgroups$:
 
 \begin{align}
-M_{a, r}^{(\ell)}(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) + \frac{dM\agerisktime^{(\ell)}}{dt} \cdot \Delta t \\
-MV_{a,r}^{(\ell)}(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \frac{dMV\agerisktime^{(\ell)}}{dt} \cdot \Delta t \\
-S\locagerisk(t + \Delta t) &= S_{a, r}^{(\ell)}(t) + \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} - \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} \\
-E\locagerisk(t + \Delta t) &= E_{a, r}^{(\ell)}(t) + \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} - \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} \\
+M_{a, r}\locationell(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) + \frac{dM\agerisktime\locationell}{dt} \cdot \Delta t \\
+MV_{a,r}\locationell(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
+S\locagerisk(t + \Delta t) &= S_{a, r}\locationell(t) + \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} - \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} \\
+E\locagerisk(t + \Delta t) &= E_{a, r}\locationell(t) + \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} - \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} \\
 IP\locagerisk(t + \Delta t) &= IP\locagerisktime + \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\tvarloc_{IP \rightarrow IS, a, r}(\Xi_t)}_{\text{$IP$ to $IS$}} \\
-IA_{a, r}^{(\ell)}(t + \Delta t) &= IA_{a, r}^{(\ell)}(t) + \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} - \underbrace{\tvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} \\
-IS\locagerisk(t + \Delta t) &= IS_{a, r}^{(\ell)}(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
-H\locagerisk(t + \Delta t) &= H_{a, r}^{(\ell)}(t) + \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} - \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}} \\
-R\locagerisk(t + \Delta t) &= R_{a, r}^{(\ell)}(t) + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
-D\locagerisk(t + \Delta t) &= D_{a, r}^{(\ell)}(t) + \underbrace{\tvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
+IA_{a, r}\locationell(t + \Delta t) &= IA_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} - \underbrace{\tvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} \\
+IS\locagerisk(t + \Delta t) &= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
+H\locagerisk(t + \Delta t) &= H_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} - \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}} \\
+R\locagerisk(t + \Delta t) &= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
+D\locagerisk(t + \Delta t) &= D_{a, r}\locationell(t) + \underbrace{\tvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
 \end{align}
 
 
@@ -209,16 +229,16 @@ Each transition variable depends on a "base count" and a "rate" (which both depe
 
 | Transition            | Transition variable                                                      | Base count               | Rate                                                                                                                                                                                           |
 |-----------------------|-------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| $R$ to $S$            | $\tvarloc_{R \rightarrow S, a, r}(\simstate)$                         | $R_{a, r}^{(\ell)}(t)$    | $\rateRtoS$                                                                                                                                                                                           |
-| $S$ to $E$            | $\tvarloc_{S \rightarrow E, a, r}(\simstate)$                         | $S_{a, r}^{(\ell)}(t)$    | $\frac{\beta(t) \totalforceofinfection}{1 + \LambdaIlocagerisktime}$ |
-| $E$ to $IP$           | $\jointtvarloc_{E \rightarrow IP, a, r}(\simstate)$                      | $E_{a, r}^{(\ell)}(t)$    | $\rateEtoI (1 - \propIA)$                                                                                                                                                                                |
-| $E$ to $IA$           | $\jointtvarloc_{E \rightarrow IA, a, r}(\simstate)$                      | $E_{a, r}^{(\ell)}(t)$    | $\rateEtoI \propIA$                                                                                                                                                                                     |
-| $IP$ to $IS$          | $\tvarloc_{IP \rightarrow IS, a, r}(\simstate)$                       | $IP_{a, r}^{(\ell)}(t)$   | $\rateIPtoIS$                                                                                                                                                                                           |
-| $IS$ to $R$           | $\jointtvarloc_{IS \rightarrow R, a, r}(\simstate)$                      | $IS_{a, r}^{(\ell)}(t)$   | $\left(1-\frac{\adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}\right)\gamma^{IS\rightarrow R}$                                                                                                                                                                    |
-| $IS$ to $H$           | $\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)$                      | $IS_{a, r}^{(\ell)}(t)$   | $\frac{\rateIStoH \adjustedpropH_{a,r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                            |
-| $IA$ to $R$           | $\tvarloc_{IA \rightarrow R, a, r}(\simstate)$                        | $IA_{a, r}^{(\ell)}(t)$   | $\rateIAtoR IA\locagerisktime$                                                                                                                                                              |
-| $H$ to $R$            | $\jointtvarloc_{H \rightarrow R, a, r}(\simstate)$                       | $H_{a, r}^{(\ell)}(t)$    | $\left(1-\frac{\adjustedpropD_{a,r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR$                                                                                                                                                                 |
-| $H$ to $D$            | $\jointtvarloc_{H \rightarrow D, a, r}(\simstate)$                       | $H_{a, r}^{(\ell)}(t)$    | $\frac{\rateHtoD \adjustedpropD_{a,r} H\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                              |
+| $R$ to $S$            | $\tvarloc_{R \rightarrow S, a, r}(\simstate)$                         | $R_{a, r}\locationell(t)$    | $\rateRtoS$                                                                                                                                                                                           |
+| $S$ to $E$            | $\tvarloc_{S \rightarrow E, a, r}(\simstate)$                         | $S_{a, r}\locationell(t)$    | $\frac{\beta(t) \totalforceofinfection}{1 + \LambdaIlocagerisktime}$ |
+| $E$ to $IP$           | $\jointtvarloc_{E \rightarrow IP, a, r}(\simstate)$                      | $E_{a, r}\locationell(t)$    | $\rateEtoI (1 - \propIA)$                                                                                                                                                                                |
+| $E$ to $IA$           | $\jointtvarloc_{E \rightarrow IA, a, r}(\simstate)$                      | $E_{a, r}\locationell(t)$    | $\rateEtoI \propIA$                                                                                                                                                                                     |
+| $IP$ to $IS$          | $\tvarloc_{IP \rightarrow IS, a, r}(\simstate)$                       | $IP_{a, r}\locationell(t)$   | $\rateIPtoIS$                                                                                                                                                                                           |
+| $IS$ to $R$           | $\jointtvarloc_{IS \rightarrow R, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\left(1-\frac{\adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}\right)\gamma^{IS\rightarrow R}$                                                                                                                                                                    |
+| $IS$ to $H$           | $\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\frac{\rateIStoH \adjustedpropH_{a,r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                            |
+| $IA$ to $R$           | $\tvarloc_{IA \rightarrow R, a, r}(\simstate)$                        | $IA_{a, r}\locationell(t)$   | $\rateIAtoR IA\locagerisktime$                                                                                                                                                              |
+| $H$ to $R$            | $\jointtvarloc_{H \rightarrow R, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\left(1-\frac{\adjustedpropD_{a,r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR$                                                                                                                                                                 |
+| $H$ to $D$            | $\jointtvarloc_{H \rightarrow D, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\frac{\rateHtoD \adjustedpropD_{a,r} H\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                              |
 
 
 The base count and rate of a transition variable parameterize the distribution that defines its realization. 
