@@ -22,7 +22,7 @@
     
     
       
-        <title>Flu Model Input Requirements - City-level Transmission Toolkit</title>
+        <title>Math-to-Code Input Mappings - City-level Transmission Toolkit</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flu-model-input-requirements" class="md-skip">
+        <a href="#math-to-code-input-mappings" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flu Model Input Requirements
+              Math-to-Code Input Mappings
             
           </span>
         </div>
@@ -380,7 +380,7 @@
             
   
   <span class="md-ellipsis">
-    MetroFluSim Code Documentation
+    MetroFluSim Tutorials
   </span>
   
 
@@ -390,30 +390,9 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            MetroFluSim Code Documentation
+            MetroFluSim Tutorials
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../flu_model_code_overview/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    MetroFluSim Code Overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -456,7 +435,7 @@
           
   
   <span class="md-ellipsis">
-    Flu Model Input Requirements
+    Math-to-Code Input Mappings
   </span>
   
 
@@ -467,7 +446,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Model Input Requirements
+    Math-to-Code Input Mappings
   </span>
   
 
@@ -489,45 +468,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demographics-and-initial-values-of-state-variables" class="md-nav__link">
+  <a href="#flusubpopstate" class="md-nav__link">
     <span class="md-ellipsis">
-      Demographics and initial values of state variables
+      FluSubpopState
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#simulation-configuration" class="md-nav__link">
+  <a href="#flusubpopparams" class="md-nav__link">
     <span class="md-ellipsis">
-      Simulation configuration
+      FluSubpopParams
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fixed-parameters" class="md-nav__link">
+  <a href="#flusubpopschedules" class="md-nav__link">
     <span class="md-ellipsis">
-      Fixed parameters
+      FluSubpopSchedules
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contact-matrix-and-school-work-calendar-csv" class="md-nav__link">
+  <a href="#flumixingparams" class="md-nav__link">
     <span class="md-ellipsis">
-      Contact matrix and school-work calendar CSV
+      FluMixingParams
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#travel-models-travel-proportions-json" class="md-nav__link">
+  <a href="#simulationsettings" class="md-nav__link">
     <span class="md-ellipsis">
-      Travel model's travel proportions JSON
+      SimulationSettings
     </span>
   </a>
   
@@ -732,7 +711,7 @@
                   
 
 
-<h1 id="flu-model-input-requirements">Flu Model Input Requirements</h1>
+<h1 id="math-to-code-input-mappings">Math-to-Code Input Mappings</h1>
 <p><span style="display: none;">
 <span class="arithmatex">\(\def\rateRtoS{\sigma^{R\rightarrow S}}\)</span>
 <span class="arithmatex">\(\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}\)</span>
@@ -749,32 +728,14 @@
 <span class="arithmatex">\(\def\adjustedpropH{\tilde{\pi}^H}\)</span>
 <span class="arithmatex">\(\def\adjustedpropD{\tilde{\pi}^D}\)</span>
 </span></p>
-<blockquote>
-<p><strong><em>Written by LP, edited by Susan Ptak, updated 04/08/2025 (work in progress)</em></strong> </p>
-<p><strong><em>Important note: we are updating this page with wastewater inputs -- check back soon.</em></strong></p>
-</blockquote>
-<p>Here, we document input requirements for creating a <code>FluSubpopModel</code> instance and a <code>FluMetapopModel</code> instance, as well as provide mappings between the input variable names in the <a href="../flu_components_reference/">code</a> and the mathematical variables in the <a href="../math_flu_components/">mathematical formulation</a>. For users to customize the <em>values</em> (not the structure) of the flu model given in <code>flu_components.py</code>, they must abide by certain input specifications.</p>
-<p>Recall that the class <code>FluSubpopModel</code> simulates the flu model given by <a href="../math_flu_components/">this mathematical formulation</a> for a specific subpopulation. Multiple <code>FluSubpopModel</code> instances can be combined as input into a <code>FluMetapopModel</code> instance to simulate multiple subpopulations and travel between these subpopulations. </p>
-<p>Each <code>FluSubpopModel</code> instance requires user-specified inputs for demographics and initial values of compartments and epi metrics, values of fixed parameters, experiment configuration details, and a school-work calendar. Each <code>FluMetapopModel</code> instance requires data for pairwise travel proportions (the proportion of people in subpopulation <span class="arithmatex">\(\ell\)</span> who travel to a different subpopulation <span class="arithmatex">\(k\)</span>.) Depending on the type of input, these inputs may be read from <code>JSON</code> or <code>CSV</code> files, or defined directly in code as a <code>dict</code> or <code>pd.DataFrame</code>.</p>
-<p>As a concrete example, we refer the user to <code>flu_demo.py</code> and its input folder <code>flu_demo_input_files</code>. The demo model has two subpopulations with the exact same inputs. The folder contains 4 <code>JSON</code> input files used to run <code>flu_demo.py</code>: <code>compartments_epi_metrics_init_vals.json</code>, <code>fixed_params.json</code>, <code>config.json</code>, and <code>travel_proportions.json</code>. These input files respectively are used to initialize a <code>FluSubpopState</code> instance, <code>FluSubpopParams</code> instance, <code>Config</code> instance, and <code>FluInterSubpopRepo</code> instance. The folder also contains a file <code>school_work_calendar.csv</code> that provides necessary calendar data (indicating if a date is a school or work day). In general, for an arbitrary number of subpopulations with different inputs, the user should have 5 input files per <code>FluSubpopModel</code> instance (4 are the aforementioned <code>JSON</code> files and 1 is the aforementioned <code>CSV</code> file).</p>
-<p>The file <code>travel_proportions.JSON</code> provides pairwise travel proportions between subpopulations. This is used for travel computations in the <code>FluMetapopModel</code> instance that contains the subpopulations. This file is <em>not required</em> if only one <code>FluSubpopModel</code> is used (so there is no metapopulation model or travel model).</p>
-<p>In the following sections we discuss the input requirements for: for demographics and initial values of compartments and epi metrics (for each <code>FluSubpopModel</code>), values of fixed parameters (for each <code>FluSubpopModel</code>), experiment configuration details (for each <code>FluSubpopModel</code>), school-work calendars (for each <code>FluSubpopModel</code>), and travel proportions (for each <code>FluMetapopModel</code>).</p>
-<h2 id="demographics-and-initial-values-of-state-variables">Demographics and initial values of state variables</h2>
-<p>The table below has a variable name to math variable mapping for the <code>JSON</code> file used to initialize <code>FluSubpopState</code> instances. This file specifies initial conditions for <code>StateVariable</code> objects (which includes <code>Compartment</code>, <code>EpiMetric</code>, <code>Schedule</code>, and <code>DynamicVal</code> objects). </p>
-<p>Important notes:</p>
-<ul>
-<li>
-<p><code>Schedule</code> instances get their values deterministically updated according to a schedule. At every simulation day <code>t</code>, their values are well-defined (taken from a schedule calendar), regardless of the initial value. Therefore, the initial value does not matter, so they are excluded from inputs. However, these objects are indeed updated and used in the simulation. Similar logic applies to <code>DynamicVal</code> instances.</p>
-</li>
-<li>
-<p>Currently, <code>beta_reduct</code> is not a part of the <a href="../math_flu_components/">mathematical formulation</a>. In the code, <code>beta_reduct</code> is a <code>DynamicVal</code> that decreases <code>beta_baseline</code> when a certain simulation state is triggered. This emulates a very simple staged-alert policy. In <code>flu_components.py</code>, <code>beta_reduct</code> is automatically disabled, so that the simple staged-alert policy is not in effect during default flu model runs. When enabled, <code>beta_reduct</code> has a value of <code>0.5</code> (corresponding to a <span class="arithmatex">\(50\%\)</span> decrease in transmission rates) when more than <span class="arithmatex">\(5\%\)</span> of the population is infected, and it has a value of <code>0.0</code> otherwise. Again, these values are "toy" values for the sake of demonstration.</p>
-</li>
-</ul>
+<p>Here, we provide mappings between the mathematical variables in the <a href="../math_flu_components/">mathematical formulation</a> and input variable names in the <a href="../flu_components_reference/">code</a>. For users to customize the <em>values</em> (not the structure) of the flu model given in <code>flu_components.py</code>, they must abide by certain input specifications.</p>
+<p>Recall that the class <code>FluSubpopModel</code> simulates the flu model given by <a href="../math_flu_components/">this mathematical formulation</a> for a specific subpopulation. Multiple <code>FluSubpopModel</code> instances can be combined as input into a <code>FluMetapopModel</code> instance to simulate multiple subpopulations and travel between these subpopulations. To implement a concrete <code>FluSubpopModel</code> instance requires user-specified inputs, including demographics, epidemiological parameters, and simulation settings.</p>
+<h2 id="flusubpopstate"><code>FluSubpopState</code></h2>
 <p>Note that there is one <code>FluSubpopState</code> for each <code>SubpopModel</code> instance. The following matrices are for a specific subpopulation. But here we remove the superscript <span class="arithmatex">\((\ell)\)</span> for subpopulation <span class="arithmatex">\(\ell\)</span> for readability ease. </p>
 <table>
 <thead>
 <tr>
-<th>Name</th>
+<th>Dataclass Field Name</th>
 <th>Math Variable</th>
 <th>Dimension</th>
 </tr>
@@ -821,62 +782,24 @@
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>population_immunity_inf</code></td>
-<td><span class="arithmatex">\(\boldsymbol{M}^I(0)\)</span></td>
+<td><code>M</code></td>
+<td><span class="arithmatex">\(\boldsymbol{M}(0)\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>population_immunity_hosp</code></td>
-<td><span class="arithmatex">\(\boldsymbol{M}^H(0)\)</span></td>
+<td><code>MV</code></td>
+<td><span class="arithmatex">\(\boldsymbol{MV}(0)\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
-<h2 id="simulation-configuration">Simulation configuration</h2>
-<p>The table below describes the <code>JSON</code> file used to initialize <code>Config</code> instances. These values specify the simulation experiment configuration. </p>
+<h2 id="flusubpopparams"><code>FluSubpopParams</code></h2>
+<p>This dataclass specifies the subpopulation's epidemiological parameters -- it specifies values such as transition rates as well as number of age groups and risk groups. We assume that these values do not change throughout the course of the simulation.  </p>
+<p>The following variables are for a specific subpopulation, although many of these variables will be the same across subpopulations in practice. Here in the table below we remove the superscript <span class="arithmatex">\((\ell)\)</span> for subpopulation <span class="arithmatex">\(\ell\)</span> for readability ease. Variables that are positive floats can be generalized to be age-risk dependent.</p>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Explanation</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>timesteps_per_day</code></td>
-<td>number of discretized timesteps per day -- larger values may increase accuracy of approximation to continuous time but slow down simulation</td>
-<td>positive <code>int</code></td>
-</tr>
-<tr>
-<td><code>transition_type</code></td>
-<td>specifies distribution of stochastic or deterministic population transitions between compartments -- see <a href="../math_flu_components/">mathematical definition of transition types</a> for specific formulas</td>
-<td><code>str</code>, must have value in <code>TransitionTypes</code> to be valid</td>
-</tr>
-<tr>
-<td><code>start_real_date</code></td>
-<td>real-world date corresponding to start of simulation</td>
-<td><code>str</code>, must have format <code>"YYYY-MM-DD"</code></td>
-</tr>
-<tr>
-<td><code>save_daily_history</code></td>
-<td>indicates if daily history is saved on <code>Compartment</code> instances -- may want to strategically turn off to save time during performance runs</td>
-<td><code>bool</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="fixed-parameters">Fixed parameters</h2>
-<p>The table below has a variable name to math variable mapping for the <code>JSON</code> file used to initialize <code>FluSubpopParams</code> instances. We can think of this file as the "Greek letter file" -- it specifies values such as transition rates as well as number of age groups and risk groups. We assume that these values do not change throughout the course of the simulation.  </p>
-<p>Notes</p>
-<ul>
-<li>There is one <code>FluSubpopParams</code> instance for each <code>SubpopModel</code> instance. </li>
-<li>The following variables are for a specific subpopulation, although many of these variables will be the same across subpopulations in practice. The <a href="../math_flu_components/">mathematical formulation</a> for the flu model assumes that only <span class="arithmatex">\(\boldsymbol{N}^{(\ell)}\)</span> and <span class="arithmatex">\(\beta_0^{(\ell)}\)</span> are different across subpopulations, although it is straightforward to generalize the notation and relax this assumption. Here in the table below we remove the superscript <span class="arithmatex">\((\ell)\)</span> for subpopulation <span class="arithmatex">\(\ell\)</span> for readability ease. </li>
-<li>Variables that are positive scalars can be generalized to be age or risk dependent.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Name</th>
+<th>Dataclass Field Name</th>
 <th>Math Variable</th>
 <th>Dimension</th>
 </tr>
@@ -895,102 +818,112 @@
 <tr>
 <td><code>beta_baseline</code></td>
 <td><span class="arithmatex">\(\beta_0\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>total_pop_age_risk</code></td>
 <td><span class="arithmatex">\(\boldsymbol{N}\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times  \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>humidity_impact</code></td>
 <td><span class="arithmatex">\(\xi\)</span></td>
-<td>scalar</td>
+<td><code>float</code></td>
 </tr>
 <tr>
-<td><code>hosp_immune_gain</code></td>
-<td><span class="arithmatex">\(g^H\)</span></td>
-<td>scalar</td>
+<td><code>inf_induced_saturation</code></td>
+<td><span class="arithmatex">\(o\)</span></td>
+<td>nonnegative <code>float</code></td>
 </tr>
 <tr>
-<td><code>inf_immune_gain</code></td>
-<td><span class="arithmatex">\(g^I\)</span></td>
-<td>scalar</td>
+<td><code>vax_induced_saturation</code></td>
+<td><span class="arithmatex">\(o_v\)</span></td>
+<td>nonnegative <code>float</code></td>
 </tr>
 <tr>
-<td><code>immune_saturation</code></td>
-<td><span class="arithmatex">\(\boldsymbol{O}\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>inf_induced_immune_wane</code></td>
+<td><span class="arithmatex">\(w\)</span></td>
+<td>nonnegative <code>float</code></td>
 </tr>
 <tr>
-<td><code>hosp_immune_wane</code></td>
-<td><span class="arithmatex">\(w^H\)</span></td>
-<td>positive scalar</td>
+<td><code>vax_induced_immune_wane</code></td>
+<td><span class="arithmatex">\(w_v\)</span></td>
+<td>nonnegative <code>float</code></td>
 </tr>
 <tr>
-<td><code>inf_immune_wane</code></td>
-<td><span class="arithmatex">\(w^I\)</span></td>
-<td>positive scalar</td>
+<td><code>inf_induced_inf_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^I\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
 </tr>
 <tr>
-<td><code>hosp_risk_reduce</code></td>
-<td><span class="arithmatex">\(\boldsymbol{K}^H\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>inf_induced_hosp_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^H\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
 </tr>
 <tr>
-<td><code>inf_risk_reduce</code></td>
-<td><span class="arithmatex">\(\boldsymbol{K}^I\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>inf_induced_death_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^D\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
 </tr>
 <tr>
-<td><code>death_risk_reduce</code></td>
-<td><span class="arithmatex">\(\boldsymbol{K}^D\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>vax_induced_inf_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^I_v\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
+</tr>
+<tr>
+<td><code>vax_induced_hosp_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^D_v\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
+</tr>
+<tr>
+<td><code>vax_induced_death_risk_reduce</code></td>
+<td><span class="arithmatex">\(k^D_v\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
 </tr>
 <tr>
 <td><code>R_to_S_rate</code></td>
 <td><span class="arithmatex">\(\rateRtoS\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>E_to_I_rate</code></td>
 <td><span class="arithmatex">\(\rateEtoI\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>IP_to_IS_rate</code></td>
 <td><span class="arithmatex">\(\rateIPtoIS\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>IS_to_R_rate</code></td>
 <td><span class="arithmatex">\(\rateIStoR\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>IA_to_R_rate</code></td>
 <td><span class="arithmatex">\(\rateIAtoR\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>IS_to_H_rate</code></td>
 <td><span class="arithmatex">\(\rateIStoH\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>H_to_R_rate</code></td>
 <td><span class="arithmatex">\(\rateHtoR\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>H_to_D_rate</code></td>
 <td><span class="arithmatex">\(\rateHtoD\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>E_to_IA_prop</code></td>
 <td><span class="arithmatex">\(\propIA\)</span></td>
-<td>scalar in <span class="arithmatex">\([0,1]\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 <tr>
 <td><code>H_to_D_adjusted_prop</code></td>
@@ -1005,88 +938,105 @@
 <tr>
 <td><code>IP_relative_inf</code></td>
 <td><span class="arithmatex">\(r_{IP}\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
 <td><code>IA_relative_inf</code></td>
 <td><span class="arithmatex">\(r_{IA}\)</span></td>
-<td>positive scalar</td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
-<td><code>relative_suscept_by_age</code></td>
+<td><code>relative_suscept</code></td>
 <td><span class="arithmatex">\(\psi\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times 1\)</span></td>
 </tr>
 <tr>
-<td><code>prop_time_away_by_age</code></td>
-<td><span class="arithmatex">\(c\)</span></td>
+<td><code>mobility_modifier</code></td>
+<td><span class="arithmatex">\(m\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times 1\)</span></td>
 </tr>
 <tr>
-<td><code>contact_mult_travel</code></td>
-<td><span class="arithmatex">\(h_{\text{travel}}\)</span></td>
-<td>scalar</td>
-</tr>
-<tr>
-<td><code>contact_mult_symp</code></td>
-<td><span class="arithmatex">\(h_{\text{symp}}\)</span></td>
-<td>scalar</td>
-</tr>
-<tr>
 <td><code>total_contact_matrix</code></td>
-<td>see contact matrix below</td>
+<td><span class="arithmatex">\(\phi^{(\ell), \text{total}}\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>school_contact_matrix</code></td>
-<td>see contact matrix below</td>
+<td><span class="arithmatex">\(\phi^{(\ell), \text{work}}\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>work_contact_matrix</code></td>
-<td>see contact matrix below</td>
+<td><span class="arithmatex">\(\phi^{(\ell), \text{school}}\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert A \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
-<h2 id="contact-matrix-and-school-work-calendar-csv">Contact matrix and school-work calendar CSV</h2>
-<p>Let <span class="arithmatex">\(\phi^{(\ell), \text{total}}\)</span>, <span class="arithmatex">\(\phi^{(\ell), \text{work}}\)</span>, and <span class="arithmatex">\(\phi^{(\ell), \text{school}}\)</span> represent the <code>total_contact_matrix</code>, <code>school_contact_matrix</code>, and <code>work_contact_matrix</code> respectively for subpopulation <span class="arithmatex">\(\ell\)</span>.</p>
-<p>The school-work calendar CSV must have 3 columns with names: <code>"date"</code>, <code>"is_school_day"</code>, and <code>"is_work_day"</code>. The <code>"date"</code> column contains strings corresponding to dates, in the format <code>"YYYY-MM-DD"</code>. The other two columns are Booleans indicating if the real-world date is a school day or work day. </p>
-<p>Then the contact matrix for the subpopulation at time <span class="arithmatex">\(t\)</span> is
-$$
-\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - (1 - d_{\text{work}}(t)) \phi^{(\ell), \text{work}} - (1 - d_{\text{school}}(t)) \phi^{(\ell), \text{school}}
-$$
-where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="arithmatex">\(1\)</span> if the real-world date corresponding to simulation time <span class="arithmatex">\(t\)</span> is a work day and <span class="arithmatex">\(0\)</span> otherwise, specified by the school-work calendar input CSV, and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> is defined analogously, but for school days.</p>
-<h2 id="travel-models-travel-proportions-json">Travel model's travel proportions JSON</h2>
-<p>The travel proportions <code>JSON</code> must have the following fields</p>
+<p>See the next section on <code>FluSubpopSchedules</code> for how <span class="arithmatex">\(d_{\text{work}}(t)\)</span> and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> are defined.</p>
+<h2 id="flusubpopschedules"><code>FluSubpopSchedules</code></h2>
 <table>
 <thead>
 <tr>
-<th>Name</th>
+<th>Dataclass Field Name</th>
+<th>Column Name</th>
 <th>Math Variable</th>
 <th>Dimension</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>subpop_names_mapping</code></td>
-<td>N/A</td>
-<td><code>dict</code></td>
+<td><code>absolute_humidity</code></td>
+<td><code>absolute_humidity</code></td>
+<td><span class="arithmatex">\(h(t)\)</span></td>
+<td>positive <code>float</code></td>
 </tr>
 <tr>
-<td><code>travel_proportions_array</code></td>
-<td><span class="arithmatex">\(v^{\ell \rightarrow k}\)</span></td>
+<td><code>flu_contact_matrix</code></td>
+<td><code>is_school_day</code></td>
+<td><span class="arithmatex">\(d_{\text{work}}(t)\)</span></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>flu_contact_matrix</code></td>
+<td><code>is_work_day</code></td>
+<td><span class="arithmatex">\(d_{\text{school}}(t)\)</span></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>daily_vaccines</code></td>
+<td><code>daily_vaccines</code></td>
+<td><span class="arithmatex">\(V^{(\ell)}_{a, r}(t)\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The school-work calendar CSV must have 3 columns with names: <code>"date"</code>, <code>"is_school_day"</code>, and <code>"is_work_day"</code>. The <code>"date"</code> column contains strings corresponding to dates, in the format <code>"YYYY-MM-DD"</code>. The other two columns are Booleans indicating if the real-world date is a school day or work day. </p>
+<h2 id="flumixingparams"><code>FluMixingParams</code></h2>
+<table>
+<thead>
+<tr>
+<th>Dataclass Field Name</th>
+<th>Math Variable</th>
+<th>Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>num_locations</code></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert\)</span></td>
+<td>positive <code>int</code></td>
+</tr>
+<tr>
+<td><code>travel_proportions</code></td>
+<td><span class="arithmatex">\(p^{\ell \rightarrow k}\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>The field <code>subpop_names_mapping</code> must be a dictionary where</p>
-<ul>
-<li>Keys are strings that match the names of each associated <code>FluSubpopModel</code> instance.</li>
-<li>Values are integers in <span class="arithmatex">\(\{0, 1, \dots, \lvert \mathcal L \rvert\}\)</span>.</li>
-</ul>
-<p>This dictionary provides a mapping between the <code>FluSubpopModel</code> instance (its name) and the index it occupies in the <code>travel_proportions_array</code>.</p>
-<p>The field <code>travel_proportions_array</code> must be a list of <span class="arithmatex">\(\lvert \mathcal L \rvert\)</span> lists, each of length <span class="arithmatex">\(\lvert \mathcal L \rvert\)</span>. Recall that <code>JSON</code> does not support <code>numpy</code> arrays natively, but the base model code is able to convert lists to <code>numpy</code> arrays for use. The <span class="arithmatex">\((\ell, k)\)</span>th element of <code>travel_proportions_array</code> corresponds to the proportion of people in subpopulation <span class="arithmatex">\(\ell\)</span> who travel to subpopulation <span class="arithmatex">\(k\)</span>. Again, the mapping between indices and subpopulations is given in <code>subpop_names_mapping</code>.</p>
+<h2 id="simulationsettings"><code>SimulationSettings</code></h2>
+<blockquote>
+<p>Updated 08/15/2025. Written by LP, edited by Susan Ptak.</p>
+</blockquote>
 
 
 
