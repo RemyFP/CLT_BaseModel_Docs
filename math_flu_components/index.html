@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://lp-relaxation.github.io/CLT_BaseModel_Docs/math_flu_components/">
+      
       
         <link rel="prev" href="../python_resources/">
       
@@ -20,7 +22,7 @@
     
     
       
-        <title>MetroFluSim Mathematical Formulation - City-level Transmission Toolbox</title>
+        <title>MetroFluSim Mathematical Formulation - City-level Transmission Toolkit</title>
       
     
     
@@ -80,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="City-level Transmission Toolbox" class="md-header__button md-logo" aria-label="City-level Transmission Toolbox" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-header__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -94,7 +96,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            City-level Transmission Toolbox
+            City-level Transmission Toolkit
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -177,13 +179,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="City-level Transmission Toolbox" class="md-nav__button md-logo" aria-label="City-level Transmission Toolbox" data-md-component="logo">
+    <a href=".." title="City-level Transmission Toolkit" class="md-nav__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    City-level Transmission Toolbox
+    City-level Transmission Toolkit
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -740,7 +742,7 @@
 <span class="arithmatex">\(\def\rateIAtoR{\gamma^{IA\rightarrow R}}\)</span>
 <span class="arithmatex">\(\def\rateHtoR{\gamma^{H\rightarrow R}}\)</span>
 <span class="arithmatex">\(\def\rateIStoR{\gamma^{IS\rightarrow R}}\)</span>
-<span class="arithmatex">\(\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a,r}(t)}\)</span>
+<span class="arithmatex">\(\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a}(t)}\)</span>
 <span class="arithmatex">\(\def\propIA{\pi^{IA}}\)</span>
 <span class="arithmatex">\(\def\propH{\pi^H}\)</span>
 <span class="arithmatex">\(\def\propD{\pi^D}\)</span>
@@ -755,6 +757,7 @@
 <span class="arithmatex">\(\def\locationk{^{(k)}}\)</span>
 <span class="arithmatex">\(\def\locagerisk{\locationell_{a, r}}\)</span>
 <span class="arithmatex">\(\def\locagerisktime{\locagerisk(t)}\)</span>
+<span class="arithmatex">\(\def\agetime{_a(t)}\)</span>
 <span class="arithmatex">\(\def\agerisk{_{a, r}}\)</span>
 <span class="arithmatex">\(\def\agerisktime{_{a, r}(t)}\)</span>
 <span class="arithmatex">\(\def\ageprimeriskprime{_{a^\prime, r^\prime}}\)</span>
@@ -773,9 +776,7 @@
 <span class="arithmatex">\(\def\poik{\text{POI}(k)}\)</span>
 <span class="arithmatex">\(\def\poiell{\text{POI}(\ell)}\)</span>
 </span></p>
-<blockquote>
-<p><strong><em>Written by LP, travel model by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita, overall formulation advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang, updated 08/08/2025 (work in progress)</em></strong></p>
-</blockquote>
+<p>The mathematical framework is inspired by the immunoSEIRS model of the Meyers Lab (see <a href="https://www.researchgate.net/publication/375193467_Scenario_Projections_for_SARS-CoV-2_Influenza_and_RSV_Burden_in_the_US_2023-2024">Bi and Bandekar et al. 2023</a>, <a href="https://repositories.lib.utexas.edu/server/api/core/bitstreams/da7bb152-3343-4135-86e3-040546d6e5b5/content">Bi et al. 2022</a> and <a href="https://repositories.lib.utexas.edu/items/e8d50517-6e78-488b-8c95-8c1138d90c28">Bouchnita et al. 2021</a> for some related recent publications).</p>
 <h2 id="flu-model-diagram">Flu model: diagram</h2>
 <p><img alt="flu_model_diagram" src="../figs/flu_model_diagram.png" /></p>
 <h2 id="flu-model-deterministic-differential-equations">Flu model: deterministic differential equations</h2>
@@ -854,12 +855,14 @@
 <h2 id="flu-model-travel-model">Flu model: travel model</h2>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(k \in \mathcal L \setminus \{\ell\}\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>, we have</p>
 <div class="arithmatex">\[
-\totalforceofinfection = \lambda^{(\ell), \text{local}}\agerisktime + \lambda^{(\ell), \text{visitors}}\agerisktime + \lambda^{(\ell), \text{residents traveling}}\agerisktime. \tag{T1}
+\totalforceofinfection = \lambda^{(\ell), \text{local}}\agetime + \lambda^{(\ell), \text{visitors}}\agetime + \lambda^{(\ell), \text{residents traveling}}\agetime. \tag{T1}
 \]</div>
-<p>This can loosely can be interpreted as the (weighted) proportion of the population that interacts with <span class="arithmatex">\(\ell,a,r\)</span> individuals that are infectious. Specifically, we have</p>
+<p>This can loosely can be interpreted as the (weighted) proportion of the population that interacts with <span class="arithmatex">\(\ell,a\)</span> individuals that are infectious. </p>
+<p>Note that we assume this exposure intensity is the same for a given age group regardless of risk group, so we do not have the <span class="arithmatex">\(r\)</span>-subscript here.</p>
+<p>Specifically, we have</p>
 <div class="arithmatex">\[\begin{align*}
-\lambda^{(\ell), \text{local}}\agerisktime &amp;= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
-\lambda^{(\ell), \text{visitors}}\agerisktime &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agerisktime} \tag{T3} \\[1.5em]
+\lambda^{(\ell), \text{local}}\agetime &amp;= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
+\lambda^{(\ell), \text{visitors}}\agetime &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3} \\[1.5em]
 \lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
 \end{align*}\]</div>
 <p>where</p>
@@ -887,9 +890,9 @@
 <li><span class="arithmatex">\(v^{k \rightarrow \poiell}\)</span>: average number of visits per day per resident of <span class="arithmatex">\(k\)</span> to <span class="arithmatex">\(\poiell\)</span>.</li>
 </ul>
 <p>Note that the decompositions model the following phenomenon:
-- <span class="arithmatex">\(\lambda^{(\ell), \text{local}}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
-- <span class="arithmatex">\(\lambda^{(\ell), \text{visitors from } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span> but travel to location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
-- <span class="arithmatex">\(\lambda^{(\ell), \text{residents traveling to } k}\agerisktime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span>, due to individuals who live in location <span class="arithmatex">\(\ell\)</span> traveling to location <span class="arithmatex">\(k\)</span> (this contact occurs in location <span class="arithmatex">\(k\)</span>).</p>
+- <span class="arithmatex">\(\lambda^{(\ell), \text{local}}\agetime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
+- <span class="arithmatex">\(\lambda^{(\ell), \text{visitors from } k}\agetime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span> but travel to location <span class="arithmatex">\(\ell\)</span> (this contact occurs in location <span class="arithmatex">\(\ell\)</span>).
+- <span class="arithmatex">\(\lambda^{(\ell), \text{residents traveling to } k}\agetime\)</span>: rate at which individuals in location <span class="arithmatex">\(\ell\)</span> get exposed to infected people who live in location <span class="arithmatex">\(k\)</span>, due to individuals who live in location <span class="arithmatex">\(\ell\)</span> traveling to location <span class="arithmatex">\(k\)</span> (this contact occurs in location <span class="arithmatex">\(k\)</span>).</p>
 <h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
 <p>To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
 <p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}\)</span></strong> be the "simulate state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
@@ -1000,6 +1003,9 @@ D\locagerisk(t + \Delta t) &amp;= D_{a, r}\locationell(t) + \underbrace{\tvarloc
 <h2 id="general-model-discretized-stochastic-implementation">General model: discretized stochastic implementation</h2>
 <p>We make the important note that the flu model's discretized stochastic implementation can be generalized to models with different structures. More broadly, we let <span class="arithmatex">\(\boldsymbol{\mathcal C}(t)\)</span> be a model's set of epidemiological compartments, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> its set of aggregate epidemiological metrics, and <span class="arithmatex">\(\boldsymbol{S (t)}\)</span> its set of schedule-dependent (time-dependent) deterministic values. Then the above formulation still holds.</p>
 <p>In fact, in our code, we model <span class="arithmatex">\(\boldsymbol{\mathcal C(t)}\)</span> using an <code>Compartment</code> class, <span class="arithmatex">\(\boldsymbol{\mathcal M}(t)\)</span> using an <code>EpiMetric</code> class, and <span class="arithmatex">\(\boldsymbol{\mathcal S(t)}\)</span> using a <code>Schedule</code> class. We handle stochastic transitions using <code>TransitionVariable</code> and <code>TransitionVariableGroup</code> classes. These classes form some of the building blocks of the base model code. </p>
+<blockquote>
+<p>Updated 08/14/2025. Documentation written by LP, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita.</p>
+</blockquote>
 
 
 
