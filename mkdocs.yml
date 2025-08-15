@@ -21,8 +21,7 @@ nav:
 - Mathematical Formulation:
     - math_flu_components.md
     - math_transitions.md
-- MetroFluSim Code Documentation:
-    - flu_model_code_overview.md
+- MetroFluSim Tutorials:
     - flu_model_demo.md
     - flu_input_requirements.md
     - flu_components_walkthrough.md

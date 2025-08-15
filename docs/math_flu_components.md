@@ -46,19 +46,22 @@ $\def\poiell{\text{POI}(\ell)}$
 
 The mathematical framework is inspired by the immunoSEIRS model of the Meyers Lab (see [Bi and Bandekar et al. 2023](https://www.researchgate.net/publication/375193467_Scenario_Projections_for_SARS-CoV-2_Influenza_and_RSV_Burden_in_the_US_2023-2024), [Bi et al. 2022](https://repositories.lib.utexas.edu/server/api/core/bitstreams/da7bb152-3343-4135-86e3-040546d6e5b5/content) and [Bouchnita et al. 2021](https://repositories.lib.utexas.edu/items/e8d50517-6e78-488b-8c95-8c1138d90c28) for some related recent publications).
 
+Please note that the MetroFluSim model requires extensive notation -- please review the entirety of each section for provided definitions.
+
 ## Flu model: diagram
 
 ![flu_model_diagram](figs/flu_model_diagram.png)
 
 ## Flu model: deterministic differential equations
+
+We start off with common indices and arguments:
 - $t \in \mathbb N$: current simulation day
 - $\ell$: location, i.e. subpopulation, $\mathcal L$: set of all locations/subpopulations
 - $a$: age group, $\agegroups$: set of all age groups
 - $r$: risk group, $\riskgroups$: set of all risk groups
 - $i$: type of immunity-inducing event, $\mathcal{I} := \left\{\text{infection}, \text{vaccine}\right\}$: the set of all types of immunity-inducing events: infection and vaccination, respectively.
-- $\boldsymbol{O}$: $\numagegroups \times \numriskgroups \times \lvert \mathcal{I} \rvert$ matrix, where the $(a, r, i)$th element is the positive constant modeling the saturation of antibody production in individuals in age group $a$ and risk group $r$ who had immunity-inducing event $i$.
 
-**Population-level immunity**
+### Population-level immunity 
 
 For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$:
 
@@ -71,11 +74,12 @@ where
 
 - $\rateRtoS$: rate at which recovered individuals become susceptible, so that $1/\rateRtoS$ is the average number of days a person is totally immune from reinfection until being susceptible again.
 - $V\locationell\agerisktime$: number of vaccine doses administered at time $t$ to individuals residing in location $\ell \in \mathcal L$ in age-risk group $a$, $r$.
+- $o$, $o_v$: positive constants modeling the saturation of antibody production in individuals who have infection-induced immunity and vaccination-induced immunity, respectively.
 - $\delta$: number of days after dose for vaccine to become effective.
 - $w$: rate at which infection-induced immunity wanes.
 - $w_V$: rate at which vaccine-induced immunity wanes.
 
-**Compartment equations**
+### Compartment equations
 
 Note that the following are all $\numagegroups \times \numriskgroups \times \lvert \mathcal I \rvert$ matrices:
 
@@ -118,7 +122,7 @@ where
 - The $\lambda$-terms are location/subpopulation mixing terms that we define in the next section on the travel model. 
 - $\boldsymbol{N}\locationell$: $\numagegroups \times \numriskgroups$ matrix corresponding to total population in location $\ell \in \mathcal L$, where element $N\locagerisk$ is the total population of age group $a$ and risk group $\ell$ in location $\ell$.
 - $\beta\locationell(t) = \beta\locationell_0 (1 + q(t))$: time-dependent transmission rate per day for individuals residing in location $\ell \in \mathcal L$. 
-- $q(t)$: seasonality parameter based on absolute humidity, where $q(t)$ is a function of historical absolute humidity data times $\xi$, a humidity impact factor.
+- $q(t) = \xi \cdot \exp^{-180 * h(t)}$: humidity adjustment, where $\xi$ is the humidity impact factor and $h(t)$ is absolute humidity. This formula is taken from [this paper](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000316#s4).
 - $\propIA$: proportion exposed who are completely asymptomatic when infectious.
 - $r_{IP}$, $r_{IA}$: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. 
 - $\rateIStoR, \rateHtoR, \rateIAtoR$: recovery rates for infected symptomatic ($IS$),  hospital ($H$), and infected asymptomatic ($IA$) compartments respectively, so that $1/\gamma$ is the average number of days it takes for an infected person not in the hospital to recover, and $1/\rateHtoR$ is analogous, but for an infected person in the hospital. 
@@ -133,13 +137,21 @@ where
 
 ## Flu model: travel model
 
-For each $\ell \in \mathcal L$, $k \in \mathcal L \setminus \{\ell\}$, $a \in \agegroups$, $r \in \riskgroups$, we have
+### Exposure intensity
+
+For each $\ell \in \mathcal L$, $k \in \mathcal L \setminus \{\ell\}$, $a \in \agegroups$, we have
 
 \[
 \totalforceofinfection = \lambda^{(\ell), \text{local}}\agetime + \lambda^{(\ell), \text{visitors}}\agetime + \lambda^{(\ell), \text{residents traveling}}\agetime. \tag{T1}
 \]
 
-This can loosely can be interpreted as the (weighted) proportion of the population that interacts with $\ell,a$ individuals that are infectious. 
+This can loosely can be interpreted as exposure intensity: the (weighted) proportion of the population that interacts with $\ell,a$ individuals that are infectious. 
+
+The decompositions model the following phenomenon:
+
+- $\lambda^{(\ell), \text{local}}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $\ell$ (this contact occurs in location $\ell$).
+- $\lambda^{(\ell), \text{visitors from } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (this contact occurs in location $\ell$).
+- $\lambda^{(\ell), \text{residents traveling to } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (this contact occurs in location $k$).
 
 Note that we assume this exposure intensity is the same for a given age group regardless of risk group, so we do not have the $r$-subscript here.
 
@@ -163,9 +175,26 @@ and where
 \effectiveNlocagerisktime &= \Nlocagerisk + m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - H\locationell_{a,r}(t)) \tag{T6}
 \end{align*}
 
-is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$, and where
+is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$.
+
+### Contact matrix
+
+The contact matrix is defined as
 
 - $\phi_{a, a^\prime}\locationell(t)$: the number of contacts that individuals in age group $a \in \agegroups$ residing in location $\ell \in \mathcal L$ have with other individuals (regardless of location) in age group $a^\prime \in \agegroups$ on day $t$.
+
+Let $\phi^{(\ell), \text{total}}$, $\phi^{(\ell), \text{work}}$, and $\phi^{(\ell), \text{school}}$ represent the total contact matrix, school contact matrix, and work contact matrix, respectively for subpopulation $\ell$.
+
+Then the contact matrix for the subpopulation at time $t$ is
+$$
+\phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - (1 - d_{\text{work}}(t)) \phi^{(\ell), \text{work}} - (1 - d_{\text{school}}(t)) \phi^{(\ell), \text{school}}
+$$
+where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simulation time $t$ is a work day and $0$ otherwise, and $d_{\text{school}}(t)$ is defined analogously, but for school days.
+
+### Other travel parameters
+
+We have
+
 - $\psi_a \in [0, 1]$: relative susceptibility of individuals in age group $a \in \agegroups$.
 - $m_a(t)$: a positive scalar modifying travel intensity depending on age $a$ and day $t$.
 - $\propdaytravelktoell$: (on average) proportion of the day that a resident of $k$ spends traveling to location $\ell \in \mathcal L$.
@@ -180,11 +209,6 @@ where
 
 - $c^{\poiell}$: average proportion of a day spent at $\poiell$.
 - $v^{k \rightarrow \poiell}$: average number of visits per day per resident of $k$ to $\poiell$.
-
-Note that the decompositions model the following phenomenon:
-- $\lambda^{(\ell), \text{local}}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $\ell$ (this contact occurs in location $\ell$).
-- $\lambda^{(\ell), \text{visitors from } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (this contact occurs in location $\ell$).
-- $\lambda^{(\ell), \text{residents traveling to } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (this contact occurs in location $k$).
 
 ## Flu model: discretized stochastic implementation
 
@@ -256,4 +280,4 @@ We make the important note that the flu model's discretized stochastic implement
 
 In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `Compartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. We handle stochastic transitions using `TransitionVariable` and `TransitionVariableGroup` classes. These classes form some of the building blocks of the base model code. 
 
-> Updated 08/14/2025. Documentation written by LP, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita.
+> Updated 08/15/2025. Documentation written by LP, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita.
