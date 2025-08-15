@@ -9,7 +9,7 @@ $\def\rateHtoD{\sigma^{H\rightarrow D}}$
 $\def\rateIAtoR{\gamma^{IA\rightarrow R}}$
 $\def\rateHtoR{\gamma^{H\rightarrow R}}$
 $\def\rateIStoR{\gamma^{IS\rightarrow R}}$
-$\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a,r}(t)}$
+$\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a}(t)}$
 $\def\propIA{\pi^{IA}}$
 $\def\propH{\pi^H}$
 $\def\propD{\pi^D}$
@@ -24,6 +24,7 @@ $\def\locationell{^{(\ell)}}$
 $\def\locationk{^{(k)}}$
 $\def\locagerisk{\locationell_{a, r}}$
 $\def\locagerisktime{\locagerisk(t)}$
+$\def\agetime{_a(t)}$
 $\def\agerisk{_{a, r}}$
 $\def\agerisktime{_{a, r}(t)}$
 $\def\ageprimeriskprime{_{a^\prime, r^\prime}}$
@@ -43,7 +44,7 @@ $\def\poik{\text{POI}(k)}$
 $\def\poiell{\text{POI}(\ell)}$
 </span>
 
-> **_Written by LP, travel model by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita, overall formulation advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang, updated 08/08/2025 (work in progress)_**
+The mathematical framework is inspired by the immunoSEIRS model of the Meyers Lab (see [Bi and Bandekar et al. 2023](https://www.researchgate.net/publication/375193467_Scenario_Projections_for_SARS-CoV-2_Influenza_and_RSV_Burden_in_the_US_2023-2024), [Bi et al. 2022](https://repositories.lib.utexas.edu/server/api/core/bitstreams/da7bb152-3343-4135-86e3-040546d6e5b5/content) and [Bouchnita et al. 2021](https://repositories.lib.utexas.edu/items/e8d50517-6e78-488b-8c95-8c1138d90c28) for some related recent publications).
 
 ## Flu model: diagram
 
@@ -135,14 +136,18 @@ where
 For each $\ell \in \mathcal L$, $k \in \mathcal L \setminus \{\ell\}$, $a \in \agegroups$, $r \in \riskgroups$, we have
 
 \[
-\totalforceofinfection = \lambda^{(\ell), \text{local}}\agerisktime + \lambda^{(\ell), \text{visitors}}\agerisktime + \lambda^{(\ell), \text{residents traveling}}\agerisktime. \tag{T1}
+\totalforceofinfection = \lambda^{(\ell), \text{local}}\agetime + \lambda^{(\ell), \text{visitors}}\agetime + \lambda^{(\ell), \text{residents traveling}}\agetime. \tag{T1}
 \]
 
-This can loosely can be interpreted as the (weighted) proportion of the population that interacts with $\ell,a,r$ individuals that are infectious. Specifically, we have
+This can loosely can be interpreted as the (weighted) proportion of the population that interacts with $\ell,a$ individuals that are infectious. 
+
+Note that we assume this exposure intensity is the same for a given age group regardless of risk group, so we do not have the $r$-subscript here.
+
+Specifically, we have
 
 \begin{align*}
-\lambda^{(\ell), \text{local}}\agerisktime &= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
-\lambda^{(\ell), \text{visitors}}\agerisktime &= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agerisktime} \tag{T3} \\[1.5em]
+\lambda^{(\ell), \text{local}}\agetime &= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
+\lambda^{(\ell), \text{visitors}}\agetime &= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3} \\[1.5em]
 \lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
 \end{align*}
 
@@ -177,9 +182,9 @@ where
 - $v^{k \rightarrow \poiell}$: average number of visits per day per resident of $k$ to $\poiell$.
 
 Note that the decompositions model the following phenomenon:
-- $\lambda^{(\ell), \text{local}}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $\ell$ (this contact occurs in location $\ell$).
-- $\lambda^{(\ell), \text{visitors from } k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (this contact occurs in location $\ell$).
-- $\lambda^{(\ell), \text{residents traveling to } k}\agerisktime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (this contact occurs in location $k$).
+- $\lambda^{(\ell), \text{local}}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $\ell$ (this contact occurs in location $\ell$).
+- $\lambda^{(\ell), \text{visitors from } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$ but travel to location $\ell$ (this contact occurs in location $\ell$).
+- $\lambda^{(\ell), \text{residents traveling to } k}\agetime$: rate at which individuals in location $\ell$ get exposed to infected people who live in location $k$, due to individuals who live in location $\ell$ traveling to location $k$ (this contact occurs in location $k$).
 
 ## Flu model: discretized stochastic implementation
 
@@ -250,3 +255,5 @@ See [this page](math_transitions.md) for mathematical formulations of marginal a
 We make the important note that the flu model's discretized stochastic implementation can be generalized to models with different structures. More broadly, we let $\boldsymbol{\mathcal C}(t)$ be a model's set of epidemiological compartments, $\boldsymbol{\mathcal M}(t)$ its set of aggregate epidemiological metrics, and $\boldsymbol{S (t)}$ its set of schedule-dependent (time-dependent) deterministic values. Then the above formulation still holds.
 
 In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `Compartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. We handle stochastic transitions using `TransitionVariable` and `TransitionVariableGroup` classes. These classes form some of the building blocks of the base model code. 
+
+> Updated 08/14/2025. Documentation written by LP, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita.
