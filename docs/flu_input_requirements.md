@@ -61,7 +61,7 @@ The following variables are for a specific subpopulation, although many of these
 | `inf_induced_hosp_risk_reduce`  | $k^H$           | `float` in $[0,1)$ |
 | `inf_induced_death_risk_reduce`  | $k^D$           | `float` in $[0,1)$ |
 | `vax_induced_inf_risk_reduce`  | $k^I_v$           | `float` in $[0,1)$ |
-| `vax_induced_hosp_risk_reduce`  | $k^D_v$           | `float` in $[0,1)$ |
+| `vax_induced_hosp_risk_reduce`  | $k^H_v$           | `float` in $[0,1)$ |
 | `vax_induced_death_risk_reduce`  | $k^D_v$           | `float` in $[0,1)$ |
 | `R_to_S_rate`                   | $\rateRtoS$                     | positive `float`                          |
 | `E_to_I_rate`                   | $\rateEtoI$                   | positive `float`                          |
@@ -92,9 +92,6 @@ See the next section on `FluSubpopSchedules` for how $d_{\text{work}}(t)$ and $d
 | `flu_contact_matrix` | `is_school_day` | $d_{\text{work}}(t)$ | `bool` |
 | `flu_contact_matrix` | `is_work_day` | $d_{\text{school}}(t)$ | `bool` |
 | `daily_vaccines` | `daily_vaccines` | $V^{(\ell)}_{a, r}(t)$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-
-The school-work calendar CSV must have 3 columns with names: `"date"`, `"is_school_day"`, and `"is_work_day"`. The `"date"` column contains strings corresponding to dates, in the format `"YYYY-MM-DD"`. The other two columns are Booleans indicating if the real-world date is a school day or work day. 
-
 
 ## `FluMixingParams`
 

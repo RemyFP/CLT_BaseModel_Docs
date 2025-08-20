@@ -34,8 +34,9 @@ flowchart TD
 |---------------|--------------|--------------------------------|
 | `clt_toolkit/`  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | `base_components`    | Base classes for fundamental simulation objects, such as subpopulation models, metapopulation models, compartments, and transition variables that manage flow between compartments.  |
 |               | `base_data_structures` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | Base dataclasses for storing compartment population values, epidemiological parameters, and simulation settings. |
-|               | `experiments`    | Tools for running many simulation replications of a model and managing the output. Can handle random sampling of parameters and |
+|               | `experiments`    | Tools for running many simulation replications of a model and managing the output. Can handle random sampling of parameters. |
 |               | `input_parsers`    | Helper functions for streamlining input reading and validation. 
+| | `plotting`    | Plotting functions. |
 |               | `utils`    | Utility functions for convenience. |
 
 ### Flu Core Structure

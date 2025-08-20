@@ -214,9 +214,9 @@ where
 
 To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.
 
-Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}$** be the "simulate state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
+Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{IA}(t), \boldsymbol{IP}(t), \boldsymbol{IS}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}(t), \boldsymbol{MV}(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}$** be the "simulation state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
 
-Let **$\boldsymbol{\Theta} = \left\{\boldsymbol{O}, \boldsymbol{N}, \boldsymbol{g}^I, \boldsymbol{w}^I, \boldsymbol{g}^H, \boldsymbol{w^H}, \beta_0, \gamma, \rateHtoR, \rateEtoI, \boldsymbol{\propH}, \rateIStoH, \boldsymbol{\propD}, \rateHtoD, \rateRtoS \right\}$** be the set of fixed parameters. We define notation $\boldsymbol{g}^I = [g^I, g^I_{H3}, g^I_V]$,  $\boldsymbol{w}^I = [w^I, w^I_{H3}, w^I_V]$, $\boldsymbol{g}^H = [g^H, g^H_{H3}, g^H_V]$, and $\boldsymbol{w}^H = [w^H, w^H_{H3}, w^H_V]$. 
+Let **$\boldsymbol{\Theta}$** be the set of fixed parameters. 
 
 Then given initial state $\boldsymbol{\mathcal X}_0 = \boldsymbol{\mathcal X}(0)$, we can formulate our discretized stochastic implementation as
 
@@ -237,16 +237,16 @@ Below we formulate the discretized stochastic transitions. Note that the populat
 For each $\ell \in \mathcal L$, $a \in \agegroups$, and $r \in \riskgroups$:
 
 \begin{align}
-M_{a, r}\locationell(t + \Delta t) &= M_{a, r, H1}^{(\ell), I}(t) + \frac{dM\agerisktime\locationell}{dt} \cdot \Delta t \\
-MV_{a,r}\locationell(t + \Delta t) &= M_{a,r,V}^{(\ell), I}(t) + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
+M_{a, r}\locationell(t + \Delta t) &= M\locationell\agerisktime + \frac{dM\locationell\agerisktime}{dt} \cdot \Delta t \\
+MV_{a,r}\locationell(t + \Delta t) &= MV\agerisktime\locationell + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
 S\locagerisk(t + \Delta t) &= S_{a, r}\locationell(t) + \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} - \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} \\
 E\locagerisk(t + \Delta t) &= E_{a, r}\locationell(t) + \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} - \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} \\
 IP\locagerisk(t + \Delta t) &= IP\locagerisktime + \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\tvarloc_{IP \rightarrow IS, a, r}(\Xi_t)}_{\text{$IP$ to $IS$}} \\
 IA_{a, r}\locationell(t + \Delta t) &= IA_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} - \underbrace{\tvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} \\
-IS\locagerisk(t + \Delta t) &= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
+IS\locagerisk(t + \Delta t) &= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IS$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
 H\locagerisk(t + \Delta t) &= H_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} - \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}} \\
-R\locagerisk(t + \Delta t) &= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
-D\locagerisk(t + \Delta t) &= D_{a, r}\locationell(t) + \underbrace{\tvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
+R\locagerisk(t + \Delta t) &= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
+D\locagerisk(t + \Delta t) &= D_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
 \end{align}
 
 
@@ -264,10 +264,10 @@ Each transition variable depends on a "base count" and a "rate" (which both depe
 | $E$ to $IA$           | $\jointtvarloc_{E \rightarrow IA, a, r}(\simstate)$                      | $E_{a, r}\locationell(t)$    | $\rateEtoI \propIA$                                                                                                                                                                                     |
 | $IP$ to $IS$          | $\tvarloc_{IP \rightarrow IS, a, r}(\simstate)$                       | $IP_{a, r}\locationell(t)$   | $\rateIPtoIS$                                                                                                                                                                                           |
 | $IS$ to $R$           | $\jointtvarloc_{IS \rightarrow R, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\left(1-\frac{\adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}\right)\gamma^{IS\rightarrow R}$                                                                                                                                                                    |
-| $IS$ to $H$           | $\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\frac{\rateIStoH \adjustedpropH_{a,r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                            |
-| $IA$ to $R$           | $\tvarloc_{IA \rightarrow R, a, r}(\simstate)$                        | $IA_{a, r}\locationell(t)$   | $\rateIAtoR IA\locagerisktime$                                                                                                                                                              |
+| $IS$ to $H$           | $\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\frac{\rateIStoH \adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}$                                                                                                            |
+| $IA$ to $R$           | $\tvarloc_{IA \rightarrow R, a, r}(\simstate)$                        | $IA_{a, r}\locationell(t)$   | $\rateIAtoR$                                                                                                                                                              |
 | $H$ to $R$            | $\jointtvarloc_{H \rightarrow R, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\left(1-\frac{\adjustedpropD_{a,r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR$                                                                                                                                                                 |
-| $H$ to $D$            | $\jointtvarloc_{H \rightarrow D, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\frac{\rateHtoD \adjustedpropD_{a,r} H\locagerisktime}{1 + \LambdaHlocagerisktime}$                                                                                                              |
+| $H$ to $D$            | $\jointtvarloc_{H \rightarrow D, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\frac{\rateHtoD \adjustedpropD_{a,r}}{1 + \LambdaHlocagerisktime}$                                                                                                              |
 
 
 The base count and rate of a transition variable parameterize the distribution that defines its realization. 
