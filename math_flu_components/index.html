@@ -946,8 +946,8 @@ where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="ari
 </ul>
 <h2 id="flu-model-discretized-stochastic-implementation">Flu model: discretized stochastic implementation</h2>
 <p>To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.</p>
-<p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{I}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}^I(t), \boldsymbol{M}^H(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}\)</span></strong> be the "simulate state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
-<p>Let <strong><span class="arithmatex">\(\boldsymbol{\Theta} = \left\{\boldsymbol{O}, \boldsymbol{N}, \boldsymbol{g}^I, \boldsymbol{w}^I, \boldsymbol{g}^H, \boldsymbol{w^H}, \beta_0, \gamma, \rateHtoR, \rateEtoI, \boldsymbol{\propH}, \rateIStoH, \boldsymbol{\propD}, \rateHtoD, \rateRtoS \right\}\)</span></strong> be the set of fixed parameters. We define notation <span class="arithmatex">\(\boldsymbol{g}^I = [g^I, g^I_{H3}, g^I_V]\)</span>,  <span class="arithmatex">\(\boldsymbol{w}^I = [w^I, w^I_{H3}, w^I_V]\)</span>, <span class="arithmatex">\(\boldsymbol{g}^H = [g^H, g^H_{H3}, g^H_V]\)</span>, and <span class="arithmatex">\(\boldsymbol{w}^H = [w^H, w^H_{H3}, w^H_V]\)</span>. </p>
+<p>Let <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{IA}(t), \boldsymbol{IP}(t), \boldsymbol{IS}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}(t), \boldsymbol{MV}(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}\)</span></strong> be the "simulation state" at time <span class="arithmatex">\(t\)</span>. <strong><span class="arithmatex">\(\boldsymbol{\mathcal X}(t)\)</span></strong> is a set of matrices. </p>
+<p>Let <strong><span class="arithmatex">\(\boldsymbol{\Theta}\)</span></strong> be the set of fixed parameters. </p>
 <p>Then given initial state <span class="arithmatex">\(\boldsymbol{\mathcal X}_0 = \boldsymbol{\mathcal X}(0)\)</span>, we can formulate our discretized stochastic implementation as</p>
 <div class="arithmatex">\[
 \boldsymbol{\mathcal X}(t + \Delta t) = \boldsymbol{\mathcal X}(t) + f\left(\boldsymbol{\mathcal X}(t), \Delta t, \omega; \boldsymbol{\Theta}\right) \quad \text{for} \quad t \ge 0,
@@ -961,16 +961,16 @@ where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="ari
 </blockquote>
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, and <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align}
-M_{a, r}\locationell(t + \Delta t) &amp;= M_{a, r, H1}^{(\ell), I}(t) + \frac{dM\agerisktime\locationell}{dt} \cdot \Delta t \\
-MV_{a,r}\locationell(t + \Delta t) &amp;= M_{a,r,V}^{(\ell), I}(t) + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
+M_{a, r}\locationell(t + \Delta t) &amp;= M\locationell\agerisktime + \frac{dM\locationell\agerisktime}{dt} \cdot \Delta t \\
+MV_{a,r}\locationell(t + \Delta t) &amp;= MV\agerisktime\locationell + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
 S\locagerisk(t + \Delta t) &amp;= S_{a, r}\locationell(t) + \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} - \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} \\
 E\locagerisk(t + \Delta t) &amp;= E_{a, r}\locationell(t) + \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} - \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} \\
 IP\locagerisk(t + \Delta t) &amp;= IP\locagerisktime + \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\tvarloc_{IP \rightarrow IS, a, r}(\Xi_t)}_{\text{$IP$ to $IS$}} \\
 IA_{a, r}\locationell(t + \Delta t) &amp;= IA_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} - \underbrace{\tvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} \\
-IS\locagerisk(t + \Delta t) &amp;= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
+IS\locagerisk(t + \Delta t) &amp;= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IS$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
 H\locagerisk(t + \Delta t) &amp;= H_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} - \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}} \\
-R\locagerisk(t + \Delta t) &amp;= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
-D\locagerisk(t + \Delta t) &amp;= D_{a, r}\locationell(t) + \underbrace{\tvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
+R\locagerisk(t + \Delta t) &amp;= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
+D\locagerisk(t + \Delta t) &amp;= D_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
 \end{align}\]</div>
 <blockquote>
 <p><strong>IMPORTANT NOTE: the "<span class="arithmatex">\(*\)</span>" superscript indicates that the transition variable has a joint distribution with another transition variable. In general, if a compartment has more than one outgoing transition variable, these transition variables must be modeled jointly.</strong> </p>
@@ -1027,13 +1027,13 @@ D\locagerisk(t + \Delta t) &amp;= D_{a, r}\locationell(t) + \underbrace{\tvarloc
 <td><span class="arithmatex">\(IS\)</span> to <span class="arithmatex">\(H\)</span></td>
 <td><span class="arithmatex">\(\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)\)</span></td>
 <td><span class="arithmatex">\(IS_{a, r}\locationell(t)\)</span></td>
-<td><span class="arithmatex">\(\frac{\rateIStoH \adjustedpropH_{a,r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}\)</span></td>
+<td><span class="arithmatex">\(\frac{\rateIStoH \adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}\)</span></td>
 </tr>
 <tr>
 <td><span class="arithmatex">\(IA\)</span> to <span class="arithmatex">\(R\)</span></td>
 <td><span class="arithmatex">\(\tvarloc_{IA \rightarrow R, a, r}(\simstate)\)</span></td>
 <td><span class="arithmatex">\(IA_{a, r}\locationell(t)\)</span></td>
-<td><span class="arithmatex">\(\rateIAtoR IA\locagerisktime\)</span></td>
+<td><span class="arithmatex">\(\rateIAtoR\)</span></td>
 </tr>
 <tr>
 <td><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(R\)</span></td>
@@ -1045,7 +1045,7 @@ D\locagerisk(t + \Delta t) &amp;= D_{a, r}\locationell(t) + \underbrace{\tvarloc
 <td><span class="arithmatex">\(H\)</span> to <span class="arithmatex">\(D\)</span></td>
 <td><span class="arithmatex">\(\jointtvarloc_{H \rightarrow D, a, r}(\simstate)\)</span></td>
 <td><span class="arithmatex">\(H_{a, r}\locationell(t)\)</span></td>
-<td><span class="arithmatex">\(\frac{\rateHtoD \adjustedpropD_{a,r} H\locagerisktime}{1 + \LambdaHlocagerisktime}\)</span></td>
+<td><span class="arithmatex">\(\frac{\rateHtoD \adjustedpropD_{a,r}}{1 + \LambdaHlocagerisktime}\)</span></td>
 </tr>
 </tbody>
 </table>
