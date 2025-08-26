@@ -658,7 +658,7 @@
         
   
   <span class="md-ellipsis">
-    CLT Base Package Code API Reference
+    CLT Toolkit API Reference
   </span>
   
 
@@ -679,7 +679,7 @@
         
   
   <span class="md-ellipsis">
-    Flu Components Code API Reference
+    Flu Core API Reference
   </span>
   
 
@@ -713,9 +713,9 @@
 
 <h1 id="python-resources-for-modelers">Python Resources for Modelers</h1>
 <blockquote>
-<p><strong><em>Written by LP, updated 02/19/2025 (work in progress)</em></strong> </p>
+<p><strong><em>Written by LP, updated 08/25/2025 (work in progress)</em></strong> </p>
 </blockquote>
-<p>Here we provide a list of fundamental concepts to know to responsibly create, collaborate on, and interact with responsible and reproducible Python code. We have outlined this somewhat like a syllabus for self-directed learning, with links to resources to get started. The reader should make sure they understand all key concepts in the checklist, and read more otherwise. </p>
+<p>Here we provide a list of fundamental concepts for epidemiologists to know to responsibly create, collaborate on, and interact with responsible and reproducible Python code. We have outlined this somewhat like a syllabus for self-directed learning, with links to resources to get started. The reader should make sure they understand all key concepts in the checklist, and read more otherwise. </p>
 <p>Note: we particularly like <a href="https://realpython.com">Real Python</a>, which has many free and thorough tutorials on various Python subjects!</p>
 <h2 id="coding-correctly">Coding correctly</h2>
 <p>Clean code matters for academic research with high standards.</p>
@@ -761,7 +761,7 @@ And <a href="https://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.htm
 <li>Interactive Developer Environments (IDEs) are ideal for working with Python modules. We recommend Pycharm -- the community edition <a href="https://www.jetbrains.com/pycharm/">here</a> is free to download.</li>
 <li>Python can be run in many different ways -- users should understand the difference between running a script in an IDE Console and from the command line -- here's a <a href="https://realpython.com/run-python-scripts/">guide</a>.</li>
 <li>We recommend <a href="https://pypi.org/project/pip/">pip</a> or <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> for Python package management. There can sometimes be some issues with <a href="https://discuss.python.org/t/pip-conda-compatibility/24375">mixing pip and conda</a>, so it may be helpful to consistently only use one or the other. </li>
-<li>Users should be comfortable reading API documentation such as the <a href="base_components_reference.md">CLT Base Model Code's  references</a> or <a href="https://numpy.org/doc/2.2/">numpy's references</a> -- there is no need to try to memorize syntax -- and similarly there should not be an over-reliance on tutorials. Users should be comfortable parsing the technical details of classes and methods, customizing default arguments, and playtesting parts of the package for themselves. </li>
+<li>Users should be comfortable reading API documentation such as the <a href="base_components_reference.md">CLT Base Model Code's references</a> or <a href="https://numpy.org/doc/2.2/">numpy's references</a> -- there is no need to try to memorize syntax. Users should be comfortable parsing the technical details of classes and methods, customizing default arguments, and playtesting parts of the package for themselves. </li>
 </ul>
 <p>More reading</p>
 <ul>
@@ -771,7 +771,7 @@ And <a href="https://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.htm
 <p>Key concepts</p>
 <ul>
 <li>
-<p>[HIGH PRIORITY] The CLT Base Model Code is hosted on github -- users should be familiar with git. We strongly recommend this nice guide on github collaboration <a href="https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67">here</a>.</p>
+<p>Users should be familiar with git. We strongly recommend this nice guide on github collaboration <a href="https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67">here</a>.</p>
 <ul>
 <li>Specifically, users should know the following concepts in git: cloning a repo, local and remote repos, committing and pushing, pull requests, pulling, merging.</li>
 </ul>
@@ -793,15 +793,14 @@ And <a href="https://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.htm
 <h2 id="other-important-points">Other important points...</h2>
 <p>Key concepts</p>
 <ul>
-<li>[HIGH PRIORITY] The CLT Base Model code uses object-oriented programming (OOP), which may be new to some modelers. The coding structure is similar to <a href="https://github.com/starsimhub/starsim">StarSim</a> and <a href="https://github.com/TACC/pandemicexercisesimulator">TACC's Pandemic Simulator</a> -- it is a tried and tested strategy. We strongly recommend <a href="https://realpython.com/inheritance-composition-python/#mixing-features-with-mixin-classes">this tutorial</a> for those new to OOP.<ul>
+<li>The CLT Base Model code uses object-oriented programming (OOP), which may be new to some modelers. The coding structure is similar to <a href="https://github.com/starsimhub/starsim">StarSim</a> and <a href="https://github.com/TACC/pandemicexercisesimulator">TACC's Pandemic Simulator</a> -- it is a tried and tested strategy. We strongly recommend <a href="https://realpython.com/inheritance-composition-python/#mixing-features-with-mixin-classes">this tutorial</a> for those new to OOP.<ul>
 <li>Specifically, users should know the following concepts: inheritance, attributes, abstract base classes, abstract methods.</li>
 </ul>
 </li>
-<li>[HIGH PRIORITY] We need to be <strong><em>responsible</em></strong> with random number generation. <strong><em>Please, stop using</em></strong> <code>np.random.seed</code>! Use generators instead! Here is a <a href="https://blog.scientific-python.org/numpy/numpy-rng/">superb article</a> outlining some dangers with misusing <code>numpy</code> random number generation, with links to the relevant numpy documentation. </li>
-<li>For-loops are horrible for efficiency and vectorized operations are better. Often, mathematical computations should be written in matrix multiplication form instead of for-loops. <a href="https://www.pythonlikeyoumeanit.com/module_3.html">Here</a> is a tutorial on the essentials of <code>numpy</code> and vectorized operations on <code>numpy</code> arrays.</li>
+<li>We need to be <strong><em>responsible</em></strong> with random number generation. <strong><em>Please, stop using</em></strong> <code>np.random.seed</code>! Use generators instead! Here is a <a href="https://blog.scientific-python.org/numpy/numpy-rng/">superb article</a> outlining some dangers with misusing <code>numpy</code> random number generation, with links to the relevant numpy documentation. </li>
+<li>For-loops are horrible for efficiency and vectorized operations are better. Often, when possible, mathematical computations should be written in matrix multiplication form instead of for-loops. <a href="https://www.pythonlikeyoumeanit.com/module_3.html">Here</a> is a tutorial on the essentials of <code>numpy</code> and vectorized operations on <code>numpy</code> arrays.</li>
 <li>The <code>dataclasses</code> module makes storing data very easy -- here's a <a href="https://www.dataquest.io/blog/how-to-use-python-data-classes/">quick tutorial</a>.</li>
 <li>Users should understand interfaces and duck typing in Python -- here's a <a href="https://www.tutorialspoint.com/python/python_interfaces.htm">short overview</a>.</li>
-<li>Parallel processing and cluster job submission (elaboration and resources coming soon...)</li>
 </ul>
 
 
