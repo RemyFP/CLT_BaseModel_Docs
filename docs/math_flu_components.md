@@ -158,9 +158,9 @@ Note that we assume this exposure intensity is the same for a given age group re
 Specifically, we have
 
 \begin{align*}
-\lambda^{(\ell), \text{local}}\agetime &= \psi_a \left(1 - m_a(t) \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
+\lambda^{(\ell), \text{local}}\agetime &= \psi_a \left(1 - m_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2} \\[1.5em]
 \lambda^{(\ell), \text{visitors}}\agetime &= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3} \\[1.5em]
-\lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a(t) \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
+\lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &= \sum_{k \in \mathcal L \setminus \{\ell\}}  \underbrace{\left(\psi_a \cdot \proptravelelltok  \cdot m_a \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \tilde{N}^{(k)}_{a^\prime, r^\prime} (t)}\right)}_{\text{Each summand: } \lambda\agerisk^{(\ell), \text{residents traveling to } k}(t)} \tag{T4}
 \end{align*}
 
 where
@@ -172,7 +172,7 @@ where
 and where
 
 \begin{align*}
-\effectiveNlocagerisktime &= \Nlocagerisk + m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a(t) \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - H\locationell_{a,r}(t)) \tag{T6}
+\effectiveNlocagerisktime &= \Nlocagerisk + m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - H\locationell_{a,r}(t)) \tag{T6}
 \end{align*}
 
 is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$.
@@ -196,7 +196,7 @@ where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simula
 We have
 
 - $\psi_a \in [0, 1]$: relative susceptibility of individuals in age group $a \in \agegroups$.
-- $m_a(t)$: a positive scalar modifying travel intensity depending on age $a$ and day $t$.
+- $m_a$: a positive scalar modifying travel intensity depending on age $a$.
 - $\propdaytravelktoell$: (on average) proportion of the day that a resident of $k$ spends traveling to location $\ell \in \mathcal L$.
 
 Note that the arrows in $\propdaytravelktoell$ correspond to direction of travel (e.g. $k \rightarrow \ell$ represents residents of location $k$ traveling to location $\ell$). The $\propdaytravelktoell$ values are calculated from mobility data, corresponding to

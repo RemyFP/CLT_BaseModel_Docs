@@ -1,7 +1,7 @@
-# Flu Components Code API Reference
+# Flu Core API Reference
 
-Docstrings and references for `flu_model` module.
+Docstrings and references for `flu_core` module.
 
-::: CLT_BaseModel.flu_model.flu_components
+::: CLT_BaseModel.flu_core
 	options:
 	      members: true
