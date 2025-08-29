@@ -133,6 +133,20 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#installation">
+<span class="md-ellipsis">
+      Installation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#quick-start">
+<span class="md-ellipsis">
+      Quick Start
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#code-structure">
 <span class="md-ellipsis">
       Code Structure
@@ -163,13 +177,6 @@
 </li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
-<span class="md-ellipsis">
-      Installation
-    </span>
-</a>
 </li>
 </ul>
 </nav>
@@ -288,6 +295,27 @@
     C --&gt; | ... | G[El Paso] 
     C --&gt; | Houston-specific inputs, parameters, populations | E[Houston]
 </code></pre>
+<h2 id="installation">Installation</h2>
+<p>The CLT Toolkit is written in Python 3.11.0.</p>
+<p>To download, build, and run the latest code release, run the following in Terminal:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>git clone https://github.com/LP-relaxation/CLT_BaseModel.git
+</span></code></pre></div></p>
+<p>In the package folder (<code>pyproject.toml</code> should be in this directory), run the following in Terminal:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>pip install -e .
+</span></code></pre></div>
+to install the package in editable mode. Note that some users may have to use <code>pip3 install -e .</code>, depending on their configuration.</p>
+<p>Packages required:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>numpy==1.24.3
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>pandas==1.5.3
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>pytest==8.3.3
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>pytorch==2.3.1
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>sciris==3.2.0
+</span></code></pre></div></p>
+<h2 id="quick-start">Quick Start</h2>
+<p>We recommend 
+- <code>flu_instances/examples/flu_demo.ipynb</code> for a Jupyter notebook tutorial on building subpopulation and metapopulation models, running random parameter sampling, and organizing large-scale output in experiments.
+- <code>flu_instances/examples/torch_calibration_demo.ipynb</code> for a Jupyter notebook tutorial on using <code>pytorch</code> autodifferentiate to solve least-squares on a deterministic functional implementation of the flu model to calibrate unknown parameters.
+- <code>SIHR_core/SIHR_components.py</code> for a thoroughly commented file explaining how to use the CLT Toolkit to create a customized model. </p>
 <h2 id="code-structure">Code Structure</h2>
 <table>
 <thead>
@@ -436,22 +464,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="installation">Installation</h2>
-<p>The CLT Toolkit is written in Python 3.11.0.</p>
-<p>To download, build, and run the latest code release, run the following in Terminal:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>git clone https://github.com/LP-relaxation/CLT_BaseModel.git
-</span></code></pre></div></p>
-<p>In the package folder (<code>pyproject.toml</code> should be in this directory), run the following in Terminal:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>pip install -e .
-</span></code></pre></div>
-to install the package in editable mode. Note that some users may have to use <code>pip3 install -e .</code>, depending on their configuration.</p>
-<p>Packages required:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>numpy==1.24.3
-</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>pandas==1.5.3
-</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>pytest==8.3.3
-</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>pytorch==2.3.1
-</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>sciris==3.2.0
-</span></code></pre></div></p>
 <blockquote>
 <p>Updated 08/14/2025. Toolkit and documentation are created by Linda Pei ("LP"), with feedback from Rémy Pasco, Susan Ptak, Emily Javan, and other Meyers Lab members, and with supervision from Dave Morton and Lauren Meyers. Special thanks to Cary Murray for generous guidance on software engineering design. Special credit to Shuotao "Sonny" Diao for his ideas about updating compartments analogously to pushing flow on a graph and creating simulation logic that works for arbitrarily many compartments and transition variables. </p>
 </blockquote>
