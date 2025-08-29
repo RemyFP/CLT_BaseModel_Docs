@@ -43,6 +43,7 @@ sciris==3.2.0
 ## Quick Start
 
 We recommend 
+
 - `flu_instances/examples/flu_demo.ipynb` for a Jupyter notebook tutorial on building subpopulation and metapopulation models, running random parameter sampling, and organizing large-scale output in experiments.
 - `flu_instances/examples/torch_calibration_demo.ipynb` for a Jupyter notebook tutorial on using `pytorch` autodifferentiate to solve least-squares on a deterministic functional implementation of the flu model to calibrate unknown parameters.
 - `SIHR_core/SIHR_components.py` for a thoroughly commented file explaining how to use the CLT Toolkit to create a customized model. 
