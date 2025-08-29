@@ -1,6 +1,4 @@
-# City-level Transmission (CLT) Toolkit 
-
-## Overview
+# Overview
 
 This website provides code documentation, including tutorials and API references, for the CLT Toolkit. In addition, this website provides code and mathematical formulation documentation for [MetroFluSim](math_flu_components.md).
 

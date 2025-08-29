@@ -15,21 +15,17 @@ plugins:
     version: 10.0.2
 
 nav:
-- Home: index.md
-- Python for Modelers:
-    - python_resources.md
-- Mathematical Formulation:
-    - math_flu_components.md
+- CLT Toolkit: 
+    - index.md
     - math_transitions.md
-- MetroFluSim Tutorials:
-    - flu_model_demo.md
+- MetroFluSim:
+    - math_flu_components.md
     - flu_input_requirements.md
-    - flu_components_walkthrough.md
-- Creating Custom Models:
-    - SIHR_components_walkthrough.md
 - Code API Reference:
     - clt_base_package_reference.md
     - flu_components_reference.md
+- Python for Modelers:
+    - python_resources.md
 theme: 
   name: material 
   favicon: img/favicon.ico
