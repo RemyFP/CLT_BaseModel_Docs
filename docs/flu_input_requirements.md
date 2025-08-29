@@ -102,5 +102,8 @@ See the next section on `FluSubpopSchedules` for how $d_{\text{work}}(t)$ and $d
 
 ## `SimulationSettings`
 
+The field `timesteps_per_day` is the number of timesteps to take per day, which equals $1/(\Delta t)$, where $\Delta t$ is the discretization interval. The field `transition_type` determines the distribution used for transitions between compartments (see [page on transitions](math_transitions.md)). The field `start_real_date` is the real-world date in string format `"YYYY-MM-DD"` corresponding to the start of the simulation. 
 
-> Updated 08/15/2025. Written by LP, edited by Susan Ptak.
+See `SimulationSettings` docstring for other fields (those are not directly related to the mathematical formulation and only specify how simulation output is saved).
+
+> Updated 08/29/2025. Written by LP, edited by Susan Ptak.

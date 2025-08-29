@@ -15,6 +15,38 @@ flowchart TD
     C --> | Houston-specific inputs, parameters, populations | E[Houston]
 ```
 
+## Installation
+
+The CLT Toolkit is written in Python 3.11.0.
+
+To download, build, and run the latest code release, run the following in Terminal:
+```
+git clone https://github.com/LP-relaxation/CLT_BaseModel.git
+```
+
+In the package folder (`pyproject.toml` should be in this directory), run the following in Terminal:
+```
+pip install -e .
+```
+to install the package in editable mode. Note that some users may have to use `pip3 install -e .`, depending on their configuration.
+
+
+Packages required:
+```
+numpy==1.24.3
+pandas==1.5.3
+pytest==8.3.3
+pytorch==2.3.1
+sciris==3.2.0
+```
+
+## Quick Start
+
+We recommend 
+- `flu_instances/examples/flu_demo.ipynb` for a Jupyter notebook tutorial on building subpopulation and metapopulation models, running random parameter sampling, and organizing large-scale output in experiments.
+- `flu_instances/examples/torch_calibration_demo.ipynb` for a Jupyter notebook tutorial on using `pytorch` autodifferentiate to solve least-squares on a deterministic functional implementation of the flu model to calibrate unknown parameters.
+- `SIHR_core/SIHR_components.py` for a thoroughly commented file explaining how to use the CLT Toolkit to create a customized model. 
+
 ## Code Structure
 
 | Folder               | Description |
@@ -59,30 +91,5 @@ Code for specific instances of the MetroFluSim model (e.g. for a specific city, 
 |               | `examples/`    | Demo scripts showcasing CLT Toolkit and MetroFluSim functionality, including guides for calibration via optimization with automatic differentiation. |
 |               | `texas_flu_hosp_rate_20232024/`    | Publicly available Texas hospitalization data from 2023-2024 flu season. |
 |               | `texas_input_files/`    | Most up-to-date parameter values, derived from recent literature or within-host modeling. |
-
-## Installation
-
-The CLT Toolkit is written in Python 3.11.0.
-
-To download, build, and run the latest code release, run the following in Terminal:
-```
-git clone https://github.com/LP-relaxation/CLT_BaseModel.git
-```
-
-In the package folder (`pyproject.toml` should be in this directory), run the following in Terminal:
-```
-pip install -e .
-```
-to install the package in editable mode. Note that some users may have to use `pip3 install -e .`, depending on their configuration.
-
-
-Packages required:
-```
-numpy==1.24.3
-pandas==1.5.3
-pytest==8.3.3
-pytorch==2.3.1
-sciris==3.2.0
-```
 
 > Updated 08/14/2025. Toolkit and documentation are created by Linda Pei ("LP"), with feedback from Rémy Pasco, Susan Ptak, Emily Javan, and other Meyers Lab members, and with supervision from Dave Morton and Lauren Meyers. Special thanks to Cary Murray for generous guidance on software engineering design. Special credit to Shuotao "Sonny" Diao for his ideas about updating compartments analogously to pushing flow on a graph and creating simulation logic that works for arbitrarily many compartments and transition variables. 
