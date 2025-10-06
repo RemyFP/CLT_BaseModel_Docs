@@ -610,10 +610,15 @@
 <h1 id="math-to-code-input-mappings">Math-to-Code Input Mappings</h1>
 <p><span style="display: none;">
 <span class="arithmatex">\(\def\rateRtoS{\sigma^{R\rightarrow S}}\)</span>
-<span class="arithmatex">\(\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}\)</span>
-<span class="arithmatex">\(\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}\)</span>
+<span class="arithmatex">\(\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}\)</span></p>
+<!-- $\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$ -->
+<p><span class="arithmatex">\(\def\rateIPtoIS{\sigma^{IP \rightarrow [ISR, ISH]}}\)</span>
 <span class="arithmatex">\(\def\rateIStoH{\sigma^{IS\rightarrow H}}\)</span>
+<span class="arithmatex">\(\def\rateISRtoR{\gamma^{ISR\rightarrow R}}\)</span>
+<span class="arithmatex">\(\def\rateISHtoH{\sigma^{ISH\rightarrow [HR, HD]}}\)</span>
 <span class="arithmatex">\(\def\rateHtoD{\sigma^{H\rightarrow D}}\)</span>
+<span class="arithmatex">\(\def\rateHRtoR{\gamma^{HR\rightarrow R}}\)</span>
+<span class="arithmatex">\(\def\rateHDtoD{\sigma^{HD\rightarrow D}}\)</span>
 <span class="arithmatex">\(\def\rateIAtoR{\gamma^{IA\rightarrow R}}\)</span>
 <span class="arithmatex">\(\def\rateHtoR{\gamma^{H\rightarrow R}}\)</span>
 <span class="arithmatex">\(\def\rateIStoR{\gamma^{IS\rightarrow R}}\)</span>
@@ -653,8 +658,13 @@
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>IS</code></td>
-<td><span class="arithmatex">\(\boldsymbol{IS}(0)\)</span></td>
+<td><code>ISR</code></td>
+<td><span class="arithmatex">\(\boldsymbol{ISR}(0)\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>ISH</code></td>
+<td><span class="arithmatex">\(\boldsymbol{ISH}(0)\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
@@ -663,8 +673,13 @@
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
-<td><code>H</code></td>
-<td><span class="arithmatex">\(\boldsymbol{H}(0)\)</span></td>
+<td><code>HR</code></td>
+<td><span class="arithmatex">\(\boldsymbol{HR}(0)\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+</tr>
+<tr>
+<td><code>HD</code></td>
+<td><span class="arithmatex">\(\boldsymbol{HD}(0)\)</span></td>
 <td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
@@ -792,8 +807,13 @@
 <td>positive <code>float</code></td>
 </tr>
 <tr>
-<td><code>IS_to_R_rate</code></td>
-<td><span class="arithmatex">\(\rateIStoR\)</span></td>
+<td><code>ISR_to_R_rate</code></td>
+<td><span class="arithmatex">\(\rateISRtoR\)</span></td>
+<td>positive <code>float</code></td>
+</tr>
+<tr>
+<td><code>ISH_to_H_rate</code></td>
+<td><span class="arithmatex">\(\rateISHtoH\)</span></td>
 <td>positive <code>float</code></td>
 </tr>
 <tr>
@@ -802,18 +822,13 @@
 <td>positive <code>float</code></td>
 </tr>
 <tr>
-<td><code>IS_to_H_rate</code></td>
-<td><span class="arithmatex">\(\rateIStoH\)</span></td>
+<td><code>HR_to_R_rate</code></td>
+<td><span class="arithmatex">\(\rateHRtoR\)</span></td>
 <td>positive <code>float</code></td>
 </tr>
 <tr>
-<td><code>H_to_R_rate</code></td>
-<td><span class="arithmatex">\(\rateHtoR\)</span></td>
-<td>positive <code>float</code></td>
-</tr>
-<tr>
-<td><code>H_to_D_rate</code></td>
-<td><span class="arithmatex">\(\rateHtoD\)</span></td>
+<td><code>HD_to_D_rate</code></td>
+<td><span class="arithmatex">\(\rateHDtoD\)</span></td>
 <td>positive <code>float</code></td>
 </tr>
 <tr>
@@ -822,14 +837,14 @@
 <td><code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 <tr>
-<td><code>H_to_D_adjusted_prop</code></td>
-<td><span class="arithmatex">\(\boldsymbol{\adjustedpropD}\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>IP_to_ISH_prop</code></td>
+<td><span class="arithmatex">\(\propH\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 <tr>
-<td><code>IS_to_H_adjusted_prop</code></td>
-<td><span class="arithmatex">\(\boldsymbol{\adjustedpropH}\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><code>ISH_to_HD_prop</code></td>
+<td><span class="arithmatex">\(\propD\)</span></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 <tr>
 <td><code>IP_relative_inf</code></td>
@@ -868,6 +883,9 @@
 </tr>
 </tbody>
 </table>
+<!-- | `H_to_D_adjusted_prop`         | $\boldsymbol{\adjustedpropD}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IS_to_H_adjusted_prop`         | $\boldsymbol{\adjustedpropH}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ | -->
+
 <p>See the next section on <code>FluSubpopSchedules</code> for how <span class="arithmatex">\(d_{\text{work}}(t)\)</span> and <span class="arithmatex">\(d_{\text{school}}(t)\)</span> are defined.</p>
 <h2 id="flusubpopschedules"><code>FluSubpopSchedules</code></h2>
 <table>
@@ -932,7 +950,7 @@
 <p>The field <code>timesteps_per_day</code> is the number of timesteps to take per day, which equals <span class="arithmatex">\(1/(\Delta t)\)</span>, where <span class="arithmatex">\(\Delta t\)</span> is the discretization interval. The field <code>transition_type</code> determines the distribution used for transitions between compartments (see <a href="../math_transitions/">page on transitions</a>). The field <code>start_real_date</code> is the real-world date in string format <code>"YYYY-MM-DD"</code> corresponding to the start of the simulation. </p>
 <p>See <code>SimulationSettings</code> docstring for other fields (those are not directly related to the mathematical formulation and only specify how simulation output is saved).</p>
 <blockquote>
-<p>Updated 08/29/2025. Written by LP, edited by Susan Ptak.</p>
+<p>Updated 10/06/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.</p>
 </blockquote>
 
 
