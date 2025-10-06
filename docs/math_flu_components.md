@@ -3,12 +3,16 @@
 <span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
 $\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
-$\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$
+$\def\rateIPtoIS{\sigma^{IP \rightarrow [ISR, ISH]}}$
+$\def\rateIStoR{\gamma^{IS\rightarrow R}}$
+$\def\rateISRtoR{\gamma^{ISR\rightarrow R}}$
 $\def\rateIStoH{\sigma^{IS\rightarrow H}}$
+$\def\rateISHtoH{\sigma^{ISH\rightarrow [HR, HD]}}$
 $\def\rateHtoD{\sigma^{H\rightarrow D}}$
+$\def\rateHRtoR{\gamma^{HR\rightarrow R}}$
+$\def\rateHDtoD{\sigma^{HD\rightarrow D}}$
 $\def\rateIAtoR{\gamma^{IA\rightarrow R}}$
 $\def\rateHtoR{\gamma^{H\rightarrow R}}$
-$\def\rateIStoR{\gamma^{IS\rightarrow R}}$
 $\def\totalforceofinfection{\lambda^{(\ell), \text{total}}_{a}(t)}$
 $\def\propIA{\pi^{IA}}$
 $\def\propH{\pi^H}$
@@ -104,17 +108,17 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$, we have
 \frac{dS\locagerisktime}{dt} &= \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} 
 -\underbrace{S\locagerisktime \frac{\beta\locationell(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} \tag{C1} \\[1.5em]
 \frac{dE\locagerisktime}{dt} &= \underbrace{S\locagerisktime \frac{\beta\locationell(t) \cdot \totalforceofinfection}{\left(1 + \LambdaIlocagerisktime\right)}}_{\text{$S$ to $E$}} - \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} \tag{C2} \\[1.5em]
-\frac{dIP\locagerisktime}{dt} &= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} \tag{C3} \\[1.5em]
-\frac{dIS\locagerisktime}{dt} &= \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $IS$}} 
-- \underbrace{\left(1-\frac{\adjustedpropH_{a, r}}{1 + \LambdaHlocagerisktime}\right)\rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} - \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IS$ to $H$}} \tag{C4} \\[1.5em]
+\frac{dIP\locagerisktime}{dt} &= \underbrace{\rateEtoI (1-\propIA) E\locagerisktime}_{\text{$E$ to $IP$}} - \underbrace{\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $ISR$ and $ISH$}} \tag{C3} \\[1.5em]
+\frac{dISR\locagerisktime}{dt} &= \underbrace{\left(1-\frac{\pi^H}{1 + \LambdaHlocagerisktime}\right)\rateIPtoIS IP\locagerisktime}_{\text{$IP$ to $ISR$}} 
+- \underbrace{\rateISRtoR ISR\locagerisktime}_{\text{$ISR$ to $R$}} \tag{C4} \\[1.5em]
+\frac{dISH\locagerisktime}{dt} &= \underbrace{\frac{\pi^H \rateIPtoIS IP\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IP$ to $ISH$}} - \underbrace{\rateISHtoH ISH\locagerisktime}_{\text{$ISH$ to $HR$ and $HD$}} \tag{C5} \\[1.5em]
 \frac{dIA\locagerisktime}{dt} &= \underbrace{\rateEtoI \propIA E\locagerisktime}_{\text{$E$ to $IA$}} 
-- \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} \tag{C5} \\[1.5em]
-\frac{dH\locagerisktime}{dt} &= \underbrace{\frac{\rateIStoH \adjustedpropH_{a, r} IS\locagerisktime}{1 + \LambdaHlocagerisktime}}_{\text{$IS$ to $H$}} - \underbrace{\left(1-\frac{\adjustedpropD_{a, r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} 
-- \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}} \tag{C6} \\[1.5em]
-\frac{dR\locagerisktime}{dt} &= \underbrace{\left(1-\frac{\adjustedpropH_{a, r}}{1 + \LambdaHlocagerisktime}\right) \rateIStoR IS\locagerisktime}_{\text{$IS$ to $R$}} + \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} 
-\\[1em] &\quad\quad\quad + \underbrace{\left(1-\frac{\adjustedpropD_{a, r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR H\locagerisktime}_{\text{$H$ to $R$}} 
-- \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} \tag{C7} \\[1.5em]
-\frac{dD\locagerisktime}{dt} &= \underbrace{\frac{\rateHtoD \adjustedpropD_{a, r} H\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$H$ to $D$}}. \tag{C8}
+- \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} \tag{C6} \\[1.5em]
+\frac{dHR\locagerisktime}{dt} &= \underbrace{\left(1-\frac{\pi^D_{a, r}}{1 + \LambdaDlocagerisktime}\right) \rateISHtoH ISH\locagerisktime}_{\text{$ISH$ to $HR$}} - \underbrace{\rateHRtoR HR\locagerisktime}_{\text{$HR$ to $R$}} \tag{C7} \\[1.5em]
+\frac{dHD\locagerisktime}{dt} &= \underbrace{\frac{\pi^D_{a, r} \rateISHtoH ISH\locagerisktime}{1 + \LambdaDlocagerisktime}}_{\text{$ISH$ to $HD$}} - \underbrace{\rateHDtoD HD\locagerisktime}_{\text{$HD$ to $D$}} \tag{C8} \\[1.5em]
+\frac{dR\locagerisktime}{dt} &= \underbrace{\rateISRtoR ISR\locagerisktime}_{\text{$ISR$ to $R$}} + \underbrace{\rateIAtoR IA\locagerisktime}_{\text{$IA$ to $R$}} + \underbrace{\rateHRtoR HR\locagerisktime}_{\text{$HR$ to $R$}}
+- \underbrace{\rateRtoS R\locagerisktime}_{\text{$R$ to $S$}} \tag{C9} \\[1.5em]
+\frac{dD\locagerisktime}{dt} &= \underbrace{\rateHDtoD HD\locagerisktime}_{\text{$HD$ to $D$}}. \tag{C10}
 \end{align}
 
 where
@@ -125,14 +129,14 @@ where
 - $q(t) = \xi \cdot \exp^{-180 * h(t)}$: humidity adjustment, where $\xi$ is the humidity impact factor and $h(t)$ is absolute humidity. This formula is taken from [this paper](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000316#s4).
 - $\propIA$: proportion exposed who are completely asymptomatic when infectious.
 - $r_{IP}$, $r_{IA}$: relative infectiousness (compared to infected symptomatic people) of infected presymptomatic and infected asymptomatic people respectively. 
-- $\rateIStoR, \rateHtoR, \rateIAtoR$: recovery rates for infected symptomatic ($IS$),  hospital ($H$), and infected asymptomatic ($IA$) compartments respectively, so that $1/\gamma$ is the average number of days it takes for an infected person not in the hospital to recover, and $1/\rateHtoR$ is analogous, but for an infected person in the hospital. 
+- $\rateISRtoR, \rateHRtoR, \rateIAtoR$: recovery rates for infected symptomatic ($ISR$),  hospital ($HR$), and infected asymptomatic ($IA$) compartments respectively, so that $1/\gamma$ is the average number of days it takes for an infected person not in the hospital to recover, and $1/\rateHtoR$ is analogous, but for an infected person in the hospital. 
 - $\rateEtoI$: infection rate (both exposed to infected presymptomatic transition rate and exposed to infected asymptomatic transition rate), so that $1/\rateEtoI$ is the average number of days after exposure before a person becomes infectious.
-- $\rateIPtoIS$: infected presymptomatic to infected symptomatic transition rate, so that $1/\rateIPtoIS$ is the average number of days that an infected person is presymptomatic before becoming symptomatic. 
-- $\rateIStoH$: hospitalization rate (infected to hospital transition rate), so that $1/\rateIStoH$ is the average number of days a person is infected before going to the hospital.
-- $\rateHtoD$: death rate from hospital, so that $1/\rateHtoD$ is the average number of days a person spends in the hospital before dying.
-- $\boldsymbol{\adjustedpropH}$, where $\adjustedpropH_{a, r} = \frac{\propH_{a, r}\rateIStoR}{\rateIStoH - \propH_{a, r}(\rateIStoH-\rateIStoR)}$: adjusted proportion hospitalized based on age-risk group $a, r$ group actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates $[\propH_{a, r}]$.
+- $\rateIPtoIS$: infected presymptomatic to infected symptomatic (both $ISR$ and $ISH$) transition rate, so that $1/\rateIPtoIS$ is the average number of days that an infected person is presymptomatic before becoming symptomatic. 
+- $\rateISHtoH$: hospitalization rate (infected to hospital transition rate), so that $1/\rateISHtoH$ is the average number of days a person is infected before going to the hospital.
+- $\rateHDtoD$: death rate from hospital, so that $1/\rateHDtoD$ is the average number of days a person spends in the hospital before dying.
+<!-- - $\boldsymbol{\adjustedpropH}$, where $\adjustedpropH_{a, r} = \frac{\propH_{a, r}\rateIStoR}{\rateIStoH - \propH_{a, r}(\rateIStoH-\rateIStoR)}$: adjusted proportion hospitalized based on age-risk group $a, r$ group actually used in model -- this adjustment is necessary to ensure actual proportion hospitalized recapitulates $[\propH_{a, r}]$. -->
 - $\boldsymbol{\propH}$: $\numagegroups \times \numriskgroups$ proportion hospitalized based on age-risk group $a, r$.
-- $\boldsymbol{\adjustedpropD}$, where $\adjustedpropD_{a, r} = \frac{\propD_{a, r} \rateHtoR}{\rateHtoD - \propD_{a, r} (\rateHtoD-\rateHtoR)}$: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates $[\propD_{a, r} ]$.
+<!-- - $\boldsymbol{\adjustedpropD}$, where $\adjustedpropD_{a, r} = \frac{\propD_{a, r} \rateHtoR}{\rateHtoD - \propD_{a, r} (\rateHtoD-\rateHtoR)}$: adjusted in-hospital mortality rate (as in, proportion who die in the hospital based on age group) actually used in model -- this adjustment is necessary to ensure actual proportion who die in the hospital recapitulates $[\propD_{a, r} ]$. -->
 - $\boldsymbol{\propD}$: $\numagegroups \times \numriskgroups$ in-hospital mortality rate (proportion who die based on age-risk group $a, r$).
 
 ## Flu model: travel model
@@ -166,13 +170,13 @@ Specifically, we have
 where
 
 \[
-\texttt{I_weighted}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[IS\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5}
+\texttt{I_weighted}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[ISR\locationell\ageprimeriskprime(t) + ISH\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5}
 \]
 
 and where
 
 \begin{align*}
-\effectiveNlocagerisktime &= \Nlocagerisk + m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - H^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - H\locationell_{a,r}(t)) \tag{T6}
+\effectiveNlocagerisktime &= \Nlocagerisk + m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - HR^{(k)}_{a,r}(t) - HD^{(k)}_{a,r}(t)) \\ &\quad\quad\quad - m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - HR\locationell_{a,r}(t) - HD\locationell_{a,r}(t)) \tag{T6}
 \end{align*}
 
 is the effective population in location $\ell \in \mathcal L$ and age-risk group $a \in \agegroups$, $r \in \riskgroups$ at time $t$.
@@ -214,7 +218,7 @@ where
 
 To actually implement/simulate this compartmental model, we discretize the deterministic differential equations and treat transitions between compartments as stochastic to model uncertainty. We extend the notation from the deterministic differential equations to capture the stochastic elements.
 
-Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{IA}(t), \boldsymbol{IP}(t), \boldsymbol{IS}(t), \boldsymbol{H}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}(t), \boldsymbol{MV}(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}$** be the "simulation state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
+Let **$\boldsymbol{\mathcal X}(t) = \left\{\boldsymbol{S}(t), \boldsymbol{E}(t), \boldsymbol{IA}(t), \boldsymbol{IP}(t), \boldsymbol{ISR}(t), \boldsymbol{ISH}(t), \boldsymbol{HR}(t), \boldsymbol{HD}(t), \boldsymbol{R}(t), \boldsymbol{D}(t), \boldsymbol{M}(t), \boldsymbol{MV}(t), q(t), \boldsymbol{\phi}(t), V\locationell(t)\right\}$** be the "simulation state" at time $t$. **$\boldsymbol{\mathcal X}(t)$** is a set of matrices. 
 
 Let **$\boldsymbol{\Theta}$** be the set of fixed parameters. 
 
@@ -241,12 +245,14 @@ M_{a, r}\locationell(t + \Delta t) &= M\locationell\agerisktime + \frac{dM\locat
 MV_{a,r}\locationell(t + \Delta t) &= MV\agerisktime\locationell + \frac{dMV\agerisktime\locationell}{dt} \cdot \Delta t \\
 S\locagerisk(t + \Delta t) &= S_{a, r}\locationell(t) + \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} - \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} \\
 E\locagerisk(t + \Delta t) &= E_{a, r}\locationell(t) + \underbrace{\tvarloc_{S\rightarrow E, a, r}(\Xi_t)}_{\text{$S$ to $E$}} - \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} \\
-IP\locagerisk(t + \Delta t) &= IP\locagerisktime + \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\tvarloc_{IP \rightarrow IS, a, r}(\Xi_t)}_{\text{$IP$ to $IS$}} \\
+IP\locagerisk(t + \Delta t) &= IP\locagerisktime + \underbrace{\jointtvarloc_{E\rightarrow IP, a, r}(\Xi_t)}_{\text{$E$ to $IP$}} - \underbrace{\tvarloc_{IP \rightarrow ISR, a, r}(\Xi_t)}_{\text{$IP$ to $ISR$}} - \underbrace{\tvarloc_{IP \rightarrow ISH, a, r}(\Xi_t)}_{\text{$IP$ to $ISH$}} \\
 IA_{a, r}\locationell(t + \Delta t) &= IA_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{E\rightarrow IA, a, r}(\Xi_t)}_{\text{$E$ to $IA$}} - \underbrace{\tvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} \\
-IS\locagerisk(t + \Delta t) &= IS_{a, r}\locationell(t) + \underbrace{\tvarloc_{E \rightarrow IS, a, r}(\Xi_t)}_{\text{$E$ to $IS$}} - \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} - \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} \\
-H\locagerisk(t + \Delta t) &= H_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IS \rightarrow H, a, r}(\Xi_t)}_{\text{$IS$ to $H$}} - \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}} \\
-R\locagerisk(t + \Delta t) &= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} + \underbrace{\jointtvarloc_{IS \rightarrow R, a, r}(\Xi_t)}_{\text{$IS$ to $R$}} + \underbrace{\jointtvarloc_{H\rightarrow R, a, r}(\Xi_t)}_{\text{$H$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
-D\locagerisk(t + \Delta t) &= D_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{H\rightarrow D, a, r}(\Xi_t)}_{\text{$H$ to $D$}}. 
+ISR\locagerisk(t + \Delta t) &= ISR_{a, r}\locationell(t) + \underbrace{\tvarloc_{IP \rightarrow ISR, a, r}(\Xi_t)}_{\text{$IP$ to $ISR$}} - \underbrace{\jointtvarloc_{ISR \rightarrow R, a, r}(\Xi_t)}_{\text{$ISR$ to $R$}} \\
+ISH\locagerisk(t + \Delta t) &= ISH_{a, r}\locationell(t) + \underbrace{\tvarloc_{IP \rightarrow ISH, a, r}(\Xi_t)}_{\text{$IP$ to $ISH$}} - \underbrace{\jointtvarloc_{ISH \rightarrow HR, a, r}(\Xi_t)}_{\text{$ISH$ to $HR$}} - \underbrace{\jointtvarloc_{ISH \rightarrow HD, a, r}(\Xi_t)}_{\text{$ISH$ to $HD$}} \\
+HR\locagerisk(t + \Delta t) &= HR_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{ISH \rightarrow HR, a, r}(\Xi_t)}_{\text{$ISH$ to $HR$}} - \underbrace{\jointtvarloc_{HR\rightarrow R, a, r}(\Xi_t)}_{\text{$HR$ to $R$}} \\
+HD\locagerisk(t + \Delta t) &= HD_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{ISH \rightarrow HD, a, r}(\Xi_t)}_{\text{$ISH$ to $HD$}} - \underbrace{\jointtvarloc_{HD\rightarrow D, a, r}(\Xi_t)}_{\text{$HD$ to $D$}} \\
+R\locagerisk(t + \Delta t) &= R_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{IA \rightarrow R, a, r}(\Xi_t)}_{\text{$IA$ to $R$}} + \underbrace{\jointtvarloc_{ISR \rightarrow R, a, r}(\Xi_t)}_{\text{$ISR$ to $R$}} + \underbrace{\jointtvarloc_{HR\rightarrow R, a, r}(\Xi_t)}_{\text{$HR$ to $R$}} - \underbrace{\tvarloc_{R\rightarrow S, a, r}(\Xi_t)}_{\text{$R$ to $S$}} \\
+D\locagerisk(t + \Delta t) &= D_{a, r}\locationell(t) + \underbrace{\jointtvarloc_{HD\rightarrow D, a, r}(\Xi_t)}_{\text{$HD$ to $D$}}. 
 \end{align}
 
 
@@ -262,12 +268,14 @@ Each transition variable depends on a "base count" and a "rate" (which both depe
 | $S$ to $E$            | $\tvarloc_{S \rightarrow E, a, r}(\simstate)$                         | $S_{a, r}\locationell(t)$    | $\frac{\beta(t) \totalforceofinfection}{1 + \LambdaIlocagerisktime}$ |
 | $E$ to $IP$           | $\jointtvarloc_{E \rightarrow IP, a, r}(\simstate)$                      | $E_{a, r}\locationell(t)$    | $\rateEtoI (1 - \propIA)$                                                                                                                                                                                |
 | $E$ to $IA$           | $\jointtvarloc_{E \rightarrow IA, a, r}(\simstate)$                      | $E_{a, r}\locationell(t)$    | $\rateEtoI \propIA$                                                                                                                                                                                     |
-| $IP$ to $IS$          | $\tvarloc_{IP \rightarrow IS, a, r}(\simstate)$                       | $IP_{a, r}\locationell(t)$   | $\rateIPtoIS$                                                                                                                                                                                           |
-| $IS$ to $R$           | $\jointtvarloc_{IS \rightarrow R, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\left(1-\frac{\adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}\right)\gamma^{IS\rightarrow R}$                                                                                                                                                                    |
-| $IS$ to $H$           | $\jointtvarloc_{IS \rightarrow H, a, r}(\simstate)$                      | $IS_{a, r}\locationell(t)$   | $\frac{\rateIStoH \adjustedpropH_{a,r}}{1 + \LambdaHlocagerisktime}$                                                                                                            |
+| $IP$ to $ISR$          | $\tvarloc_{IP \rightarrow ISR, a, r}(\simstate)$                       | $IP_{a, r}\locationell(t)$   | $\rateIPtoIS \left(1-\frac{\pi^H_{a,r}}{1 + \LambdaHlocagerisktime}\right)$                                                                                                                                                                                     |
+| $IP$ to $ISH$          | $\tvarloc_{IP \rightarrow ISH, a, r}(\simstate)$                       | $IP_{a, r}\locationell(t)$   | $\rateIPtoIS \frac{\pi^H_{a,r}}{1 + \LambdaHlocagerisktime}$                                                                                                                                                                                     |
+| $ISR$ to $R$           | $\jointtvarloc_{ISR \rightarrow R, a, r}(\simstate)$                      | $ISR_{a, r}\locationell(t)$   | $\gamma^{ISR\rightarrow R}$                                                                                                                                                                    |
+| $ISH$ to $HR$           | $\jointtvarloc_{ISH \rightarrow HR, a, r}(\simstate)$                      | $ISH_{a, r}\locationell(t)$   | $\rateISHtoH \left(1-\frac{\pi^D_{a,r}}{1 + \LambdaDlocagerisktime}\right)$                                                                                                            |
+| $ISH$ to $HD$           | $\jointtvarloc_{ISH \rightarrow HD, a, r}(\simstate)$                      | $ISH_{a, r}\locationell(t)$   | $\rateISHtoH \frac{\pi^D_{a,r}}{1 + \LambdaDlocagerisktime}$                                                                                                            |
 | $IA$ to $R$           | $\tvarloc_{IA \rightarrow R, a, r}(\simstate)$                        | $IA_{a, r}\locationell(t)$   | $\rateIAtoR$                                                                                                                                                              |
-| $H$ to $R$            | $\jointtvarloc_{H \rightarrow R, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\left(1-\frac{\adjustedpropD_{a,r}}{1 + \LambdaDlocagerisktime}\right)\rateHtoR$                                                                                                                                                                 |
-| $H$ to $D$            | $\jointtvarloc_{H \rightarrow D, a, r}(\simstate)$                       | $H_{a, r}\locationell(t)$    | $\frac{\rateHtoD \adjustedpropD_{a,r}}{1 + \LambdaHlocagerisktime}$                                                                                                              |
+| $HR$ to $R$            | $\jointtvarloc_{HR \rightarrow R, a, r}(\simstate)$                       | $HR_{a, r}\locationell(t)$    | $\rateHRtoR$                                                                                                                                                                 |
+| $HD$ to $D$            | $\jointtvarloc_{HD \rightarrow D, a, r}(\simstate)$                       | $HD_{a, r}\locationell(t)$    | $\rateHDtoD$                                                                                                              |
 
 
 The base count and rate of a transition variable parameterize the distribution that defines its realization. 
@@ -280,4 +288,4 @@ We make the important note that the flu model's discretized stochastic implement
 
 In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `Compartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. We handle stochastic transitions using `TransitionVariable` and `TransitionVariableGroup` classes. These classes form some of the building blocks of the base model code. 
 
-> Updated 08/15/2025. Documentation written by LP, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy Pasco and Susan Ptak, immunity formulation by Anass Bouchnita.
+> Updated 10/06/2025. Documentation written by LP and updated by Rémy Pasco, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy and Susan Ptak, immunity formulation by Anass Bouchnita.

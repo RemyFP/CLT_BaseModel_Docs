@@ -1,10 +1,11 @@
 site_name: City-level Transmission Toolkit
-site_url: https://lp-relaxation.github.io/CLT_BaseModel_Docs/
+site_url: https://remyfp.github.io/CLT_BaseModel_Docs/
 plugins:
 - mkdocstrings:
     enable_inventory: true
     handlers:
       python:
+        paths: [..]
         selection:
           private: true
           protected: true
