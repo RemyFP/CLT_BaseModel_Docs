@@ -3,9 +3,14 @@
 <span style="display: none;">
 $\def\rateRtoS{\sigma^{R\rightarrow S}}$
 $\def\rateEtoI{\sigma^{E \rightarrow [IP, IA]}}$
-$\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$
+<!-- $\def\rateIPtoIS{\sigma^{IP \rightarrow IS}}$ -->
+$\def\rateIPtoIS{\sigma^{IP \rightarrow [ISR, ISH]}}$
 $\def\rateIStoH{\sigma^{IS\rightarrow H}}$
+$\def\rateISRtoR{\gamma^{ISR\rightarrow R}}$
+$\def\rateISHtoH{\sigma^{ISH\rightarrow [HR, HD]}}$
 $\def\rateHtoD{\sigma^{H\rightarrow D}}$
+$\def\rateHRtoR{\gamma^{HR\rightarrow R}}$
+$\def\rateHDtoD{\sigma^{HD\rightarrow D}}$
 $\def\rateIAtoR{\gamma^{IA\rightarrow R}}$
 $\def\rateHtoR{\gamma^{H\rightarrow R}}$
 $\def\rateIStoR{\gamma^{IS\rightarrow R}}$
@@ -31,9 +36,11 @@ Note that there is one `FluSubpopState` for each `SubpopModel` instance. The fol
 | `S`                        | $\boldsymbol{S}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `E`                        | $\boldsymbol{E}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `IP`                        | $\boldsymbol{IP}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `IS`                        | $\boldsymbol{IS}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `ISR`                        | $\boldsymbol{ISR}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `ISH`                        | $\boldsymbol{ISH}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `IA`                        | $\boldsymbol{IA}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `H`                        | $\boldsymbol{H}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `HR`                        | $\boldsymbol{HR}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `HD`                        | $\boldsymbol{HD}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `R`                        | $\boldsymbol{R}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `D`                        | $\boldsymbol{D}(0)$                | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
 | `M`  | $\boldsymbol{M}(0)$              | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
@@ -66,14 +73,14 @@ The following variables are for a specific subpopulation, although many of these
 | `R_to_S_rate`                   | $\rateRtoS$                     | positive `float`                          |
 | `E_to_I_rate`                   | $\rateEtoI$                   | positive `float`                          |
 | `IP_to_IS_rate`				  | $\rateIPtoIS$					   | positive `float`						  |
-| `IS_to_R_rate`                  | $\rateIStoR$                   | positive `float`                          |
+| `ISR_to_R_rate`                  | $\rateISRtoR$                   | positive `float`                          |
+| `ISH_to_H_rate`                  | $\rateISHtoH$                    | positive `float`                          |
 | `IA_to_R_rate`				  | $\rateIAtoR$			   | positive `float`						  |
-| `IS_to_H_rate`                  | $\rateIStoH$                    | positive `float`                          |
-| `H_to_R_rate`                   | $\rateHtoR$                 | positive `float`                          |
-| `H_to_D_rate`                   | $\rateHtoD$                      | positive `float`                          |
+| `HR_to_R_rate`                   | $\rateHRtoR$                 | positive `float`                          |
+| `HD_to_D_rate`                   | $\rateHDtoD$                      | positive `float`                          |
 | `E_to_IA_prop`                  | $\propIA$                     | `float` in $[0,1]$                        |
-| `H_to_D_adjusted_prop`    	  | $\boldsymbol{\adjustedpropD}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
-| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\adjustedpropH}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IP_to_ISH_prop`                  | $\propH$                     | `float` in $[0,1]$                        |
+| `ISH_to_HD_prop`                  | $\propD$                     | `float` in $[0,1]$                        |
 | `IP_relative_inf`   			  | $r_{IP}$ 				   | positive `float` 						  |
 | `IA_relative_inf`			   	  | $r_{IA}$ 				   | positive `float`                          |
 | `relative_suscept`			   	  | $\psi$ 				   | $\lvert \mathcal A \rvert \times 1$                          |
@@ -81,6 +88,8 @@ The following variables are for a specific subpopulation, although many of these
 | `total_contact_matrix`			   	  | $\phi^{(\ell), \text{total}}$				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
 | `school_contact_matrix`			   	  | $\phi^{(\ell), \text{work}}$ 				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
 | `work_contact_matrix`			   	  | $\phi^{(\ell), \text{school}}$				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
+<!-- | `H_to_D_adjusted_prop`    	  | $\boldsymbol{\adjustedpropD}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `IS_to_H_adjusted_prop`   	  | $\boldsymbol{\adjustedpropH}$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ | -->
 
 See the next section on `FluSubpopSchedules` for how $d_{\text{work}}(t)$ and $d_{\text{school}}(t)$ are defined.
 
@@ -106,4 +115,4 @@ The field `timesteps_per_day` is the number of timesteps to take per day, which 
 
 See `SimulationSettings` docstring for other fields (those are not directly related to the mathematical formulation and only specify how simulation output is saved).
 
-> Updated 08/29/2025. Written by LP, edited by Susan Ptak.
+> Updated 10/06/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.
