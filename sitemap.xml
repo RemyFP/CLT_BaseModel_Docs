@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
     </url>
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/clt_base_package_reference/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
     </url>
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/flu_components_reference/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
     </url>
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/flu_input_requirements/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
     </url>
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/math_flu_components/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
     </url>
     <url>
          <loc>https://remyfp.github.io/CLT_BaseModel_Docs/math_transitions/</loc>
-         <lastmod>2025-10-06</lastmod>
+         <lastmod>2025-11-21</lastmod>
+    </url>
+    <url>
+         <loc>https://remyfp.github.io/CLT_BaseModel_Docs/python_resources/</loc>
+         <lastmod>2025-11-21</lastmod>
     </url>
 </urlset>

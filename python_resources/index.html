@@ -1,0 +1,760 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://remyfp.github.io/CLT_BaseModel_Docs/python_resources/">
+      
+      
+        <link rel="prev" href="../flu_components_reference/">
+      
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Python Resources for Modelers - City-level Transmission Toolkit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-resources-for-modelers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="City-level Transmission Toolkit" class="md-header__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            City-level Transmission Toolkit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python Resources for Modelers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="City-level Transmission Toolkit" class="md-nav__button md-logo" aria-label="City-level Transmission Toolkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    City-level Transmission Toolkit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CLT Toolkit
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            CLT Toolkit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math_transitions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stochastic Transitions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MetroFluSim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            MetroFluSim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math_flu_components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetroFluSim Mathematical Formulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_input_requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math-to-Code Input Mappings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Code API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Code API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clt_base_package_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLT Toolkit API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flu_components_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flu Core API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Python for Modelers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Python for Modelers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Python Resources for Modelers
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Python Resources for Modelers
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#coding-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding correctly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-test-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test, test, test!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-modules-and-imports-ides-and-running-python-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python modules and imports, IDEs, and running Python scripts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-and-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation and version control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-important-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other important points...
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="python-resources-for-modelers">Python Resources for Modelers</h1>
+<blockquote>
+<p><strong><em>Written by LP, updated 08/25/2025 (work in progress)</em></strong> </p>
+</blockquote>
+<p>Here we provide a list of fundamental concepts for epidemiologists to know to responsibly create, collaborate on, and interact with responsible and reproducible Python code. We have outlined this somewhat like a syllabus for self-directed learning, with links to resources to get started. The reader should make sure they understand all key concepts in the checklist, and read more otherwise. </p>
+<p>Note: we particularly like <a href="https://realpython.com">Real Python</a>, which has many free and thorough tutorials on various Python subjects!</p>
+<h2 id="coding-correctly">Coding correctly</h2>
+<p>Clean code matters for academic research with high standards.</p>
+<p>Recommended textbooks (PDF links are unaffiliated with epi-ENGAGE):</p>
+<ul>
+<li>***MUST READ: <a href="https://mcusoft.wordpress.com/wp-content/uploads/2015/04/the-art-of-readable-code.pdf">"The Art of Readable Code" by Boswell &amp; Foucher</a></li>
+<li><a href="https://milkov.tech/assets/psd.pdf">"A Philosophy of Software Design" by Ousterhout</a></li>
+<li><a href="https://dl.ebooksworld.ir/motoman/Refactoring.Improving.the.Design.of.Existing.Code.2nd.edition.www.EBooksWorld.ir.pdf">"Refactoring: Improving the Design of Existing Code" by Fowler &amp; Beck</a></li>
+<li><a href="https://github.com/martinmurciego/good-books/blob/master/Clean%20Code_%20A%20Handbook%20of%20Agile%20Software%20Craftsmanship%20-%20Robert%20C.%20Martin.pdf">"Clean Code: A Handbook of Agile Software Craftsmanship" by Martin</a></li>
+</ul>
+<p>Key concepts</p>
+<ul>
+<li>"The Fundamental Theorem of Readability: Code should be written to minimize the time it would take for someone else to understand it." (Boswell &amp; Foucher)</li>
+<li>Function and variable names should be specific and precise -- ChatGPT is great at helping brainstorm names!</li>
+<li>DOT -- DO ONE THING -- "Functions should do one thing. They should do it well. They should do it only." And "functions should do something, or answer something, but not both." (Martin) -- nice articles <a href="https://medium.com/codex/should-functions-be-small-e76b45aa93f">here</a> and <a href="https://ashishmd.medium.com/summary-of-clean-code-by-robert-c-martin-part-3-functions-72b3115472e">here</a>.</li>
+<li>DRY -- DON'T REPEAT YOURSELF (Hunt &amp; Thomas) -- example resources <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">here</a> and <a href="https://thevaluable.dev/dry-principle-cost-benefit-example/">here</a>.</li>
+<li>Tactical instead of strategic programming leads to technical debt -- "Complexity comes from an accumulation of dependencies and obscurities. As complexity increases, it leads to change amplification, a high cognitive load, and unknown unknowns." (Ousterhout) </li>
+</ul>
+<p>Advanced concepts</p>
+<ul>
+<li>For classes -- "Single Responsibility Principle" (Martin) -- example resources <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">here</a> and <a href="https://www.sicpers.info/2023/10/ive-vastly-misunderstood-the-single-responsibility-principle/">here</a>.</li>
+</ul>
+<h2 id="test-test-test">Test, test, test!</h2>
+<p>Key concepts</p>
+<ul>
+<li>Any time a user changes code or adds code, they should add new tests and also make sure that all the old tests still pass. </li>
+<li>Unit testing is critical to ensuring code behaves as intended and ensuring that changes/updates do not add new bugs or break existing functionality. If we haven't tested it, we shouldn't trust it. We should <strong><em>prove</em></strong> our code works! Check out this great MIT lecture on testing <a href="https://web.mit.edu/6.005/www/fa16/classes/03-testing/#reading_3_testing">here</a>.</li>
+<li>Testing should have good coverage and handle different edge cases -- bugs often occur "on the boundaries" of inputs. </li>
+<li>The CLT Base Model code uses <code>pytest</code> for easy management of unit testing -- <a href="https://realpython.com/pytest-python-testing/">here's</a> an in-depth tutorial. </li>
+<li>We must also implement higher-level tests such as <a href="https://www.geeksforgeeks.org/software-engineering-integration-testing/#">integration tests</a> and <a href="https://testsigma.com/guides/acceptance-testing/">acceptance tests</a>, to make sure the whole shebang works.</li>
+<li>One crucial reason to write modular code (and functions that do one thing only) is to allow for testing of specific modules and functions (Boswell &amp; Foucher). If the code is not easy to test, we cannot easily guarantee its quality.</li>
+</ul>
+<p>Bonus articles on testing</p>
+<ul>
+<li>Check out these nice articles on unit testing <a href="https://canvascodebw.medium.com/unit-testing-pros-and-cons-understanding-why-testing-code-is-a-good-practice-47a81d67ccde">here</a> and <a href="https://medium.com/simform-engineering/importance-of-unit-testing-in-software-development-3f47ef326be1">here</a>. 
+And <a href="https://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html">here</a> is a nice overview of TDD -- Test-Driven Development (Martin).</li>
+</ul>
+<h2 id="python-modules-and-imports-ides-and-running-python-scripts">Python modules and imports, IDEs, and running Python scripts</h2>
+<p>Key concepts</p>
+<ul>
+<li>Jupyter notebooks are for exploration, NOT for collaborative software development. Nature wrote a blog post warning about Jupyter notebooks: "computational notebooks can also be confusing and foster poor coding practices. And they are difficult to share, collaborate on and reproduce. A 2019 study found that just 24% of 863,878 publicly available Jupyter notebooks on GitHub could be successfully re-executed, and only 4% produced the same results" -- blog post link <a href="https://archive.is/s7EbT#selection-1109.4-1121.1">here</a> and conference paper <a href="https://archive.is/o/s7EbT/https://doi.org/10.1109/MSR.2019.00077">here</a>. </li>
+<li>As programs grow in size, they should be split into smaller files and organized -- modules and importing are key here. Here's a <a href="https://www.datacamp.com/tutorial/modules-in-python">quick tutorial</a> and a more <a href="https://realpython.com/python-modules-packages/">in-depth tutorial</a>.</li>
+<li>Interactive Developer Environments (IDEs) are ideal for working with Python modules. We recommend Pycharm -- the community edition <a href="https://www.jetbrains.com/pycharm/">here</a> is free to download.</li>
+<li>Python can be run in many different ways -- users should understand the difference between running a script in an IDE Console and from the command line -- here's a <a href="https://realpython.com/run-python-scripts/">guide</a>.</li>
+<li>We recommend <a href="https://pypi.org/project/pip/">pip</a> or <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> for Python package management. There can sometimes be some issues with <a href="https://discuss.python.org/t/pip-conda-compatibility/24375">mixing pip and conda</a>, so it may be helpful to consistently only use one or the other. </li>
+<li>Users should be comfortable reading API documentation such as the <a href="base_components_reference.md">CLT Base Model Code's references</a> or <a href="https://numpy.org/doc/2.2/">numpy's references</a> -- there is no need to try to memorize syntax. Users should be comfortable parsing the technical details of classes and methods, customizing default arguments, and playtesting parts of the package for themselves. </li>
+</ul>
+<p>More reading</p>
+<ul>
+<li>Jupyter notebooks have issues with hidden states -- read more <a href="https://ploomber.io/blog/nbs-myths/">here</a>.</li>
+</ul>
+<h2 id="documentation-and-version-control">Documentation and version control</h2>
+<p>Key concepts</p>
+<ul>
+<li>
+<p>Users should be familiar with git. We strongly recommend this nice guide on github collaboration <a href="https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67">here</a>.</p>
+<ul>
+<li>Specifically, users should know the following concepts in git: cloning a repo, local and remote repos, committing and pushing, pull requests, pulling, merging.</li>
+</ul>
+</li>
+<li>
+<p>Collaborators should never push to main -- they should create a pull request (after adding tests and checking all tests) to request the main branch incorporate any new changes.</p>
+</li>
+<li>
+<p>Users should STOP the common practice of saving versions like <code>simulation_v3.2_final_final_01302025</code> -- this is <strong><em>horrible</em></strong> for many reasons. Users should instead use git version control and intentional git commit messages to keep track of their code versions.</p>
+</li>
+<li>
+<p>Users should add <code>.txt</code> and <code>.md</code> files documenting any mathematical parameters to their repo and make this a part of their version control setup. This way, users can keep track of WHY and WHEN certain parameter values were changed. </p>
+</li>
+<li>
+<p>The CLT Base Model Code documentation on this website is generated using <code>mkdocs</code>, and automatically populates code references hosted on this website from the code. The code docstrings must follow a specific format, outlined <a href="https://realpython.com/python-project-documentation-with-mkdocs/">here</a>.</p>
+</li>
+<li>Users should always write proper function signatures in their code -- specifying data input and return types is very important. <a href="https://thepythoncodingbook.com/2022/12/27/type-hints-in-python-functions/">This article here</a> is a starting point to learn more.  </li>
+</ul>
+<h2 id="other-important-points">Other important points...</h2>
+<p>Key concepts</p>
+<ul>
+<li>The CLT Base Model code uses object-oriented programming (OOP), which may be new to some modelers. The coding structure is similar to <a href="https://github.com/starsimhub/starsim">StarSim</a> and <a href="https://github.com/TACC/pandemicexercisesimulator">TACC's Pandemic Simulator</a> -- it is a tried and tested strategy. We strongly recommend <a href="https://realpython.com/inheritance-composition-python/#mixing-features-with-mixin-classes">this tutorial</a> for those new to OOP.<ul>
+<li>Specifically, users should know the following concepts: inheritance, attributes, abstract base classes, abstract methods.</li>
+</ul>
+</li>
+<li>We need to be <strong><em>responsible</em></strong> with random number generation. <strong><em>Please, stop using</em></strong> <code>np.random.seed</code>! Use generators instead! Here is a <a href="https://blog.scientific-python.org/numpy/numpy-rng/">superb article</a> outlining some dangers with misusing <code>numpy</code> random number generation, with links to the relevant numpy documentation. </li>
+<li>For-loops are horrible for efficiency and vectorized operations are better. Often, when possible, mathematical computations should be written in matrix multiplication form instead of for-loops. <a href="https://www.pythonlikeyoumeanit.com/module_3.html">Here</a> is a tutorial on the essentials of <code>numpy</code> and vectorized operations on <code>numpy</code> arrays.</li>
+<li>The <code>dataclasses</code> module makes storing data very easy -- here's a <a href="https://www.dataquest.io/blog/how-to-use-python-data-classes/">quick tutorial</a>.</li>
+<li>Users should understand interfaces and duck typing in Python -- here's a <a href="https://www.tutorialspoint.com/python/python_interfaces.htm">short overview</a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
