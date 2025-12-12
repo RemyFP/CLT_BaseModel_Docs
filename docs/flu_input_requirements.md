@@ -98,16 +98,16 @@ See the next section on `FluSubpopSchedules` for how $d_{\text{work}}(t)$ and $d
  Dataclass Field Name  | Column Name             |  Math Variable              | Dimension                                |
 |----------------------|----------------------| ----------------------------|------------------------------------------|
 | `absolute_humidity` | `absolute_humidity` | $h(t)$ |  positive `float` |
-| `flu_contact_matrix` | `is_school_day` | $d_{\text{work}}(t)$ | `bool` |
+| `flu_contact_matrix` | `is_school_day` | $d_{\text{work}}(t)$ | `float` in $[0,1]$  |
 | `flu_contact_matrix` | `is_work_day` | $d_{\text{school}}(t)$ | `bool` |
-| `daily_vaccines` | `daily_vaccines` | $V^{(\ell)}_{a, r}(t)$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ |
+| `daily_vaccines` | `daily_vaccines` | $V^{(\ell)}_{a, r}(t)$ | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$ of `float` in $[0,1]$  |
 
 ## `FluMixingParams`
 
  Dataclass Field Name                            | Math Variable              | Dimension                                |
 |---------------------------------|----------------------------|------------------------------------------|
 | `num_locations`                |    $\lvert \mathcal A \rvert$      | positive `int`                            |
-| `travel_proportions`               |    $p^{\ell \rightarrow k}$       | $\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert$                              |
+| `travel_proportions`               |    $p^{\ell \rightarrow k}$       | $\lvert \mathcal L \rvert \times \lvert \mathcal L \rvert$ of `float` in $[0,1]$                             |
 
 ## `SimulationSettings`
 
@@ -115,4 +115,4 @@ The field `timesteps_per_day` is the number of timesteps to take per day, which 
 
 See `SimulationSettings` docstring for other fields (those are not directly related to the mathematical formulation and only specify how simulation output is saved).
 
-> Updated 10/06/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.
+> Updated 12/12/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.

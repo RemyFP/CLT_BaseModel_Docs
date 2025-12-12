@@ -71,13 +71,13 @@ For each $\ell \in \mathcal L$, $a \in \agegroups$, $r \in \riskgroups$:
 
 \begin{align*}
 \frac{dM\locationell\agerisktime}{dt} &= \frac{\rateRtoS(t) R\locagerisktime}{N\locationell_{a, r}} \cdot (1 - oM\locationell\agerisktime - o_v MV\locationell\agerisktime) - wM\locationell\agerisktime \tag{M1} \\
-\frac{dMV\locationell\agerisktime}{dt} &= \frac{V\locationell\agerisk(t - \delta)}{N\locationell\agerisk} - w_v MV\locationell\agerisktime \tag{M2}
+\frac{dMV\locationell\agerisktime}{dt} &= V\locationell\agerisk(t - \delta) - w_v MV\locationell\agerisktime \tag{M2}
 \end{align*}
 
 where
 
 - $\rateRtoS$: rate at which recovered individuals become susceptible, so that $1/\rateRtoS$ is the average number of days a person is totally immune from reinfection until being susceptible again.
-- $V\locationell\agerisktime$: number of vaccine doses administered at time $t$ to individuals residing in location $\ell \in \mathcal L$ in age-risk group $a$, $r$.
+- $V\locationell\agerisktime$: proportion of individuals residing in location $\ell \in \mathcal L$ in age-risk group $a$, $r$ who receive vaccines at time $t$.
 - $o$, $o_v$: positive constants modeling the saturation of antibody production in individuals who have infection-induced immunity and vaccination-induced immunity, respectively.
 - $\delta$: number of days after dose for vaccine to become effective.
 - $w$: rate at which infection-induced immunity wanes.
@@ -193,7 +193,7 @@ Then the contact matrix for the subpopulation at time $t$ is
 $$
 \phi^{(\ell)}(t) := \phi^{(\ell), \text{total}} - (1 - d_{\text{work}}(t)) \phi^{(\ell), \text{work}} - (1 - d_{\text{school}}(t)) \phi^{(\ell), \text{school}}
 $$
-where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simulation time $t$ is a work day and $0$ otherwise, and $d_{\text{school}}(t)$ is defined analogously, but for school days.
+where $d_{\text{work}}(t)$ is $1$ if the real-world date corresponding to simulation time $t$ is a work day and $0$ otherwise, and $d_{\text{school}}(t) \in [0, 1]$ is defined analogously for school days and represents the proportion of schools open on day $t$.
 
 ### Other travel parameters
 
@@ -205,14 +205,17 @@ We have
 
 Note that the arrows in $\propdaytravelktoell$ correspond to direction of travel (e.g. $k \rightarrow \ell$ represents residents of location $k$ traveling to location $\ell$). The $\propdaytravelktoell$ values are calculated from mobility data, corresponding to
 
-\[
-\propdaytravelktoell := \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7}
-\]
+\begin{align*}
+\bar{p}^{k \rightarrow \ell} &= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7} \\[1.5em]
+\propdaytravelktoell &= \frac{\bar{p}^{k \rightarrow \ell}}{\sum_{\ell \in \mathcal L} \bar{p}^{k \rightarrow \ell}} \tag{T8}
+\end{align*}
 
 where
 
 - $c^{\poiell}$: average proportion of a day spent at $\poiell$.
 - $v^{k \rightarrow \poiell}$: average number of visits per day per resident of $k$ to $\poiell$.
+
+Therefore the rows of the mobility matrix $p$ sum to 1: $\sum_{\ell \in \mathcal L} \propdaytravelktoell = 1$.
 
 ## Flu model: discretized stochastic implementation
 
@@ -288,4 +291,4 @@ We make the important note that the flu model's discretized stochastic implement
 
 In fact, in our code, we model $\boldsymbol{\mathcal C(t)}$ using an `Compartment` class, $\boldsymbol{\mathcal M}(t)$ using an `EpiMetric` class, and $\boldsymbol{\mathcal S(t)}$ using a `Schedule` class. We handle stochastic transitions using `TransitionVariable` and `TransitionVariableGroup` classes. These classes form some of the building blocks of the base model code. 
 
-> Updated 10/06/2025. Documentation written by LP and updated by Rémy Pasco, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy and Susan Ptak, immunity formulation by Anass Bouchnita.
+> Updated 12/12/2025. Documentation written by LP and updated by Rémy Pasco, mathematical notation by LP (advised by Lauren Meyers and Dave Morton, edited by Susan Ptak, Meyers Lab, and Shiyuan Liang), travel model conceptualized by Rémy and Susan Ptak, immunity formulation by Anass Bouchnita.
