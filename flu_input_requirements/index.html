@@ -908,7 +908,7 @@
 <td><code>flu_contact_matrix</code></td>
 <td><code>is_school_day</code></td>
 <td><span class="arithmatex">\(d_{\text{work}}(t)\)</span></td>
-<td><code>bool</code></td>
+<td><code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 <tr>
 <td><code>flu_contact_matrix</code></td>
@@ -920,7 +920,7 @@
 <td><code>daily_vaccines</code></td>
 <td><code>daily_vaccines</code></td>
 <td><span class="arithmatex">\(V^{(\ell)}_{a, r}(t)\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span> of <code>float</code> in <span class="arithmatex">\([0,1]\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -950,7 +950,7 @@
 <p>The field <code>timesteps_per_day</code> is the number of timesteps to take per day, which equals <span class="arithmatex">\(1/(\Delta t)\)</span>, where <span class="arithmatex">\(\Delta t\)</span> is the discretization interval. The field <code>transition_type</code> determines the distribution used for transitions between compartments (see <a href="../math_transitions/">page on transitions</a>). The field <code>start_real_date</code> is the real-world date in string format <code>"YYYY-MM-DD"</code> corresponding to the start of the simulation. </p>
 <p>See <code>SimulationSettings</code> docstring for other fields (those are not directly related to the mathematical formulation and only specify how simulation output is saved).</p>
 <blockquote>
-<p>Updated 10/06/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.</p>
+<p>Updated 12/12/2025. Written by LP and updated by Rémy Pasco, edited by Susan Ptak.</p>
 </blockquote>
 
 
