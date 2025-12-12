@@ -727,7 +727,7 @@
 <p>For each <span class="arithmatex">\(\ell \in \mathcal L\)</span>, <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span>:</p>
 <div class="arithmatex">\[\begin{align*}
 \frac{dM\locationell\agerisktime}{dt} &amp;= \frac{\rateRtoS(t) R\locagerisktime}{N\locationell_{a, r}} \cdot (1 - oM\locationell\agerisktime - o_v MV\locationell\agerisktime) - wM\locationell\agerisktime \tag{M1} \\
-\frac{dMV\locationell\agerisktime}{dt} &amp;= V\locationell\agerisk(t - \delta)} - w_v MV\locationell\agerisktime \tag{M2}
+\frac{dMV\locationell\agerisktime}{dt} &amp;= V\locationell\agerisk(t - \delta) - w_v MV\locationell\agerisktime \tag{M2}
 \end{align*}\]</div>
 <p>where</p>
 <ul>
@@ -840,11 +840,11 @@ where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="ari
 <li><span class="arithmatex">\(\propdaytravelktoell\)</span>: (on average) proportion of the day that a resident of <span class="arithmatex">\(k\)</span> spends traveling to location <span class="arithmatex">\(\ell \in \mathcal L\)</span>.</li>
 </ul>
 <p>Note that the arrows in <span class="arithmatex">\(\propdaytravelktoell\)</span> correspond to direction of travel (e.g. <span class="arithmatex">\(k \rightarrow \ell\)</span> represents residents of location <span class="arithmatex">\(k\)</span> traveling to location <span class="arithmatex">\(\ell\)</span>). The <span class="arithmatex">\(\propdaytravelktoell\)</span> values are calculated from mobility data, corresponding to</p>
-<div class="arithmatex">\[\begin{align*}
-\bar{p}^{k \rightarrow \ell} &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7} \\ [1.5em]
-\propdaytravelktoell &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T8}
-\end{align*}\]</div>
-<p>where</p>
+<p>\begin{align}
+\bar{p}^{k \rightarrow \ell} &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7} \[1.5em]
+\propdaytravelktoell &amp;= \frac{\bar{p}^{k \rightarrow \ell}}{\sum_{\ell \in \mathcal L} \bar{p}^{k \rightarrow \ell}} \tag{T8}
+\end{align}
+where</p>
 <ul>
 <li><span class="arithmatex">\(c^{\poiell}\)</span>: average proportion of a day spent at <span class="arithmatex">\(\poiell\)</span>.</li>
 <li><span class="arithmatex">\(v^{k \rightarrow \poiell}\)</span>: average number of visits per day per resident of <span class="arithmatex">\(k\)</span> to <span class="arithmatex">\(\poiell\)</span>.</li>
