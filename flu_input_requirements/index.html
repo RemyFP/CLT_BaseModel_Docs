@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://remyfp.github.io/CLT_BaseModel_Docs/flu_input_requirements/">
       
       
-        <link rel="prev" href="../math_flu_components/">
+        <link rel="prev" href="../math_flu_components_updated/">
       
       
         <link rel="next" href="../clt_base_package_reference/">
@@ -323,6 +323,27 @@
   
   <span class="md-ellipsis">
     MetroFluSim Mathematical Formulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math_flu_components_updated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetroFluSim Mathematical Formulation - February 2026 updates
   </span>
   
 
@@ -762,6 +783,16 @@
 <td>nonnegative <code>float</code></td>
 </tr>
 <tr>
+<td><code>vaccination_immunity_reset_date_mm_dd</code></td>
+<td>-</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><code>vax_protection_delay_days</code></td>
+<td><span class="arithmatex">\(\delta\)</span></td>
+<td>nonnegative <code>int</code></td>
+</tr>
+<tr>
 <td><code>inf_induced_inf_risk_reduce</code></td>
 <td><span class="arithmatex">\(k^I\)</span></td>
 <td><code>float</code> in <span class="arithmatex">\([0,1)\)</span></td>
@@ -864,7 +895,7 @@
 <tr>
 <td><code>mobility_modifier</code></td>
 <td><span class="arithmatex">\(m\)</span></td>
-<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times 1\)</span></td>
+<td><span class="arithmatex">\(\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert\)</span></td>
 </tr>
 <tr>
 <td><code>total_contact_matrix</code></td>
