@@ -21,6 +21,7 @@ nav:
     - math_transitions.md
 - MetroFluSim:
     - math_flu_components.md
+    - math_flu_components_updated.md
     - flu_input_requirements.md
 - Code API Reference:
     - clt_base_package_reference.md
