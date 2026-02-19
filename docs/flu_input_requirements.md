@@ -64,6 +64,8 @@ The following variables are for a specific subpopulation, although many of these
 | `vax_induced_saturation`  | $o_v$           | nonnegative `float` |
 | `inf_induced_immune_wane`  | $w$           | nonnegative `float` |
 | `vax_induced_immune_wane`  | $w_v$           | nonnegative `float` |
+| `vaccination_immunity_reset_date_mm_dd`  | -           | `string` |
+| `vax_protection_delay_days`  | $\delta$           | nonnegative `int` |
 | `inf_induced_inf_risk_reduce`  | $k^I$           | `float` in $[0,1)$ |
 | `inf_induced_hosp_risk_reduce`  | $k^H$           | `float` in $[0,1)$ |
 | `inf_induced_death_risk_reduce`  | $k^D$           | `float` in $[0,1)$ |
@@ -84,7 +86,7 @@ The following variables are for a specific subpopulation, although many of these
 | `IP_relative_inf`   			  | $r_{IP}$ 				   | positive `float` 						  |
 | `IA_relative_inf`			   	  | $r_{IA}$ 				   | positive `float`                          |
 | `relative_suscept`			   	  | $\psi$ 				   | $\lvert \mathcal A \rvert \times 1$                          |
-| `mobility_modifier`			   	  | $m$ 				   | $\lvert \mathcal A \rvert \times 1$                          |
+| `mobility_modifier`			   	  | $m$ 				   | $\lvert \mathcal A \rvert \times \lvert \mathcal R \rvert$                          |
 | `total_contact_matrix`			   	  | $\phi^{(\ell), \text{total}}$				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
 | `school_contact_matrix`			   	  | $\phi^{(\ell), \text{work}}$ 				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
 | `work_contact_matrix`			   	  | $\phi^{(\ell), \text{school}}$				   | $\lvert \mathcal A \rvert \times \lvert A \rvert$                         |
