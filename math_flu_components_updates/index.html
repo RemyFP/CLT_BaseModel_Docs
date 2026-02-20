@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://remyfp.github.io/CLT_BaseModel_Docs/math_flu_components_updated/">
+        <link rel="canonical" href="https://remyfp.github.io/CLT_BaseModel_Docs/math_flu_components_updates/">
       
       
-        <link rel="prev" href="../math_flu_components/">
-      
-      
-        <link rel="next" href="../flu_input_requirements/">
       
       
       <link rel="icon" href="../img/favicon.ico">
@@ -278,19 +274,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -304,7 +298,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             MetroFluSim
@@ -327,169 +321,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    MetroFluSim Mathematical Formulation - February 2026 updates
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    MetroFluSim Mathematical Formulation - February 2026 updates
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#flu-model-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      Flu model: diagram
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flu-model-deterministic-differential-equations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Flu model: deterministic differential equations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Flu model: deterministic differential equations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#population-level-immunity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Population-level immunity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compartment-equations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compartment equations
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flu-model-travel-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Flu model: travel model
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Flu model: travel model">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exposure-intensity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exposure intensity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#contact-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contact matrix
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#other-travel-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other travel parameters
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flu-model-discretized-stochastic-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Flu model: discretized stochastic implementation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#general-model-discretized-stochastic-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      General model: discretized stochastic implementation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -839,7 +670,7 @@
 \lambda^{(\ell), \text{local}}\agetime &amp;= \psi_a \cdot \propdaytravelelltoell_a \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\tilde{I}\locationell_{a^\prime}(t)}{\tilde{N}\locationell_{a^\prime}(t)} \propdaytravelelltoell_{a^\prime} \tag{T2} \\[1.5em]
 \lambda^{(\ell), \text{local}}\agetime &amp;= \psi_a \left(1 - m_a \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok \right) \cdot \sum \limits_{a^\prime \in \agegroups} \phi\locationell_{a,a^\prime}(t) \frac{\texttt{I_weighted}\locationell_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime} \tag{T2_old} \\[1.5em]
 \\
-\lambda^{(\ell), \text{visitors}}\agetime &amp;= \psi_a \cdot \propdaytravelelltoell_a \cdot \sum_{k \in \mathcal{L} \setminus \{\ell\}} \underbrace{\left( \sum\limits_{a^\prime \in \agegroups} \propdaytravelktoell \cdot m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\tilde{I}\locationk_{a^\prime}(t)}{\tilde{N}\locationell_{a^\prime}(t)}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3} \\[1.5em]
+\lambda^{(\ell), \text{visitors}}\agetime &amp;= \psi_a \cdot \propdaytravelelltoell_a \cdot \sum_{k \in \mathcal{L} \setminus \{\ell\}} \underbrace{\left( \sum\limits_{a^\prime \in \agegroups} \phi\locationell_{a, a^\prime}(t) \frac{\tilde{I}\locationk_{a^\prime}(t)}{\tilde{N}\locationell_{a^\prime}(t)} m_{a^\prime}(t) \cdot \propdaytravelktoell \right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3} \\[1.5em]
 \lambda^{(\ell), \text{visitors}}\agetime &amp;= \sum_{k \in \mathcal L \setminus \{\ell\}} \underbrace{\left(\psi_a \cdot \propdaytravelktoell \cdot \sum\limits_{a^\prime \in \agegroups} m_{a^\prime}(t) \cdot \phi\locationell_{a, a^\prime}(t) \frac{\texttt{I_weighted}\locationk_{a^\prime}(t)}{\sum_{r^\prime \in \riskgroups} \effectiveNlocageprimeriskprimetime}\right)}_{\text{Each summand: } \lambda^{(\ell), \text{visitors from } k}\agetime} \tag{T3_old} \\[1.5em]
 \\
 \lambda_{a,r}^{(\ell), \text{residents traveling}}(t) &amp;= \psi_a \cdot \sum_{k \in \mathcal{L} \setminus \{\ell\}}   \left( \proptravelelltok  \cdot m_a \cdot \sum\limits_{a^\prime \in \agegroups} \phi\locationk_{a, a^\prime}(t) \right. \notag \\
@@ -853,7 +684,7 @@
 <div class="arithmatex">\[
 \texttt{I_weighted}\locationell_{a^\prime}(t) := \sum_{r^\prime \in \riskgroups} \left[ISR\locationell\ageprimeriskprime(t) + ISH\locationell\ageprimeriskprime(t) + r_{IP} IP\locationell\ageprimeriskprime(t) + r_{IA} IA\locationell\ageprimeriskprime(t)\right] \tag{T5_old}
 \]</div>
-<p>and where <span class="arithmatex">\(\effectiveNlocagetime\)</span> defined below is the effective population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span> and age-risk group <span class="arithmatex">\(a \in \agegroups\)</span>, <span class="arithmatex">\(r \in \riskgroups\)</span> at time <span class="arithmatex">\(t\)</span>.</p>
+<p>and where <span class="arithmatex">\(\effectiveNlocagetime\)</span> defined below is the effective population in location <span class="arithmatex">\(\ell \in \mathcal L\)</span> and age group <span class="arithmatex">\(a \in \agegroups\)</span>, at time <span class="arithmatex">\(t\)</span>.</p>
 <div class="arithmatex">\[\begin{align*}
 \effectiveNlocagerisktime &amp;= \Nlocagerisk + m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \propdaytravelktoell \cdot (N^{(k)}_{a, r} - HR^{(k)}_{a,r}(t) - HD^{(k)}_{a,r}(t)) \\ &amp;\quad\quad\quad - m_a \cdot \sum_{k \in \mathcal L \setminus \{\ell\}} \proptravelelltok  \cdot (N\locagerisk - HR\locationell_{a,r}(t) - HD\locationell_{a,r}(t)) \tag{T6} \\[1.5em]
 \effectiveNlocagetime &amp;= \sum_{r \in \riskgroups} \tilde{N}^{(l)}_{a, r} (t) \tag{T7} 
@@ -878,7 +709,7 @@ where <span class="arithmatex">\(d_{\text{work}}(t)\)</span> is <span class="ari
 </ul>
 <p>Note that the arrows in <span class="arithmatex">\(\propdaytravelktoell\)</span> correspond to direction of travel (e.g. <span class="arithmatex">\(k \rightarrow \ell\)</span> represents residents of location <span class="arithmatex">\(k\)</span> traveling to location <span class="arithmatex">\(\ell\)</span>). The <span class="arithmatex">\(\propdaytravelktoell\)</span> values are calculated from mobility data, corresponding to</p>
 <div class="arithmatex">\[\begin{align*}
-\bar{p}^{k \rightarrow \ell} &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T8} \\[1.5em]
+p^{k \rightarrow \ell} &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T8} \\[1.5em]
 \bar{p}^{k \rightarrow \ell} &amp;= \sum_{\poiell} c^{\poiell} \cdot v^{k \rightarrow \poiell} \tag{T7_old} \text{  (has not changed, just new number)} \\[1.5em]
 \propdaytravelelltoell_a &amp;= 1 - m_a \sum_{k \in \mathcal{L} \setminus \{\ell\}} \proptravelelltok \tag{T9} \\[1.5em]
 \propdaytravelktoell &amp;= \frac{\bar{p}^{k \rightarrow \ell}}{\sum_{\ell \in \mathcal L} \bar{p}^{k \rightarrow \ell}} \tag{T8_old} \text{  (discarded)}
